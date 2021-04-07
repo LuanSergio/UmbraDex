@@ -1,0 +1,5 @@
+@use '../../core/config/index-levels';
+
+@function color($color) {
+  @return map-get(colors.$theme, $color);
+}
