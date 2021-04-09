@@ -1,0 +1,91 @@
+@use '../../../assets/styles/tools/em' as *;
+
+$cards: (  
+  grass: #33BA5A,
+  water: #17C8EF,
+  electric: #FFCE31,
+  fire: #F5632D,
+  bug: #A8B820,
+  flying: #A890F0,
+  poison: #A040A0,
+  ghost: #916CD0,
+  psychic: #F85888,
+  dark: #705848,
+  fighting: #FD625A,
+  steel: #B8B8D0,
+  ice: #4FC0C0,
+  dragon: #462497,
+  fairy: #ED738E,
+);
+
+.card {
+  // background: linear-gradient(180deg, #33BA5A 0%, rgba(110, 199, 136, 0.95) 100%);
+  background: linear-gradient(180deg, #33BA5A 0%, rgba(23, 239, 96, 0.45) 100%);
+  border-radius: rem(20);
+  padding: rem(10) rem(30);
+  width: rem(250);
+  height: rem(285);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.number {
+  position: absolute;
+  top: rem(13);
+  font-weight: bold;
+  color: #FBFBFB;
+  font-size: rem(32);
+}
+
+.pokemonContainer {
+  position: relative;
+  overflow-x: visible;
+}
+
+.pokeball {
+  position: absolute;
+  right: rem(-30);
+  max-width: rem(155);
+}
+
+.pokemon {
+  position: relative;
+  min-width: rem(200);
+  max-width: rem(200);
+  z-index: 2;
+}
+
+.name {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 36%);
+  background-color: #FBFBFB;
+  border-radius: rem(9);
+  padding: rem(6) rem(16);
+  color: #33BA5A;
+  font-size: rem(20);
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.type {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(40%);
+  padding: rem(3) rem(12);
+  display: block;
+  border-radius: rem(10);
+  background-color: #33BA5A;
+  color: #FBFBFB;
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: rem(15);
+}
