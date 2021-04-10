@@ -5,9 +5,9 @@ function Home(): JSX.Element {
   return (
     <div>
       <Head>
-        <title>UmbraDex</title>
+        <title>
+          UmbraDex</title>
       </Head>
-
       <HomeLayout />
     </div>
   );

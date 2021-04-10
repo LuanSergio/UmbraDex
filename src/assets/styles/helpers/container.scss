@@ -1,0 +1,10 @@
+@use '../tools/em' as *;
+
+.container {
+  max-width: rem(1280);
+  padding-left: rem(20);
+  padding-right: rem(20);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}

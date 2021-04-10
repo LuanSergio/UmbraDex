@@ -4,11 +4,12 @@ import PokeballIcon from '../../../assets/images/icons/pokeball.svg';
 interface Props {
   id: number;
   name: string;
-  type: string;
+  types: Array<string>;
   imageUrl: string;
 }
 
-const PokemonCard = ({ id, name, type, imageUrl }: Props): JSX.Element => {
+const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
+  const test = [1, 2, 3, 4];
   return (
     <div className={styles.card}>
       <span className={styles.number}># 0{id}</span>
@@ -24,8 +25,18 @@ const PokemonCard = ({ id, name, type, imageUrl }: Props): JSX.Element => {
         />
         <span className={styles.name}>{name}</span>
       </div>
-      <span className={`${styles.type}`}>{type}</span>
-      <div className={`${styles.background} ${styles.background}--${type}`} />
+
+      <div className={styles.typeContainer}>
+        {types.map(type => (
+          <span key={type} className={`${styles.type}`}>
+            {type}
+          </span>
+        ))}
+      </div>
+
+      <div
+        className={`${styles.background} ${styles.background}--${types[0]}`}
+      />
     </div>
   );
 };

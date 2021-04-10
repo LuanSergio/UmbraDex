@@ -12,10 +12,9 @@
     }
   },
   "extends": [
-    "prettier",
     "plugin:react/recommended",
     "airbnb",
-    "plugin:@typescript-eslint/recommended"
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -43,6 +42,7 @@
       "jsx": "never",
       "ts": "never",
       "tsx": "never"
-    }]
+    }],
+    "no-plusplus": "off"
   }
 }
