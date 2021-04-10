@@ -4,10 +4,18 @@
     "es2021": true,
     "node": true
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
+    }
+  },
   "extends": [
+    "prettier",
     "plugin:react/recommended",
     "airbnb",
-    "prettier"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -29,6 +37,12 @@
     "space-before-function-paren": "off",
     "react/prop-types": "off",
     "no-undef": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }]
   }
 }
