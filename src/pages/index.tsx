@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import PokemonCard from '../components/molecules/PokemonCard';
+import HomeLayout from '../components/layouts/HomeLayout';
 
 function Home(): JSX.Element {
   return (
@@ -8,10 +8,7 @@ function Home(): JSX.Element {
         <title>UmbraDex</title>
       </Head>
 
-      <main>
-        <h1>UmbraDex</h1>
-        <PokemonCard  id={1} name="bulbassaur" type="grass" imageUrl="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" />
-      </main>
+      <HomeLayout />
     </div>
   );
 }
