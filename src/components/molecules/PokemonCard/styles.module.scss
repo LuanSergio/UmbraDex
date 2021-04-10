@@ -1,4 +1,5 @@
-@use '../../../assets/styles/tools/em' as *;
+@use '../../../assets/styles/tools/index' as *;
+@use '../../../assets/styles/helpers/icon.scss' as *;
 
 $cards: (  
   grass: #33BA5A,
@@ -19,8 +20,8 @@ $cards: (
 );
 
 .card {
-  // background: linear-gradient(180deg, #33BA5A 0%, rgba(110, 199, 136, 0.95) 100%);
   background: linear-gradient(180deg, #33BA5A 0%, rgba(23, 239, 96, 0.45) 100%);
+  // background-color: rgba($color: #000000, $alpha: 1.0);
   border-radius: rem(12);
   padding: rem(10) rem(30);
   width: rem(250);
@@ -77,15 +78,30 @@ $cards: (
 
 .type {
   position: absolute;
+  display: flex;
+  align-items: center;
   bottom: 0;
   transform: translateY(40%);
-  padding: rem(3) rem(12);
-  display: block;
+  padding: rem(5) rem(12);
   border-radius: rem(6);
   background-color: #33BA5A;
   color: #FBFBFB;
   text-align: center;
   font-weight: bold;
   text-transform: capitalize;
-  font-size: rem(15);
+  font-size: rem(18);
+}
+
+.type::before {
+  @include icon;
+  content: get-icon("grass");
+  color: #33BA5A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(3);
+  margin-right: rem(6);
+  border-radius: 50%;
+  background-color: #FBFBFB;
+  font-size: rem(12);
 }

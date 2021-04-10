@@ -1,5 +1,5 @@
 @use '../settings/index-level';
 
 @function index-level($level) {
-  @return map-get(index-levels.$levels, $level);
+  @return map-get(index-level.$levels, $level);
 }

@@ -1,0 +1,5 @@
+@use '../../styles/settings/icons';
+
+@function get-icon($iconName) {
+  @return map-get(icons.$iconList, $iconName);
+}
