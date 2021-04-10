@@ -1,7 +1,7 @@
 @use '../../../assets/styles/tools/index' as *;
 @use '../../../assets/styles/helpers/icon.scss' as *;
 
-$cards: (  
+$types: (  
   grass: #33BA5A,
   water: #17C8EF,
   electric: #FFCE31,
@@ -20,17 +20,34 @@ $cards: (
 );
 
 .card {
-  background: linear-gradient(180deg, #33BA5A 0%, rgba(23, 239, 96, 0.45) 100%);
   // background-color: rgba($color: #000000, $alpha: 1.0);
+  background: linear-gradient(180deg, #33BA5A 0%, rgba(23, 239, 96, 0.45) 100%);
   border-radius: rem(12);
-  padding: rem(10) rem(30);
   width: rem(250);
   height: rem(277);
+  cursor: pointer;
+  padding: rem(10) rem(30);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.card:hover .background {
+  opacity: 0.83;
+}
+
+.card:hover .type {
+  opacity: 0.87;
+}
+
+.background {
+  position: absolute;
+  border-radius: rem(12);
+  width: rem(250);
+  height: rem(277);  
+  transition: opacity ease-out 0.25s;
 }
 
 .number {
@@ -39,6 +56,7 @@ $cards: (
   font-weight: bold;
   color: #FBFBFB;
   font-size: rem(20);
+  z-index: get-index-level(lvl3);
 }
 
 .pokemonContainer {
@@ -51,19 +69,20 @@ $cards: (
   right: 0;
   width: rem(155);
   transform: translateX(13%);
+  z-index: get-index-level(lvl1);
 }
 
 .pokemon {
   position: relative;
   min-width: rem(180);
   max-width: rem(180);
-  z-index: 1;
+  z-index: get-index-level(lvl2);
 }
 
 .name {
   display: block;
   position: absolute;
-  z-index: 2;
+  z-index: get-index-level(lvl3);
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 36%);
@@ -75,10 +94,12 @@ $cards: (
   text-align: center;
   font-weight: bold;
   text-transform: capitalize;
+  transition: ease-out 0.35s;
 }
 
 .type {
   position: absolute;
+  z-index: get-index-level(lvl3);
   display: flex;
   align-items: center;
   bottom: 0;
@@ -91,6 +112,7 @@ $cards: (
   font-weight: bold;
   text-transform: capitalize;
   font-size: rem(18);
+  transition: opacity ease-out 0.25s;
 }
 
 .type::before {
@@ -106,3 +128,9 @@ $cards: (
   background-color: #FBFBFB;
   font-size: rem(12);
 }
+
+// @each $type, $color in $types {
+//   .--#{$type} {
+//     background-color: $color;
+//   }
+// }
