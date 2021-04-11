@@ -17,6 +17,9 @@ $types: (
   ice: #4FC0C0,
   dragon: #462497,
   fairy: #ED738E,
+  normal: #97977B,
+  rock: #978046,
+  ground: #D9BA67,
 );
 
 .card {
@@ -40,15 +43,14 @@ $types: (
 }
 
 .card:hover .type {
-  opacity: 0.87;
+  opacity: 0.95;
 }
 
 .background {
   position: absolute;
-  background: linear-gradient(180deg, #33BA5A 0%, rgba(23, 239, 96, 0.45) 100%);
   border-radius: rem(12);
   width: rem(250);
-  height: rem(277);  
+  height: rem(277);
   transition: opacity ease-out 0.15s;
 }
 
@@ -97,6 +99,7 @@ $types: (
   font-weight: bold;
   text-transform: capitalize;
   transition: ease-out 0.35s;
+  white-space: nowrap;
 }
 
 .typeContainer {
@@ -114,7 +117,6 @@ $types: (
   align-items: center;
   padding: rem(5) rem(12);
   border-radius: rem(6);
-  background-color: #33BA5A;
   color: #FBFBFB;
   text-align: center;
   font-weight: bold;
@@ -129,8 +131,6 @@ $types: (
 
 .type::before {
   @include icon;
-  content: get-icon("grass");
-  color: #33BA5A;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,11 +138,23 @@ $types: (
   margin-right: rem(6);
   border-radius: 50%;
   background-color: #FBFBFB;
-  font-size: rem(12);
+  font-size: rem(11);
 }
 
-// @each $type, $color in $types {
-//   .--#{$type} {
-//     background-color: $color;
-//   }
-// }
+@each $type, $color in $types {
+  .background.#{$type} {
+    background: linear-gradient(180deg, $color 0%, rgba($color: $color, $alpha: 0.45) 100%);
+  }
+
+  .name.#{$type} {
+    color: $color;
+  }
+
+  .type.#{$type} {
+    background-color: $color;
+  }
+  .type.#{$type}::before {
+    content: get-icon($type);
+    color: $color;
+  }
+}

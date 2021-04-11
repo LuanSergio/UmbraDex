@@ -9,10 +9,14 @@ interface Props {
 }
 
 const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
-  const test = [1, 2, 3, 4];
   return (
     <div className={styles.card}>
-      <span className={styles.number}># 0{id}</span>
+      {id <= 10 ? (
+        <span className={styles.number}># 0{id}</span>
+      ) : (
+        <span className={styles.number}># {id}</span>
+      )}
+
       <div className={styles.pokemonContainer}>
         <span className={styles.pokeball}>
           <PokeballIcon />
@@ -23,20 +27,18 @@ const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
           alt={name}
           title={name}
         />
-        <span className={styles.name}>{name}</span>
+        <span className={`${styles.name} ${styles[types[0]]}`}>{name}</span>
       </div>
 
       <div className={styles.typeContainer}>
-        {types.map(type => (
-          <span key={type} className={`${styles.type}`}>
+        {types.map((type, index) => (
+          <span key={type} className={`${styles.type} ${styles[types[index]]}`}>
             {type}
           </span>
         ))}
       </div>
 
-      <div
-        className={`${styles.background} ${styles.background}--${types[0]}`}
-      />
+      <div className={`${styles.background} ${styles[types[0]]}`} />
     </div>
   );
 };
