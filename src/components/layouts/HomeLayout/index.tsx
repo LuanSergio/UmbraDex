@@ -14,15 +14,10 @@ const HomeLayout = (): JSX.Element => {
     const pokemonUrlList = [];
 
     for (let i = 1; i <= quantity; i++) {
-      try {
-        const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
-        pokemonUrlList.push(url);
-      } catch (error) {
-        console.log(`Error occured on main endpoint: ${error.message}`);
-        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        pokemonUrlList.push(url);
-      }
+      const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+      pokemonUrlList.push(url);
     }
+
     const promises = pokemonUrlList.map(url => axios.get(url));
     const response = await axios.all(promises);
 
