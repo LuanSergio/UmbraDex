@@ -1,5 +1,9 @@
+@use '../../../assets/styles/tools/index' as *;
+
 .cardContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  align-content: center;
+  display: grid;
+  grid-row-gap: rem(40);
+  grid-template-columns: repeat(4, 25%);
+  justify-items: center;
 }
