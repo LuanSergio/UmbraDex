@@ -1,0 +1,51 @@
+@use '../settings/media' as *;
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: map-get($breakpoints, mobile)) {
+      @content;
+    }
+  }
+
+  @if $media == smartphone {
+    @media only screen and (max-width: map-get($breakpoints, smartphone)) {
+      @content;
+    }
+  }
+
+  @if $media == tablet {
+    @media only screen and (min-width: map-get($breakpoints, tablet)) and (max-width: map-get($breakpoints, mobile)) {
+      @content;
+    }
+  }
+
+  @if $media == laptop {
+    @media only screen and (min-width: map-get($breakpoints, laptop)) and (max-width: map-get($breakpoints, HD)) {
+      @content;
+    }
+  }
+
+  @if $media == HD {
+    @media only screen and (min-width: map-get($breakpoints, HD)) {
+      @content;
+    }
+  }
+
+  @if $media == fullHD {
+    @media only screen and (min-width: map-get($breakpoints, fullHD)) {
+      @content;
+    }
+  }
+
+  @if $media == quadHD {
+    @media only screen and (min-width: map-get($breakpoints, quadHD)) {
+      @content;
+    }
+  }
+
+  @if $media == ultraHD {
+    @media only screen and (min-width: map-get($breakpoints, ultraHD)) {
+      @content;
+    }
+  }
+}
