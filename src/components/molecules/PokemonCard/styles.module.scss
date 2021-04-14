@@ -63,9 +63,9 @@ $types: (
 }
 
 .pokemon {
-  max-width: rem(200);
   position: relative;
-  width: 100%;
+  height: rem(200);
+  width: rem(200);
   z-index: get-index-level(lvl2);
 }
 
