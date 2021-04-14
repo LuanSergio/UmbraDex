@@ -121,10 +121,12 @@ $types: (
   background-color: #fbfbfb;
   border-radius: 50%;
   display: flex;
-  font-size: rem(11);
+  font-size: rem(12);
   justify-content: center;
   margin-right: rem(6);
   padding: rem(3);
+  width: rem(19);
+  height: rem(19);
 }
 
 .background {
