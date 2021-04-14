@@ -1,127 +1,114 @@
 @use '../../../assets/styles/tools/index' as *;
 @use '../../../assets/styles/helpers/icon.scss' as *;
 
-$types: (  
-  grass: #33BA5A,
-  water: #17C8EF,
-  electric: #FFCE31,
-  fire: #F5632D,
-  bug: #A8B820,
-  flying: #A890F0,
-  poison: #A040A0,
-  ghost: #916CD0,
-  psychic: #F85888,
+$types: (
+  bug: #a8b820,
   dark: #705848,
-  fighting: #FD625A,
-  steel: #B8B8D0,
-  ice: #4FC0C0,
   dragon: #462497,
-  fairy: #ED738E,
-  normal: #97977B,
+  electric: #ffce31,
+  fairy: #ed738e,
+  fighting: #fd625a,
+  fire: #f5632d,
+  flying: #a890f0,
+  ghost: #916cd0,
+  grass: #33ba5a,
+  ground: #d9ba67,
+  ice: #4fc0c0,
+  normal: #97977b,
+  poison: #a040a0,
+  psychic: #f85888,
   rock: #978046,
-  ground: #D9BA67,
+  steel: #b8b8d0,
+  water: #17c8ef,
 );
 
 .card {
-  // background-color: rgba($color: #000000, $alpha: 1.0);
+  align-items: center;
   border-radius: rem(12);
-  width: rem(250);
-  height: rem(277);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: rem(277);
+  justify-content: center;
+  margin-bottom: rem(40);
   padding: rem(10) rem(30);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  margin-bottom: rem(40);
+  width: rem(250);
 }
 
 .card:hover .background {
   opacity: 0.83;
 }
 
-.card:hover .type {
-  opacity: 0.95;
-}
-
-.background {
-  position: absolute;
-  border-radius: rem(12);
-  width: rem(250);
-  height: rem(277);
-  transition: opacity ease-out 0.15s;
-}
-
 .number {
+  color: #fbfbfb;
+  font-size: rem(20);
+  font-weight: bold;
   position: absolute;
   top: rem(10);
-  font-weight: bold;
-  color: #FBFBFB;
-  font-size: rem(20);
   z-index: get-index-level(lvl3);
 }
 
 .pokemonContainer {
-  position: relative;
   overflow-x: visible;
+  position: relative;
 }
 
 .pokeball {
   position: absolute;
   right: 0;
-  width: rem(155);
+  top: rem(7);
   transform: translateX(13%);
+  width: rem(155);
   z-index: get-index-level(lvl1);
 }
 
 .pokemon {
-  position: relative;
-  min-width: rem(180);
   max-width: rem(180);
+  position: relative;
+  width: 100%;
   z-index: get-index-level(lvl2);
 }
 
 .name {
-  display: block;
-  position: absolute;
-  z-index: get-index-level(lvl3);
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 36%);
-  background-color: #FBFBFB;
+  color: #33ba5a;
+  background-color: #fbfbfb;
   border-radius: rem(6);
-  padding: rem(6) rem(16);
-  color: #33BA5A;
-  font-size: rem(20);
-  text-align: center;
+  bottom: 0;
+  display: block;
   font-weight: bold;
+  font-size: rem(20);
+  left: 50%;
+  padding: rem(6) rem(16);
+  position: absolute;
+  text-align: center;
   text-transform: capitalize;
+  transform: translate(-50%, 36%);
   transition: ease-out 0.35s;
   white-space: nowrap;
+  z-index: get-index-level(lvl3);
 }
 
 .typeContainer {
-  position: absolute;
-  z-index: get-index-level(lvl3);
-  display: flex;
   align-items: center;
-  justify-content: center;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
   transform: translateY(40%);
+  z-index: get-index-level(lvl3);
 }
 
 .type {
-  display: flex;
   align-items: center;
-  padding: rem(5) rem(12);
   border-radius: rem(6);
-  color: #FBFBFB;
-  text-align: center;
-  font-weight: bold;
-  text-transform: capitalize;
+  color: #fbfbfb;
+  display: flex;
   font-size: rem(18);
+  font-weight: bold;
+  padding: rem(5) rem(12);
+  text-align: center;
+  text-transform: capitalize;
   transition: opacity ease-out 0.25s;
 }
 
@@ -131,19 +118,31 @@ $types: (
 
 .type::before {
   @include icon;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: rem(3);
-  margin-right: rem(6);
+  background-color: #fbfbfb;
   border-radius: 50%;
-  background-color: #FBFBFB;
+  display: flex;
   font-size: rem(11);
+  justify-content: center;
+  margin-right: rem(6);
+  padding: rem(3);
+}
+
+.background {
+  border-radius: rem(12);
+  height: rem(277);
+  position: absolute;
+  transition: opacity ease-out 0.15s;
+  width: rem(250);
 }
 
 @each $type, $color in $types {
   .background.#{$type} {
-    background: linear-gradient(180deg, $color 0%, rgba($color: $color, $alpha: 0.45) 100%);
+    background: linear-gradient(
+      180deg,
+      $color 0%,
+      rgba($color: $color, $alpha: 0.45) 100%
+    );
   }
 
   .name.#{$type} {
