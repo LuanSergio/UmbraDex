@@ -6,6 +6,7 @@
   grid-row-gap: rem(40);
   grid-template-columns: repeat(4, 25%);
   justify-items: center;
+  padding-bottom: rem(40);
 }
 
 @include respond-to(laptop) {
