@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PokemonCard from '../../molecules/PokemonCard';
+import PokemonCard from '@components/molecules/PokemonCard';
 import styles from './styles.module.scss';
 
 const HomeLayout = (): JSX.Element => {
