@@ -12,7 +12,6 @@ const HomeLayout = (): JSX.Element => {
   async function fetchPokemonData() {
     const quantity: number = await getPokemonQuantity();
     const pokemonUrlList = [];
-
     for (let i = 1; i <= quantity; i++) {
       const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
       pokemonUrlList.push(url);
