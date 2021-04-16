@@ -1,5 +1,6 @@
-@use '../../core/config/index-levels';
+@use '../settings/colors-type' as *;
+@use '../settings/colors-theme' as *;
 
-@function color($color) {
-  @return map-get(colors.$theme, $color);
+@function get-color($color) {
+  @return map-get($theme, $color);
 }

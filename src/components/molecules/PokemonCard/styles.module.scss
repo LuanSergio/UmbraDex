@@ -1,26 +1,6 @@
 @use '../../../assets/styles/tools/index' as *;
 @use '../../../assets/styles/helpers/icon.scss' as *;
-
-$types: (
-  bug: #a8b820,
-  dark: #705848,
-  dragon: #462497,
-  electric: #ffce31,
-  fairy: #ed738e,
-  fighting: #fd625a,
-  fire: #f5632d,
-  flying: #a890f0,
-  ghost: #5a3696,
-  grass: #33ba5a,
-  ground: #d9ba67,
-  ice: #4fc0c0,
-  normal: #97977b,
-  poison: #a040a0,
-  psychic: #f85888,
-  rock: #978046,
-  steel: #b8b8d0,
-  water: #17c8ef,
-);
+@use '../../../assets/styles/settings/colors-type' as colorsType;
 
 .card {
   align-items: center;
@@ -40,7 +20,7 @@ $types: (
 }
 
 .number {
-  color: #fbfbfb;
+  color: get-color(light);
   font-size: rem(20);
   font-weight: bold;
   position: absolute;
@@ -57,7 +37,7 @@ $types: (
   position: absolute;
   right: 0;
   top: rem(7);
-  transform: translateX(13%);
+  transform: translateX(10%);
   width: rem(155);
   z-index: get-index-level(lvl1);
 }
@@ -70,8 +50,7 @@ $types: (
 }
 
 .name {
-  color: #33ba5a;
-  background-color: #fbfbfb;
+  background-color: get-color(light);
   border-radius: rem(6);
   bottom: 0;
   display: block;
@@ -101,7 +80,7 @@ $types: (
 .type {
   align-items: center;
   border-radius: rem(6);
-  color: #fbfbfb;
+  color: get-color(light);
   display: flex;
   font-size: rem(18);
   font-weight: bold;
@@ -118,7 +97,7 @@ $types: (
 .type::before {
   @include icon;
   align-items: center;
-  background-color: #fbfbfb;
+  background-color: get-color(light);
   border-radius: 50%;
   display: flex;
   font-size: rem(12);
@@ -137,7 +116,7 @@ $types: (
   width: rem(250);
 }
 
-@each $type, $color in $types {
+@each $type, $color in colorsType.$types {
   .background.#{$type} {
     background: linear-gradient(
       180deg,
@@ -154,7 +133,7 @@ $types: (
     background-color: $color;
   }
   .type.#{$type}::before {
-    content: get-icon($type);
     color: $color;
+    content: get-icon($type);
   }
 }
