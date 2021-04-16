@@ -9,6 +9,8 @@ interface Props {
 }
 
 const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
+  const dualType = `dual-${types[1]}`;
+
   return (
     <div className={styles.card}>
       {id <= 10 ? (
@@ -38,7 +40,15 @@ const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
         ))}
       </div>
 
-      <div className={`${styles.background} ${styles[types[0]]}`} />
+      {types.length > 0 ? (
+        <div
+          className={`${styles.background} ${styles[dualType]} ${
+            styles[types[0]]
+          }`}
+        />
+      ) : (
+        <div className={`${styles.background} ${styles[types[0]]}`} />
+      )}
     </div>
   );
 };
