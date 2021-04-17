@@ -22,6 +22,7 @@ const PokemonCard = ({ id, name, types, imageUrl }: Props) => {
           <PokeballIcon />
         </span>
         <img
+          loading="lazy"
           className={styles.pokemon}
           src={imageUrl}
           alt={name}
