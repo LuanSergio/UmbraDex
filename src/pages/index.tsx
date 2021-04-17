@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import HomeLayout from '../components/layouts/HomeLayout';
 
-function Home(): JSX.Element {
+function Home() {
   return (
     <div>
       <Head>
-        <title>
-          UmbraDex</title>
+        <title>UmbraDex</title>
       </Head>
       <HomeLayout />
     </div>

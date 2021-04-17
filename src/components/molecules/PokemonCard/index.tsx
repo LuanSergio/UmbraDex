@@ -8,7 +8,7 @@ interface Props {
   imageUrl: string;
 }
 
-const PokemonCard = ({ id, name, types, imageUrl }: Props): JSX.Element => {
+const PokemonCard = ({ id, name, types, imageUrl }: Props) => {
   return (
     <div className={styles.card}>
       {id <= 10 ? (
