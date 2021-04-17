@@ -1,0 +1,31 @@
+@use '../../../assets/styles/tools/index' as *;
+
+.header {
+  background-color: #21285a;
+  padding-top: rem(10);
+  padding-bottom: rem(10);
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+}
+
+.rightContainer > *:not(:last-child) {
+  margin-right: rem(20);
+}
+
+.github {
+  display: block;
+}
+
+.optionsButton {
+  background-color: transparent;
+  border: none;
+}

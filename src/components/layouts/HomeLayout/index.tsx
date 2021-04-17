@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PokemonCard from '../../molecules/PokemonCard';
+import Header from '../../molecules/Header';
 import styles from './styles.module.scss';
 
 const HomeLayout = (): JSX.Element => {
@@ -53,9 +54,7 @@ const HomeLayout = (): JSX.Element => {
 
   return (
     <>
-      <header>
-        <h1>UmbraDex</h1>
-      </header>
+      <Header />
       <main className="container">
         <ul className={styles.cardContainer}>
           {pokemons.map(pokemon => (
