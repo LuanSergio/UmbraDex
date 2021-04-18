@@ -1,31 +1,87 @@
 @use '../../../assets/styles/tools/index' as *;
+@use '../../../assets/styles/helpers/icon.scss' as *;
 
 .header {
-  background-color: #21285a;
-  padding-top: rem(10);
-  padding-bottom: rem(10);
+  background-color: get-color(primary);
 }
 
 .headerContainer {
+  align-items: center;
+  // border-bottom: rem(2) solid get-color(light);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding-bottom: rem(10);
+  padding-top: rem(10);
 }
 
-.rightContainer {
-  display: flex;
-  align-items: center;
-}
-
-.rightContainer > *:not(:last-child) {
-  margin-right: rem(20);
-}
-
-.github {
+.logo {
   display: block;
 }
 
-.optionsButton {
+.logo:hover {
+  border-bottom: rem(2) solid get-color(secondary);
+  margin-bottom: rem(-2);
+}
+
+.rightContainer {
+  align-items: center;
+  display: flex;
+}
+
+.rightContainer > *:not(:last-child) {
+  margin-right: rem(15);
+}
+
+.github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15%;
+  width: rem(50);
+  height: rem(50);
+  transition: background-color ease-out 0.15s;
+  & > svg > path {
+    transition: fill ease-out 0.15s;
+  }
+}
+
+.github:hover,
+.github:focus {
+  background-color: rgba($color: get-color(light), $alpha: 0.15);
+  & > svg > path {
+    fill: get-color(secondary);
+  }
+}
+
+.options {
+  align-items: center;
+  border-radius: 15%;
+  display: flex;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+  font-size: 0;
+  height: rem(50);
+  justify-content: center;
+  transition: background-color ease-out 0.15s;
+  width: rem(50);
+}
+
+.options:hover,
+.options:focus {
+  background-color: rgba($color: get-color(light), $alpha: 0.15);
+}
+
+.options::before {
+  @include icon;
+  color: get-color(light);
+  content: get-icon(vertical-dots);
+  font-size: rem(35);
+  position: absolute;
+  transition: color ease-out 0.2s;
+}
+
+.options:hover::before,
+.options:focus::before {
+  color: get-color(secondary);
 }
