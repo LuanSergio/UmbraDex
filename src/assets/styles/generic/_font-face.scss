@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/roboto/roboto-regular.woff2") format("woff2"),
-    url("../../fonts/roboto/roboto-regular.woff") format("woff");
+  font-family: 'Roboto';
+  src: url('../../fonts/roboto/roboto-regular.woff2') format('woff2'),
+    url('../../fonts/roboto/roboto-regular.woff') format('woff');
   unicode-range: U+000-5FF; /* Latin glyphs */
   font-weight: normal;
   font-style: normal;
@@ -9,9 +9,9 @@
 }
 
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/roboto/roboto-bold.woff2") format("woff2"),
-    url("../../fonts/roboto/roboto-bold.woff") format("woff");
+  font-family: 'Roboto';
+  src: url('../../fonts/roboto/roboto-bold.woff2') format('woff2'),
+    url('../../fonts/roboto/roboto-bold.woff') format('woff');
   unicode-range: U+000-5FF; /* Latin glyphs */
   font-weight: bold;
   font-style: normal;
@@ -19,8 +19,8 @@
 }
 
 @font-face {
-  font-family: "icons";
-  src: url("../../fonts/icons/icomoon.woff?d5vve0") format("woff");
+  font-family: 'icons';
+  src: url('../../fonts/icons/icomoon.woff?d5vve0') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
