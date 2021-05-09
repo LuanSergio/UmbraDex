@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PokemonCard from '../../molecules/PokemonCard';
-import Header from '../../molecules/Header';
+import PokemonCard from '@components/molecules/PokemonCard';
+import Header from '@components/molecules/Header';
 import styles from './styles.module.scss';
 
 const HomeLayout = (): JSX.Element => {

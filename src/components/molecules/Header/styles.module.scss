@@ -1,5 +1,5 @@
-@use '../../../assets/styles/tools/index' as *;
-@use '../../../assets/styles/helpers/icon.scss' as *;
+@use '@styles/tools/index' as *;
+@use '@styles/helpers/icon.scss' as *;
 
 .header {
   background-color: get-color(primary);

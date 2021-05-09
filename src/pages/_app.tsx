@@ -1,4 +1,4 @@
-import '../assets/styles/global.scss';
+import '@styles/global.scss';
 
 function MyApp({ Component }) {
   return <Component />;

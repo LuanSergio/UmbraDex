@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import HomeLayout from '../components/layouts/HomeLayout';
+import HomeLayout from '@components/layouts/HomeLayout';
 
 function Home() {
   return (
