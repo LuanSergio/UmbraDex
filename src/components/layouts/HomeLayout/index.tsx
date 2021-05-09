@@ -43,11 +43,11 @@ const HomeLayout = (): JSX.Element => {
     return pokemonInformation;
   }
 
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
     async function setPokemonData() {
-      setPokemons(await getPokemonInformation());
+      setPokemon(await getPokemonInformation());
     }
     setPokemonData();
   }, []);
@@ -57,13 +57,13 @@ const HomeLayout = (): JSX.Element => {
       <Header />
       <main className="container">
         <ul className={styles.cardContainer}>
-          {pokemons.map(pokemon => (
-            <li key={pokemon.id}>
+          {pokemon.map(element => (
+            <li key={element.id}>
               <PokemonCard
-                id={pokemon.id}
-                name={pokemon.name}
-                types={pokemon.types}
-                imageUrl={pokemon.image}
+                id={element.id}
+                name={element.name}
+                types={element.types}
+                imageUrl={element.image}
               />
             </li>
           ))}
