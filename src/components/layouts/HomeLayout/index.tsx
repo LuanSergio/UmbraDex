@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PokemonCard from '@components/molecules/PokemonCard';
 import Header from '@components/molecules/Header';
+import { nanoid } from 'nanoid';
 import styles from './styles.module.scss';
 
 const HomeLayout = (): JSX.Element => {
@@ -58,7 +59,7 @@ const HomeLayout = (): JSX.Element => {
       <main className="container">
         <ul className={styles.cardContainer}>
           {pokemon.map(element => (
-            <li key={element.id}>
+            <li key={nanoid()}>
               <PokemonCard
                 id={element.id}
                 name={element.name}
