@@ -1,5 +1,6 @@
 @use '@styles/tools/index' as *;
 @use '@styles/helpers/icon.scss' as *;
+@use '@styles/animations/growing-border';
 
 .header {
   background-color: get-color(primary);
@@ -18,9 +19,14 @@
   display: block;
 }
 
-.logo:hover {
-  border-bottom: rem(2) solid get-color(secondary);
+.logo:hover::after {
+  content: '';
+  background-color: get-color(secondary);
+  display: block;
+  height: rem(2);
+  width: 100%;
   margin-bottom: rem(-2);
+  animation: growingBorder 0.37s forwards;
 }
 
 .rightContainer {
