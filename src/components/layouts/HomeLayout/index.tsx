@@ -1,11 +1,45 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PokemonCard from '@components/molecules/PokemonCard';
 import Header from '@components/molecules/Header';
 import { nanoid } from 'nanoid';
 import styles from './styles.module.scss';
 
 const HomeLayout = (): JSX.Element => {
+  const loader = useRef<HTMLDivElement>(null);
+  const [pokemonCounter, setPokemonCounter] = useState(0);
+  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
+
+  const handleObserver = (entities: IntersectionObserverEntry[]) => {
+    const target = entities[0];
+    if (target.isIntersecting) {
+      setPokemonCounter(counter => counter + 100);
+    }
+  };
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: `20px`,
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver(handleObserver, options);
+    if (loader?.current) {
+      observer.observe(loader.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    const count = pokemon.length;
+
+    setPokemon(previousState => [
+      ...previousState,
+      ...pokemonList.slice(count, count + 50),
+    ]);
+  }, [pokemonCounter]);
+
   async function getPokemonQuantity() {
     const response = await axios.get('https://pokeapi.co/api/v2/pokedex/1/');
     return response.data.pokemon_entries.length;
@@ -30,12 +64,12 @@ const HomeLayout = (): JSX.Element => {
     const responses = await fetchPokemonData();
     const pokemonInformation = [];
 
-    responses.forEach(pokemon => {
+    responses.forEach(response => {
       const pokemonData = {
-        name: pokemon.data.name,
-        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.data.id}.png`,
-        types: pokemon.data.types.map(item => item.type.name),
-        id: pokemon.data.id,
+        name: response.data.name,
+        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.id}.png`,
+        types: response.data.types.map(item => item.type.name),
+        id: response.data.id,
       };
 
       pokemonInformation.push(pokemonData);
@@ -44,11 +78,13 @@ const HomeLayout = (): JSX.Element => {
     return pokemonInformation;
   }
 
-  const [pokemon, setPokemon] = useState([]);
+  useEffect(() => {
+    setPokemon([...pokemonList.slice(0, 24)]);
+  }, [pokemonList]);
 
   useEffect(() => {
     async function setPokemonData() {
-      setPokemon(await getPokemonInformation());
+      setPokemonList(await getPokemonInformation());
     }
     setPokemonData();
   }, []);
@@ -58,16 +94,24 @@ const HomeLayout = (): JSX.Element => {
       <Header />
       <main className="container">
         <ul className={styles.cardContainer}>
-          {pokemon.map(element => (
-            <li key={nanoid()}>
-              <PokemonCard
-                id={element.id}
-                name={element.name}
-                types={element.types}
-                imageUrl={element.image}
-              />
-            </li>
-          ))}
+          {pokemon.length > 1 && (
+            <>
+              {pokemon.map(element => (
+                <li key={nanoid()}>
+                  <PokemonCard
+                    id={element.id}
+                    name={element.name}
+                    types={element.types}
+                    imageUrl={element.image}
+                  />
+                </li>
+              ))}
+            </>
+          )}
+
+          <div className="loading" ref={loader}>
+            <h2>Loading...</h2>
+          </div>
         </ul>
       </main>
     </>
