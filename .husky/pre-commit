@@ -4,7 +4,7 @@
 echo 'Testing and building project before committing'
 
 # Check Prettier standards
-echo 'Checking Prettier. 💅'
+echo '📋 Checking Prettier.'
 npm run check-format ||
 (
     echo '❌ Prettier Check Failed. Run npm run format, add changes and try commit again.';
@@ -12,7 +12,7 @@ npm run check-format ||
 )
 
 # Check ESLint Standards
-echo 'Checking ESlint rules. 📋'
+echo '📋 Checking ESlint rules.'
 npm run check-lint ||
 (
         echo '❌ ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
@@ -20,7 +20,7 @@ npm run check-lint ||
 )
 
 # Check tsconfig standards
-echo 'Validating types. 🤖'
+echo '📋 Validating types.'
 npm run check-types ||
 (
     echo '❌ Typescript tsconfig fail. Make the changes required above, add changes and try to commit again.'
@@ -28,7 +28,7 @@ npm run check-types ||
 )
 
 # Try to build the project
-echo 'Trying to build. 👷🔨'
+echo '👷🔨 Trying to build.'
 
 npm run build ||
 (
