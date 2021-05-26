@@ -10,10 +10,12 @@ const HomeLayout = (): JSX.Element => {
   const [pokemonCounter, setPokemonCounter] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemon, setPokemon] = useState([]);
+  const [pageYOffset, setPageYOffset] = useState(0);
 
   const handleObserver = (entities: IntersectionObserverEntry[]) => {
     const target = entities[0];
     if (target.isIntersecting) {
+      setPageYOffset(window.pageYOffset);
       setPokemonCounter(counter => counter + 100);
     }
   };
@@ -24,7 +26,6 @@ const HomeLayout = (): JSX.Element => {
       rootMargin: `20px`,
       threshold: 1.0,
     };
-
     const observer = new IntersectionObserver(handleObserver, options);
     if (loader?.current) {
       observer.observe(loader.current);
@@ -32,8 +33,11 @@ const HomeLayout = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const count = pokemon.length;
+    window.scroll({ top: pageYOffset });
+  }, [pokemon]);
 
+  useEffect(() => {
+    const count = pokemon.length;
     setPokemon(previousState => [
       ...previousState,
       ...pokemonList.slice(count, count + 50),
