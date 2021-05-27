@@ -18,7 +18,8 @@ const Header = () => {
           <a
             href="https://github.com/LuanSergio/UmbraDex"
             target="_blank"
-            aria-label="UmbraDex"
+            aria-label="GitHub"
+            title="GitHub"
             className={styles.github}
             rel="noreferrer"
           >
