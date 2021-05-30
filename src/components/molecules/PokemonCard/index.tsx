@@ -4,7 +4,7 @@ import PokeballIcon from '../../../assets/images/icons/pokeball.svg';
 interface Props {
   id: number;
   name: string;
-  types: Array<string>;
+  types: string[];
   imageUrl: string;
 }
 
