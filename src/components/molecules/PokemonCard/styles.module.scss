@@ -8,11 +8,11 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: rem(277);
+  height: rem(299);
   justify-content: center;
-  padding: rem(10) rem(30);
+  padding: rem(10) rem(32);
   position: relative;
-  width: rem(250);
+  width: rem(265);
 }
 
 .card:hover .background {
@@ -21,7 +21,7 @@
 
 .number {
   color: get-color(light);
-  font-size: rem(20);
+  font-size: rem(21);
   font-weight: bold;
   position: absolute;
   top: rem(10);
@@ -44,8 +44,8 @@
 
 .pokemon {
   position: relative;
-  height: rem(200);
-  width: rem(200);
+  height: rem(216);
+  width: rem(216);
   z-index: get-index-level(lvl2);
 }
 
@@ -55,9 +55,9 @@
   bottom: 0;
   display: block;
   font-weight: bold;
-  font-size: rem(20);
+  font-size: rem(21);
   left: 50%;
-  padding: rem(6) rem(16);
+  padding: rem(6) rem(17);
   position: absolute;
   text-align: center;
   text-transform: capitalize;
@@ -91,7 +91,7 @@
 }
 
 .type:not(:last-child) {
-  margin-right: rem(5);
+  margin-right: rem(6);
 }
 
 .type::before {
@@ -100,20 +100,20 @@
   background-color: get-color(light);
   border-radius: 50%;
   display: flex;
-  font-size: rem(12);
+  font-size: rem(13);
   justify-content: center;
   margin-right: rem(6);
   padding: rem(3);
-  width: rem(19);
-  height: rem(19);
+  width: rem(20);
+  height: rem(20);
 }
 
 .background {
-  border-radius: rem(12);
-  height: rem(277);
+  border-radius: rem(13);
+  height: rem(299);
   position: absolute;
   transition: opacity ease-out 0.15s;
-  width: rem(250);
+  width: rem(265);
 }
 
 @each $type, $color in colorsType.$types {
