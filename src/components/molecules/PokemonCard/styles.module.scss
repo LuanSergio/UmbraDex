@@ -137,3 +137,8 @@
     content: get-icon($type);
   }
 }
+
+.type.grass::before {
+  padding-top: rem(4);
+  padding-right: rem(4);
+}
