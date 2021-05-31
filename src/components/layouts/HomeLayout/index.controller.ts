@@ -46,7 +46,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     const count = pokemon.length;
     setPokemon(previousState => [
       ...previousState,
-      ...pokemonList.slice(count, count + 50),
+      ...pokemonList.slice(count, count + 40),
     ]);
   }, [pokemonCounter]);
 
