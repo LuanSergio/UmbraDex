@@ -1,13 +1,6 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 import axios from 'axios';
 
-interface IPokemonData {
-  id: number;
-  name: string;
-  types: string[];
-  image: string;
-}
-
 interface IController {
   pokemon: IPokemonData[];
 }
