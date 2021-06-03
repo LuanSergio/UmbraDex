@@ -22,7 +22,7 @@ const HomeLayout = (): JSX.Element => {
                     id={element.id}
                     name={element.name}
                     types={element.types}
-                    imageUrl={element.image}
+                    image={element.image}
                   />
                 </li>
               ))}
