@@ -1,15 +1,7 @@
-import { ReactElement } from 'react';
 import styles from './styles.module.scss';
 import PokeballIcon from '../../../assets/images/icons/pokeball.svg';
 
-interface Props {
-  id: number;
-  name: string;
-  types: string[];
-  image: string;
-}
-
-const PokemonCard = ({ id, name, types, image }: IPokemonData) => {
+const PokemonCard = ({ id, name, types, image }: IPokemonData): JSX.Element => {
   return (
     <div className={styles.card}>
       {id <= 10 ? (

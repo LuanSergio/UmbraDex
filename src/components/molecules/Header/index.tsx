@@ -3,7 +3,7 @@ import Logo from '../../../assets/images/icons/logo20.svg';
 import Github from '../../../assets/images/icons/github.svg';
 import styles from './styles.module.scss';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <div className={styles.header}>
       <div className={`${styles.headerContainer} container`}>
