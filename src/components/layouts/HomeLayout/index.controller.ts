@@ -9,12 +9,10 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [pokemonDataList, setPokemonDataList] = useState<IPokemonData[]>([]);
   const [loadedPokemon, setLoadedPokemon] = useState<IPokemonData[]>([]);
-  const [pageYOffset, setPageYOffset] = useState(0);
 
   const handleObserver = (entities: IntersectionObserverEntry[]) => {
     const target = entities[0];
     if (target.isIntersecting) {
-      setPageYOffset(window.pageYOffset);
       setLoadedPokemonCounter(counter => counter + 100);
     }
   };
@@ -73,7 +71,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     const count = loadedPokemon.length;
     setLoadedPokemon(previousState => [
       ...previousState,
-      ...pokemonDataList.slice(count, count + 40),
+      ...pokemonDataList.slice(count, count + 24),
     ]);
   }, [loadedPokemonCounter, pokemonDataList]);
 
@@ -87,10 +85,6 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     }
     setPokemonData();
   }, []);
-
-  useEffect(() => {
-    window.scroll({ top: pageYOffset });
-  }, [loadedPokemon, pageYOffset]);
 
   return { pokemon: loadedPokemon };
 };
