@@ -1,6 +1,7 @@
 @use '@styles/tools/index' as *;
 @use '@styles/helpers/icon.scss' as *;
 @use '@styles/settings/colors-type' as colorsType;
+@use '@styles/animations/pop-in' as *;
 
 .card {
   align-items: center;
@@ -13,6 +14,11 @@
   padding: rem(10) rem(32);
   position: relative;
   width: rem(265);
+
+  animation-fill-mode: forwards;
+  animation-name: popIn;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
 }
 
 .card:hover .background {
