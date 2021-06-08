@@ -5,11 +5,12 @@ interface IController {
   pokemon: IPokemonData[];
 }
 
+const amountOfPokemonPerLoad = 24;
+
 const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   const [pokemonDataList, setPokemonDataList] = useState<IPokemonData[]>([]);
   const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [loadedPokemon, setLoadedPokemon] = useState<IPokemonData[]>([]);
-  const amountOfPokemonPerLoad = 24;
 
   const handleObserver = (entities: IntersectionObserverEntry[]) => {
     const target = entities[0];
@@ -24,7 +25,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   }
 
   async function fetchPokemonData() {
-    const quantity: number = await getAvailablePokemonQuantity();
+    const quantity = await getAvailablePokemonQuantity();
     const pokemonUrlList = [];
 
     for (let i = 1; i <= quantity; i++) {
