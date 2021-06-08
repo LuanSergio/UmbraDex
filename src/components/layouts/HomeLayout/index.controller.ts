@@ -18,7 +18,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     }
   };
 
-  async function getAvailablePokemonQuantity() {
+  async function getAvailablePokemonQuantity(): Promise<number> {
     const response = await axios.get('https://pokeapi.co/api/v2/pokedex/1/');
     return response.data.pokemon_entries.length;
   }
@@ -38,7 +38,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     return responses;
   }
 
-  async function getPokemonDataList() {
+  async function getPokemonDataList(): Promise<IPokemonData[]> {
     const responses = await fetchPokemonData();
     const pokemonDataArray = [];
 
@@ -69,7 +69,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   }, [loader]);
 
   useEffect(() => {
-    async function setPokemonData() {
+    async function setPokemonData(): Promise<void> {
       setPokemonDataList(await getPokemonDataList());
     }
     setPokemonData();
