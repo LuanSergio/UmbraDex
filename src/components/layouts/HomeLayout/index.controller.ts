@@ -6,14 +6,14 @@ interface IController {
 }
 
 const useController = (loader: MutableRefObject<HTMLElement>): IController => {
-  const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [pokemonDataList, setPokemonDataList] = useState<IPokemonData[]>([]);
+  const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [loadedPokemon, setLoadedPokemon] = useState<IPokemonData[]>([]);
 
   const handleObserver = (entities: IntersectionObserverEntry[]) => {
     const target = entities[0];
     if (target.isIntersecting) {
-      setLoadedPokemonCounter(counter => counter + 100);
+      setLoadedPokemonCounter(counter => counter + 24);
     }
   };
 
@@ -68,23 +68,22 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   }, [loader]);
 
   useEffect(() => {
-    const count = loadedPokemon.length;
-    setLoadedPokemon(previousState => [
-      ...previousState,
-      ...pokemonDataList.slice(count, count + 24),
-    ]);
-  }, [loadedPokemonCounter, pokemonDataList]);
+    async function setPokemonData() {
+      setPokemonDataList(await getPokemonDataList());
+    }
+    setPokemonData();
+  }, []);
 
   useEffect(() => {
     setLoadedPokemon([...pokemonDataList.slice(0, 24)]);
   }, [pokemonDataList]);
 
   useEffect(() => {
-    async function setPokemonData() {
-      setPokemonDataList(await getPokemonDataList());
-    }
-    setPokemonData();
-  }, []);
+    setLoadedPokemon(previousState => [
+      ...previousState,
+      ...pokemonDataList.slice(loadedPokemonCounter, loadedPokemonCounter + 24),
+    ]);
+  }, [loadedPokemonCounter]);
 
   return { pokemon: loadedPokemon };
 };
