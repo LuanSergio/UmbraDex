@@ -12,12 +12,12 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [loadedPokemon, setLoadedPokemon] = useState<IPokemonData[]>([]);
 
-  const handleObserver = (entities: IntersectionObserverEntry[]) => {
+  function handleObserver(entities: IntersectionObserverEntry[]) {
     const target = entities[0];
     if (target.isIntersecting) {
       setLoadedPokemonCounter(counter => counter + amountOfPokemonPerLoad);
     }
-  };
+  }
 
   async function getAvailablePokemonQuantity(): Promise<number> {
     const response = await axios.get('https://pokeapi.co/api/v2/pokedex/1/');
