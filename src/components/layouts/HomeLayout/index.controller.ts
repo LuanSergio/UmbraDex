@@ -1,5 +1,6 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl, api } from 'src/services/api';
 
 interface IController {
   pokemon: IPokemonData[];
@@ -20,7 +21,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
   }
 
   async function getAvailablePokemonQuantity(): Promise<number> {
-    const response = await axios.get('https://pokeapi.co/api/v2/pokedex/1/');
+    const response = await api.get('pokedex/1/');
     return response.data.pokemon_entries.length;
   }
 
@@ -29,7 +30,7 @@ const useController = (loader: MutableRefObject<HTMLElement>): IController => {
     const pokemonUrlList = [];
 
     for (let i = 1; i <= quantity; i++) {
-      const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+      const url = `${apiUrl}pokemon/${i}/`;
       pokemonUrlList.push(url);
     }
 
