@@ -46,11 +46,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async context => {
-  const { name } = context.params;
+  const { id } = context.params;
 
-  const { data: pokemonData } = await api.get(`pokemon/${name}/`);
+  const { data: pokemonData } = await api.get(`pokemon/${id}/`);
 
-  const { data: speciesData } = await api.get(`pokemon-species/${name}/`);
+  const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
 
   const pokemon = {
     name: pokemonData.name,
