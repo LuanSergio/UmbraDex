@@ -1,8 +1,9 @@
 import '@styles/global.scss';
 import { AppProps } from 'next/app';
 
-function MyApp({ Component }: AppProps): JSX.Element {
-  return <Component />;
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
