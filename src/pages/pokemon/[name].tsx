@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { api } from 'src/services/api';
+import Header from '@components/molecules/Header';
 
 interface IPokemonDetails {
   name: string;
@@ -12,6 +13,7 @@ interface IPokemonDetailsProps {
 const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
   return (
     <>
+      <Header />
       <h1>{pokemon?.name}</h1>
     </>
   );
