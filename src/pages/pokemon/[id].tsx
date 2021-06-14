@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { api } from 'src/services/api';
 import Header from '@components/molecules/Header';
+import styles from './styles.module.scss';
 
 interface IPokemonDetails {
   name: string;
@@ -26,13 +27,22 @@ const Pokemon = ({
   return (
     <>
       <Header />
-      <main>
-        <img src={pokemon.image} alt={pokemon.name} />
-        <span>{pokemon.id}</span>
-        <span>{speciesDetail.originalName}</span>
-
-        <h1>{pokemon?.name}</h1>
-        <p>{speciesDetail.description}</p>
+      <main className={`container ${styles.container}`}>
+        <div className={styles.pokemonContainer}>
+          <span className={styles.number}>#{pokemon.id}</span>
+          <span className={styles.originalName}>
+            {speciesDetail.originalName}
+          </span>
+          <img
+            className={styles.pokemon}
+            src={pokemon.image}
+            alt={pokemon.name}
+          />
+        </div>
+        <div className={styles.informationContainer}>
+          <h1 className={styles.name}>{pokemon?.name}</h1>
+          <p className={styles.description}>{speciesDetail.description}</p>
+        </div>
       </main>
     </>
   );
