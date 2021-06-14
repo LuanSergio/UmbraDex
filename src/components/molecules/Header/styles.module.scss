@@ -1,6 +1,6 @@
-@use '@styles/tools/index' as *;
-@use '@styles/helpers/icon.scss' as *;
-@use '@styles/animations/growing-border';
+@use 'tools/index' as *;
+@use 'helpers/icon.scss' as *;
+@use 'animations/growing-border';
 
 .header {
   background-color: get-color(primary);

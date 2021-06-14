@@ -1,5 +1,5 @@
-@use '@styles/tools/index' as *;
-@use '@styles/settings/_media' as *;
+@use 'tools/index' as *;
+@use 'settings/_media' as *;
 
 @media only screen and (min-width: map-get($breakpoints, HD)) {
   .cardContainer {

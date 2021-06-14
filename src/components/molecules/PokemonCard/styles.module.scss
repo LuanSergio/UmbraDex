@@ -1,7 +1,7 @@
-@use '@styles/tools/index' as *;
-@use '@styles/helpers/icon.scss' as *;
-@use '@styles/settings/colors-type' as colorsType;
-@use '@styles/animations/pop-in' as *;
+@use 'tools/index' as *;
+@use 'helpers/icon.scss' as *;
+@use 'settings/colors-type' as colorsType;
+@use 'animations/pop-in' as *;
 
 .card {
   align-items: center;

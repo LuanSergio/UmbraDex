@@ -1,4 +1,4 @@
-@use '../settings/media' as *;
+@use 'settings/media' as *;
 
 @mixin respond-to($media) {
   @if $media == mobile {
