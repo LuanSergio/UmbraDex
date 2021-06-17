@@ -74,6 +74,13 @@ export const getStaticProps: GetStaticProps = async context => {
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
   };
 
+  const formatPokemonDescription = description => {
+    return {
+      flavorText: description.flavor_text,
+      version: description.version.name,
+    };
+  };
+
   const filterDescriptionByLanguage = (language: string): any[] => {
     const descriptions = speciesData.flavor_text_entries.filter(
       description => description.language.name === language,
