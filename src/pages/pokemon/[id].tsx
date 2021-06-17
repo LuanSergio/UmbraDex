@@ -29,7 +29,12 @@ const Pokemon = ({
       <Header />
       <main className={`container ${styles.container}`}>
         <div className={styles.pokemonContainer}>
-          <span className={styles.number}>#{pokemon.id}</span>
+          {/* <span className={styles.number}>#{pokemon.id}</span> */}
+          {pokemon.id <= 10 ? (
+            <span className={styles.number}># 0{pokemon.id}</span>
+          ) : (
+            <span className={styles.number}># {pokemon.id}</span>
+          )}
           <span className={styles.originalName}>
             {speciesDetail.originalName}
           </span>
