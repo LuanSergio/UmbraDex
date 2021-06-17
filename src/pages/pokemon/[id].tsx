@@ -86,11 +86,13 @@ export const getStaticProps: GetStaticProps = async context => {
       description => description.language.name === language,
     );
 
-    return descriptions[0].flavor_text;
+    return descriptions.map(description =>
+      formatPokemonDescription(description),
+    );
   };
 
   const speciesDetail = {
-    description: filterDescriptionByLanguage('en'),
+    description: filterDescriptionByLanguage('en')[0].flavorText,
     originalName: speciesData.names[0].name,
   };
 
