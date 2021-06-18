@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async context => {
     };
   };
 
-  const filterDescriptionByLanguage = (
+  const filterDescriptionsByLanguage = (
     language: string,
   ): IPokemonDescription[] => {
     const descriptions = speciesData.flavor_text_entries.filter(
@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async context => {
   };
 
   const speciesDetail = {
-    description: filterDescriptionByLanguage('en')[0].flavorText,
+    description: filterDescriptionsByLanguage('en')[0].flavorText,
     originalName: speciesData.names[0].name,
   };
 
