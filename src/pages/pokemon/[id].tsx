@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { api } from 'src/services/api';
+import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Header from '@components/molecules/Header';
+import Head from 'next/head';
 import styles from './styles.module.scss';
 
 interface IPokemonDetails {
@@ -31,6 +33,11 @@ const Pokemon = ({
 }: IPokemonDetailsProps): JSX.Element => {
   return (
     <>
+      <Head>
+        <title key="title">
+          UmbraDex | {transformFirstLetterToUppercase(pokemon.name)}
+        </title>
+      </Head>
       <Header />
       <main className={`container ${styles.container}`}>
         <div className={styles.pokemonContainer}>
