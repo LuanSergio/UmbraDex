@@ -20,6 +20,11 @@ interface IPokemonDetailsProps {
   speciesDetail: ISpeciesDetail;
 }
 
+interface IPokemonDescription {
+  flavorText: string;
+  version: string;
+}
+
 const Pokemon = ({
   pokemon,
   speciesDetail,
@@ -81,7 +86,9 @@ export const getStaticProps: GetStaticProps = async context => {
     };
   };
 
-  const filterDescriptionByLanguage = (language: string): any[] => {
+  const filterDescriptionByLanguage = (
+    language: string,
+  ): IPokemonDescription[] => {
     const descriptions = speciesData.flavor_text_entries.filter(
       description => description.language.name === language,
     );
