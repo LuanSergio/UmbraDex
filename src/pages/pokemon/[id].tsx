@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps = async context => {
 
   const formatPokemonDescription = description => {
     return {
-      flavorText: description.flavor_text,
+      flavorText: description.flavor_text.replace('\f', ' '),
       version: description.version.name,
     };
   };
