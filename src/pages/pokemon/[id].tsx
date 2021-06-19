@@ -39,7 +39,6 @@ const Pokemon = ({
       <Header />
       <main className={`container ${styles.container}`}>
         <div className={styles.pokemonContainer}>
-          {/* <span className={styles.number}>#{pokemon.id}</span> */}
           {pokemon.id <= 10 ? (
             <span className={styles.number}># 0{pokemon.id}</span>
           ) : (
@@ -84,18 +83,18 @@ export const getStaticProps: GetStaticProps = async context => {
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
   };
 
-  const formatPokemonDescription = description => {
+  function formatPokemonDescription(description) {
     return {
       flavorText: description.flavor_text
         .replace('\f', ' ')
         .replace('POKéMON', 'Pokémon'),
       version: description.version.name,
     };
-  };
+  }
 
-  const filterDescriptionsByLanguage = (
+  function filterDescriptionsByLanguage(
     language: string,
-  ): IPokemonDescription[] => {
+  ): IPokemonDescription[] {
     const descriptions = speciesData.flavor_text_entries.filter(
       description => description.language.name === language,
     );
@@ -103,7 +102,7 @@ export const getStaticProps: GetStaticProps = async context => {
     return descriptions.map(description =>
       formatPokemonDescription(description),
     );
-  };
+  }
 
   const speciesDetail = {
     description: filterDescriptionsByLanguage('en')[0].flavorText,
