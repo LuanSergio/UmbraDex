@@ -34,9 +34,7 @@ const Pokemon = ({
   return (
     <>
       <Head>
-        <title key="title">
-          UmbraDex | {transformFirstLetterToUppercase(pokemon.name)}
-        </title>
+        <title key="title">UmbraDex | {pokemon.name}</title>
       </Head>
       <Header />
       <main className={`container ${styles.container}`}>
@@ -80,7 +78,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
 
   const pokemon = {
-    name: pokemonData.name,
+    name: transformFirstLetterToUppercase(pokemonData.name),
     id: pokemonData.id,
     types: pokemonData.types.map(item => item.type.name),
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
