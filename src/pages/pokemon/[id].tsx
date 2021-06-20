@@ -10,16 +10,12 @@ interface IPokemonDetails {
   id: number;
   types: string[];
   image: string;
-}
-
-interface ISpeciesDetail {
   description: string;
   originalName: string;
 }
 
 interface IPokemonDetailsProps {
   pokemon: IPokemonDetails;
-  speciesDetail: ISpeciesDetail;
 }
 
 interface IPokemonDescription {
@@ -27,10 +23,7 @@ interface IPokemonDescription {
   version: string;
 }
 
-const Pokemon = ({
-  pokemon,
-  speciesDetail,
-}: IPokemonDetailsProps): JSX.Element => {
+const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
   return (
     <>
       <Head>
@@ -44,9 +37,7 @@ const Pokemon = ({
           ) : (
             <span className={styles.number}># {pokemon.id}</span>
           )}
-          <span className={styles.originalName}>
-            {speciesDetail.originalName}
-          </span>
+          <span className={styles.originalName}>{pokemon.originalName}</span>
           <img
             className={styles.pokemon}
             src={pokemon.image}
@@ -55,7 +46,7 @@ const Pokemon = ({
         </div>
         <div className={styles.informationContainer}>
           <h1 className={styles.name}>{pokemon?.name}</h1>
-          <p className={styles.description}>{speciesDetail.description}</p>
+          <p className={styles.description}>{pokemon.description}</p>
         </div>
       </main>
     </>
@@ -71,17 +62,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
-
   const { data: pokemonData } = await api.get(`pokemon/${id}/`);
-
   const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
-
-  const pokemon = {
-    name: transformFirstLetterToUppercase(pokemonData.name),
-    id: pokemonData.id,
-    types: pokemonData.types.map(item => item.type.name),
-    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
-  };
 
   function formatPokemonDescription(description) {
     return {
@@ -104,7 +86,11 @@ export const getStaticProps: GetStaticProps = async context => {
     );
   }
 
-  const speciesDetail = {
+  const pokemon = {
+    name: transformFirstLetterToUppercase(pokemonData.name),
+    id: pokemonData.id,
+    types: pokemonData.types.map(item => item.type.name),
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
     description: filterDescriptionsByLanguage('en')[0].flavorText,
     originalName: speciesData.names[0].name,
   };
@@ -112,7 +98,6 @@ export const getStaticProps: GetStaticProps = async context => {
   return {
     props: {
       pokemon,
-      speciesDetail,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };
