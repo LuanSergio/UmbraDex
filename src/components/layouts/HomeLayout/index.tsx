@@ -4,18 +4,18 @@ import Header from '@components/molecules/Header';
 import styles from './styles.module.scss';
 import useController from './index.controller';
 
-const HomeLayout = (): JSX.Element => {
+const HomeLayout = ({ pokemonList }): JSX.Element => {
   const loader = useRef(null);
-  const { pokemon } = useController(loader);
+  useController(loader, pokemonList);
 
   return (
     <>
       <Header />
       <main className="container">
         <ul className={styles.cardContainer}>
-          {pokemon.length > 1 && (
+          {pokemonList.length > 1 && (
             <>
-              {pokemon.map(element => (
+              {pokemonList.map(element => (
                 <li key={element.id}>
                   <PokemonCard
                     id={element.id}
