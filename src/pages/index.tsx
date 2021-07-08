@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import HomeLayout from '@components/layouts/HomeLayout';
+import DefaultLayout from '@components/layouts/DefaultLayout';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
+import PokemonCardList from '@components/organism/PokemonCardList';
 
 interface HomeProps {
   pokemonList: IPokemonData[];
@@ -13,7 +14,9 @@ const Home = ({ pokemonList }: HomeProps): JSX.Element => {
       <Head>
         <title>UmbraDex</title>
       </Head>
-      <HomeLayout pokemonList={pokemonList} />
+      <DefaultLayout>
+        <PokemonCardList pokemonList={pokemonList} />
+      </DefaultLayout>
     </div>
   );
 };
