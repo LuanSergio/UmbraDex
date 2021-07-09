@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import { GetStaticProps } from 'next';
-import axios from 'axios';
+import { apiUrl, axios } from '@services/graphqlApi';
 import PokemonCardList from '@components/organism/PokemonCardList';
 
 interface HomeProps {
@@ -23,27 +23,24 @@ const Home = ({ pokemonList }: HomeProps): JSX.Element => {
 
 export const getStaticProps: GetStaticProps = async () => {
   async function fetchPokemonListData() {
-    const result = await axios({
-      url: 'https://beta.pokeapi.co/graphql/v1beta',
-      method: 'post',
-      data: {
-        query: `
-          query samplePokeAPIquery {
-            species: pokemon_v2_pokemonspecies(order_by: {id: asc}) {
-              name
-              id
-              information: pokemon_v2_pokemons {
-                types: pokemon_v2_pokemontypes {
-                  type: pokemon_v2_type {
-                    name
+    const result = await axios.post(apiUrl, {
+      query: `
+            query samplePokeAPIquery {
+              species: pokemon_v2_pokemonspecies(order_by: {id: asc}) {
+                name
+                id
+                information: pokemon_v2_pokemons {
+                  types: pokemon_v2_pokemontypes {
+                    type: pokemon_v2_type {
+                      name
+                    }
                   }
                 }
               }
             }
-          }
-        `,
-      },
+          `,
     });
+
     return result.data.data.species;
   }
 
