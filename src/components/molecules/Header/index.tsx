@@ -5,15 +5,13 @@ import styles from './styles.module.scss';
 
 const Header = (): JSX.Element => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={`${styles.headerContainer} container`}>
-        <div>
-          <Link href="/">
-            <a className={styles.logo} aria-label="UmbraDex">
-              <Logo />
-            </a>
-          </Link>
-        </div>
+        <Link href="/">
+          <a className={styles.logo} aria-label="UmbraDex">
+            <Logo />
+          </a>
+        </Link>
         <div className={styles.rightContainer}>
           <a
             href="https://github.com/LuanSergio/UmbraDex"
@@ -30,7 +28,7 @@ const Header = (): JSX.Element => {
           </button>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
