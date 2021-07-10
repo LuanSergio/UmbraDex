@@ -31,9 +31,7 @@ const PokemonCardList = ({
           </>
         )}
       </ul>
-      <div className="loading" ref={loader}>
-        <h2>Loading...</h2>
-      </div>
+      <div ref={loader} />
     </>
   );
 };
