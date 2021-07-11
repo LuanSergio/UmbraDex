@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Logo from '../../../assets/images/icons/logo20.svg';
+import Logo from '../../../assets/images/icons/logo.svg';
 import Github from '../../../assets/images/icons/github.svg';
 import styles from './styles.module.scss';
 
