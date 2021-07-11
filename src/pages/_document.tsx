@@ -19,7 +19,17 @@ class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <title>UmbraDex</title>
+          <meta
+            name="description"
+            content="Find everything about the creatures you love!"
+          />
+          <meta name="robots" content="index, follow" />
+          <meta charSet="UTF-8" />
+          <meta name="author" content="Luan Sergio Damando" />
+          <meta name="theme-color" content="#21285A" />
+        </Head>
         <body>
           <Main />
           <NextScript />
