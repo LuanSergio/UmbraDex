@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
+import HeadConfiguration from '@components/molecules/HeadConfiguration';
 
 class MyDocument extends Document {
   static async getInitialProps(
@@ -20,15 +21,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>UmbraDex</title>
-          <meta
-            name="description"
-            content="Find everything about the creatures you love!"
-          />
-          <meta name="robots" content="index, follow" />
-          <meta charSet="UTF-8" />
-          <meta name="author" content="Luan Sergio Damando" />
-          <meta name="theme-color" content="#21285A" />
+          <HeadConfiguration />
         </Head>
         <body>
           <Main />
