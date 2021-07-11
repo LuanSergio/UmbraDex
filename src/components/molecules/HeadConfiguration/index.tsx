@@ -9,7 +9,7 @@ const HeadConfiguration = (): JSX.Element => {
       <meta name="robots" content="index, follow" />
       <meta charSet="UTF-8" />
       <meta name="author" content="Luan Sergio Damando" />
-      <meta name="theme-color" content="#21285A" />
+      <meta name="theme-color" content="#21285a" />
       <meta name="msapplication-TileColor" content="#21285a" />
       <meta name="theme-color" content="#21285a" />
       <link
