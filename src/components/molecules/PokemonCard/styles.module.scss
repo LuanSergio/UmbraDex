@@ -1,6 +1,6 @@
 @use 'tools/index' as *;
 @use 'helpers/icon.scss' as *;
-@use 'settings/colors-type' as colorsType;
+@use 'settings/colors-type' as typeColors;
 @use 'animations/pop-in' as *;
 
 .card {
@@ -122,13 +122,9 @@
   width: rem(265);
 }
 
-@each $type, $color in colorsType.$types {
+@each $type, $color in typeColors.$types {
   .background.#{$type} {
-    background: linear-gradient(
-      180deg,
-      $color 0%,
-      rgba($color: $color, $alpha: 0.45) 100%
-    );
+    background: map-get(typeColors.$gradient, $type);
   }
 
   .name.#{$type} {
