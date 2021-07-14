@@ -20,34 +20,23 @@ $types: (
 );
 
 $gradient: (
-  bug: linear-gradient(180deg, #a8b820 0%, rgba(220, 234, 107, 0.9) 100%),
+  bug: linear-gradient(180deg, #a8b820 0%, rgba(215, 239, 10, 0.6) 100%),
   dark: linear-gradient(180deg, #705848 0%, rgba(200, 132, 87, 0.9) 100%),
-  dragon: linear-gradient(180deg, #462497 0%, rgba(164, 126, 255, 0.9) 100%),
-  electric: linear-gradient(180deg, #ffce31 0%, rgba(250, 222, 131, 0.9) 100%),
-  fairy:
-    linear-gradient(
-      180deg,
-      #ed738e 0%,
-      #e45f7d 0.01%,
-      rgba(255, 167, 187, 0.9) 100%
-    ),
-  fighting: linear-gradient(180deg, #fd625a 0%, rgba(253, 98, 90, 0.9) 100%),
-  fire: linear-gradient(180deg, #f5632d 0%, rgba(250, 116, 35, 0.45) 100%),
+  dragon: linear-gradient(180deg, #4822a5 0%, rgba(120, 85, 204, 0.85) 100%),
+  electric: linear-gradient(180deg, #f8cc30 0%, rgba(253, 234, 60, 0.7) 100%),
+  fairy: linear-gradient(180deg, #d05f78 0%, rgba(255, 167, 187, 0.9) 100%),
+  fighting: linear-gradient(180deg, #8e1f1a 0%, rgba(236, 70, 61, 0.75) 100%),
+  fire: linear-gradient(180deg, #fd6322 0%, rgba(250, 177, 35, 0.6) 100%),
   flying: linear-gradient(180deg, #a890f0 0%, rgba(203, 188, 248, 0.6) 100%),
-  ghost: linear-gradient(180deg, #5a3696 0%, rgba(142, 100, 214, 0.9) 100%),
-  grass: linear-gradient(180deg, #33ba5a 0%, rgba(23, 239, 96, 0.35) 100%),
-  ground: linear-gradient(180deg, #d9ba67 0%, rgba(224, 192, 104, 0.66) 100%),
-  ice: linear-gradient(#4fc0c0 0%, rgba(147, 241, 241, 0.9) 100%),
-  normal: linear-gradient(180deg, #6d6d4e 0%, rgba(168, 168, 120, 0.48) 100%),
-  poison: linear-gradient(180deg, #a040a0 0%, rgba(228, 112, 228, 0.9) 100%),
-  psychic: linear-gradient(180deg, #f85888 0%, rgba(255, 143, 177, 0.9) 100%),
-  rock: linear-gradient(180deg, #978046 0%, #dec78c 100%),
-  steel:
-    linear-gradient(
-      180deg,
-      #b8b8d0 0%,
-      #6e6e99 0.01%,
-      rgba(209, 209, 228, 0.9) 100%
-    ),
-  water: linear-gradient(180deg, #17c8ef 0%, rgba(114, 230, 255, 0.55) 100%),
+  ghost: linear-gradient(180deg, #4c3b67 0%, rgba(88, 24, 196, 0.65) 100%),
+  // grass: linear-gradient(180deg, #33ba5a 0%, rgba(23, 239, 96, 0.6) 100%),
+  grass: linear-gradient(180deg, #2ec75b 0%, rgba(81, 231, 57, 0.55) 100%),
+  ground: linear-gradient(180deg, #ad934b 0%, rgba(253, 218, 122, 0.85) 100%),
+  ice: linear-gradient(180deg, #0dc0c0 0%, rgba(128, 233, 233, 0.65) 100%),
+  normal: linear-gradient(180deg, #5f5f4d 0%, rgba(188, 188, 153, 0.55) 100%),
+  poison: linear-gradient(180deg, #873387 0%, rgba(228, 112, 228, 0.9) 100%),
+  psychic: linear-gradient(180deg, #e44071 0%, rgba(252, 153, 183, 0.9) 100%),
+  rock: linear-gradient(180deg, #8a6d21 0%, rgba(#efca6b, 75%) 100%),
+  steel: linear-gradient(180deg, #6e6e99 0%, rgba(209, 209, 228, 0.9) 100%),
+  water: linear-gradient(180deg, #4f7ff3 0%, rgba(23, 200, 239, 0.55) 99.99%),
 );
