@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import PokeballIcon from '../../../assets/images/icons/pokeball.svg';
+import PokeballIcon from '../../../assets/images/icons/pokeball-v5.svg';
 
 const PokemonCard = ({ id, name, types, image }: IPokemonData): JSX.Element => {
   return (

@@ -41,7 +41,7 @@
 
 .pokeball {
   position: absolute;
-  right: 0;
+  right: rem(10);
   top: rem(7);
   transform: translateX(10%);
   width: rem(155);
