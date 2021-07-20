@@ -6,6 +6,42 @@ const HeadConfiguration = (): JSX.Element => {
         name="description"
         content="Find everything about the creatures you love!"
       />
+
+      <meta itemProp="name" content="UmbraDex" />
+      <meta
+        itemProp="description"
+        content="Find everything about the creatures you love!"
+      />
+      <meta
+        itemProp="image"
+        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+      />
+
+      {/* Facebook Meta Tags */}
+      <meta property="og:url" content="https://umbradex.vercel.app" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="UmbraDex" />
+      <meta
+        property="og:description"
+        content="Find everything about the creatures you love!"
+      />
+      <meta
+        property="og:image"
+        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+      />
+
+      {/* Twitter Meta Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="UmbraDex" />
+      <meta
+        name="twitter:description"
+        content="Find everything about the creatures you love!"
+      />
+      <meta
+        name="twitter:image"
+        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+      />
+
       <meta name="robots" content="index, follow" />
       <meta charSet="UTF-8" />
       <meta name="author" content="Luan Sergio Damando" />
