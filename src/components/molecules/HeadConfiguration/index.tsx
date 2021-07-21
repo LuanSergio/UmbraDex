@@ -1,3 +1,5 @@
+import metaImage from '../../../assets/images/meta-image.png';
+
 const HeadConfiguration = (): JSX.Element => {
   return (
     <>
@@ -12,10 +14,7 @@ const HeadConfiguration = (): JSX.Element => {
         itemProp="description"
         content="Find everything about the creatures you love!"
       />
-      <meta
-        itemProp="image"
-        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-      />
+      <meta itemProp="image" content={metaImage} />
 
       {/* Facebook Meta Tags */}
       <meta property="og:url" content="https://umbradex.vercel.app" />
@@ -25,10 +24,7 @@ const HeadConfiguration = (): JSX.Element => {
         property="og:description"
         content="Find everything about the creatures you love!"
       />
-      <meta
-        property="og:image"
-        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-      />
+      <meta property="og:image" content={metaImage} />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -37,10 +33,7 @@ const HeadConfiguration = (): JSX.Element => {
         name="twitter:description"
         content="Find everything about the creatures you love!"
       />
-      <meta
-        name="twitter:image"
-        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-      />
+      <meta name="twitter:image" content={metaImage} />
 
       <meta name="robots" content="index, follow" />
       <meta charSet="UTF-8" />
