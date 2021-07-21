@@ -1,4 +1,4 @@
-import metaImage from '../../../assets/images/meta-image.png';
+import metaImage from '@images/meta-image.png';
 
 const HeadConfiguration = (): JSX.Element => {
   return (
