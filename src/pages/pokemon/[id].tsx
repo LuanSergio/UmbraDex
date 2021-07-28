@@ -3,6 +3,7 @@ import { api } from 'src/services/api';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Header from '@components/molecules/Header';
 import Head from 'next/head';
+import pokemonArtworkImages from '@data/imagesRoutes';
 import styles from './styles.module.scss';
 
 interface IPokemonDetails {
@@ -62,6 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
+  const pokemonImagesUploaded = 898;
   const { data: pokemonData } = await api.get(`pokemon/${id}/`);
   const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
 
@@ -90,7 +92,10 @@ export const getStaticProps: GetStaticProps = async context => {
     name: transformFirstLetterToUppercase(pokemonData.name),
     id: pokemonData.id,
     types: pokemonData.types.map(item => item.type.name),
-    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`,
+    image:
+      pokemonImagesUploaded >= pokemonData.id
+        ? `${pokemonArtworkImages.main}/${pokemonData.id}.png`
+        : `${pokemonArtworkImages.fallback}/${pokemonData.id}.png`,
     description: filterDescriptionsByLanguage('en')[0].flavorText,
     originalName: speciesData.names[0].name,
   };
