@@ -3,7 +3,10 @@ import { api } from 'src/services/api';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Header from '@components/molecules/Header';
 import Head from 'next/head';
-import pokemonArtworkImages from '@data/imagesRoutes';
+import {
+  pokemonArtworkImages,
+  pokemonArtworkUploadedQuantity,
+} from '@data/imagesRoutes';
 import styles from './styles.module.scss';
 
 interface IPokemonDetails {
@@ -31,23 +34,25 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
         <title key="title">UmbraDex | {pokemon.name}</title>
       </Head>
       <Header />
-      <main className={`container ${styles.container}`}>
-        <div className={styles.pokemonContainer}>
-          {pokemon.id <= 10 ? (
-            <span className={styles.number}># 0{pokemon.id}</span>
-          ) : (
-            <span className={styles.number}># {pokemon.id}</span>
-          )}
-          <span className={styles.originalName}>{pokemon.originalName}</span>
-          <img
-            className={styles.pokemon}
-            src={pokemon.image}
-            alt={pokemon.name}
-          />
-        </div>
-        <div className={styles.informationContainer}>
-          <h1 className={styles.name}>{pokemon?.name}</h1>
-          <p className={styles.description}>{pokemon.description}</p>
+      <main className={`${styles.content} ${styles[pokemon.types[0]]}`}>
+        <div className={`container ${styles.container}`}>
+          <div className={styles.pokemonContainer}>
+            {pokemon.id <= 10 ? (
+              <span className={styles.number}># 0{pokemon.id}</span>
+            ) : (
+              <span className={styles.number}># {pokemon.id}</span>
+            )}
+            <span className={styles.originalName}>{pokemon.originalName}</span>
+            <img
+              className={styles.pokemon}
+              src={pokemon.image}
+              alt={pokemon.name}
+            />
+          </div>
+          <div className={styles.informationContainer}>
+            <h1 className={styles.name}>{pokemon?.name}</h1>
+            <p className={styles.description}>{pokemon.description}</p>
+          </div>
         </div>
       </main>
     </>
@@ -63,7 +68,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
-  const pokemonImagesUploaded = 898;
   const { data: pokemonData } = await api.get(`pokemon/${id}/`);
   const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
 
@@ -93,7 +97,7 @@ export const getStaticProps: GetStaticProps = async context => {
     id: pokemonData.id,
     types: pokemonData.types.map(item => item.type.name),
     image:
-      pokemonImagesUploaded >= pokemonData.id
+      pokemonArtworkUploadedQuantity >= pokemonData.id
         ? `${pokemonArtworkImages.main}/${pokemonData.id}.png`
         : `${pokemonArtworkImages.fallback}/${pokemonData.id}.png`,
     description: filterDescriptionsByLanguage('en')[0].flavorText,
