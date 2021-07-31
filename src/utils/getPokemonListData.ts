@@ -1,4 +1,8 @@
 import { apiUrl, axios } from '@services/graphqlApi';
+import {
+  pokemonArtworkImages,
+  pokemonArtworkUploadedQuantity,
+} from '@data/imagesRoutes';
 
 async function fetchPokemonListData() {
   const result = await axios.post(apiUrl, {
@@ -31,7 +35,10 @@ export default async function getPokemonListData(): Promise<IPokemonData[]> {
       id: response.id,
       name: response.name,
       types: response.information[0].types.map(item => item.type.name),
-      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`,
+      image:
+        pokemonArtworkUploadedQuantity >= response.id
+          ? `${pokemonArtworkImages.main}/${response.id}.png`
+          : `${pokemonArtworkImages.fallback}/${response.id}.png`,
     };
 
     pokemonDataArray.push(pokemonData);
