@@ -3,15 +3,23 @@ import { ReactNode } from 'react';
 
 interface DefaultLayoutProps {
   children: ReactNode;
+  classes?: string;
 }
 
-const HomeLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
+const HomeLayout = ({
+  children,
+  classes = '',
+}: DefaultLayoutProps): JSX.Element => {
   return (
     <>
       <Header />
-      <main className="container">{children}</main>
+      <main className={`container ${classes}`}>{children}</main>
     </>
   );
+};
+
+HomeLayout.defaultProps = {
+  classes: '',
 };
 
 export default HomeLayout;
