@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { api } from 'src/services/api';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
-import Header from '@components/molecules/Header';
 import Head from 'next/head';
 import {
   pokemonArtworkImages,
   pokemonArtworkUploadedQuantity,
 } from '@data/imagesRoutes';
+import DefaultLayout from '@components/layouts/DefaultLayout';
 import styles from './styles.module.scss';
 
 interface IPokemonDetails {
@@ -33,28 +33,63 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
       <Head>
         <title key="title">UmbraDex | {pokemon.name}</title>
       </Head>
-      <Header />
-      <main className={`${styles.content} ${styles[pokemon.types[0]]}`}>
-        <div className={`container ${styles.container}`}>
-          <div className={styles.pokemonContainer}>
-            {pokemon.id <= 10 ? (
-              <span className={styles.number}># 0{pokemon.id}</span>
-            ) : (
-              <span className={styles.number}># {pokemon.id}</span>
-            )}
-            <span className={styles.originalName}>{pokemon.originalName}</span>
-            <img
-              className={styles.pokemon}
-              src={pokemon.image}
-              alt={pokemon.name}
-            />
+      <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
+        <DefaultLayout>
+          {/* <button type="button">Last</button> */}
+          <div className={styles.container}>
+            <div className={styles.pokemonContainer}>
+              <span className={styles.originalName}>
+                {pokemon.originalName}
+              </span>
+              <img
+                className={styles.pokemon}
+                src={pokemon.image}
+                alt={pokemon.name}
+              />
+            </div>
+            <div className={styles.informationContainer}>
+              <h1 className={styles.name}>{pokemon?.name}</h1>
+              {pokemon.id <= 10 ? (
+                <span className={styles.number}># 0{pokemon.id}</span>
+              ) : (
+                <span className={styles.number}># {pokemon.id}</span>
+              )}
+              <div className={styles.descriptionContainer}>
+                <ul className={styles.generationDescriptionContainer}>
+                  <li>
+                    <button
+                      type="button"
+                      className={`${styles.generationDescriptionOption} ${styles.active}`}
+                    >
+                      I
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.generationDescriptionOption}
+                    >
+                      II
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.generationDescriptionOption}
+                    >
+                      III
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.generationDescriptionOption}
+                    >
+                      IV
+                    </button>
+                  </li>
+                </ul>
+                <p className={styles.description}>{pokemon.description}</p>
+              </div>
+            </div>
           </div>
-          <div className={styles.informationContainer}>
-            <h1 className={styles.name}>{pokemon?.name}</h1>
-            <p className={styles.description}>{pokemon.description}</p>
-          </div>
-        </div>
-      </main>
+          {/* <button type="button">Next</button> */}
+        </DefaultLayout>
+      </div>
     </>
   );
 };
