@@ -98,6 +98,7 @@
 
 @each $type, $color in typeColors.$types {
   .content.#{$type} {
-    background: map-get(typeColors.$gradient, $type);
+    // background: map-get(typeColors.$gradient, $type);
+    background: map-get(typeColors.$types, $type);
   }
 }
