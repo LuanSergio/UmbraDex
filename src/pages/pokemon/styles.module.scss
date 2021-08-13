@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   padding-top: rem(72);
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .pokemonContainer {
@@ -41,8 +41,7 @@
 }
 
 .name {
-  font-size: rem(120);
-  word-break: break-all;
+  font-size: rem(88);
   text-transform: capitalize;
   margin-top: 0;
   margin-bottom: rem(8);
