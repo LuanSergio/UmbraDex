@@ -36,10 +36,6 @@
   opacity: 0.88;
 }
 
-.informationContainer {
-  max-width: rem(400);
-}
-
 .name {
   font-size: rem(88);
   text-transform: capitalize;
@@ -88,6 +84,7 @@
 
 .description {
   font-weight: bold;
+  max-width: rem(400);
   margin-top: rem(8);
   margin-bottom: rem(0);
   font-size: rem(26);
