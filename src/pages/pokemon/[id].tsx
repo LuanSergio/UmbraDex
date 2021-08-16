@@ -49,11 +49,25 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
             </div>
             <div className={styles.informationContainer}>
               <h1 className={styles.name}>{pokemon?.name}</h1>
-              {pokemon.id <= 10 ? (
-                <span className={styles.number}># 0{pokemon.id}</span>
-              ) : (
-                <span className={styles.number}># {pokemon.id}</span>
-              )}
+              <div className={styles.basicInfo}>
+                {pokemon.id <= 10 ? (
+                  <span className={styles.number}># 0{pokemon.id}</span>
+                ) : (
+                  <span className={styles.number}># {pokemon.id}</span>
+                )}
+                <div className={styles.typeContainer}>
+                  {pokemon.types.map((type, index) => (
+                    <span
+                      key={type}
+                      className={`${styles.type} ${
+                        styles[pokemon.types[index]]
+                      }`}
+                    >
+                      {type}
+                    </span>
+                  ))}
+                </div>
+              </div>
               <div className={styles.descriptionContainer}>
                 <ul className={styles.generationDescriptionContainer}>
                   <li>
