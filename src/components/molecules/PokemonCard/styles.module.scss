@@ -122,7 +122,7 @@
   width: rem(265);
 }
 
-@each $type, $color in typeColors.$types {
+@each $type, $color in typeColors.$defaults {
   .background.#{$type} {
     background: map-get(typeColors.$gradient, $type);
   }
