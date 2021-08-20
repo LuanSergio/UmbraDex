@@ -40,6 +40,8 @@
 .name {
   font-size: rem(88);
   text-transform: capitalize;
+  word-wrap: break-word;
+  max-width: rem(405);
   margin-top: 0;
   margin-bottom: rem(8);
 }
@@ -48,19 +50,22 @@
   display: flex;
   align-items: center;
   margin-bottom: rem(32);
-  // justify-content: space-between;
   max-width: rem(350);
 }
 
 .number {
-  font-size: rem(64);
+  font-size: rem(56);
   font-weight: bold;
-  display: block;
+  display: flex;
+  align-items: center;
   line-height: 1;
   letter-spacing: 0.8;
 
   &::after {
     content: '|';
+    font-size: rem(42);
+    margin-left: rem(16);
+    margin-right: rem(16);
   }
 }
 
@@ -85,14 +90,11 @@
   font-size: rem(32);
   opacity: 0.8;
   transition: opacity 0.2s;
-  &.active {
+  &.active,
+  &:hover {
     opacity: 1;
+    text-shadow: rem(4) rem(2) rem(4) #00000040;
   }
-}
-
-.generationDescriptionOption:hover {
-  opacity: 1;
-  text-shadow: rem(4) rem(4) rem(4) #00000040;
 }
 
 .description {
@@ -116,7 +118,6 @@
   display: flex;
   transition: opacity ease-out 0.25s;
   height: rem(64);
-  display: block;
 
   &:not(:last-child) {
     margin-right: rem(6);
@@ -124,20 +125,20 @@
 
   &::before {
     @include icon;
+    display: flex;
     align-items: center;
     border-radius: 50%;
-    display: flex;
-    font-size: rem(48);
+    // font-size: rem(36);
+    font-size: rem(32);
     justify-content: center;
-    margin-right: rem(6);
     padding: rem(3);
   }
 }
 
-@each $type, $color in typeColors.$types {
+@each $type, $color in typeColors.$defaults {
   .content.#{$type} {
     // background: map-get(typeColors.$gradient, $type);
-    background: map-get(typeColors.$types, $type);
+    background: map-get(typeColors.$background, $type);
   }
   .type.#{$type}::before {
     color: #fff;

@@ -59,6 +59,7 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
                   {pokemon.types.map((type, index) => (
                     <span
                       key={type}
+                      title={type}
                       className={`${styles.type} ${
                         styles[pokemon.types[index]]
                       }`}
