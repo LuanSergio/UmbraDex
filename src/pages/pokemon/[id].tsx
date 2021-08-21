@@ -2,6 +2,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
+import { useState } from 'react';
+import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
@@ -9,8 +11,11 @@ interface IPokemonDetailsProps {
 }
 
 const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
-  // const [descriptionIndex, setDescriptionIndex] = useState(0);
+  const [descriptionIndex, setDescriptionIndex] = useState(0);
   // console.log('descriptions', pokemon.descriptions);
+  function handleDescriptionChange(index: number): void {
+    setDescriptionIndex(index);
+  }
 
   return (
     <>
@@ -55,35 +60,30 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
               </div>
               <div className={styles.descriptionContainer}>
                 <ul className={styles.generationDescriptionContainer}>
-                  <li>
-                    <button
-                      type="button"
-                      className={`${styles.generationDescriptionOption} ${styles.active}`}
-                    >
-                      I
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.generationDescriptionOption}
-                    >
-                      II
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.generationDescriptionOption}
-                    >
-                      III
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.generationDescriptionOption}
-                    >
-                      IV
-                    </button>
-                  </li>
+                  {pokemon.descriptions.map((item, index) => {
+                    return (
+                      <li key={item.gameVersion}>
+                        <button
+                          type="button"
+                          className={`${styles.generationDescriptionOption} ${
+                            descriptionIndex === index && styles.active
+                          }`}
+                          onClick={() => handleDescriptionChange(index)}
+                        >
+                          {transformNumberToRomanNumeral(index + 1)}
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <p className={styles.description}>
-                  {pokemon.descriptions[0].description}
+                  {pokemon.descriptions[descriptionIndex].description}
+                  {(descriptionIndex === 3 || descriptionIndex === 4) && (
+                    <small className={styles.sideNote}>
+                      Sidenote: The fourth and fifth generation share some
+                      descriptions
+                    </small>
+                  )}
                 </p>
               </div>
             </div>
