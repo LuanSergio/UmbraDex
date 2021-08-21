@@ -1,33 +1,17 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { api } from 'src/services/api';
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Head from 'next/head';
-import {
-  pokemonArtworkImages,
-  pokemonArtworkUploadedQuantity,
-} from '@data/imagesRoutes';
 import DefaultLayout from '@components/layouts/DefaultLayout';
+import getPokemonDetailsData from '@utils/getPokemonDetailsData';
 import styles from './styles.module.scss';
-
-interface IPokemonDetails {
-  name: string;
-  id: number;
-  types: string[];
-  image: string;
-  description: string;
-  originalName: string;
-}
 
 interface IPokemonDetailsProps {
   pokemon: IPokemonDetails;
 }
 
-interface IPokemonDescription {
-  flavorText: string;
-  version: string;
-}
-
 const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
+  // const [descriptionIndex, setDescriptionIndex] = useState(0);
+  // console.log('descriptions', pokemon.descriptions);
+
   return (
     <>
       <Head>
@@ -98,7 +82,9 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
                     </button>
                   </li>
                 </ul>
-                <p className={styles.description}>{pokemon.description}</p>
+                <p className={styles.description}>
+                  {pokemon.descriptions[0].description}
+                </p>
               </div>
             </div>
           </div>
@@ -118,41 +104,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
-  const { data: pokemonData } = await api.get(`pokemon/${id}/`);
-  const { data: speciesData } = await api.get(`pokemon-species/${id}/`);
-
-  function formatPokemonDescription(description) {
-    return {
-      flavorText: description.flavor_text
-        .replace('\f', ' ')
-        .replace('POKéMON', 'Pokémon'),
-      version: description.version.name,
-    };
-  }
-
-  function filterDescriptionsByLanguage(
-    language: string,
-  ): IPokemonDescription[] {
-    const descriptions = speciesData.flavor_text_entries.filter(
-      description => description.language.name === language,
-    );
-
-    return descriptions.map(description =>
-      formatPokemonDescription(description),
-    );
-  }
-
-  const pokemon = {
-    name: transformFirstLetterToUppercase(pokemonData.name),
-    id: pokemonData.id,
-    types: pokemonData.types.map(item => item.type.name),
-    image:
-      pokemonArtworkUploadedQuantity >= pokemonData.id
-        ? `${pokemonArtworkImages.main}/${pokemonData.id}.png`
-        : `${pokemonArtworkImages.fallback}/${pokemonData.id}.png`,
-    description: filterDescriptionsByLanguage('en')[0].flavorText,
-    originalName: speciesData.names[0].name,
-  };
+  const pokemonIdAsNumber = parseInt(id as string, 10);
+  const pokemon = await getPokemonDetailsData(pokemonIdAsNumber);
 
   return {
     props: {
