@@ -12,7 +12,6 @@ interface IPokemonDetailsProps {
 
 const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
   const [descriptionIndex, setDescriptionIndex] = useState(0);
-  // console.log('descriptions', pokemon.descriptions);
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
   }

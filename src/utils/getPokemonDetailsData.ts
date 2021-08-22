@@ -18,7 +18,7 @@ async function fetchPokemonDetailsData(id: number) {
               }
             }
           }
-          pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: ${id}}}) {
+          pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 1}}) {
             name
           }
           pokemon_v2_pokemonspeciesflavortexts(where: {pokemon_v2_version: {name: {_in: ["red", "silver", "ruby", "diamond", "white", "x", "moon", "sword"]}}, _and: {language_id: {_eq: 9}, _and: {_and: {}}}}) {
