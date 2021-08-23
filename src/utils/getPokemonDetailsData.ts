@@ -82,7 +82,7 @@ export default async function getPokemonDetailsData(
     types: response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.map(
       item => item.pokemon_v2_type.name,
     ),
-    originalName:
+    japaneseName:
       response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesnames[0]
         .name,
     image:

@@ -26,8 +26,8 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
           {/* <button type="button">Last</button> */}
           <div className={styles.container}>
             <div className={styles.pokemonContainer}>
-              <span className={styles.originalName}>
-                {pokemon.originalName}
+              <span className={styles.japaneseName}>
+                {pokemon.japaneseName}
               </span>
               <img
                 className={styles.pokemon}

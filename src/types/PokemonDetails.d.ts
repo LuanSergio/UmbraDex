@@ -18,7 +18,7 @@ declare interface IPokemonDetails {
   id: number;
   name: string;
   types: string[];
-  originalName: string;
+  japaneseName: string;
   image: string;
   descriptions: PokemonDescription[];
   evolutionChain: PokemonEvolution[];
