@@ -141,9 +141,20 @@
     border-radius: 50%;
     display: flex;
     // font-size: rem(36);
-    font-size: rem(32);
     justify-content: center;
     padding: rem(3);
+  }
+}
+
+.singleType {
+  &::before {
+    font-size: rem(44);
+  }
+}
+
+.dualType {
+  &::before {
+    font-size: rem(36);
   }
 }
 

@@ -50,6 +50,10 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
                       title={type}
                       className={`${styles.type} ${
                         styles[pokemon.types[index]]
+                      } ${
+                        pokemon.types.length > 1
+                          ? styles.dualType
+                          : styles.singleType
                       }`}
                     >
                       {type}
