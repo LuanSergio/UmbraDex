@@ -31,7 +31,6 @@
   font-size: rem(155);
   font-weight: bold;
   left: rem(-24);
-  // color: #b7f8b0;
   opacity: 0.88;
   position: absolute;
   white-space: nowrap;
@@ -139,7 +138,6 @@
     align-items: center;
     border-radius: 50%;
     display: flex;
-    // font-size: rem(36);
     justify-content: center;
     padding: rem(3);
   }
@@ -159,7 +157,6 @@
 
 @each $type, $color in typeColors.$defaults {
   .content.#{$type} {
-    // background: map-get(typeColors.$gradient, $type);
     background: map-get(typeColors.$background, $type);
   }
   .type.#{$type}::before {
