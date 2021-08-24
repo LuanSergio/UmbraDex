@@ -7,12 +7,12 @@
 }
 
 .headerContainer {
-  align-items: center;
   // border-bottom: rem(2) solid get-color(light);
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding-bottom: rem(10);
   padding-top: rem(10);
+  padding-bottom: rem(10);
 }
 
 .logo {
@@ -20,18 +20,18 @@
 }
 
 .logo:hover::after {
-  content: '';
-  background-color: get-color(secondary);
   display: block;
-  height: rem(2);
   width: 100%;
+  height: rem(2);
   margin-bottom: rem(-2);
+  background-color: get-color(secondary);
   animation: growingBorder 0.25s forwards;
+  content: '';
 }
 
 .rightContainer {
-  align-items: center;
   display: flex;
+  align-items: center;
 }
 
 .rightContainer > *:not(:last-child) {
@@ -40,12 +40,13 @@
 
 .github {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 15%;
+  justify-content: center;
   width: rem(50);
   height: rem(50);
+  border-radius: 15%;
   transition: background-color ease-out 0.15s;
+
   & > svg > path {
     transition: fill ease-out 0.15s;
   }
@@ -54,23 +55,24 @@
 .github:hover,
 .github:focus {
   background-color: rgba($color: get-color(light), $alpha: 0.15);
+
   & > svg > path {
     fill: get-color(secondary);
   }
 }
 
 .options {
-  align-items: center;
-  border-radius: 15%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(50);
+  height: rem(50);
+  font-size: 0;
   background-color: transparent;
   border: none;
+  border-radius: 15%;
   cursor: pointer;
-  font-size: 0;
-  height: rem(50);
-  justify-content: center;
   transition: background-color ease-out 0.15s;
-  width: rem(50);
 }
 
 .options:hover,
@@ -80,11 +82,12 @@
 
 .options::before {
   @include icon;
-  color: get-color(light);
-  content: get-icon(vertical-dots);
-  font-size: rem(35);
+
   position: absolute;
+  color: get-color(light);
+  font-size: rem(35);
   transition: color ease-out 0.2s;
+  content: get-icon(vertical-dots);
 }
 
 .options:hover::before,
