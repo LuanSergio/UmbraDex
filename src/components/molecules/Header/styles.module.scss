@@ -7,12 +7,11 @@
 }
 
 .headerContainer {
-  // border-bottom: rem(2) solid get-color(light);
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
-  padding-top: rem(10);
   padding-bottom: rem(10);
+  padding-top: rem(10);
 }
 
 .logo {
@@ -20,18 +19,18 @@
 }
 
 .logo:hover::after {
+  animation: growingBorder 0.25s forwards;
+  background-color: get-color(secondary);
+  content: '';
   display: block;
-  width: 100%;
   height: rem(2);
   margin-bottom: rem(-2);
-  background-color: get-color(secondary);
-  animation: growingBorder 0.25s forwards;
-  content: '';
+  width: 100%;
 }
 
 .rightContainer {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .rightContainer > *:not(:last-child) {
@@ -39,15 +38,15 @@
 }
 
 .github {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  width: rem(50);
-  height: rem(50);
   border-radius: 15%;
+  display: flex;
+  height: rem(50);
+  justify-content: center;
   transition: background-color ease-out 0.15s;
+  width: rem(50);
 
-  & > svg > path {
+  > svg > path {
     transition: fill ease-out 0.15s;
   }
 }
@@ -56,23 +55,23 @@
 .github:focus {
   background-color: rgba($color: get-color(light), $alpha: 0.15);
 
-  & > svg > path {
+  > svg > path {
     fill: get-color(secondary);
   }
 }
 
 .options {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  width: rem(50);
-  height: rem(50);
-  font-size: 0;
   background-color: transparent;
-  border: none;
   border-radius: 15%;
+  border-width: 0;
   cursor: pointer;
+  display: flex;
+  font-size: 0;
+  height: rem(50);
+  justify-content: center;
   transition: background-color ease-out 0.15s;
+  width: rem(50);
 }
 
 .options:hover,
@@ -83,11 +82,11 @@
 .options::before {
   @include icon;
 
-  position: absolute;
   color: get-color(light);
-  font-size: rem(35);
-  transition: color ease-out 0.2s;
   content: get-icon(vertical-dots);
+  font-size: rem(35);
+  position: absolute;
+  transition: color ease-out 0.2s;
 }
 
 .options:hover::before,

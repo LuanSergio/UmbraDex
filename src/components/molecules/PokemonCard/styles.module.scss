@@ -5,6 +5,10 @@
 
 .card {
   align-items: center;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-name: popIn;
   border-radius: rem(12);
   cursor: pointer;
   display: flex;
@@ -14,11 +18,14 @@
   padding: rem(10) rem(32);
   position: relative;
   width: rem(265);
+}
 
-  animation-fill-mode: forwards;
-  animation-name: popIn;
-  animation-iteration-count: 1;
-  animation-duration: 0.5s;
+.background {
+  border-radius: rem(13);
+  height: rem(299);
+  position: absolute;
+  transition: opacity ease-out 0.15s;
+  width: rem(265);
 }
 
 .card:hover .background {
@@ -49,8 +56,8 @@
 }
 
 .pokemon {
-  position: relative;
   height: rem(216);
+  position: relative;
   width: rem(216);
   z-index: get-index-level(lvl2);
 }
@@ -60,8 +67,8 @@
   border-radius: rem(6);
   bottom: 0;
   display: block;
-  font-weight: bold;
   font-size: rem(21);
+  font-weight: bold;
   left: 50%;
   padding: rem(6) rem(17);
   position: absolute;
@@ -102,24 +109,17 @@
 
 .type::before {
   @include icon;
+
   align-items: center;
   background-color: get-color(light);
   border-radius: 50%;
   display: flex;
   font-size: rem(13);
+  height: rem(20);
   justify-content: center;
   margin-right: rem(6);
   padding: rem(3);
   width: rem(20);
-  height: rem(20);
-}
-
-.background {
-  border-radius: rem(13);
-  height: rem(299);
-  position: absolute;
-  transition: opacity ease-out 0.15s;
-  width: rem(265);
 }
 
 @each $type, $color in typeColors.$defaults {
@@ -142,6 +142,6 @@
 
 .type.grass::before,
 .type.electric::before {
-  padding-top: rem(4);
   padding-right: rem(4);
+  padding-top: rem(4);
 }

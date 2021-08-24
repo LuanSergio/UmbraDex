@@ -83,10 +83,10 @@
   border-bottom-left-radius: rem(1);
   border-bottom-right-radius: rem(1);
   border-bottom-width: rem(3);
-  border-left: none;
-  border-right: none;
+  border-left-width: 0;
+  border-right-width: 0;
   border-style: inset;
-  border-top: none;
+  border-top-width: 0;
   color: get-color(light);
   font-size: rem(32);
   font-weight: bold;
