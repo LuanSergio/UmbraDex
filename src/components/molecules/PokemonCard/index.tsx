@@ -2,7 +2,12 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import PokeballIcon from '../../../assets/images/icons/pokeball-v5.svg';
 
-const PokemonCard = ({ id, name, types, image }: IPokemonData): JSX.Element => {
+const PokemonCard = ({
+  id,
+  name,
+  types,
+  image,
+}: IPokemonBasicInfo): JSX.Element => {
   return (
     <Link href={`/pokemon/${id}`}>
       <div className={styles.card}>

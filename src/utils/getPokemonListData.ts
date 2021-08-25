@@ -26,12 +26,14 @@ async function fetchPokemonListData() {
   return result.data.data.species;
 }
 
-export default async function getPokemonListData(): Promise<IPokemonData[]> {
+export default async function getPokemonListData(): Promise<
+  IPokemonBasicInfo[]
+> {
   const responses = await fetchPokemonListData();
-  const pokemonDataArray = [];
+  const pokemonInfoArray = [];
 
   responses.forEach(response => {
-    const pokemonData: IPokemonData = {
+    const pokemonInfo: IPokemonBasicInfo = {
       id: response.id,
       name: response.name,
       types: response.information[0].types.map(item => item.type.name),
@@ -41,8 +43,8 @@ export default async function getPokemonListData(): Promise<IPokemonData[]> {
           : `${pokemonArtworkImages.fallback}/${response.id}.png`,
     };
 
-    pokemonDataArray.push(pokemonData);
+    pokemonInfoArray.push(pokemonInfo);
   });
 
-  return pokemonDataArray;
+  return pokemonInfoArray;
 }
