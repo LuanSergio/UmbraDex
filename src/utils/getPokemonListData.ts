@@ -1,4 +1,4 @@
-import { apiUrl, axios } from '@services/graphqlApi';
+import { apiUrl, axios } from '@services/api';
 import {
   pokemonArtworkImages,
   pokemonArtworkUploadedQuantity,
