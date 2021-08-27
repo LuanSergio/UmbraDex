@@ -6,7 +6,7 @@
   margin-top: rem(40);
 }
 
-@media only screen and (min-width: map-get($breakpoints, HD)) {
+@media only screen and (min-width: $lg) {
   .cardContainer {
     align-content: center;
     display: grid;
@@ -18,7 +18,7 @@
   }
 }
 
-@media only screen and (max-width: map-get($breakpoints, HD)) {
+@media only screen and (max-width: $lg) {
   .cardContainer {
     display: flex;
     flex-wrap: wrap;
