@@ -13,6 +13,7 @@
     "check-styles": "stylelint \"**/*.scss\"",
     "format-styles": "stylelint \"**/*.scss\" --fix",
     "format": "prettier --write .",
+    "stylelint-prettier-rules-check": "stylelint-config-prettier-check",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "husky": "^6.0.0",
     "prettier": "^2.2.1",
     "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
