@@ -1,11 +1,13 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
 @mixin icon {
   display: inline-block;
   font-family: 'icons';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
   line-height: 1;
   text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
+/* stylelint-enable font-family-no-missing-generic-family-keyword */
