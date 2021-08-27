@@ -1,4 +1,5 @@
 declare interface PokemonDescription {
+  id: string;
   description: string;
   gameVersion: number;
 }
@@ -14,13 +15,28 @@ declare interface PokemonStats {
   value: number;
 }
 
-declare interface IPokemonDetails {
+declare interface PokemonForm {
   id: number;
   name: string;
+  isDefault: boolean;
+  formsDetails;
   types: string[];
-  japaneseName: string;
+  formName: string;
+  formOrder: string;
+  stats: PokemonStats;
   image: string;
+}
+
+declare interface IPokemonDetails {
+  forms: PokemonForm;
+  japaneseName: string;
   descriptions: PokemonDescription[];
   evolutionChain: PokemonEvolution[];
-  stats: PokemonStats;
+}
+
+declare interface IPokemonVariantDetails {
+  forms: PokemonForm[];
+  japaneseName: string;
+  descriptions: PokemonDescription[];
+  evolutionChain: PokemonEvolution[];
 }

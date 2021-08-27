@@ -8,9 +8,10 @@ import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
   pokemon: IPokemonDetails;
+  variants: IPokemonVariantDetails;
 }
 
-const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
+const Pokemon = ({ pokemon, variants }: IPokemonDetailsProps): JSX.Element => {
   const [descriptionIndex, setDescriptionIndex] = useState(0);
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
@@ -19,9 +20,9 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
   return (
     <>
       <Head>
-        <title key="title">UmbraDex | {pokemon.name}</title>
+        <title key="title">UmbraDex | {pokemon.forms.name}</title>
       </Head>
-      <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
+      <div className={`${styles.content} ${styles[pokemon.forms.types[0]]}`}>
         <DefaultLayout>
           {/* <button type="button">Last</button> */}
           <div className={styles.container}>
@@ -31,27 +32,27 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
               </span>
               <img
                 className={styles.pokemon}
-                src={pokemon.image}
-                alt={pokemon.name}
+                src={pokemon.forms.image}
+                alt={pokemon.forms.name}
               />
             </div>
             <div className={styles.informationContainer}>
-              <h1 className={styles.name}>{pokemon?.name}</h1>
+              <h1 className={styles.name}>{pokemon.forms.name}</h1>
               <div className={styles.basicInfo}>
-                {pokemon.id <= 10 ? (
-                  <span className={styles.number}># 0{pokemon.id}</span>
+                {pokemon.forms.id <= 10 ? (
+                  <span className={styles.number}># 0{pokemon.forms.id}</span>
                 ) : (
-                  <span className={styles.number}># {pokemon.id}</span>
+                  <span className={styles.number}># {pokemon.forms.id}</span>
                 )}
                 <div className={styles.typeContainer}>
-                  {pokemon.types.map((type, index) => (
+                  {pokemon.forms.types.map((type, index) => (
                     <span
                       key={type}
                       title={type}
                       className={`${styles.type} ${
-                        styles[pokemon.types[index]]
+                        styles[pokemon.forms.types[index]]
                       } ${
-                        pokemon.types.length > 1
+                        pokemon.forms.types.length > 1
                           ? styles.dualType
                           : styles.singleType
                       }`}
@@ -65,7 +66,7 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
                 <ul className={styles.generationDescriptionContainer}>
                   {pokemon.descriptions.map((item, index) => {
                     return (
-                      <li key={item.gameVersion}>
+                      <li key={`${item.id}`}>
                         <button
                           type="button"
                           className={`${styles.generationDescriptionOption} ${
@@ -108,11 +109,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
   const pokemonIdAsNumber = parseInt(id as string, 10);
-  const pokemon = await getPokemonDetailsData(pokemonIdAsNumber);
+  const pokemonForms = await getPokemonDetailsData(pokemonIdAsNumber);
+  const pokemon = {
+    ...pokemonForms,
+    forms: pokemonForms.forms.find(form => form.isDefault),
+  };
+
+  const variants = {
+    ...pokemonForms,
+    forms: pokemonForms.forms.filter(form => !form.isDefault),
+  };
 
   return {
     props: {
       pokemon,
+      variants,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };
