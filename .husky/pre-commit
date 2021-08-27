@@ -19,6 +19,14 @@ npm run check-lint ||
         false; 
 )
 
+# Check Stylelint Standards
+echo '📋 Checking Styles rules.'
+npm run check-styles ||
+(
+        echo '❌ Stylelint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
+)
+
 # Check tsconfig standards
 echo '📋 Validating types.'
 npm run check-types ||

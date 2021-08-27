@@ -8,10 +8,9 @@ import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
   pokemon: IPokemonDetails;
-  variants: IPokemonVariantDetails;
 }
 
-const Pokemon = ({ pokemon, variants }: IPokemonDetailsProps): JSX.Element => {
+const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
   const [descriptionIndex, setDescriptionIndex] = useState(0);
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);

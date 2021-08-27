@@ -2,16 +2,16 @@
 @use 'settings/_media' as *;
 
 .cardContainer {
-  margin-top: rem(40);
   margin-bottom: rem(40);
+  margin-top: rem(40);
 }
 
 @media only screen and (min-width: map-get($breakpoints, HD)) {
   .cardContainer {
     align-content: center;
     display: grid;
-    grid-row-gap: rem(48);
     grid-column-gap: rem(56);
+    grid-row-gap: rem(48);
     grid-template-columns: repeat(4, 21.37%);
     justify-items: center;
     padding-bottom: rem(40);
