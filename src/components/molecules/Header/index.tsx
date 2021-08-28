@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 const Header = (): JSX.Element => {
   return (
     <header className={styles.header}>
-      <div className={`${styles.headerContainer} container`}>
+      <div className={`${styles.headerContainer} h-container`}>
         <Link href="/">
           <a className={styles.logo} aria-label="UmbraDex">
             <Logo />
