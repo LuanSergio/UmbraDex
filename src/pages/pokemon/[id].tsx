@@ -4,6 +4,8 @@ import DefaultLayout from '@components/layouts/DefaultLayout';
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
 import { useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
@@ -11,6 +13,8 @@ interface IPokemonDetailsProps {
 }
 
 const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
+  const router = useRouter();
+  const pageId = parseInt(router.query.id as string, 10);
   const [descriptionIndex, setDescriptionIndex] = useState(0);
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
@@ -23,7 +27,6 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
       </Head>
       <div className={`${styles.content} ${styles[pokemon.forms.types[0]]}`}>
         <DefaultLayout>
-          {/* <button type="button">Last</button> */}
           <div className={styles.container}>
             <div className={styles.pokemonContainer}>
               <span className={styles.japaneseName}>
@@ -91,7 +94,25 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
               </div>
             </div>
           </div>
-          {/* <button type="button">Next</button> */}
+          <div className={styles.navigation}>
+            <NextLink href={`/pokemon/${pageId - 1}`}>
+              <button
+                type="button"
+                disabled={pageId <= 1}
+                aria-label="Previous page"
+                title="Previous page"
+                className={styles.previous}
+              />
+            </NextLink>
+            <NextLink href={`/pokemon/${pageId + 1}`}>
+              <button
+                type="button"
+                aria-label="Next page"
+                title="Next page"
+                className={styles.next}
+              />
+            </NextLink>
+          </div>
         </DefaultLayout>
       </div>
     </>

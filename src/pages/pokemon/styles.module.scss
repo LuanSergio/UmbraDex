@@ -24,7 +24,6 @@
 .pokemon {
   padding-left: rem(186);
   position: relative;
-  z-index: 1;
   z-index: get-index-level(lvl1);
 }
 
@@ -158,10 +157,53 @@
 
 @each $type, $color in typeColors.$defaults {
   .content.#{$type} {
-    background: map-get(typeColors.$background, $type);
+    background-color: map-get(typeColors.$background, $type);
   }
   .type.#{$type}::before {
     color: #fff;
     content: get-icon($type);
   }
+}
+
+.navigation {
+  align-items: center;
+  // border: 1px solid purple;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $container;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: get-index-level(lvl5);
+}
+
+.previous,
+.next {
+  background-color: transparent;
+  border-width: 0;
+  color: get-color(light);
+  font-size: rem(80);
+
+  &::before {
+    @include h-icon;
+
+    content: get-icon('arrow');
+  }
+}
+
+.next {
+  transform: translateX(100%);
+}
+
+.previous {
+  transform: translateX(-100%);
+}
+
+.next::before {
+  transform: rotate(180deg);
 }
