@@ -1,6 +1,7 @@
 @use 'tools/index' as *;
 @use 'settings/colors-type' as typeColors;
 @use 'helpers/icon.scss' as *;
+@use 'helpers/container.scss' as *;
 
 .content {
   color: get-color(light);
@@ -133,7 +134,7 @@
   }
 
   &::before {
-    @include icon;
+    @include h-icon;
 
     align-items: center;
     border-radius: 50%;

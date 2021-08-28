@@ -108,7 +108,7 @@
 }
 
 .type::before {
-  @include icon;
+  @include h-icon;
 
   align-items: center;
   background-color: get-color(light);

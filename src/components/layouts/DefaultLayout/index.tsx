@@ -13,7 +13,7 @@ const HomeLayout = ({
   return (
     <>
       <Header />
-      <main className={`container ${classes}`}>{children}</main>
+      <main className={`h-container ${classes}`}>{children}</main>
     </>
   );
 };

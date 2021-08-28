@@ -80,7 +80,7 @@
 }
 
 .options::before {
-  @include icon;
+  @include h-icon;
 
   color: get-color(light);
   content: get-icon(vertical-dots);
