@@ -6,6 +6,7 @@ import {
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 
 interface GetPokemonDetailsDataResponse {
+  pokedexLimit: number;
   forms: PokemonForm[];
   japaneseName: string;
   descriptions: PokemonDescription[];
@@ -16,6 +17,11 @@ async function fetchPokemonDetailsData(id: number) {
   const result = await axios.post(apiUrl, {
     query: `
     query PokemonSpecies {
+      pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
+        pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
+          pokedex_number
+        }
+      }
       pokemon_v2_pokemonspecies(where: {id: {_eq: ${id}}}) {
         pokemon_v2_pokemons {
           name
@@ -97,6 +103,9 @@ export default async function getPokemonDetailsData(
 
   // Map graphql response
   const pokemonDetails: GetPokemonDetailsDataResponse = {
+    pokedexLimit:
+      response.pokemon_v2_pokedex[0].pokemon_v2_pokemondexnumbers[0]
+        .pokedex_number,
     forms: response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons.map(
       form => {
         return {
