@@ -75,6 +75,8 @@ const Pokemon = ({
                       <li key={`${item.id}`}>
                         <button
                           type="button"
+                          aria-label={`Generation ${index} flavor text`}
+                          title={`Generation ${index} flavor text`}
                           className={`${styles.generationDescriptionOption} ${
                             descriptionIndex === index && styles.active
                           }`}
