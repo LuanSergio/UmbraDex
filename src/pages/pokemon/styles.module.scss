@@ -194,6 +194,11 @@
 
     content: get-icon('arrow');
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .next {

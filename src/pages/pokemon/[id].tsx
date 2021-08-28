@@ -10,9 +10,13 @@ import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
   pokemon: IPokemonDetails;
+  pokedexLimit: number;
 }
 
-const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
+const Pokemon = ({
+  pokemon,
+  pokedexLimit,
+}: IPokemonDetailsProps): JSX.Element => {
   const router = useRouter();
   const pageId = parseInt(router.query.id as string, 10);
   const [descriptionIndex, setDescriptionIndex] = useState(0);
@@ -107,6 +111,7 @@ const Pokemon = ({ pokemon }: IPokemonDetailsProps): JSX.Element => {
             <NextLink href={`/pokemon/${pageId + 1}`}>
               <button
                 type="button"
+                disabled={pageId >= pokedexLimit}
                 aria-label="Next page"
                 title="Next page"
                 className={styles.next}
@@ -140,10 +145,13 @@ export const getStaticProps: GetStaticProps = async context => {
     forms: pokemonForms.forms.filter(form => !form.isDefault),
   };
 
+  const { pokedexLimit } = pokemonForms;
+
   return {
     props: {
       pokemon,
       variants,
+      pokedexLimit,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };
