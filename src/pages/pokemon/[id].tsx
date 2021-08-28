@@ -103,8 +103,8 @@ const Pokemon = ({
               <button
                 type="button"
                 disabled={pageId <= 1}
-                aria-label="Previous page"
-                title="Previous page"
+                aria-label="Previous pokemon"
+                title="Previous pokemon"
                 className={styles.previous}
               />
             </NextLink>
@@ -112,8 +112,8 @@ const Pokemon = ({
               <button
                 type="button"
                 disabled={pageId >= pokedexLimit}
-                aria-label="Next page"
-                title="Next page"
+                aria-label="Next pokemon"
+                title="Next pokemon"
                 className={styles.next}
               />
             </NextLink>
