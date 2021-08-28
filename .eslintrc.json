@@ -33,6 +33,7 @@
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
     "react-hooks/exhaustive-deps": "off",
+    "react/require-default-props": "off",
     "react/prop-types": "off",
     "no-undef": "off",
     "arrow-body-style": "off",
