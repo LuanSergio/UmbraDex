@@ -1,5 +1,5 @@
 @use 'tools/index' as *;
-@use 'settings/_media' as *;
+@use 'settings/_breakpoints' as *;
 
 .cardContainer {
   margin-bottom: rem(40);
