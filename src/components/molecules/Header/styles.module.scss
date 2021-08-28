@@ -34,7 +34,7 @@
 }
 
 .rightContainer > *:not(:last-child) {
-  margin-right: rem(15);
+  margin-right: rem(16);
 }
 
 .github {
@@ -68,10 +68,10 @@
   cursor: pointer;
   display: flex;
   font-size: 0;
-  height: rem(50);
+  height: rem(48);
   justify-content: center;
   transition: background-color ease-out 0.15s;
-  width: rem(50);
+  width: rem(48);
 }
 
 .options:hover,
@@ -84,7 +84,7 @@
 
   color: get-color(light);
   content: get-icon(vertical-dots);
-  font-size: rem(35);
+  font-size: rem(36);
   position: absolute;
   transition: color ease-out 0.2s;
 }
