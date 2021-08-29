@@ -1,0 +1,26 @@
+@use 'tools/index' as *;
+
+.pokemonContainer {
+  display: flex;
+  justify-content: center;
+  max-width: rem(816);
+  overflow: visible;
+  position: relative;
+  width: 100%;
+}
+
+.pokemon {
+  max-height: rem(488);
+  max-width: rem(488);
+  position: relative;
+  width: 100%;
+  z-index: get-index-level(lvl1);
+}
+
+.japaneseName {
+  font-size: rem(152);
+  font-weight: bold;
+  left: rem(-24);
+  opacity: 0.88;
+  position: absolute;
+}

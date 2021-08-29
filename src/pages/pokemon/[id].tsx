@@ -1,10 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import DefaultLayout from '@components/layouts/DefaultLayout';
+import LinearNavigation from '@components/molecules/LinearNavigation';
+import PokemonHighlight from '@components/molecules/PokemonHighlight';
+import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
-import { useState } from 'react';
-import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
-import NextLink from 'next/link';
+
 import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 
@@ -19,10 +20,6 @@ const Pokemon = ({
 }: IPokemonDetailsProps): JSX.Element => {
   const router = useRouter();
   const pageId = parseInt(router.query.id as string, 10);
-  const [descriptionIndex, setDescriptionIndex] = useState(0);
-  function handleDescriptionChange(index: number): void {
-    setDescriptionIndex(index);
-  }
 
   return (
     <>
@@ -32,94 +29,24 @@ const Pokemon = ({
       <div className={`${styles.content} ${styles[pokemon.forms.types[0]]}`}>
         <DefaultLayout>
           <div className={styles.container}>
-            <div className={styles.pokemonContainer}>
-              <span className={styles.japaneseName}>
-                {pokemon.japaneseName}
-              </span>
-              <img
-                className={styles.pokemon}
-                src={pokemon.forms.image}
-                alt={pokemon.forms.name}
-              />
-            </div>
-            <div className={styles.informationContainer}>
-              <h1 className={styles.name}>{pokemon.forms.name}</h1>
-              <div className={styles.basicInfo}>
-                {pokemon.forms.id <= 10 ? (
-                  <span className={styles.number}># 0{pokemon.forms.id}</span>
-                ) : (
-                  <span className={styles.number}># {pokemon.forms.id}</span>
-                )}
-                <div className={styles.typeContainer}>
-                  {pokemon.forms.types.map((type, index) => (
-                    <span
-                      key={type}
-                      title={type}
-                      className={`${styles.type} ${
-                        styles[pokemon.forms.types[index]]
-                      } ${
-                        pokemon.forms.types.length > 1
-                          ? styles.dualType
-                          : styles.singleType
-                      }`}
-                    >
-                      {type}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className={styles.descriptionContainer}>
-                <ul className={styles.generationDescriptionContainer}>
-                  {pokemon.descriptions.map((item, index) => {
-                    return (
-                      <li key={`${item.id}`}>
-                        <button
-                          type="button"
-                          aria-label={`Generation ${index} flavor text`}
-                          title={`Generation ${index} flavor text`}
-                          className={`${styles.generationDescriptionOption} ${
-                            descriptionIndex === index && styles.active
-                          }`}
-                          onClick={() => handleDescriptionChange(index)}
-                        >
-                          {transformNumberToRomanNumeral(index + 1)}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <p className={styles.description}>
-                  {pokemon.descriptions[descriptionIndex].description}
-                  {(descriptionIndex === 3 || descriptionIndex === 4) && (
-                    <small className={styles.sideNote}>
-                      Sidenote: The fourth and fifth generation share some
-                      descriptions
-                    </small>
-                  )}
-                </p>
-              </div>
-            </div>
+            <PokemonHighlight
+              japaneseName={pokemon.japaneseName}
+              image={pokemon.forms.image}
+              name={pokemon.forms.name}
+            />
+            <PokemonBasicInformation
+              name={pokemon.forms.name}
+              pokedexIndex={pokemon.forms.id}
+              types={pokemon.forms.types}
+              descriptions={pokemon.descriptions}
+            />
           </div>
-          <div className={styles.navigation}>
-            <NextLink href={`/pokemon/${pageId - 1}`}>
-              <button
-                type="button"
-                disabled={pageId <= 1}
-                aria-label="Previous pokemon"
-                title="Previous pokemon"
-                className={styles.previous}
-              />
-            </NextLink>
-            <NextLink href={`/pokemon/${pageId + 1}`}>
-              <button
-                type="button"
-                disabled={pageId >= pokedexLimit}
-                aria-label="Next pokemon"
-                title="Next pokemon"
-                className={styles.next}
-              />
-            </NextLink>
-          </div>
+          <LinearNavigation
+            previous={`/pokemon/${pageId - 1}`}
+            next={`/pokemon/${pageId + 1}`}
+            disablePrevious={pageId <= 1}
+            disableNext={pageId >= pokedexLimit}
+          />
         </DefaultLayout>
       </div>
     </>
