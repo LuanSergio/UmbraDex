@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import styles from './styles.module.scss';
 
@@ -19,6 +19,10 @@ const PokemonBasicInformation = ({
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
   }
+
+  useEffect(() => {
+    setDescriptionIndex(0);
+  }, [pokedexIndex]);
 
   return (
     <div className={styles.informationContainer}>
