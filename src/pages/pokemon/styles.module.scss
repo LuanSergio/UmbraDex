@@ -6,6 +6,7 @@
 .content {
   color: get-color(light);
   height: 100vh;
+  transition: background-color 0.25s linear;
 }
 
 .container {
