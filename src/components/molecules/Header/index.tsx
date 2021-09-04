@@ -23,9 +23,12 @@ const Header = (): JSX.Element => {
           >
             <Github />
           </a>
-          <button type="button" className={styles.options}>
-            Options
-          </button>
+          <button
+            type="button"
+            className={styles.options}
+            aria-label="options"
+            title="options"
+          />
         </div>
       </div>
     </header>
