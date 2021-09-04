@@ -7,38 +7,71 @@ import PokemonBasicInformation from '@components/molecules/PokemonBasicInformati
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
 
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 interface IPokemonDetailsProps {
-  pokemon: IPokemonDetails;
+  pokemonDetails: IPokemonDetails;
+  defaultPokemonForm: PokemonForm;
+  AlternativePokemonForms: PokemonForm[];
   pokedexLimit: number;
 }
 
 const Pokemon = ({
-  pokemon,
+  defaultPokemonForm,
+  AlternativePokemonForms,
   pokedexLimit,
+  pokemonDetails,
 }: IPokemonDetailsProps): JSX.Element => {
   const router = useRouter();
   const pageId = parseInt(router.query.id as string, 10);
+  const [pokemon, setPokemon] = useState(defaultPokemonForm);
+
+  useEffect(() => {
+    setPokemon(defaultPokemonForm);
+  }, [defaultPokemonForm]);
+
+  function handleFormChange(form: PokemonForm) {
+    setPokemon(form);
+  }
 
   return (
     <>
       <Head>
-        <title key="title">UmbraDex | {pokemon.forms.name}</title>
+        <title key="title">UmbraDex | {defaultPokemonForm.name}</title>
       </Head>
-      <div className={`${styles.content} ${styles[pokemon.forms.types[0]]}`}>
+      <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
         <DefaultLayout>
+          {AlternativePokemonForms.length > 0 && (
+            <div>
+              <button
+                onClick={() => handleFormChange(defaultPokemonForm)}
+                type="button"
+              >
+                default
+              </button>
+              {AlternativePokemonForms.map(form => (
+                <button
+                  key={form.id}
+                  onClick={() => handleFormChange(form)}
+                  type="button"
+                >
+                  {form.formName}
+                </button>
+              ))}
+            </div>
+          )}
           <div className={styles.container}>
             <PokemonHighlight
-              japaneseName={pokemon.japaneseName}
-              image={pokemon.forms.image}
-              name={pokemon.forms.name}
+              japaneseName={pokemonDetails.japaneseName}
+              image={pokemon.image}
+              name={pokemon.name}
             />
             <PokemonBasicInformation
-              name={pokemon.forms.name}
-              pokedexIndex={pokemon.forms.id}
-              types={pokemon.forms.types}
-              descriptions={pokemon.descriptions}
+              name={pokemon.name}
+              pokedexIndex={defaultPokemonForm.id}
+              types={pokemon.types}
+              descriptions={pokemonDetails.descriptions}
             />
           </div>
           <LinearNavigation
@@ -64,22 +97,20 @@ export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
   const pokemonIdAsNumber = parseInt(id as string, 10);
   const pokemonForms = await getPokemonDetailsData(pokemonIdAsNumber);
-  const pokemon = {
-    ...pokemonForms,
-    forms: pokemonForms.forms.find(form => form.isDefault),
-  };
 
-  const variants = {
-    ...pokemonForms,
-    forms: pokemonForms.forms.filter(form => !form.isDefault),
-  };
+  const pokemonDetails = { ...pokemonForms };
+  const defaultPokemonForm = pokemonForms.forms.find(form => form.isDefault);
+  const AlternativePokemonForms = pokemonForms.forms.filter(
+    form => !form.isDefault,
+  );
 
   const { pokedexLimit } = pokemonForms;
 
   return {
     props: {
-      pokemon,
-      variants,
+      pokemonDetails,
+      AlternativePokemonForms,
+      defaultPokemonForm,
       pokedexLimit,
     },
     revalidate: 60 * 60 * 24, // 24 hours
