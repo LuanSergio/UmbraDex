@@ -15,7 +15,6 @@
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  z-index: get-index-level(lvl5);
 }
 
 .previous,
@@ -24,7 +23,8 @@
   border-width: 0;
   color: get-color(light);
   font-size: rem(80);
-
+  position: relative;
+  z-index: get-index-level(lvl3);
   &::before {
     @include h-icon;
 

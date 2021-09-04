@@ -13,7 +13,7 @@
   // text-shadow: rem(4) rem(4) rem(6) rgba(#000, 0.2);
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.15);
   text-transform: capitalize;
-  z-index: 100;
+  z-index: get-index-level(lvl2);
 }
 
 .basicInfo {
@@ -64,8 +64,9 @@
   margin-bottom: rem(8);
   margin-right: rem(12);
   opacity: 0.8;
+  position: relative;
   transition: opacity 0.2s;
-
+  z-index: get-index-level(lvl3);
   &.active,
   &:hover {
     opacity: 1;

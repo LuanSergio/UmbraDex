@@ -38,7 +38,7 @@
   font-weight: bold;
   position: absolute;
   top: rem(10);
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl2);
 }
 
 .pokemonContainer {
@@ -77,7 +77,7 @@
   transform: translate(-50%, 36%);
   transition: ease-out 0.35s;
   white-space: nowrap;
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl2);
 }
 
 .typeContainer {
@@ -87,7 +87,7 @@
   justify-content: center;
   position: absolute;
   transform: translateY(40%);
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl2);
 }
 
 .type {
