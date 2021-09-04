@@ -1,5 +1,3 @@
-import metaImage from '@images/meta-image.png';
-
 const HeadConfiguration = (): JSX.Element => {
   return (
     <>
@@ -14,7 +12,7 @@ const HeadConfiguration = (): JSX.Element => {
         itemProp="description"
         content="Find everything about the creatures you love!"
       />
-      <meta itemProp="image" content={metaImage} />
+      <meta itemProp="image" content="/meta-image.png" />
 
       {/* Facebook Meta Tags */}
       <meta property="og:url" content="https://umbradex.vercel.app" />
@@ -24,7 +22,7 @@ const HeadConfiguration = (): JSX.Element => {
         property="og:description"
         content="Find everything about the creatures you love!"
       />
-      <meta property="og:image" content={metaImage} />
+      <meta property="og:image" content="/meta-image.png" />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +31,7 @@ const HeadConfiguration = (): JSX.Element => {
         name="twitter:description"
         content="Find everything about the creatures you love!"
       />
-      <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:image" content="/meta-image.png" />
 
       <meta name="robots" content="index, follow" />
       <meta charSet="UTF-8" />
