@@ -1,12 +1,12 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 
 interface ControllerProps {
-  pokemonList: IPokemonBasicInfo[];
+  pokemonList: IBasicPokemonInfo[];
   loader: MutableRefObject<HTMLElement>;
 }
 
 interface IController {
-  loadedPokemonList: IPokemonBasicInfo[];
+  loadedPokemonList: IBasicPokemonInfo[];
 }
 
 const amountOfPokemonPerLoad = 24;
@@ -16,7 +16,7 @@ const useController = ({
   loader,
 }: ControllerProps): IController => {
   const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
-  const [loadedPokemon, setLoadedPokemon] = useState<IPokemonBasicInfo[]>([]);
+  const [loadedPokemon, setLoadedPokemon] = useState<IBasicPokemonInfo[]>([]);
 
   function handleObserver(entities: IntersectionObserverEntry[]) {
     if (pokemonList.length > loadedPokemonCounter) {

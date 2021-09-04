@@ -7,7 +7,7 @@ const PokemonCard = ({
   name,
   types,
   image,
-}: IPokemonBasicInfo): JSX.Element => {
+}: IBasicPokemonInfo): JSX.Element => {
   return (
     <Link href={`/pokemon/${id}`}>
       <div className={styles.card}>

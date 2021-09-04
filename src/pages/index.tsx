@@ -5,7 +5,7 @@ import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@utils/getPokemonListData';
 
 interface HomeProps {
-  pokemonList: IPokemonBasicInfo[];
+  pokemonList: IBasicPokemonInfo[];
 }
 
 const Home = ({ pokemonList }: HomeProps): JSX.Element => {

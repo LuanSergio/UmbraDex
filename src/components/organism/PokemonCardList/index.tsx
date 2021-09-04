@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import useController from './index.controller';
 
 interface PokemonCardListProps {
-  pokemonList: IPokemonBasicInfo[];
+  pokemonList: IBasicPokemonInfo[];
 }
 
 const PokemonCardList = ({

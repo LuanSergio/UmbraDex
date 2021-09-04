@@ -27,13 +27,13 @@ async function fetchPokemonListData() {
 }
 
 export default async function getPokemonListData(): Promise<
-  IPokemonBasicInfo[]
+  IBasicPokemonInfo[]
 > {
   const responses = await fetchPokemonListData();
   const pokemonInfoArray = [];
 
   responses.forEach(response => {
-    const pokemonInfo: IPokemonBasicInfo = {
+    const pokemonInfo: IBasicPokemonInfo = {
       id: response.id,
       name: response.name,
       types: response.information[0].types.map(item => item.type.name),

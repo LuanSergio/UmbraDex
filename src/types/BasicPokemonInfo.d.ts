@@ -1,4 +1,4 @@
-declare interface IPokemonBasicInfo {
+declare interface IBasicPokemonInfo {
   id: number;
   name: string;
   types: string[];
