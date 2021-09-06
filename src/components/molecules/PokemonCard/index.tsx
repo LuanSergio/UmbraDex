@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import PokeballIcon from '../../../assets/images/icons/pokeball-v5.svg';
+import PokeballIcon from '../../../assets/icons/pokeball.svg';
 
 const PokemonCard = ({
   id,
