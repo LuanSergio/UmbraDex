@@ -5,7 +5,7 @@ import LinearNavigation from '@components/molecules/LinearNavigation';
 import PokemonHighlight from '@components/molecules/PokemonHighlight';
 import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
-
+import SwitchForms from '@components/molecules/SwitchForms';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
@@ -27,13 +27,13 @@ const Pokemon = ({
   const pageId = parseInt(router.query.id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
 
-  useEffect(() => {
-    setPokemon(defaultPokemonForm);
-  }, [defaultPokemonForm]);
-
   function handleFormChange(form: PokemonForm) {
     setPokemon(form);
   }
+
+  useEffect(() => {
+    setPokemon(defaultPokemonForm);
+  }, [defaultPokemonForm]);
 
   return (
     <>
@@ -42,44 +42,41 @@ const Pokemon = ({
       </Head>
       <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
         <DefaultLayout>
-          {AlternativePokemonForms.length > 0 && (
-            <div>
-              <button
-                onClick={() => handleFormChange(defaultPokemonForm)}
-                type="button"
-              >
-                default
-              </button>
-              {AlternativePokemonForms.map(form => (
-                <button
-                  key={form.id}
-                  onClick={() => handleFormChange(form)}
-                  type="button"
-                >
-                  {form.formName}
-                </button>
-              ))}
+          <div
+            className={
+              AlternativePokemonForms.length > 0
+                ? styles.smallHolder
+                : styles.holder
+            }
+          >
+            {AlternativePokemonForms.length > 0 && (
+              <SwitchForms
+                pokemon={pokemon}
+                handleFormChange={handleFormChange}
+                defaultPokemonForm={defaultPokemonForm}
+                alternativePokemonForms={AlternativePokemonForms}
+              />
+            )}
+            <div className={styles.container}>
+              <PokemonHighlight
+                japaneseName={pokemonDetails.japaneseName}
+                image={pokemon.image}
+                name={pokemon.name}
+              />
+              <PokemonBasicInformation
+                name={pokemon.name}
+                pokedexIndex={defaultPokemonForm.id}
+                types={pokemon.types}
+                descriptions={pokemonDetails.descriptions}
+              />
             </div>
-          )}
-          <div className={styles.container}>
-            <PokemonHighlight
-              japaneseName={pokemonDetails.japaneseName}
-              image={pokemon.image}
-              name={pokemon.name}
-            />
-            <PokemonBasicInformation
-              name={pokemon.name}
-              pokedexIndex={defaultPokemonForm.id}
-              types={pokemon.types}
-              descriptions={pokemonDetails.descriptions}
+            <LinearNavigation
+              previous={`/pokemon/${pageId - 1}`}
+              next={`/pokemon/${pageId + 1}`}
+              disablePrevious={pageId <= 1}
+              disableNext={pageId >= pokedexLimit}
             />
           </div>
-          <LinearNavigation
-            previous={`/pokemon/${pageId - 1}`}
-            next={`/pokemon/${pageId + 1}`}
-            disablePrevious={pageId <= 1}
-            disableNext={pageId >= pokedexLimit}
-          />
         </DefaultLayout>
       </div>
     </>
