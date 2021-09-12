@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
+import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -26,7 +27,7 @@ const PokemonBasicInformation = ({
 
   return (
     <div className={styles.informationContainer}>
-      <h1 className={styles.name}>{name}</h1>
+      <h1 className={styles.name}>{replaceDashWithSpace(name)}</h1>
       <div className={styles.basicInfo}>
         {pokedexIndex <= 10 ? (
           <span className={styles.number}># 0{pokedexIndex}</span>
@@ -41,9 +42,8 @@ const PokemonBasicInformation = ({
               className={`${styles.type} ${styles[types[index]]} ${
                 types.length > 1 ? styles.dualType : styles.singleType
               }`}
-            >
-              {type}
-            </span>
+              aria-label={type}
+            />
           ))}
         </div>
       </div>
