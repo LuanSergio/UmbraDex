@@ -37,7 +37,7 @@ const SwitchForms = ({
         onClick={() => handleFormChange(defaultPokemonForm)}
         type="button"
         disabled={pokemon.isDefault}
-        className={styles.button}
+        className={`switchFormButton ${styles.button}`}
       >
         <DefaultForm />
       </button>
@@ -46,11 +46,13 @@ const SwitchForms = ({
 
         return (
           <button
-            className={styles.button}
+            className={`switchFormButton ${styles.button}`}
             key={form.id}
             disabled={form.formName === pokemon.formName}
             onClick={() => handleFormChange(form)}
             type="button"
+            title={formName}
+            aria-label={formName}
           >
             {forms[formName] ? forms[formName] : forms.unknown}
           </button>
