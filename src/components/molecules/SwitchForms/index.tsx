@@ -51,12 +51,10 @@ const SwitchForms = ({
         return (
           <button
             className={`switchFormButton ${
-              form.formName === pokemon.formName
-                ? 'switchFormButton--active'
-                : ''
+              form.id === pokemon.id ? 'switchFormButton--active' : ''
             } ${styles.button}`}
             key={form.id}
-            disabled={form.formName === pokemon.formName}
+            disabled={form.id === pokemon.id}
             onClick={() => handleFormChange(form)}
             type="button"
             title={formName}
