@@ -2,3 +2,4 @@ node_modules
 .next
 /*.js
 src/assets/fonts/icons/selection.json
+/src/components/atoms/formIcons

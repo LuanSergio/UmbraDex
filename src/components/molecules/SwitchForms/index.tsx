@@ -1,11 +1,13 @@
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
+import AlolaFormIcon from '@components/atoms/formIcons/AlolaFormIcon';
+import MegaXFormIcon from '@components/atoms/formIcons/MegaXFormIcon';
+import MegaYFormIcon from '@components/atoms/formIcons/MegaYFormIcon';
+import MegaFormIcon from '@components/atoms/formIcons/MegaFormIcon';
+import DefaultFormIcon from '@components/atoms/formIcons/DefaultFormIcon';
+import GmaxFormIcon from '@components/atoms/formIcons/GmaxFormIcon';
+import SwordAndShieldFormIcon from '@components/atoms/formIcons/SwordAndShieldFormIcon';
+import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
 import styles from './styles.module.scss';
-import DefaultForm from '../../../assets/icons/default-form.svg';
-import AlolaForm from '../../../assets/icons/alola-form.svg';
-import MegaForm from '../../../assets/icons/mega-form.svg';
-import GmaxForm from '../../../assets/icons/gmax-form.svg';
-import SwordAndShieldForm from '../../../assets/icons/sword-and-shield-form.svg';
-import UnknownForm from '../../../assets/icons/unknown-form.svg';
 
 interface SwitchFormsProps {
   defaultPokemonForm: PokemonForm;
@@ -15,14 +17,14 @@ interface SwitchFormsProps {
 }
 
 const forms = {
-  default: <DefaultForm />,
-  alola: <AlolaForm />,
-  mega: <MegaForm />,
-  megaY: <MegaForm />,
-  megaX: <MegaForm />,
-  gmax: <GmaxForm />,
-  galar: <SwordAndShieldForm />,
-  unknown: <UnknownForm />,
+  default: <DefaultFormIcon />,
+  alola: <AlolaFormIcon />,
+  mega: <MegaFormIcon />,
+  megaY: <MegaYFormIcon />,
+  megaX: <MegaXFormIcon />,
+  gmax: <GmaxFormIcon />,
+  galar: <SwordAndShieldFormIcon />,
+  unknown: <UnknownFormIcon />,
 };
 
 const SwitchForms = ({
@@ -39,14 +41,14 @@ const SwitchForms = ({
         disabled={pokemon.isDefault}
         className={`switchFormButton ${styles.button}`}
       >
-        <DefaultForm />
+        <DefaultFormIcon />
       </button>
       {alternativePokemonForms.map(form => {
         const formName = transformDashedCaseToCamelCase(form.formName);
 
         return (
           <button
-            className={`switchFormButton ${styles.button}`}
+            className={`switchFormButton ${styles.button} ${formName}`}
             key={form.id}
             disabled={form.formName === pokemon.formName}
             onClick={() => handleFormChange(form)}
