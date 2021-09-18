@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import PokeballIcon from '../../../assets/icons/pokeball.svg';
 
 const PokemonCard = ({
   id,
@@ -18,9 +17,7 @@ const PokemonCard = ({
         )}
 
         <div className={styles.pokemonContainer}>
-          <span className={styles.pokeball}>
-            <PokeballIcon />
-          </span>
+          <span className={styles.pokeball}>{/* <PokeballIcon /> */}</span>
           <img
             loading="lazy"
             className={styles.pokemon}
