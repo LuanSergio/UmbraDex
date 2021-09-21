@@ -61,29 +61,6 @@ async function fetchPokemonDetailsData(id: number) {
           }
         }
       }
-      pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}}) {
-        level
-        pokemon_v2_move {
-          name
-          id
-          accuracy
-          move_effect_chance
-          move_effect_id
-          power
-          pp
-          priority
-          type_id
-          pokemon_v2_movedamageclass {
-            name
-          }
-          pokemon_v2_moveeffect {
-            pokemon_v2_moveeffecteffecttexts {
-              short_effect
-              effect
-            }
-          }
-        }
-      }
     }
     
     `,
