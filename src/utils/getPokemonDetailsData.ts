@@ -94,14 +94,15 @@ export default async function getPokemonDetailsData(
           }),
           formName: form.pokemon_v2_pokemonforms[0].form_name,
           formOrder: form.pokemon_v2_pokemonforms[0].form_order,
-          stats: form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.pokemon_v2_pokemonstats.map(
-            stats => {
-              return {
-                name: stats.pokemon_v2_stat.name,
-                value: stats.base_stat,
-              };
-            },
-          ),
+          stats:
+            form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.pokemon_v2_pokemonstats.map(
+              stats => {
+                return {
+                  name: stats.pokemon_v2_stat.name,
+                  value: stats.base_stat,
+                };
+              },
+            ),
           image:
             pokemonArtworkUploadedQuantity >=
             form.pokemon_v2_pokemonforms[0].pokemon_id
@@ -114,13 +115,14 @@ export default async function getPokemonDetailsData(
       response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesnames[0]
         .name,
 
-    descriptions: response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts.map(
-      item => ({
-        id: item.id,
-        description: formatPokemonDescription(item.flavor_text),
-        gameVersion: item.version_id,
-      }),
-    ),
+    descriptions:
+      response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts.map(
+        item => ({
+          id: item.id,
+          description: formatPokemonDescription(item.flavor_text),
+          gameVersion: item.version_id,
+        }),
+      ),
     evolutionChain:
       response.pokemon_v2_pokemonspecies[0].pokemon_v2_evolutionchain
         .pokemon_v2_pokemonspecies,
