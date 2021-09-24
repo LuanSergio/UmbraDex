@@ -22,7 +22,6 @@ const PokemonCard = ({
           <Image
             width={216}
             height={216}
-            placeholder="blur"
             className={styles.pokemon}
             src={image}
             alt={name}
