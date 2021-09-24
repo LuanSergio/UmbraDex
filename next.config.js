@@ -5,4 +5,7 @@ module.exports = {
   sassOptions: {
     includePaths: "./src/assets/styles",
   },
+  images: {
+    domains: ['umbradex.vercel.app', 'raw.githubusercontent.com'],
+  },
 };
