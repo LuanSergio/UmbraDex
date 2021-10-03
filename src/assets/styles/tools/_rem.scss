@@ -1,5 +1,7 @@
+@use 'sass:math';
+
 @function rem($value, $base: 16) {
-  $unit: $value / $base + rem;
+  $unit: math.div($value, $base) + rem;
 
   @return $unit;
 }
