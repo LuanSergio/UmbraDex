@@ -30,11 +30,12 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "prettier/prettier": "error",
-    "space-before-function-paren": "off",
-    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-no-bind": "off",
     "react/require-default-props": "off",
     "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "prettier/prettier": "error",
+    "space-before-function-paren": "off",
     "no-undef": "off",
     "arrow-body-style": "off",
     "import/extensions": [
