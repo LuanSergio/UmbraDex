@@ -2,10 +2,6 @@ const HeadConfiguration = (): JSX.Element => {
   return (
     <>
       <title>UmbraDex</title>
-      <meta
-        name="description"
-        content="Find everything about the creatures you love!"
-      />
 
       <meta itemProp="name" content="UmbraDex" />
       <meta
