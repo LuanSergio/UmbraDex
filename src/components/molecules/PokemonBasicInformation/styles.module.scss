@@ -62,7 +62,6 @@
   font-size: rem(32);
   font-weight: bold;
   margin-bottom: rem(8);
-  margin-right: rem(12);
   opacity: 0.8;
   position: relative;
   transition: opacity 0.2s;
@@ -79,7 +78,7 @@
   font-weight: bold;
   line-height: 1.5;
   margin-bottom: rem(0);
-  margin-top: 0;
+  margin-top: rem(24);
   max-width: rem(400);
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.3);
 }

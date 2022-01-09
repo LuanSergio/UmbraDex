@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
+import Carousel from '@components/molecules/Carousel';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -48,7 +49,8 @@ const PokemonBasicInformation = ({
         </div>
       </div>
       <div className={styles.descriptionContainer}>
-        <ul className={styles.generationDescriptionContainer}>
+        {/* <ul className={styles.generationDescriptionContainer}> */}
+        <Carousel tagName="ol" itemWidth={50} gap={12}>
           {descriptions.map((item, index) => {
             return (
               <li key={`${item.id}`}>
@@ -64,7 +66,8 @@ const PokemonBasicInformation = ({
               </li>
             );
           })}
-        </ul>
+        </Carousel>
+        {/* </ul> */}
         <p className={styles.description}>
           {descriptions[descriptionIndex].description}
           {(descriptionIndex === 3 || descriptionIndex === 4) && (
