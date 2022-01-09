@@ -15,7 +15,7 @@ const PokemonCardList = ({
 
   return (
     <>
-      <ul className={styles.cardContainer}>
+      <ol className={styles.cardContainer}>
         {loadedPokemonList.length > 1 && (
           <>
             {loadedPokemonList.map(pokemon => (
@@ -30,7 +30,7 @@ const PokemonCardList = ({
             ))}
           </>
         )}
-      </ul>
+      </ol>
       <div ref={loader} />
     </>
   );

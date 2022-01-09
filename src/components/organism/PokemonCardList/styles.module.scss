@@ -2,8 +2,10 @@
 @use 'settings/_breakpoints' as *;
 
 .cardContainer {
+  list-style: none;
   margin-bottom: rem(40);
   margin-top: rem(40);
+  padding-left: 0;
 }
 
 @media only screen and (min-width: $lg) {
