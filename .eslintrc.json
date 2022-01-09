@@ -33,7 +33,6 @@
     "react/jsx-no-bind": "off",
     "react/require-default-props": "off",
     "react/prop-types": "off",
-    "react-hooks/exhaustive-deps": "off",
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
     "no-undef": "off",
