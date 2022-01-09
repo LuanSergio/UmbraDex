@@ -1,0 +1,75 @@
+@use 'tools/index' as *;
+@use 'helpers/icon.scss' as *;
+
+.carouselHolder {
+  display: flex;
+  gap: 16px;
+}
+
+.carousel {
+  display: flex;
+  max-width: rem(280);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.carouselWrapper {
+  height: rem(42);
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: visible;
+  touch-action: pan-y;
+  transform: translateX(var(--carousel-position));
+  transition-duration: 0s;
+  transition-property: transform;
+  user-select: none;
+  will-change: transform;
+}
+
+.carouselItemsHolder {
+  align-items: stretch;
+  display: flex;
+  gap: var(--carousel-gap);
+  height: 100%;
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+  will-change: transform;
+}
+
+.previous,
+.next {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 10%;
+  border-width: 0;
+  color: get-color(light);
+  display: flex;
+  font-size: rem(32);
+  opacity: 0.9;
+  position: relative;
+  transition: background-color 0.2s;
+  z-index: get-index-level(lvl3);
+  &::before {
+    @include h-icon;
+
+    content: get-icon('arrow');
+  }
+
+  &:hover {
+    background-color: rgba($color: #fff, $alpha: 0.15);
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+.next::before {
+  transform: rotate(180deg);
+}
+
+.next:hover {
+  opacity: 1;
+}
