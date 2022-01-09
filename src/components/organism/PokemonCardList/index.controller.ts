@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useCallback, useEffect, useState } from 'react';
 
 interface ControllerProps {
   pokemonList: IBasicPokemonInfo[];
@@ -18,14 +18,17 @@ const useController = ({
   const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
   const [loadedPokemon, setLoadedPokemon] = useState<IBasicPokemonInfo[]>([]);
 
-  function handleObserver(entities: IntersectionObserverEntry[]) {
-    if (pokemonList.length > loadedPokemonCounter) {
-      const target = entities[0];
-      if (target.isIntersecting) {
-        setLoadedPokemonCounter(counter => counter + amountOfPokemonPerLoad);
+  const handleObserver = useCallback(
+    (entities: IntersectionObserverEntry[]) => {
+      if (pokemonList.length > loadedPokemonCounter) {
+        const target = entities[0];
+        if (target.isIntersecting) {
+          setLoadedPokemonCounter(counter => counter + amountOfPokemonPerLoad);
+        }
       }
-    }
-  }
+    },
+    [loadedPokemonCounter, pokemonList.length],
+  );
 
   // Create Observer loader
   useEffect(() => {
@@ -38,7 +41,7 @@ const useController = ({
     if (loader?.current) {
       observer.observe(loader.current);
     }
-  }, [loader]);
+  }, [loader, handleObserver]);
 
   // Update loaded pokemon list
   useEffect(() => {
@@ -49,7 +52,7 @@ const useController = ({
         loadedPokemonCounter + amountOfPokemonPerLoad,
       ),
     ]);
-  }, [loadedPokemonCounter]);
+  }, [loadedPokemonCounter, pokemonList]);
 
   return { loadedPokemonList: loadedPokemon };
 };
