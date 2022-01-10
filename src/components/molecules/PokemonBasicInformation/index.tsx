@@ -61,6 +61,7 @@ const PokemonBasicInformation = ({
                   }`}
                   onClick={() => handleDescriptionChange(index)}
                 >
+                  {/* {transformNumberToRomanNumeral(index + 1).length} */}
                   {transformNumberToRomanNumeral(index + 1)}
                 </button>
               </li>

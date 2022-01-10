@@ -105,7 +105,8 @@ export default async function getPokemonDetailsData(
             ),
           image:
             pokemonArtworkUploadedQuantity >=
-            form.pokemon_v2_pokemonforms[0].pokemon_id
+              form.pokemon_v2_pokemonforms[0].pokemon_id ||
+            form.pokemon_v2_pokemonforms[0].pokemon_id === 10085
               ? `${pokemonArtworkImages.main}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`
               : `${pokemonArtworkImages.fallback}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`,
         };
