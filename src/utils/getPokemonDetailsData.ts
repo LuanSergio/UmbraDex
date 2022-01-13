@@ -4,6 +4,7 @@ import {
   pokemonArtworkUploadedQuantity,
 } from '@data/imagesRoutes';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import extraFormAvailableImages from '@data/extraFormAvailableImages';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
@@ -106,7 +107,9 @@ export default async function getPokemonDetailsData(
           image:
             pokemonArtworkUploadedQuantity >=
               form.pokemon_v2_pokemonforms[0].pokemon_id ||
-            form.pokemon_v2_pokemonforms[0].pokemon_id === 10085
+            extraFormAvailableImages.includes(
+              form.pokemon_v2_pokemonforms[0].pokemon_id,
+            )
               ? `${pokemonArtworkImages.main}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`
               : `${pokemonArtworkImages.fallback}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`,
         };
