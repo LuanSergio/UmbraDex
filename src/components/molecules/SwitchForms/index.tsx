@@ -7,6 +7,7 @@ import MegaYFormIcon from '@components/atoms/formIcons/MegaYFormIcon';
 import MegaFormIcon from '@components/atoms/formIcons/MegaFormIcon';
 import SwordAndShieldFormIcon from '@components/atoms/formIcons/SwordAndShieldFormIcon';
 import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
+import Carousel from '@components/molecules/Carousel';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {
@@ -34,37 +35,41 @@ const SwitchForms = ({
   handleFormChange,
 }: SwitchFormsProps): JSX.Element => {
   return (
-    <div className={styles.container}>
-      <button
-        onClick={() => handleFormChange(defaultPokemonForm)}
-        type="button"
-        disabled={pokemon.isDefault}
-        className={`switchFormButton ${
-          pokemon.isDefault ? 'switchFormButton--active' : ''
-        } ${styles.button}`}
-      >
-        <DefaultFormIcon />
-      </button>
+    <Carousel tagName="ul" itemWidth={50} gap={16}>
+      <li>
+        <button
+          onClick={() => handleFormChange(defaultPokemonForm)}
+          type="button"
+          disabled={pokemon.isDefault}
+          className={`switchFormButton ${
+            pokemon.isDefault ? 'switchFormButton--active' : ''
+          } ${styles.button}`}
+        >
+          <DefaultFormIcon />
+        </button>
+      </li>
       {alternativePokemonForms.map(form => {
         const formName = transformDashedCaseToCamelCase(form.formName);
 
         return (
-          <button
-            className={`switchFormButton ${
-              form.id === pokemon.id ? 'switchFormButton--active' : ''
-            } ${styles.button}`}
-            key={form.id}
-            disabled={form.id === pokemon.id}
-            onClick={() => handleFormChange(form)}
-            type="button"
-            title={formName}
-            aria-label={formName}
-          >
-            {forms[formName] ? forms[formName] : forms.unknown}
-          </button>
+          <li>
+            <button
+              className={`switchFormButton ${
+                form.id === pokemon.id ? 'switchFormButton--active' : ''
+              } ${styles.button}`}
+              key={form.id}
+              disabled={form.id === pokemon.id}
+              onClick={() => handleFormChange(form)}
+              type="button"
+              title={formName}
+              aria-label={formName}
+            >
+              {forms[formName] ? forms[formName] : forms.unknown}
+            </button>
+          </li>
         );
       })}
-    </div>
+    </Carousel>
   );
 };
 
