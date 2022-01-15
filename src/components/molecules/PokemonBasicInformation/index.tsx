@@ -27,7 +27,7 @@ const PokemonBasicInformation = ({
   }, [pokedexIndex]);
 
   return (
-    <div className={styles.informationContainer}>
+    <div>
       <h1 className={styles.name}>{replaceDashWithSpace(name)}</h1>
       <div className={styles.basicInfo}>
         {pokedexIndex <= 10 ? (
@@ -49,8 +49,7 @@ const PokemonBasicInformation = ({
         </div>
       </div>
       <div className={styles.descriptionContainer}>
-        {/* <ul className={styles.generationDescriptionContainer}> */}
-        <Carousel tagName="ol" itemWidth={50} gap={12}>
+        <Carousel tagName="ol" itemWidth={32} gap={12} maxItems={6}>
           {descriptions.map((item, index) => {
             return (
               <li key={`${item.id}`}>
@@ -61,14 +60,12 @@ const PokemonBasicInformation = ({
                   }`}
                   onClick={() => handleDescriptionChange(index)}
                 >
-                  {/* {transformNumberToRomanNumeral(index + 1).length} */}
                   {transformNumberToRomanNumeral(index + 1)}
                 </button>
               </li>
             );
           })}
         </Carousel>
-        {/* </ul> */}
         <p className={styles.description}>
           {descriptions[descriptionIndex].description}
           {(descriptionIndex === 3 || descriptionIndex === 4) && (

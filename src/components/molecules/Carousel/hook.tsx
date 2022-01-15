@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 
 interface IUseCarouselParams {
-  carouselRef: RefObject<HTMLDivElement>;
+  carouselWrapperRef: RefObject<HTMLDivElement>;
   totalItemWidth: number;
   itemsQuantity: number;
   animationDuration?: number;
@@ -23,7 +23,7 @@ let position = 0;
 let isMouseLocked = false;
 
 const useCarousel = ({
-  carouselRef,
+  carouselWrapperRef,
   totalItemWidth,
   itemsQuantity,
   animationDuration = 300,
@@ -34,7 +34,7 @@ const useCarousel = ({
   const maxPosition = (itemsQuantity - 1) * totalItemWidth;
 
   async function updateCarouselPosition(newPosition: number): Promise<void> {
-    await carouselRef.current?.style.setProperty(
+    await carouselWrapperRef.current?.style.setProperty(
       '--carousel-position',
       `${newPosition}px`,
     );
@@ -42,7 +42,7 @@ const useCarousel = ({
   }
 
   function setCarouselAnimationDuration() {
-    carouselRef.current?.style.setProperty(
+    carouselWrapperRef.current?.style.setProperty(
       'transition-duration',
       `${animationDuration}ms`,
     );
@@ -50,7 +50,10 @@ const useCarousel = ({
 
   function removeCarouselAnimationDuration() {
     setTimeout(() => {
-      carouselRef.current?.style.setProperty('transition-duration', `0ms`);
+      carouselWrapperRef.current?.style.setProperty(
+        'transition-duration',
+        `0ms`,
+      );
     }, animationDuration);
   }
 

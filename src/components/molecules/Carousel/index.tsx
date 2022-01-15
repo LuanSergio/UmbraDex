@@ -8,6 +8,7 @@ interface CarouselProps {
   carouselDescription?: string;
   itemWidth: number;
   gap?: number;
+  maxItems?: number;
 }
 
 const Carousel = ({
@@ -16,11 +17,13 @@ const Carousel = ({
   carouselDescription,
   itemWidth,
   gap = 30,
+  maxItems = 4,
 }: CarouselProps): JSX.Element => {
   const totalItemWidth = itemWidth + gap;
   const itemsQuantity = Children.count(children);
 
   const Tag = tagName as keyof JSX.IntrinsicElements;
+  const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -30,32 +33,61 @@ const Carousel = ({
     handleMouseLeave,
     goToPreviousIndex,
     goToNextIndex,
-  } = useCarousel({ carouselRef, totalItemWidth, itemsQuantity });
+  } = useCarousel({ carouselWrapperRef, totalItemWidth, itemsQuantity });
 
   useEffect(() => {
-    carouselRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
+    carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
   }, [gap]);
 
-  return (
-    <div className={styles.carouselHolder}>
-      <button
-        type="button"
-        aria-label="Previous slide"
-        onClick={goToPreviousIndex}
-        className={styles.previous}
-      />
+  useEffect(() => {
+    carouselRef.current?.style.setProperty(
+      '--carousel-max-size',
+      `${maxItems * totalItemWidth - gap}px`,
+    );
+  }, [maxItems, totalItemWidth, gap]);
 
-      <div
-        role="presentation"
-        className={styles.carousel}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        aria-roledescription="carousel"
-        aria-label={carouselDescription}
-      >
-        <div className={styles.carouselWrapper} ref={carouselRef}>
+  return (
+    <>
+      {itemsQuantity > maxItems ? (
+        <div className={styles.carouselHolder}>
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={goToPreviousIndex}
+            className={styles.previous}
+          />
+
+          <div
+            role="presentation"
+            className={styles.carousel}
+            ref={carouselRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            aria-roledescription="carousel"
+            aria-label={carouselDescription}
+          >
+            <div className={styles.carouselWrapper} ref={carouselWrapperRef}>
+              <Tag
+                className={styles.carouselItemsHolder}
+                aria-atomic="false"
+                aria-live="polite"
+              >
+                {children}
+              </Tag>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className={styles.next}
+            aria-label="Next slide"
+            onClick={goToNextIndex}
+          />
+        </div>
+      ) : (
+        <div ref={carouselWrapperRef}>
           <Tag
             className={styles.carouselItemsHolder}
             aria-atomic="false"
@@ -64,15 +96,8 @@ const Carousel = ({
             {children}
           </Tag>
         </div>
-      </div>
-
-      <button
-        type="button"
-        className={styles.next}
-        aria-label="Next slide"
-        onClick={goToNextIndex}
-      />
-    </div>
+      )}
+    </>
   );
 };
 
