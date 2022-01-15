@@ -3,18 +3,17 @@
 
 .carouselHolder {
   display: flex;
-  gap: 16px;
+  gap: rem(16);
 }
 
 .carousel {
   display: flex;
-  max-width: rem(280);
+  max-width: var(--carousel-max-size);
   overflow-x: hidden;
   position: relative;
 }
 
 .carouselWrapper {
-  height: rem(42);
   margin-left: auto;
   margin-right: auto;
   overflow-x: visible;
@@ -35,7 +34,6 @@
   margin-bottom: 0;
   margin-top: 0;
   padding-left: 0;
-  will-change: transform;
 }
 
 .previous,
