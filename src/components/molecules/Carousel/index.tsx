@@ -1,4 +1,4 @@
-import { Children, ReactNode, useEffect, useRef } from 'react';
+import { Children, ReactNode, useRef } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './hook';
 
@@ -6,7 +6,7 @@ interface CarouselProps {
   children: ReactNode;
   tagName?: keyof JSX.IntrinsicElements;
   carouselDescription?: string;
-  itemWidth: number;
+  itemWidth: number | number[];
   gap?: number;
   maxItems?: number;
 }
@@ -19,7 +19,6 @@ const Carousel = ({
   gap = 30,
   maxItems = 4,
 }: CarouselProps): JSX.Element => {
-  const totalItemWidth = itemWidth + gap;
   const itemsQuantity = Children.count(children);
 
   const Tag = tagName as keyof JSX.IntrinsicElements;
@@ -33,18 +32,14 @@ const Carousel = ({
     handleMouseLeave,
     goToPreviousIndex,
     goToNextIndex,
-  } = useCarousel({ carouselWrapperRef, totalItemWidth, itemsQuantity });
-
-  useEffect(() => {
-    carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
-  }, [gap]);
-
-  useEffect(() => {
-    carouselRef.current?.style.setProperty(
-      '--carousel-max-size',
-      `${maxItems * totalItemWidth - gap}px`,
-    );
-  }, [maxItems, totalItemWidth, gap]);
+  } = useCarousel({
+    carouselRef,
+    carouselWrapperRef,
+    itemWidth,
+    itemsQuantity,
+    gap,
+    maxItems,
+  });
 
   return (
     <>

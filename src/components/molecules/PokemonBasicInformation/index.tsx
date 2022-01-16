@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import Carousel from '@components/molecules/Carousel';
@@ -18,9 +18,19 @@ const PokemonBasicInformation = ({
   descriptions,
 }: PokemonBasicInformationProps): JSX.Element => {
   const [descriptionIndex, setDescriptionIndex] = useState(0);
+  const [widthList, setWidthList] = useState([]);
+
+  const ref = useRef([]);
+
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
   }
+
+  useEffect(() => {
+    ref.current.forEach(element => {
+      setWidthList(previousState => [...previousState, element.scrollWidth]);
+    });
+  }, []);
 
   useEffect(() => {
     setDescriptionIndex(0);
@@ -49,7 +59,7 @@ const PokemonBasicInformation = ({
         </div>
       </div>
       <div className={styles.descriptionContainer}>
-        <Carousel tagName="ol" itemWidth={32} gap={12} maxItems={6}>
+        <Carousel tagName="ol" itemWidth={widthList} gap={12} maxItems={6}>
           {descriptions.map((item, index) => {
             return (
               <li key={`${item.id}`}>
@@ -58,6 +68,9 @@ const PokemonBasicInformation = ({
                   className={`${styles.generationDescriptionOption} ${
                     descriptionIndex === index && styles.active
                   }`}
+                  ref={element => {
+                    ref.current[index] = element;
+                  }}
                   onClick={() => handleDescriptionChange(index)}
                 >
                   {transformNumberToRomanNumeral(index + 1)}

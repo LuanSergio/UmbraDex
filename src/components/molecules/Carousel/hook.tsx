@@ -1,9 +1,12 @@
-import { RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
 
 interface IUseCarouselParams {
+  carouselRef: RefObject<HTMLDivElement>;
   carouselWrapperRef: RefObject<HTMLDivElement>;
-  totalItemWidth: number;
+  itemWidth: number | number[];
   itemsQuantity: number;
+  gap: number;
+  maxItems: number;
   animationDuration?: number;
 }
 
@@ -23,22 +26,56 @@ let position = 0;
 let isMouseLocked = false;
 
 const useCarousel = ({
+  carouselRef,
   carouselWrapperRef,
-  totalItemWidth,
+  itemWidth,
   itemsQuantity,
+  gap,
+  maxItems,
   animationDuration = 300,
 }: IUseCarouselParams): IUseCarouselResponse => {
+  const isItemWidthAnArray = Array.isArray(itemWidth);
+
+  const totalItemWidth = isItemWidthAnArray
+    ? itemWidth[0] + gap
+    : itemWidth + gap;
   const minIndex = 0;
   const maxIndex = itemsQuantity - 1;
   const minPosition = 0;
   const maxPosition = (itemsQuantity - 1) * totalItemWidth;
+
+  useEffect(() => {
+    const width =
+      isItemWidthAnArray && itemWidth.length > 0
+        ? itemWidth
+            .slice(0, maxItems)
+            .reduce(
+              (previousValue, currentValue) =>
+                previousValue + currentValue + gap,
+            )
+        : maxItems * totalItemWidth - gap;
+
+    carouselRef.current?.style.setProperty('--carousel-max-size', `${width}px`);
+  }, [
+    carouselRef,
+    maxItems,
+    itemWidth,
+    gap,
+    isItemWidthAnArray,
+    totalItemWidth,
+  ]);
+
+  useEffect(() => {
+    carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
+  }, [gap, carouselWrapperRef]);
 
   async function updateCarouselPosition(newPosition: number): Promise<void> {
     await carouselWrapperRef.current?.style.setProperty(
       '--carousel-position',
       `${newPosition}px`,
     );
-    index = Math.abs(Math.round(newPosition / totalItemWidth));
+    const width = isItemWidthAnArray ? itemWidth[index] + gap : itemWidth + gap;
+    index = Math.abs(Math.round(newPosition / width));
   }
 
   function setCarouselAnimationDuration() {
@@ -89,8 +126,9 @@ const useCarousel = ({
     event.preventDefault();
     lastPosition = position;
     isMouseLocked = false;
-    updateCarouselIndex(-(index * totalItemWidth));
-    lastPosition = -(index * totalItemWidth);
+    const width = isItemWidthAnArray ? itemWidth[index] + gap : itemWidth + gap;
+    updateCarouselIndex(-(index * width));
+    lastPosition = -(index * width);
   }
 
   function handleMouseLeave(): void {
@@ -100,16 +138,23 @@ const useCarousel = ({
   function goToPreviousIndex(): void {
     if (index > minIndex) {
       index -= 1;
-      updateCarouselIndex(-(index * totalItemWidth));
-      lastPosition = -(index * totalItemWidth);
+      const width = isItemWidthAnArray
+        ? itemWidth[index] + gap
+        : itemWidth + gap;
+
+      updateCarouselIndex(-(index * width));
+      lastPosition = -(index * width);
     }
   }
 
   function goToNextIndex(): void {
     if (index < maxIndex) {
       index += 1;
-      updateCarouselIndex(-(index * totalItemWidth));
-      lastPosition = -(index * totalItemWidth);
+      const width = isItemWidthAnArray
+        ? itemWidth[index] + gap
+        : itemWidth + gap;
+      updateCarouselIndex(-(index * width));
+      lastPosition = -(index * width);
     }
   }
 
