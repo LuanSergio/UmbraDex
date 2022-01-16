@@ -3,13 +3,6 @@
 @use 'settings/colors-type' as typeColors;
 @use 'animations/pop-in' as *;
 
-.container {
-  align-items: center;
-  display: flex;
-  gap: rem(16);
-  margin-bottom: rem(8);
-}
-
 .button {
   background-color: transparent;
   border-width: 0;
