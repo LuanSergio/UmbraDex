@@ -3,11 +3,14 @@ const HeadConfiguration = (): JSX.Element => {
     <>
       <title>UmbraDex</title>
 
-      <meta itemProp="name" content="UmbraDex" />
+      <meta name="name" content="UmbraDex" />
+
       <meta
-        itemProp="description"
+        name="description"
         content="Find everything about the creatures you love!"
       />
+      <meta name="keywords" content="Pokedex, UmbraDex, Pokemon" />
+
       <meta itemProp="image" content="/meta-image.png" />
 
       {/* Facebook Meta Tags */}
