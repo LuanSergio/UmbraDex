@@ -137,24 +137,30 @@ const useCarousel = ({
 
   function goToPreviousIndex(): void {
     if (index > minIndex) {
-      index -= 1;
-      const width = isItemWidthAnArray
+      const totalWidth = isItemWidthAnArray
         ? itemWidth[index] + gap
         : itemWidth + gap;
 
-      updateCarouselIndex(-(index * width));
-      lastPosition = -(index * width);
+      const newPosition = lastPosition + totalWidth;
+
+      updateCarouselIndex(newPosition);
+      lastPosition = newPosition;
+
+      index -= 1;
     }
   }
 
   function goToNextIndex(): void {
     if (index < maxIndex) {
-      index += 1;
-      const width = isItemWidthAnArray
+      const totalWidth = isItemWidthAnArray
         ? itemWidth[index] + gap
         : itemWidth + gap;
-      updateCarouselIndex(-(index * width));
-      lastPosition = -(index * width);
+
+      const newPosition = lastPosition - totalWidth;
+
+      updateCarouselIndex(newPosition);
+      lastPosition = newPosition;
+      index += 1;
     }
   }
 
