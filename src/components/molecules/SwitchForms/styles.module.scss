@@ -8,6 +8,8 @@
   border-width: 0;
   padding-left: 0;
   padding-right: 0;
+  position: relative;
+  z-index: get-index-level(lvl3);
   &:disabled {
     opacity: 0.5;
   }
