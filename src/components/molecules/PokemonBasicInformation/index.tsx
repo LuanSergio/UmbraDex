@@ -28,7 +28,10 @@ const PokemonBasicInformation = ({
 
   useEffect(() => {
     ref.current.forEach(element => {
-      setWidthList(previousState => [...previousState, element.scrollWidth]);
+      setWidthList(previousState => [
+        ...previousState,
+        element.getBoundingClientRect().width,
+      ]);
     });
   }, []);
 
@@ -62,15 +65,17 @@ const PokemonBasicInformation = ({
         <Carousel tagName="ol" itemWidth={widthList} gap={12} maxItems={6}>
           {descriptions.map((item, index) => {
             return (
-              <li key={`${item.id}`}>
+              <li
+                key={`${item.id}`}
+                ref={element => {
+                  ref.current[index] = element;
+                }}
+              >
                 <button
                   type="button"
                   className={`${styles.generationDescriptionOption} ${
                     descriptionIndex === index && styles.active
                   }`}
-                  ref={element => {
-                    ref.current[index] = element;
-                  }}
                   onClick={() => handleDescriptionChange(index)}
                 >
                   {transformNumberToRomanNumeral(index + 1)}
