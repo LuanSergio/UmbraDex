@@ -39,7 +39,7 @@ const useCarousel = ({
   const totalItemWidth = isItemWidthAnArray
     ? itemWidth[0] + gap
     : itemWidth + gap;
-  const minIndex = 0;
+  const minIndex = 1;
   const maxIndex = itemsQuantity - 1;
   const minPosition = 0;
   const maxPosition = (itemsQuantity - 1) * totalItemWidth;
@@ -74,8 +74,6 @@ const useCarousel = ({
       '--carousel-position',
       `${newPosition}px`,
     );
-    const width = isItemWidthAnArray ? itemWidth[index] + gap : itemWidth + gap;
-    index = Math.abs(Math.round(newPosition / width));
   }
 
   function setCarouselAnimationDuration() {
@@ -94,9 +92,26 @@ const useCarousel = ({
     }, animationDuration);
   }
 
-  async function updateCarouselIndex(newPosition: number): Promise<void> {
+  async function updateCarouselIndex(newIndex: number): Promise<void> {
     setCarouselAnimationDuration();
-    await updateCarouselPosition(newPosition);
+
+    if (index > newIndex) {
+      const totalWidth = isItemWidthAnArray
+        ? itemWidth[newIndex] + gap
+        : itemWidth + gap;
+      const newPosition = lastPosition + totalWidth;
+      await updateCarouselPosition(newPosition);
+      lastPosition = newPosition;
+    } else {
+      const totalWidth = isItemWidthAnArray
+        ? itemWidth[index] + gap
+        : itemWidth + gap;
+      const newPosition = lastPosition - totalWidth;
+      await updateCarouselPosition(newPosition);
+      lastPosition = newPosition;
+    }
+    index = newIndex;
+
     removeCarouselAnimationDuration();
   }
 
@@ -124,11 +139,25 @@ const useCarousel = ({
 
   function handleMouseUp(event: React.MouseEvent): void {
     event.preventDefault();
-    lastPosition = position;
     isMouseLocked = false;
-    const width = isItemWidthAnArray ? itemWidth[index] + gap : itemWidth + gap;
-    updateCarouselIndex(-(index * width));
-    lastPosition = -(index * width);
+
+    if (isItemWidthAnArray) {
+      lastPosition = 0;
+      let currentPosition = Math.abs(position);
+      itemWidth.every(item => {
+        index++;
+        lastPosition = -Math.abs(item + gap + Math.abs(lastPosition));
+        currentPosition -= item;
+        if (currentPosition > 0) {
+          return true;
+        }
+        return false;
+      });
+    } else {
+      index = Math.abs(Math.round(position / itemWidth));
+    }
+
+    updateCarouselIndex(index);
   }
 
   function handleMouseLeave(): void {
@@ -136,31 +165,14 @@ const useCarousel = ({
   }
 
   function goToPreviousIndex(): void {
-    if (index > minIndex) {
-      const totalWidth = isItemWidthAnArray
-        ? itemWidth[index] + gap
-        : itemWidth + gap;
-
-      const newPosition = lastPosition + totalWidth;
-
-      updateCarouselIndex(newPosition);
-      lastPosition = newPosition;
-
-      index -= 1;
+    if (index >= minIndex) {
+      updateCarouselIndex(index - 1);
     }
   }
 
   function goToNextIndex(): void {
     if (index < maxIndex) {
-      const totalWidth = isItemWidthAnArray
-        ? itemWidth[index] + gap
-        : itemWidth + gap;
-
-      const newPosition = lastPosition - totalWidth;
-
-      updateCarouselIndex(newPosition);
-      lastPosition = newPosition;
-      index += 1;
+      updateCarouselIndex(index + 1);
     }
   }
 
