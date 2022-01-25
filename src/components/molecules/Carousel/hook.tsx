@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 interface IUseCarouselParams {
   carouselRef: RefObject<HTMLDivElement>;
@@ -25,6 +25,25 @@ let lastPosition = 0;
 let position = 0;
 let isMouseLocked = false;
 
+function getPositionByIndex(
+  itemList: Array<number>,
+  myIndex: number,
+  gap: number,
+) {
+  let value = 0;
+  for (let i = 0; i <= myIndex; i++) {
+    if (i < myIndex) {
+      value = value + gap + itemList[i];
+    }
+
+    if (i === myIndex) {
+      value += itemList[i] + gap;
+    }
+  }
+
+  return -Math.abs(value);
+}
+
 const useCarousel = ({
   carouselRef,
   carouselWrapperRef,
@@ -34,36 +53,36 @@ const useCarousel = ({
   maxItems,
   animationDuration = 300,
 }: IUseCarouselParams): IUseCarouselResponse => {
-  const isItemWidthAnArray = Array.isArray(itemWidth);
+  const itemList: Array<number> = Array.isArray(itemWidth)
+    ? itemWidth
+    : Array(itemsQuantity).fill(itemWidth);
 
-  const totalItemWidth = isItemWidthAnArray
-    ? itemWidth[0] + gap
-    : itemWidth + gap;
   const minIndex = 1;
   const maxIndex = itemsQuantity - 1;
   const minPosition = 0;
-  const maxPosition = (itemsQuantity - 1) * totalItemWidth;
+  const maxPosition = useRef(0);
 
   useEffect(() => {
-    const width =
-      isItemWidthAnArray && itemWidth.length > 0
-        ? itemWidth
-            .slice(0, maxItems)
-            .reduce(
-              (previousValue, currentValue) =>
-                previousValue + currentValue + gap,
-            )
-        : maxItems * totalItemWidth - gap;
+    if (itemList.length) {
+      const width = itemList
+        .slice(0, maxItems)
+        .reduce(
+          (previousValue, currentValue) => previousValue + currentValue + gap,
+        );
 
-    carouselRef.current?.style.setProperty('--carousel-max-size', `${width}px`);
-  }, [
-    carouselRef,
-    maxItems,
-    itemWidth,
-    gap,
-    isItemWidthAnArray,
-    totalItemWidth,
-  ]);
+      carouselRef.current?.style.setProperty(
+        '--carousel-max-size',
+        `${width}px`,
+      );
+
+      maxPosition.current =
+        itemList.reduce(
+          (previousValue, currentValue) => previousValue + currentValue + gap,
+        ) -
+        gap -
+        itemList[itemList.length - 1];
+    }
+  }, [carouselRef, maxItems, itemWidth, gap, itemList]);
 
   useEffect(() => {
     carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
@@ -94,22 +113,10 @@ const useCarousel = ({
 
   async function updateCarouselIndex(newIndex: number): Promise<void> {
     setCarouselAnimationDuration();
+    const newPosition = getPositionByIndex(itemList, newIndex - 1, gap);
+    await updateCarouselPosition(newPosition);
+    lastPosition = newPosition;
 
-    if (index > newIndex) {
-      const totalWidth = isItemWidthAnArray
-        ? itemWidth[newIndex] + gap
-        : itemWidth + gap;
-      const newPosition = lastPosition + totalWidth;
-      await updateCarouselPosition(newPosition);
-      lastPosition = newPosition;
-    } else {
-      const totalWidth = isItemWidthAnArray
-        ? itemWidth[index] + gap
-        : itemWidth + gap;
-      const newPosition = lastPosition - totalWidth;
-      await updateCarouselPosition(newPosition);
-      lastPosition = newPosition;
-    }
     index = newIndex;
 
     removeCarouselAnimationDuration();
@@ -128,7 +135,7 @@ const useCarousel = ({
       const newPosition = travelDistance + lastPosition;
 
       if (
-        newPosition >= -Math.abs(maxPosition) &&
+        newPosition >= -Math.abs(maxPosition.current) &&
         newPosition <= -Math.abs(minPosition)
       ) {
         position = newPosition;
@@ -138,26 +145,23 @@ const useCarousel = ({
   }
 
   function handleMouseUp(event: React.MouseEvent): void {
+    let newIndex = 0;
     event.preventDefault();
     isMouseLocked = false;
 
-    if (isItemWidthAnArray) {
-      lastPosition = 0;
-      let currentPosition = Math.abs(position);
-      itemWidth.every(item => {
-        index++;
-        lastPosition = -Math.abs(item + gap + Math.abs(lastPosition));
-        currentPosition -= item;
-        if (currentPosition > 0) {
-          return true;
-        }
-        return false;
-      });
-    } else {
-      index = Math.abs(Math.round(position / itemWidth));
-    }
+    lastPosition = 0;
+    let currentPosition = Math.abs(position);
+    itemList.every(item => {
+      newIndex++;
+      lastPosition = -Math.abs(item + gap + Math.abs(lastPosition));
+      currentPosition -= item;
+      if (currentPosition > 0) {
+        return true;
+      }
+      return false;
+    });
 
-    updateCarouselIndex(index);
+    updateCarouselIndex(newIndex - 1);
   }
 
   function handleMouseLeave(): void {
