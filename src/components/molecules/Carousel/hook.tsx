@@ -25,19 +25,19 @@ let lastPosition = 0;
 let position = 0;
 let isMouseLocked = false;
 
-function getPositionByIndex(
+function getCarouselPositionByIndex(
   itemList: Array<number>,
-  myIndex: number,
+  currentCarouselIndex: number,
   gap: number,
 ) {
   let value = 0;
-  for (let i = 0; i <= myIndex; i++) {
-    if (i < myIndex) {
-      value = value + gap + itemList[i];
+  for (let loopIndex = 0; loopIndex <= currentCarouselIndex; loopIndex++) {
+    if (loopIndex < currentCarouselIndex) {
+      value = value + gap + itemList[loopIndex];
     }
 
-    if (i === myIndex) {
-      value += itemList[i] + gap;
+    if (loopIndex === currentCarouselIndex) {
+      value += itemList[loopIndex] + gap;
     }
   }
 
@@ -62,6 +62,7 @@ const useCarousel = ({
   const minPosition = 0;
   const maxPosition = useRef(0);
 
+  // set carousel container size
   useEffect(() => {
     if (itemList.length) {
       const width = itemList
@@ -71,10 +72,15 @@ const useCarousel = ({
         );
 
       carouselRef.current?.style.setProperty(
-        '--carousel-max-size',
+        '--carousel-container-size',
         `${width}px`,
       );
+    }
+  }, [carouselRef, gap, itemList, maxItems]);
 
+  // set carousel max position
+  useEffect(() => {
+    if (itemList.length) {
       maxPosition.current =
         itemList.reduce(
           (previousValue, currentValue) => previousValue + currentValue + gap,
@@ -82,7 +88,7 @@ const useCarousel = ({
         gap -
         itemList[itemList.length - 1];
     }
-  }, [carouselRef, maxItems, itemWidth, gap, itemList]);
+  }, [gap, itemList]);
 
   useEffect(() => {
     carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
@@ -113,7 +119,7 @@ const useCarousel = ({
 
   async function updateCarouselIndex(newIndex: number): Promise<void> {
     setCarouselAnimationDuration();
-    const newPosition = getPositionByIndex(itemList, newIndex - 1, gap);
+    const newPosition = getCarouselPositionByIndex(itemList, newIndex - 1, gap);
     await updateCarouselPosition(newPosition);
     lastPosition = newPosition;
 
@@ -145,23 +151,26 @@ const useCarousel = ({
   }
 
   function handleMouseUp(event: React.MouseEvent): void {
-    let newIndex = 0;
     event.preventDefault();
+    let newIndex = 1;
+    let currentPosition = Math.abs(position);
     isMouseLocked = false;
 
-    lastPosition = 0;
-    let currentPosition = Math.abs(position);
     itemList.every(item => {
-      newIndex++;
-      lastPosition = -Math.abs(item + gap + Math.abs(lastPosition));
-      currentPosition -= item;
-      if (currentPosition > 0) {
+      currentPosition -= item + gap;
+      console.log('~currentPosition', currentPosition);
+      if (currentPosition > item / 2) {
+        newIndex++;
+      }
+
+      if (currentPosition > item) {
+        console.log('~ newIndex', newIndex);
         return true;
       }
       return false;
     });
 
-    updateCarouselIndex(newIndex - 1);
+    updateCarouselIndex(newIndex);
   }
 
   function handleMouseLeave(): void {
