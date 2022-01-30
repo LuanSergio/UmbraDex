@@ -158,13 +158,11 @@ const useCarousel = ({
 
     itemList.every(item => {
       currentPosition -= item + gap;
-      console.log('~currentPosition', currentPosition);
       if (currentPosition > item / 2) {
         newIndex++;
       }
 
       if (currentPosition > item) {
-        console.log('~ newIndex', newIndex);
         return true;
       }
       return false;
