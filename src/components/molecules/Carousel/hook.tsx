@@ -152,15 +152,15 @@ const useCarousel = ({
 
   function handleMouseUp(event: React.MouseEvent): void {
     event.preventDefault();
-    let newIndex = 1;
+    let newIndex = 0;
     let currentPosition = Math.abs(position);
     isMouseLocked = false;
 
     itemList.every(item => {
-      currentPosition -= item + gap;
       if (currentPosition > item / 2) {
         newIndex++;
       }
+      currentPosition -= item + gap;
 
       if (currentPosition > item) {
         return true;
