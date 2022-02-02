@@ -171,7 +171,10 @@ const useCarousel = ({
     updateCarouselIndex(newIndex);
   }
 
-  function handleMouseLeave(): void {
+  function handleMouseLeave(event: React.MouseEvent): void {
+    if (isMouseLocked) {
+      handleMouseUp(event);
+    }
     isMouseLocked = false;
   }
 
