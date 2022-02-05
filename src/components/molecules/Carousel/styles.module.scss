@@ -4,6 +4,8 @@
 .carouselHolder {
   display: flex;
   gap: rem(16);
+  position: relative;
+  z-index: get-index-level(lvl3);
 }
 
 .carousel {
@@ -46,9 +48,7 @@
   display: flex;
   font-size: rem(32);
   opacity: 0.9;
-  position: relative;
   transition: background-color 0.2s;
-  z-index: get-index-level(lvl3);
   &::before {
     @include h-icon;
 
