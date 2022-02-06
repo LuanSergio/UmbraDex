@@ -62,7 +62,14 @@ const PokemonBasicInformation = ({
         </div>
       </div>
       <div className={styles.descriptionContainer}>
-        <Carousel tagName="ol" itemWidth={widthList} gap={12} maxItems={6}>
+        <Carousel
+          myIndex={descriptionIndex}
+          updateMyIndex={handleDescriptionChange}
+          tagName="ol"
+          itemWidth={widthList}
+          gap={12}
+          maxItems={6}
+        >
           {descriptions.map((item, index) => {
             return (
               <li

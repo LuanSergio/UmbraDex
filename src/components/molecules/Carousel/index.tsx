@@ -9,6 +9,8 @@ interface CarouselProps {
   itemWidth: number | number[];
   gap?: number;
   maxItems?: number;
+  myIndex: number;
+  updateMyIndex: (index: number) => void;
 }
 
 const Carousel = ({
@@ -18,6 +20,8 @@ const Carousel = ({
   itemWidth,
   gap = 30,
   maxItems = 4,
+  myIndex,
+  updateMyIndex,
 }: CarouselProps): JSX.Element => {
   const itemsQuantity = Children.count(children);
 
@@ -39,6 +43,8 @@ const Carousel = ({
     itemsQuantity,
     gap,
     maxItems,
+    myIndex,
+    updateMyIndex,
   });
 
   return (

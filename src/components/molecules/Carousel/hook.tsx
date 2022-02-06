@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { RefObject, useCallback, useEffect, useRef } from 'react';
 
 interface IUseCarouselParams {
   carouselRef: RefObject<HTMLDivElement>;
@@ -8,6 +8,8 @@ interface IUseCarouselParams {
   gap: number;
   maxItems: number;
   animationDuration?: number;
+  myIndex: number;
+  updateMyIndex: (myIndex: number) => void;
 }
 
 interface IUseCarouselResponse {
@@ -19,7 +21,6 @@ interface IUseCarouselResponse {
   goToNextIndex: () => void;
 }
 
-let index = 0;
 let initialPosition = 0;
 let lastPosition = 0;
 let position = 0;
@@ -52,6 +53,8 @@ const useCarousel = ({
   gap,
   maxItems,
   animationDuration = 300,
+  myIndex,
+  updateMyIndex,
 }: IUseCarouselParams): IUseCarouselResponse => {
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
@@ -94,39 +97,53 @@ const useCarousel = ({
     carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
   }, [gap, carouselWrapperRef]);
 
-  async function updateCarouselPosition(newPosition: number): Promise<void> {
-    await carouselWrapperRef.current?.style.setProperty(
-      '--carousel-position',
-      `${newPosition}px`,
-    );
-  }
+  const updateCarouselPosition = useCallback(
+    async (newPosition: number) => {
+      await carouselWrapperRef.current?.style.setProperty(
+        '--carousel-position',
+        `${newPosition}px`,
+      );
+    },
+    [carouselWrapperRef],
+  );
 
-  function setCarouselAnimationDuration() {
+  const setCarouselAnimationDuration = useCallback(() => {
     carouselWrapperRef.current?.style.setProperty(
       'transition-duration',
       `${animationDuration}ms`,
     );
-  }
+  }, [animationDuration, carouselWrapperRef]);
 
-  function removeCarouselAnimationDuration() {
+  const removeCarouselAnimationDuration = useCallback(() => {
     setTimeout(() => {
       carouselWrapperRef.current?.style.setProperty(
         'transition-duration',
         `0ms`,
       );
     }, animationDuration);
-  }
+  }, [animationDuration, carouselWrapperRef]);
 
-  async function updateCarouselIndex(newIndex: number): Promise<void> {
-    setCarouselAnimationDuration();
-    const newPosition = getCarouselPositionByIndex(itemList, newIndex - 1, gap);
-    await updateCarouselPosition(newPosition);
-    lastPosition = newPosition;
+  const updateCarouselPositionUsingIndex = useCallback(
+    async newIndex => {
+      setCarouselAnimationDuration();
+      const newPosition = getCarouselPositionByIndex(
+        itemList,
+        newIndex - 1,
+        gap,
+      );
+      await updateCarouselPosition(newPosition);
+      lastPosition = newPosition;
 
-    index = newIndex;
-
-    removeCarouselAnimationDuration();
-  }
+      removeCarouselAnimationDuration();
+    },
+    [
+      gap,
+      itemList,
+      removeCarouselAnimationDuration,
+      setCarouselAnimationDuration,
+      updateCarouselPosition,
+    ],
+  );
 
   function handleMouseDown(event: React.MouseEvent): void {
     event.preventDefault();
@@ -168,7 +185,7 @@ const useCarousel = ({
       return false;
     });
 
-    updateCarouselIndex(newIndex);
+    updateMyIndex(newIndex);
   }
 
   function handleMouseLeave(event: React.MouseEvent): void {
@@ -179,16 +196,20 @@ const useCarousel = ({
   }
 
   function goToPreviousIndex(): void {
-    if (index >= minIndex) {
-      updateCarouselIndex(index - 1);
+    if (myIndex >= minIndex) {
+      updateMyIndex(myIndex - 1);
     }
   }
 
   function goToNextIndex(): void {
-    if (index < maxIndex) {
-      updateCarouselIndex(index + 1);
+    if (myIndex < maxIndex) {
+      updateMyIndex(myIndex + 1);
     }
   }
+
+  useEffect(() => {
+    updateCarouselPositionUsingIndex(myIndex);
+  }, [updateCarouselPositionUsingIndex, myIndex]);
 
   return {
     handleMouseDown,
