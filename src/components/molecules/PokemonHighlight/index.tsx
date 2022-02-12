@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './styles.module.scss';
 
 interface PokemonHighlightProps {
@@ -13,8 +14,19 @@ const PokemonHighlight = ({
 }: PokemonHighlightProps): JSX.Element => {
   return (
     <div className={styles.pokemonContainer}>
-      <span className={styles.japaneseName}>{japaneseName}</span>
-      <img className={styles.pokemon} src={image} alt={name} />
+      <span className={styles.japaneseName} aria-hidden>
+        {japaneseName}
+      </span>
+
+      <div className={styles.pokemon}>
+        <Image
+          quality={100}
+          layout="fill"
+          src={image}
+          alt={name}
+          title={name}
+        />
+      </div>
     </div>
   );
 };
