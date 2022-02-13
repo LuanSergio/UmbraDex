@@ -8,6 +8,7 @@ import MegaFormIcon from '@components/atoms/formIcons/MegaFormIcon';
 import SwordAndShieldFormIcon from '@components/atoms/formIcons/SwordAndShieldFormIcon';
 import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
 import Carousel from '@components/molecules/Carousel';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {
@@ -34,11 +35,37 @@ const SwitchForms = ({
   pokemon,
   handleFormChange,
 }: SwitchFormsProps): JSX.Element => {
+  const [formIndex, setFormIndex] = useState(0);
+
+  function handleFormIndexChange(index: number): void {
+    setFormIndex(index);
+  }
+
+  useEffect(() => {
+    if (formIndex === 0) {
+      handleFormChange(defaultPokemonForm);
+    } else {
+      handleFormChange(alternativePokemonForms[formIndex - 1]);
+    }
+  }, [
+    alternativePokemonForms,
+    defaultPokemonForm,
+    formIndex,
+    handleFormChange,
+  ]);
+
   return (
-    <Carousel tagName="ul" itemWidth={50} gap={16}>
+    <Carousel
+      myIndex={formIndex}
+      updateMyIndex={handleFormIndexChange}
+      tagName="ol"
+      itemWidth={50}
+      gap={12}
+      maxItems={6}
+    >
       <li>
         <button
-          onClick={() => handleFormChange(defaultPokemonForm)}
+          onClick={() => handleFormIndexChange(0)}
           type="button"
           disabled={pokemon.isDefault}
           className={`switchFormButton ${
@@ -48,7 +75,7 @@ const SwitchForms = ({
           <DefaultFormIcon />
         </button>
       </li>
-      {alternativePokemonForms.map(form => {
+      {alternativePokemonForms.map((form, index) => {
         const formName = transformDashedCaseToCamelCase(form.formName);
 
         return (
@@ -58,7 +85,7 @@ const SwitchForms = ({
                 form.id === pokemon.id ? 'switchFormButton--active' : ''
               } ${styles.button}`}
               disabled={form.id === pokemon.id}
-              onClick={() => handleFormChange(form)}
+              onClick={() => handleFormIndexChange(index + 1)}
               type="button"
               title={formName}
               aria-label={formName}

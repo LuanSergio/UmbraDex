@@ -26,14 +26,9 @@ const Pokemon = ({
   const router = useRouter();
   const pageId = parseInt(router.query.id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
-  // const [formIndex, setFormIndex] = useState(0);
-  // function handleFormChange(form: PokemonForm) {
-  //   setPokemon(form);
-  // }
-
-  // function updateMyIndex(index: number): void {
-  //   setFormIndex(index);
-  // }
+  function handleFormChange(form: PokemonForm) {
+    setPokemon(form);
+  }
 
   useEffect(() => {
     setPokemon(defaultPokemonForm);
@@ -53,16 +48,14 @@ const Pokemon = ({
                 : styles.holder
             }
           >
-            {/* {AlternativePokemonForms.length > 0 && (
+            {AlternativePokemonForms.length > 0 && (
               <SwitchForms
-                myIndex={formIndex}
-                updateMyIndex={updateMyIndex}
                 pokemon={pokemon}
                 handleFormChange={handleFormChange}
                 defaultPokemonForm={defaultPokemonForm}
                 alternativePokemonForms={AlternativePokemonForms}
               />
-            )} */}
+            )}
             <div className={styles.container}>
               <PokemonHighlight
                 japaneseName={pokemonDetails.japaneseName}
