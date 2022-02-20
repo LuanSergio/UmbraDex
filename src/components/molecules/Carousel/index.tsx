@@ -2,7 +2,7 @@ import { Children, ReactNode, useRef } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './hook';
 
-interface CarouselProps {
+interface ICarouselProps {
   children: ReactNode;
   tagName?: keyof JSX.IntrinsicElements;
   carouselDescription?: string;
@@ -22,7 +22,7 @@ const Carousel = ({
   maxItems = 4,
   myIndex,
   updateMyIndex,
-}: CarouselProps): JSX.Element => {
+}: ICarouselProps): JSX.Element => {
   const itemsQuantity = Children.count(children);
 
   const Tag = tagName as keyof JSX.IntrinsicElements;
