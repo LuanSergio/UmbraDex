@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useRef } from 'react';
+import { RefObject, useCallback, useEffect, useRef, MouseEvent } from 'react';
 
 interface IUseCarouselParams {
   carouselRef: RefObject<HTMLDivElement>;
@@ -13,10 +13,10 @@ interface IUseCarouselParams {
 }
 
 interface IUseCarouselResponse {
-  handleMouseDown: (event: React.MouseEvent) => void;
-  handleMouseMove: (event: React.MouseEvent) => void;
-  handleMouseUp: (event: React.MouseEvent) => void;
-  handleMouseLeave: (event: React.MouseEvent) => void;
+  handleMouseDown: (event: MouseEvent) => void;
+  handleMouseMove: (event: MouseEvent) => void;
+  handleMouseUp: (event: MouseEvent) => void;
+  handleMouseLeave: (event: MouseEvent) => void;
   goToPreviousIndex: () => void;
   goToNextIndex: () => void;
 }
@@ -145,13 +145,13 @@ const useCarousel = ({
     ],
   );
 
-  function handleMouseDown(event: React.MouseEvent): void {
+  function handleMouseDown(event: MouseEvent): void {
     event.preventDefault();
     isMouseLocked = true;
     initialPosition = event.clientX;
   }
 
-  function handleMouseMove(event: React.MouseEvent): void {
+  function handleMouseMove(event: MouseEvent): void {
     if (isMouseLocked) {
       const travelDistance = event.clientX - initialPosition;
 
@@ -167,7 +167,7 @@ const useCarousel = ({
     }
   }
 
-  function handleMouseUp(event: React.MouseEvent): void {
+  function handleMouseUp(event: MouseEvent): void {
     event.preventDefault();
     let newIndex = 0;
     let currentPosition = Math.abs(position);
@@ -188,7 +188,7 @@ const useCarousel = ({
     updateMyIndex(newIndex);
   }
 
-  function handleMouseLeave(event: React.MouseEvent): void {
+  function handleMouseLeave(event: MouseEvent): void {
     if (isMouseLocked) {
       handleMouseUp(event);
     }
