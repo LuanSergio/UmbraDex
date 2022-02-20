@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import Carousel from '@components/molecules/Carousel';
@@ -10,6 +10,9 @@ interface PokemonBasicInformationProps {
   types: string[];
   descriptions: PokemonDescription[];
 }
+
+let position = 0;
+let initialPosition = 0;
 
 const PokemonBasicInformation = ({
   name,
@@ -26,6 +29,17 @@ const PokemonBasicInformation = ({
     setDescriptionIndex(index);
   }
 
+  function handleClick(index: number): void {
+    if (position === initialPosition) {
+      console.log('changed to ', index);
+      setDescriptionIndex(index);
+    }
+  }
+
+  function handleMouseDown(event: MouseEvent): void {
+    initialPosition = event.clientX;
+  }
+
   useEffect(() => {
     ref.current.forEach(element => {
       setWidthList(previousState => [
@@ -38,6 +52,10 @@ const PokemonBasicInformation = ({
   useEffect(() => {
     setDescriptionIndex(0);
   }, [pokedexIndex]);
+
+  function handleMouseUp(event: MouseEvent, index: number) {
+    position = event.clientX;
+  }
 
   return (
     <div>
@@ -83,7 +101,9 @@ const PokemonBasicInformation = ({
                   className={`${styles.generationDescriptionOption} ${
                     descriptionIndex === index && styles.active
                   }`}
-                  onClick={() => handleDescriptionChange(index)}
+                  onClick={() => handleClick(index)}
+                  onMouseDown={handleMouseDown}
+                  onMouseUp={event => handleMouseUp(event, index)}
                 >
                   {transformNumberToRomanNumeral(index + 1)}
                 </button>
