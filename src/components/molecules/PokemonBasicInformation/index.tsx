@@ -31,7 +31,6 @@ const PokemonBasicInformation = ({
 
   function handleClick(index: number): void {
     if (position === initialPosition) {
-      console.log('changed to ', index);
       setDescriptionIndex(index);
     }
   }
@@ -53,7 +52,7 @@ const PokemonBasicInformation = ({
     setDescriptionIndex(0);
   }, [pokedexIndex]);
 
-  function handleMouseUp(event: MouseEvent, index: number) {
+  function handleMouseUp(event: MouseEvent) {
     position = event.clientX;
   }
 
@@ -103,7 +102,7 @@ const PokemonBasicInformation = ({
                   }`}
                   onClick={() => handleClick(index)}
                   onMouseDown={handleMouseDown}
-                  onMouseUp={event => handleMouseUp(event, index)}
+                  onMouseUp={event => handleMouseUp(event)}
                 >
                   {transformNumberToRomanNumeral(index + 1)}
                 </button>
