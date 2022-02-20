@@ -61,7 +61,7 @@ const SwitchForms = ({
       tagName="ol"
       itemWidth={50}
       gap={12}
-      maxItems={6}
+      maxItems={4}
     >
       <li>
         <button
