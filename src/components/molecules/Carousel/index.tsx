@@ -25,7 +25,7 @@ const Carousel = ({
 }: ICarouselProps): JSX.Element => {
   const itemsQuantity = Children.count(children);
 
-  const Tag = tagName as keyof JSX.IntrinsicElements;
+  const Tag = (tagName as keyof JSX.IntrinsicElements) ?? 'div';
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
