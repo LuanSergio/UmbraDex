@@ -2,6 +2,7 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import Carousel from '@components/molecules/Carousel';
+import CarouselItem from '@components/atoms/CarouselItem';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -10,9 +11,6 @@ interface PokemonBasicInformationProps {
   types: string[];
   descriptions: PokemonDescription[];
 }
-
-let position = 0;
-let initialPosition = 0;
 
 const PokemonBasicInformation = ({
   name,
@@ -29,16 +27,6 @@ const PokemonBasicInformation = ({
     setDescriptionIndex(index);
   }
 
-  function handleClick(index: number): void {
-    if (position === initialPosition) {
-      setDescriptionIndex(index);
-    }
-  }
-
-  function handleMouseDown(event: MouseEvent): void {
-    initialPosition = event.clientX;
-  }
-
   useEffect(() => {
     ref.current.forEach(element => {
       setWidthList(previousState => [
@@ -51,10 +39,6 @@ const PokemonBasicInformation = ({
   useEffect(() => {
     setDescriptionIndex(0);
   }, [pokedexIndex]);
-
-  function handleMouseUp(event: MouseEvent) {
-    position = event.clientX;
-  }
 
   return (
     <div>
@@ -89,24 +73,19 @@ const PokemonBasicInformation = ({
         >
           {descriptions.map((item, index) => {
             return (
-              <li
-                key={`${item.id}`}
-                ref={element => {
-                  ref.current[index] = element;
-                }}
-              >
-                <button
-                  type="button"
+              <CarouselItem onClick={() => handleDescriptionChange(index)}>
+                <span
+                  key={`${item.id}`}
+                  ref={element => {
+                    ref.current[index] = element;
+                  }}
                   className={`${styles.generationDescriptionOption} ${
                     descriptionIndex === index && styles.active
                   }`}
-                  onClick={() => handleClick(index)}
-                  onMouseDown={handleMouseDown}
-                  onMouseUp={event => handleMouseUp(event)}
                 >
                   {transformNumberToRomanNumeral(index + 1)}
-                </button>
-              </li>
+                </span>
+              </CarouselItem>
             );
           })}
         </Carousel>
