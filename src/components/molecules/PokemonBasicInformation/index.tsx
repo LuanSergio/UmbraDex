@@ -73,9 +73,11 @@ const PokemonBasicInformation = ({
         >
           {descriptions.map((item, index) => {
             return (
-              <CarouselItem onClick={() => handleDescriptionChange(index)}>
+              <CarouselItem
+                key={`${item.id}`}
+                onClick={() => handleDescriptionChange(index)}
+              >
                 <span
-                  key={`${item.id}`}
                   ref={element => {
                     ref.current[index] = element;
                   }}
