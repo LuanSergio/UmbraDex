@@ -46,7 +46,6 @@
 }
 
 .generationDescriptionOption {
-  padding: rem(1) rem(6);
   border-bottom-color: get-color(light);
   border-bottom-left-radius: rem(1);
   border-bottom-right-radius: rem(1);
@@ -61,6 +60,7 @@
   font-weight: bold;
   margin-bottom: rem(8);
   opacity: 0.8;
+  padding: rem(1) rem(6);
   transition: opacity 0.2s;
   &.active,
   &:hover {
