@@ -18,146 +18,146 @@ $megaGradient8: #c2fc62;
 $megaGradient9: #dae759;
 $transitionTime: 0.3s;
 
-.switchFormButton:hover svg path {
+.switchFormIcon:hover svg path {
   transition: fill $transitionTime;
 }
 
-.switchFormButton:hover svg stop {
+.switchFormIcon:hover svg stop {
   transition: stop-color $transitionTime;
 }
 
-.switchFormButton--active svg .moon,
-.switchFormButton:hover svg .moon {
+.switchFormIcon--active svg .moon,
+.switchFormIcon:hover svg .moon {
   fill: $moon;
 }
-.switchFormButton--active svg .sun,
-.switchFormButton:hover svg .sun {
+.switchFormIcon--active svg .sun,
+.switchFormIcon:hover svg .sun {
   fill: $sun;
 }
-.switchFormButton--active svg .gmax,
-.switchFormButton:hover svg .gmax {
+.switchFormIcon--active svg .gmax,
+.switchFormIcon:hover svg .gmax {
   fill: $gmax;
 }
 
-.switchFormButton--active svg .sword-top,
-.switchFormButton:hover svg .sword-top {
+.switchFormIcon--active svg .sword-top,
+.switchFormIcon:hover svg .sword-top {
   fill: $sword;
 }
 
-.switchFormButton--active svg .sword-bottom,
-.switchFormButton:hover svg .sword-bottom {
+.switchFormIcon--active svg .sword-bottom,
+.switchFormIcon:hover svg .sword-bottom {
   fill: $sword;
 }
 
-.switchFormButton--active svg .shield-right,
-.switchFormButton:hover svg .shield-right {
+.switchFormIcon--active svg .shield-right,
+.switchFormIcon:hover svg .shield-right {
   fill: $shield;
 }
 
-.switchFormButton--active svg .shield-left,
-.switchFormButton:hover svg .shield-left {
+.switchFormIcon--active svg .shield-left,
+.switchFormIcon:hover svg .shield-left {
   fill: $shield;
 }
 
-.switchFormButton--active svg .swordAndShieldPokeball,
-.switchFormButton:hover svg .swordAndShieldPokeball {
+.switchFormIcon--active svg .swordAndShieldPokeball,
+.switchFormIcon:hover svg .swordAndShieldPokeball {
   fill: $shield;
 }
 
-.switchFormButton--active svg .swordAndShieldPokeballCenter,
-.switchFormButton:hover svg .swordAndShieldPokeballCenter {
+.switchFormIcon--active svg .swordAndShieldPokeballCenter,
+.switchFormIcon:hover svg .swordAndShieldPokeballCenter {
   fill: $shield;
 }
 
-.switchFormButton--active svg .pokeballTop,
-.switchFormButton:hover svg .pokeballTop {
+.switchFormIcon--active svg .pokeballTop,
+.switchFormIcon:hover svg .pokeballTop {
   fill: $pokeball;
 }
 
-.switchFormButton--active svg .pokeballCenter,
-.switchFormButton:hover svg .pokeballCenter {
+.switchFormIcon--active svg .pokeballCenter,
+.switchFormIcon:hover svg .pokeballCenter {
   fill: $pokeballSecondary;
 }
 
-.switchFormButton--active svg .pokeballBottom,
-.switchFormButton:hover svg .pokeballBottom {
+.switchFormIcon--active svg .pokeballBottom,
+.switchFormIcon:hover svg .pokeballBottom {
   fill: $pokeballSecondary;
 }
 
-.switchFormButton--active svg .pikachuBody,
-.switchFormButton:hover svg .pikachuBody {
+.switchFormIcon--active svg .pikachuBody,
+.switchFormIcon:hover svg .pikachuBody {
   fill: $pikachu;
 }
 
-.switchFormButton--active svg .pikachuTail,
-.switchFormButton:hover svg .pikachuTail {
+.switchFormIcon--active svg .pikachuTail,
+.switchFormIcon:hover svg .pikachuTail {
   fill: $pikachu;
 }
 
-.switchFormButton--active svg .switchTopArrow,
-.switchFormButton:hover svg .switchTopArrow {
+.switchFormIcon--active svg .switchTopArrow,
+.switchFormIcon:hover svg .switchTopArrow {
   fill: $switchArrow;
 }
 
-.switchFormButton--active svg .switchBottomArrow,
-.switchFormButton:hover svg .switchBottomArrow {
+.switchFormIcon--active svg .switchBottomArrow,
+.switchFormIcon:hover svg .switchBottomArrow {
   fill: $switchArrow;
 }
 
 // mega form active
-.switchFormButton--active svg stop:nth-child(1) {
+.switchFormIcon--active svg stop:nth-child(1) {
   stop-color: $megaGradient1;
 }
-.switchFormButton--active svg stop:nth-child(2) {
+.switchFormIcon--active svg stop:nth-child(2) {
   stop-color: $megaGradient2;
 }
-.switchFormButton--active svg stop:nth-child(3) {
+.switchFormIcon--active svg stop:nth-child(3) {
   stop-color: $megaGradient3;
 }
-.switchFormButton--active svg stop:nth-child(4) {
+.switchFormIcon--active svg stop:nth-child(4) {
   stop-color: $megaGradient4;
 }
-.switchFormButton--active svg stop:nth-child(5) {
+.switchFormIcon--active svg stop:nth-child(5) {
   stop-color: $megaGradient5;
 }
-.switchFormButton--active svg stop:nth-child(6) {
+.switchFormIcon--active svg stop:nth-child(6) {
   stop-color: $megaGradient6;
 }
-.switchFormButton--active svg stop:nth-child(7) {
+.switchFormIcon--active svg stop:nth-child(7) {
   stop-color: $megaGradient7;
 }
-.switchFormButton--active svg stop:nth-child(8) {
+.switchFormIcon--active svg stop:nth-child(8) {
   stop-color: $megaGradient8;
 }
-.switchFormButton--active svg stop:nth-child(9) {
+.switchFormIcon--active svg stop:nth-child(9) {
   stop-color: $megaGradient9;
 }
 
 // mega form hover
-.switchFormButton:hover svg stop:nth-child(1) {
+.switchFormIcon:hover svg stop:nth-child(1) {
   stop-color: $megaGradient1;
 }
-.switchFormButton:hover svg stop:nth-child(2) {
+.switchFormIcon:hover svg stop:nth-child(2) {
   stop-color: $megaGradient2;
 }
-.switchFormButton:hover svg stop:nth-child(3) {
+.switchFormIcon:hover svg stop:nth-child(3) {
   stop-color: $megaGradient3;
 }
-.switchFormButton:hover svg stop:nth-child(4) {
+.switchFormIcon:hover svg stop:nth-child(4) {
   stop-color: $megaGradient4;
 }
-.switchFormButton:hover svg stop:nth-child(5) {
+.switchFormIcon:hover svg stop:nth-child(5) {
   stop-color: $megaGradient5;
 }
-.switchFormButton:hover svg stop:nth-child(6) {
+.switchFormIcon:hover svg stop:nth-child(6) {
   stop-color: $megaGradient6;
 }
-.switchFormButton:hover svg stop:nth-child(7) {
+.switchFormIcon:hover svg stop:nth-child(7) {
   stop-color: $megaGradient7;
 }
-.switchFormButton:hover svg stop:nth-child(8) {
+.switchFormIcon:hover svg stop:nth-child(8) {
   stop-color: $megaGradient8;
 }
-.switchFormButton:hover svg stop:nth-child(9) {
+.switchFormIcon:hover svg stop:nth-child(9) {
   stop-color: $megaGradient9;
 }

@@ -3,18 +3,7 @@
 @use 'settings/colors-type' as typeColors;
 @use 'animations/pop-in' as *;
 
-.button {
-  background-color: transparent;
-  border-width: 0;
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-  z-index: get-index-level(lvl3);
-  &:disabled {
-    opacity: 0.5;
-  }
-  &:hover {
-    background-color: rgba($color: #fff, $alpha: 0.25);
-    border-radius: 10%;
-  }
+.iconContainer:hover {
+  background-color: rgba($color: #fff, $alpha: 0.25);
+  border-radius: 10%;
 }

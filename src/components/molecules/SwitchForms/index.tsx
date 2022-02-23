@@ -69,9 +69,9 @@ const SwitchForms = ({
         buttonProps={{ disabled: pokemon.isDefault }}
       >
         <div
-          className={`switchFormButton ${
-            pokemon.isDefault ? 'switchFormButton--active' : ''
-          } ${styles.button}`}
+          className={`switchFormIcon ${
+            pokemon.isDefault ? 'switchFormIcon--active' : ''
+          } ${styles.iconContainer}`}
         >
           <DefaultFormIcon />
         </div>
@@ -86,9 +86,9 @@ const SwitchForms = ({
             buttonProps={{ disabled: form.id === pokemon.id }}
           >
             <div
-              className={`switchFormButton ${
-                form.id === pokemon.id ? 'switchFormButton--active' : ''
-              } ${styles.button}`}
+              className={`switchFormIcon ${
+                form.id === pokemon.id ? 'switchFormIcon--active' : ''
+              } ${styles.iconContainer}`}
               title={formName}
               aria-label={formName}
             >
