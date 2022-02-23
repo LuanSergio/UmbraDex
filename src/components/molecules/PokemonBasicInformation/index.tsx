@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import Carousel from '@components/molecules/Carousel';
