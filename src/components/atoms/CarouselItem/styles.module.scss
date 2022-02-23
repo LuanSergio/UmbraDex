@@ -7,4 +7,8 @@
   border-width: 0;
   padding: 0;
   z-index: get-index-level(lvl3);
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
