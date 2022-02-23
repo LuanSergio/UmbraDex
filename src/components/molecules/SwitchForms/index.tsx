@@ -9,6 +9,7 @@ import SwordAndShieldFormIcon from '@components/atoms/formIcons/SwordAndShieldFo
 import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
 import Carousel from '@components/molecules/Carousel';
 import { useEffect, useState } from 'react';
+import CarouselItem from '@components/atoms/CarouselItem';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {
@@ -63,36 +64,37 @@ const SwitchForms = ({
       gap={12}
       maxItems={4}
     >
-      <li>
-        <button
-          onClick={() => handleFormIndexChange(0)}
-          type="button"
-          disabled={pokemon.isDefault}
+      <CarouselItem
+        onClick={() => handleFormIndexChange(0)}
+        buttonProps={{ disabled: pokemon.isDefault }}
+      >
+        <div
           className={`switchFormButton ${
             pokemon.isDefault ? 'switchFormButton--active' : ''
           } ${styles.button}`}
         >
           <DefaultFormIcon />
-        </button>
-      </li>
+        </div>
+      </CarouselItem>
       {alternativePokemonForms.map((form, index) => {
         const formName = transformDashedCaseToCamelCase(form.formName);
 
         return (
-          <li key={form.id}>
-            <button
+          <CarouselItem
+            key={form.id}
+            onClick={() => handleFormIndexChange(index + 1)}
+            buttonProps={{ disabled: form.id === pokemon.id }}
+          >
+            <div
               className={`switchFormButton ${
                 form.id === pokemon.id ? 'switchFormButton--active' : ''
               } ${styles.button}`}
-              disabled={form.id === pokemon.id}
-              onClick={() => handleFormIndexChange(index + 1)}
-              type="button"
               title={formName}
               aria-label={formName}
             >
               {forms[formName] ? forms[formName] : forms.unknown}
-            </button>
-          </li>
+            </div>
+          </CarouselItem>
         );
       })}
     </Carousel>
