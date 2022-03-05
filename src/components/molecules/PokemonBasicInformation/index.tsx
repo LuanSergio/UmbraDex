@@ -92,7 +92,8 @@ const PokemonBasicInformation = ({
           })}
         </Carousel>
         <p className={styles.description}>
-          {descriptions[descriptionIndex].description}
+          {descriptions[descriptionIndex] &&
+            descriptions[descriptionIndex].description}
           {(descriptionIndex === 3 || descriptionIndex === 4) && (
             <small className={styles.sideNote}>
               Sidenote: The fourth and fifth generation share some descriptions
