@@ -1,4 +1,4 @@
-import { Children, ReactNode, TouchEventHandler, useRef } from 'react';
+import { Children, ReactNode, useRef } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './hook';
 
