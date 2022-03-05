@@ -13,10 +13,10 @@ interface IUseCarouselParams {
 }
 
 interface IUseCarouselResponse {
-  handleMouseDown: (event: MouseEvent) => void;
-  handleMouseMove: (event: MouseEvent) => void;
-  handleMouseUp: (event: MouseEvent) => void;
-  handleMouseLeave: (event: MouseEvent) => void;
+  handleMouseDown: (event: MouseEvent | TouchEvent) => void;
+  handleMouseMove: (event: MouseEvent | TouchEvent) => void;
+  handleMouseUp: (event: MouseEvent | TouchEvent) => void;
+  handleMouseLeave: (event: MouseEvent | TouchEvent) => void;
   goToPreviousIndex: () => void;
   goToNextIndex: () => void;
 }
@@ -43,6 +43,16 @@ function getCarouselPositionByIndex(
   }
 
   return -Math.abs(value);
+}
+
+function getTouchOrClickClientX(event: MouseEvent | TouchEvent) {
+  event.preventDefault();
+  if ('touches' in event) {
+    return event.touches[0].clientX;
+  }
+  return event.clientX;
+
+  return 0;
 }
 
 const useCarousel = ({
@@ -145,15 +155,15 @@ const useCarousel = ({
     ],
   );
 
-  function handleMouseDown(event: MouseEvent): void {
+  function handleMouseDown(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     isMouseLocked = true;
-    initialPosition = event.clientX;
+    initialPosition = getTouchOrClickClientX(event);
   }
 
-  function handleMouseMove(event: MouseEvent): void {
+  function handleMouseMove(event: MouseEvent | TouchEvent): void {
     if (isMouseLocked) {
-      const travelDistance = event.clientX - initialPosition;
+      const travelDistance = getTouchOrClickClientX(event) - initialPosition;
 
       const newPosition = travelDistance + lastPosition;
 
@@ -167,12 +177,11 @@ const useCarousel = ({
     }
   }
 
-  function handleMouseUp(event: MouseEvent): void {
+  function handleMouseUp(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     let newIndex = 0;
     let currentPosition = Math.abs(position);
     isMouseLocked = false;
-
     itemList.every(item => {
       if (currentPosition > item / 2) {
         newIndex++;
@@ -188,7 +197,7 @@ const useCarousel = ({
     updateMyIndex(newIndex);
   }
 
-  function handleMouseLeave(event: MouseEvent): void {
+  function handleMouseLeave(event: MouseEvent | TouchEvent): void {
     if (isMouseLocked) {
       handleMouseUp(event);
     }

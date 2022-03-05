@@ -1,4 +1,4 @@
-import { Children, ReactNode, useRef } from 'react';
+import { Children, ReactNode, TouchEventHandler, useRef } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './hook';
 
@@ -66,6 +66,9 @@ const Carousel = ({
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
+            onTouchMove={(e: unknown) => handleMouseMove(e as TouchEvent)}
+            onTouchStart={(e: unknown) => handleMouseDown(e as TouchEvent)}
+            onTouchEnd={(e: unknown) => handleMouseUp(e as TouchEvent)}
             aria-roledescription="carousel"
             aria-label={carouselDescription}
           >
