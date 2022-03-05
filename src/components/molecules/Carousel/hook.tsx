@@ -99,7 +99,8 @@ const useCarousel = ({
           (previousValue, currentValue) => previousValue + currentValue + gap,
         ) -
         gap -
-        itemList[itemList.length - 1];
+        itemList[itemList.length - 1] +
+        5;
     }
   }, [gap, itemList]);
 
