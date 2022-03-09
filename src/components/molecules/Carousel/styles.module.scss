@@ -10,7 +10,6 @@
 
 .carousel {
   display: flex;
-  max-width: var(--carousel-container-size);
   overflow-x: hidden;
   position: relative;
   touch-action: pan-y;

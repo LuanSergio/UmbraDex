@@ -1,4 +1,11 @@
-import { RefObject, useCallback, useEffect, useRef, MouseEvent } from 'react';
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  MouseEvent,
+  useState,
+} from 'react';
 
 interface IUseCarouselParams {
   carouselRef: RefObject<HTMLDivElement>;
@@ -69,7 +76,7 @@ const useCarousel = ({
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
     : Array(itemsQuantity).fill(itemWidth);
-
+  const [containerWidth, setContainerWidth] = useState(0);
   const minIndex = 1;
   const maxIndex = itemsQuantity - 1;
   const minPosition = 0;
@@ -78,18 +85,19 @@ const useCarousel = ({
   // set carousel container size
   useEffect(() => {
     if (itemList.length) {
-      const width = itemList
-        .slice(0, maxItems)
-        .reduce(
-          (previousValue, currentValue) => previousValue + currentValue + gap,
-        );
-
-      carouselRef.current?.style.setProperty(
-        '--carousel-container-size',
-        `${width}px`,
+      setContainerWidth(
+        itemList
+          .slice(0, maxItems)
+          .reduce(
+            (previousValue, currentValue) => previousValue + currentValue + gap,
+          ),
       );
     }
-  }, [carouselRef, gap, itemList, maxItems]);
+  }, [itemList, maxItems, gap]);
+
+  useEffect(() => {
+    carouselRef.current?.style.setProperty('max-width', `${containerWidth}px`);
+  });
 
   // set carousel max position
   useEffect(() => {
