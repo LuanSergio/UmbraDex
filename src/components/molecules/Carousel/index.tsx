@@ -1,4 +1,4 @@
-import { Children, ReactNode, useRef } from 'react';
+import { Children, ReactNode, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './hook';
 
@@ -23,11 +23,15 @@ const Carousel = ({
   myIndex,
   updateMyIndex,
 }: ICarouselProps): JSX.Element => {
-  const itemsQuantity = Children.count(children);
+  const [itemsQuantity, setItemsQuantity] = useState(Children.count(children));
 
   const Tag = (tagName as keyof JSX.IntrinsicElements) ?? 'div';
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setItemsQuantity(Children.count(children));
+  }, [children]);
 
   const {
     handleMouseDown,
@@ -47,60 +51,54 @@ const Carousel = ({
     updateMyIndex,
   });
 
+  const carouselProps = {
+    className: styles.carousel,
+    ref: carouselRef,
+    role: 'presentation',
+    onMouseDown: handleMouseDown,
+    onMouseMove: handleMouseMove,
+    onMouseUp: handleMouseUp,
+    onMouseLeave: handleMouseLeave,
+    onTouchMove: (e: unknown) => handleMouseMove(e as TouchEvent),
+    onTouchStart: (e: unknown) => handleMouseDown(e as TouchEvent),
+    onTouchEnd: (e: unknown) => handleMouseUp(e as TouchEvent),
+    'aria-roledescription': 'carousel',
+    'aria-label': carouselDescription,
+  };
+
   return (
     <>
-      {itemsQuantity > maxItems ? (
-        <div className={styles.carouselHolder}>
+      <div className={styles.carouselHolder}>
+        {itemsQuantity > maxItems && (
           <button
             type="button"
             aria-label="Previous slide"
             onClick={goToPreviousIndex}
             className={styles.previous}
           />
+        )}
 
-          <div
-            role="presentation"
-            className={styles.carousel}
-            ref={carouselRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-            onTouchMove={(e: unknown) => handleMouseMove(e as TouchEvent)}
-            onTouchStart={(e: unknown) => handleMouseDown(e as TouchEvent)}
-            onTouchEnd={(e: unknown) => handleMouseUp(e as TouchEvent)}
-            aria-roledescription="carousel"
-            aria-label={carouselDescription}
-          >
-            <div className={styles.carouselWrapper} ref={carouselWrapperRef}>
-              <Tag
-                className={styles.carouselItemsHolder}
-                aria-atomic="false"
-                aria-live="polite"
-              >
-                {children}
-              </Tag>
-            </div>
+        <div {...(itemsQuantity > maxItems ? carouselProps : undefined)}>
+          <div className={styles.carouselWrapper} ref={carouselWrapperRef}>
+            <Tag
+              className={styles.carouselItemsHolder}
+              aria-atomic="false"
+              aria-live="polite"
+            >
+              {children}
+            </Tag>
           </div>
+        </div>
 
+        {itemsQuantity > maxItems && (
           <button
             type="button"
             className={styles.next}
             aria-label="Next slide"
             onClick={goToNextIndex}
           />
-        </div>
-      ) : (
-        <div ref={carouselWrapperRef}>
-          <Tag
-            className={styles.carouselItemsHolder}
-            aria-atomic="false"
-            aria-live="polite"
-          >
-            {children}
-          </Tag>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };
