@@ -28,11 +28,6 @@ interface IUseCarouselResponse {
   goToNextIndex: () => void;
 }
 
-let initialPosition = 0;
-let lastPosition = 0;
-let position = 0;
-let isMouseLocked = false;
-
 function getCarouselPositionByIndex(
   itemList: Array<number>,
   currentCarouselIndex: number,
@@ -58,8 +53,6 @@ function getTouchOrClickClientX(event: MouseEvent | TouchEvent) {
     return event.touches[0].clientX;
   }
   return event.clientX;
-
-  return 0;
 }
 
 const useCarousel = ({
@@ -76,6 +69,11 @@ const useCarousel = ({
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
     : Array(itemsQuantity).fill(itemWidth);
+  const initialPosition = useRef(0);
+  const lastPosition = useRef(0);
+  const position = useRef(0);
+  const isMouseLocked = useRef(false);
+
   const [containerWidth, setContainerWidth] = useState(0);
   const minIndex = 1;
   const maxIndex = itemsQuantity - 1;
@@ -108,7 +106,7 @@ const useCarousel = ({
         ) -
         gap -
         itemList[itemList.length - 1] +
-        5;
+        20;
     }
   }, [gap, itemList]);
 
@@ -144,20 +142,23 @@ const useCarousel = ({
 
   const updateCarouselPositionUsingIndex = useCallback(
     async newIndex => {
-      setCarouselAnimationDuration();
-      const newPosition = getCarouselPositionByIndex(
-        itemList,
-        newIndex - 1,
-        gap,
-      );
-      await updateCarouselPosition(newPosition);
-      lastPosition = newPosition;
+      if (newIndex <= maxIndex) {
+        setCarouselAnimationDuration();
+        const newPosition = getCarouselPositionByIndex(
+          itemList,
+          newIndex - 1,
+          gap,
+        );
+        await updateCarouselPosition(newPosition);
+        lastPosition.current = newPosition;
 
-      removeCarouselAnimationDuration();
+        removeCarouselAnimationDuration();
+      }
     },
     [
       gap,
       itemList,
+      maxIndex,
       removeCarouselAnimationDuration,
       setCarouselAnimationDuration,
       updateCarouselPosition,
@@ -166,22 +167,24 @@ const useCarousel = ({
 
   function handleMouseDown(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
-    isMouseLocked = true;
-    initialPosition = getTouchOrClickClientX(event);
+    isMouseLocked.current = true;
+    initialPosition.current = getTouchOrClickClientX(event);
   }
 
   function handleMouseMove(event: MouseEvent | TouchEvent): void {
-    if (isMouseLocked) {
-      const travelDistance = getTouchOrClickClientX(event) - initialPosition;
+    if (isMouseLocked.current) {
+      const travelDistance =
+        getTouchOrClickClientX(event) - initialPosition.current;
 
-      const newPosition = travelDistance + lastPosition;
+      const newPosition = travelDistance + lastPosition.current;
 
       if (
         newPosition >= -Math.abs(maxPosition.current) &&
         newPosition <= -Math.abs(minPosition)
       ) {
-        position = newPosition;
-        updateCarouselPosition(position);
+        position.current = newPosition;
+
+        updateCarouselPosition(position.current);
       }
     }
   }
@@ -189,11 +192,13 @@ const useCarousel = ({
   function handleMouseUp(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     let newIndex = 0;
-    let currentPosition = Math.abs(position);
-    isMouseLocked = false;
+    let currentPosition = Math.abs(position.current);
+    isMouseLocked.current = false;
     itemList.every(item => {
       if (currentPosition > item / 2) {
-        newIndex++;
+        if (newIndex < maxIndex) {
+          newIndex++;
+        }
       }
       currentPosition -= item + gap;
 
@@ -207,21 +212,35 @@ const useCarousel = ({
   }
 
   function handleMouseLeave(event: MouseEvent | TouchEvent): void {
-    if (isMouseLocked) {
+    if (isMouseLocked.current) {
       handleMouseUp(event);
     }
-    isMouseLocked = false;
+    isMouseLocked.current = false;
   }
 
   function goToPreviousIndex(): void {
     if (myIndex >= minIndex) {
       updateMyIndex(myIndex - 1);
+      const newPosition = getCarouselPositionByIndex(
+        itemList,
+        myIndex - 1,
+        gap,
+      );
+      position.current = newPosition;
+      lastPosition.current = newPosition;
     }
   }
 
   function goToNextIndex(): void {
     if (myIndex < maxIndex) {
       updateMyIndex(myIndex + 1);
+      const newPosition = getCarouselPositionByIndex(
+        itemList,
+        myIndex + 1,
+        gap,
+      );
+      position.current = newPosition;
+      lastPosition.current = newPosition;
     }
   }
 
