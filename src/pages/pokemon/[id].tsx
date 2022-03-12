@@ -27,7 +27,9 @@ const Pokemon = ({
   const pageId = parseInt(router.query.id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
   function handleFormChange(form: PokemonForm) {
-    setPokemon(form);
+    if (form) {
+      setPokemon(form);
+    }
   }
 
   useEffect(() => {
