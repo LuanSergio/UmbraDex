@@ -3,6 +3,7 @@ import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral'
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import Carousel from '@components/molecules/Carousel';
 import CarouselItem from '@components/atoms/CarouselItem';
+import Important from '@public/icons/important.svg';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -96,7 +97,8 @@ const PokemonBasicInformation = ({
             descriptions[descriptionIndex].description}
           {(descriptionIndex === 3 || descriptionIndex === 4) && (
             <small className={styles.sideNote}>
-              Sidenote: The fourth and fifth generation share some descriptions
+              <Important className={styles.descriptionImportant} /> The fourth
+              and fifth generation share some descriptions
             </small>
           )}
         </p>

@@ -79,10 +79,18 @@
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.3);
 }
 
+.descriptionImportant {
+  align-self: flex-start;
+  display: inline-block;
+  margin-right: rem(8);
+  margin-top: rem(2);
+  width: rem(24);
+}
+
 .sideNote {
-  display: block;
+  display: flex;
   font-size: rem(16);
-  margin-top: rem(8);
+  margin-top: rem(12);
 }
 
 .typeContainer {
