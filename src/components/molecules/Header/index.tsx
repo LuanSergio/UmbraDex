@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Logo from '../../../assets/icons/logo.svg';
-import Github from '../../../assets/icons/github.svg';
+import Logo from '@public/icons/logo.svg';
+import Github from '@public/icons/github.svg';
 import styles from './styles.module.scss';
 
 const Header = (): JSX.Element => {
