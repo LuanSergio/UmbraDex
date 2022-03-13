@@ -9,4 +9,18 @@ module.exports = {
   images: {
     domains: ['umbradex.vercel.app', 'raw.githubusercontent.com'],
   },
+  webpack: (config, { defaultLoaders }) => {
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: { titleProp: true },
+        },
+      ],
+    });
+
+    return config;
+  },
 };
