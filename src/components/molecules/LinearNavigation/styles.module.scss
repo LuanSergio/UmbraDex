@@ -1,6 +1,7 @@
 @use 'tools/index' as *;
 @use 'helpers/icon.scss' as *;
 @use 'helpers/container.scss' as *;
+@use 'settings/_breakpoints' as *;
 
 .navigation {
   align-items: center;
@@ -17,14 +18,6 @@
   width: 100%;
 }
 
-.next {
-  transform: translateX(100%);
-}
-
-.previous {
-  transform: translateX(-100%);
-}
-
 .previous,
 .next {
   align-items: center;
@@ -33,7 +26,7 @@
   border-width: 0;
   color: get-color(light);
   display: flex;
-  font-size: rem(80);
+  font-size: rem(64);
   opacity: 0.9;
   padding: rem(4) rem(8);
   position: relative;
@@ -60,4 +53,21 @@
 
 .next:hover {
   opacity: 1;
+}
+
+@media only screen and (min-width: $lg) {
+  .navigation {
+    max-width: calc(100% - 32px);
+  }
+
+  .previous,
+  .next {
+    font-size: rem(80);
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .navigation {
+    max-width: $xl;
+  }
 }

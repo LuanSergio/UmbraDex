@@ -1,9 +1,10 @@
 @use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
 
 .pokemonContainer {
   display: flex;
   justify-content: center;
-  max-width: rem(816);
+  max-width: rem(696);
   overflow: visible;
   position: relative;
   width: 100%;
@@ -11,17 +12,51 @@
 
 .pokemon {
   filter: drop-shadow(rem(15) rem(10) rem(0) rgba(#000, 0.45));
-  height: rem(488);
-  max-width: rem(488);
+  height: rem(448);
+  max-width: rem(448);
   position: relative;
   width: 100%;
   z-index: get-index-level(lvl1);
 }
 
 .japaneseName {
-  font-size: rem(152);
+  font-size: rem(132);
   font-weight: bold;
   left: rem(-24);
   opacity: 0.88;
   position: absolute;
+}
+
+@media only screen and (min-width: $lg) {
+  .pokemonContainer {
+    max-width: rem(696);
+  }
+
+  .pokemon {
+    height: rem(448);
+    max-width: rem(448);
+  }
+
+  .navigation {
+    font-size: rem(132);
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .pokemonContainer {
+    max-width: rem(816);
+  }
+
+  .pokemon {
+    height: rem(488);
+    max-width: rem(488);
+  }
+
+  .navigation {
+    font-size: rem(152);
+  }
+
+  .japaneseName {
+    font-size: rem(152);
+  }
 }

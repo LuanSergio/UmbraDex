@@ -2,10 +2,11 @@
 @use 'settings/colors-type' as typeColors;
 @use 'helpers/icon.scss' as *;
 @use 'helpers/container.scss' as *;
+@use 'settings/_breakpoints' as *;
 
 .content {
   color: get-color(light);
-  height: 100vh;
+  min-height: 100vh;
   transition: background-color 0.1s;
 }
 
@@ -20,8 +21,58 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: rem(8);
+}
+
+// .container {
+//   display: grid;
+//   grid-template-areas:
+//     'highlight basic'
+//     'highlight description';
+//   grid-template-columns: 1fr 1fr;
+//   justify-content: space-between;
+//   width: 100%;
+// }
+
+.basicInformation {
+  grid-area: basic;
+}
+
+.highlight {
+  grid-area: highlight;
+}
+
+.description {
+  grid-area: description;
+}
+
+@media only screen and (min-width: $md) {
+  .holder {
+    display: flex;
+    justify-content: center;
+  }
+
+  .smallHolder {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .holder {
+    display: block;
+  }
+
+  .smallHolder {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .container {
+    justify-content: space-between;
+  }
 }
 
 @each $type, $color in typeColors.$defaults {
