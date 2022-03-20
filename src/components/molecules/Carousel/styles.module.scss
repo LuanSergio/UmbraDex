@@ -1,9 +1,11 @@
 @use 'tools/index' as *;
 @use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
 
 .carouselHolder {
   display: flex;
   gap: rem(16);
+  justify-content: center;
   position: relative;
   z-index: get-index-level(lvl3);
 }
@@ -69,4 +71,10 @@
 
 .next:hover {
   opacity: 1;
+}
+
+@media only screen and (min-width: $lg) {
+  .carouselHolder {
+    justify-content: start;
+  }
 }

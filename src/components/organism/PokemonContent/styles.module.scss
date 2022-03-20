@@ -11,7 +11,7 @@
 }
 
 .holder {
-  margin-top: rem(72);
+  margin-top: rem(16);
 }
 
 .smallHolder {
@@ -25,26 +25,10 @@
   margin-top: rem(8);
 }
 
-// .container {
-//   display: grid;
-//   grid-template-areas:
-//     'highlight basic'
-//     'highlight description';
-//   grid-template-columns: 1fr 1fr;
-//   justify-content: space-between;
-//   width: 100%;
-// }
-
-.basicInformation {
-  grid-area: basic;
-}
-
-.highlight {
-  grid-area: highlight;
-}
-
-.description {
-  grid-area: description;
+@media only screen and (min-width: $sm) {
+  .holder {
+    margin-top: rem(28);
+  }
 }
 
 @media only screen and (min-width: $md) {
@@ -62,6 +46,7 @@
 @media only screen and (min-width: $lg) {
   .holder {
     display: block;
+    margin-top: rem(72);
   }
 
   .smallHolder {

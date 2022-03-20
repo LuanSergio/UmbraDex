@@ -14,7 +14,7 @@ const PokemonHighlight = ({
 }: PokemonHighlightProps): JSX.Element => {
   return (
     <div className={styles.pokemonContainer}>
-      <span className={styles.japaneseName} aria-hidden>
+      <span className={styles.japaneseName} aria-hidden="true">
         {japaneseName}
       </span>
 
@@ -22,6 +22,7 @@ const PokemonHighlight = ({
         <Image
           quality={100}
           layout="fill"
+          objectFit="contain"
           src={image}
           alt={name}
           title={name}

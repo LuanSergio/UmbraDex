@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import LinearNavigation from '@components/molecules/LinearNavigation';
 import PokemonHighlight from '@components/molecules/PokemonHighlight';
 import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
+import PokemonDescription from '@components/molecules/PokemonDescription';
 import SwitchForms from '@components/molecules/SwitchForms';
 import DefaultLayout from '@components/layouts/DefaultLayout';
+import useWindowSize from '@hooks/useWindowSize';
+
 import styles from './styles.module.scss';
 
 interface IPokemonContentProps {
@@ -24,6 +27,7 @@ const PokemonContent = ({
   const router = useRouter();
   const pageId = parseInt(router.query.id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
+  const [windowWidth] = useWindowSize();
 
   function handleFormChange(form: PokemonForm) {
     if (form) {
@@ -45,6 +49,14 @@ const PokemonContent = ({
               : styles.holder
           }
         >
+          {windowWidth < 1280 && (
+            <PokemonBasicInformation
+              name={pokemon.name}
+              pokedexIndex={defaultPokemonForm.id}
+              types={pokemon.types}
+            />
+          )}
+
           {AlternativePokemonForms.length > 0 && (
             <SwitchForms
               pokemon={pokemon}
@@ -53,18 +65,27 @@ const PokemonContent = ({
               alternativePokemonForms={AlternativePokemonForms}
             />
           )}
+
           <div className={styles.container}>
             <PokemonHighlight
               japaneseName={pokemonDetails.japaneseName}
               image={pokemon.image}
               name={pokemon.name}
             />
-            <PokemonBasicInformation
-              name={pokemon.name}
-              pokedexIndex={defaultPokemonForm.id}
-              types={pokemon.types}
-              descriptions={pokemonDetails.descriptions}
-            />
+            <div>
+              {windowWidth > 1280 && (
+                <PokemonBasicInformation
+                  name={pokemon.name}
+                  pokedexIndex={defaultPokemonForm.id}
+                  types={pokemon.types}
+                />
+              )}
+
+              <PokemonDescription
+                pokedexIndex={defaultPokemonForm.id}
+                descriptions={pokemonDetails.descriptions}
+              />
+            </div>
           </div>
           <LinearNavigation
             previous={`/pokemon/${pageId - 1}`}

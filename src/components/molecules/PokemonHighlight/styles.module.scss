@@ -12,19 +12,22 @@
 
 .pokemon {
   filter: drop-shadow(rem(15) rem(10) rem(0) rgba(#000, 0.45));
-  height: rem(448);
-  max-width: rem(448);
+  height: rem(320);
+  margin-bottom: rem(24);
   position: relative;
-  width: 100%;
+  width: calc(100% - 20px);
   z-index: get-index-level(lvl1);
 }
 
 .japaneseName {
-  font-size: rem(132);
-  font-weight: bold;
-  left: rem(-24);
-  opacity: 0.88;
-  position: absolute;
+  display: none;
+}
+
+@media only screen and (min-width: $sm) {
+  .pokemon {
+    height: rem(396);
+    margin-bottom: rem(54);
+  }
 }
 
 @media only screen and (min-width: $lg) {
@@ -34,11 +37,21 @@
 
   .pokemon {
     height: rem(448);
+    margin-bottom: 0;
     max-width: rem(448);
+    width: 100%;
   }
 
   .navigation {
     font-size: rem(132);
+  }
+
+  .japaneseName {
+    display: inline-block;
+    font-size: rem(132);
+    font-weight: bold;
+    opacity: 0.88;
+    position: absolute;
   }
 }
 
@@ -58,5 +71,6 @@
 
   .japaneseName {
     font-size: rem(152);
+    left: rem(-24);
   }
 }

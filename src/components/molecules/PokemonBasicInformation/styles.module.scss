@@ -1,9 +1,10 @@
 @use 'tools/index' as *;
 @use 'settings/colors-type' as typeColors;
 @use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
 
 .name {
-  font-size: rem(88);
+  font-size: rem(42);
   margin-bottom: rem(8);
   margin-top: 0;
   max-width: rem(404);
@@ -16,14 +17,18 @@
 .basicInfo {
   align-items: center;
   display: flex;
-  margin-bottom: rem(32);
+  margin-bottom: rem(16);
   max-width: rem(352);
+}
+
+.hashtag {
+  font-size: rem(28);
 }
 
 .number {
   align-items: center;
   display: flex;
-  font-size: rem(56);
+  font-size: rem(40);
   font-weight: bold;
   letter-spacing: 0.8;
   line-height: 1;
@@ -31,9 +36,9 @@
 
   &::after {
     content: '|';
-    font-size: rem(42);
-    margin-left: rem(16);
-    margin-right: rem(16);
+    font-size: rem(32);
+    margin-left: rem(8);
+    margin-right: rem(8);
   }
 }
 
@@ -45,54 +50,6 @@
   padding-top: 0;
 }
 
-.generationDescriptionOption {
-  border-bottom-color: get-color(light);
-  border-bottom-left-radius: rem(1);
-  border-bottom-right-radius: rem(1);
-  border-bottom-width: rem(3);
-  border-left-width: 0;
-  border-right-width: 0;
-  border-style: inset;
-  border-top-width: 0;
-  color: get-color(light);
-  display: inline-block;
-  font-size: rem(32);
-  font-weight: bold;
-  margin-bottom: rem(8);
-  opacity: 0.8;
-  padding: rem(1) rem(6);
-  transition: opacity 0.2s;
-  &.active,
-  &:hover {
-    opacity: 1;
-    text-shadow: rem(4) rem(2) rem(4) rgba(#000, 0.25);
-  }
-}
-
-.description {
-  font-size: rem(26);
-  font-weight: bold;
-  line-height: 1.5;
-  margin-bottom: rem(0);
-  margin-top: rem(24);
-  max-width: rem(400);
-  text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.3);
-}
-
-.descriptionImportant {
-  align-self: flex-start;
-  display: inline-block;
-  margin-right: rem(8);
-  margin-top: rem(2);
-  width: rem(24);
-}
-
-.sideNote {
-  display: flex;
-  font-size: rem(16);
-  margin-top: rem(12);
-}
-
 .typeContainer {
   display: flex;
 }
@@ -102,7 +59,6 @@
   color: get-color(light);
   display: flex;
   font-size: 0;
-  height: rem(64);
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.15);
   transition: opacity ease-out 0.25s;
 
@@ -123,13 +79,13 @@
 
 .singleType {
   &::before {
-    font-size: rem(44);
+    font-size: rem(36);
   }
 }
 
 .dualType {
   &::before {
-    font-size: rem(36);
+    font-size: rem(28);
   }
 }
 
@@ -137,5 +93,56 @@
   .type.#{$type}::before {
     color: #fff;
     content: get-icon($type);
+  }
+}
+
+@media only screen and (min-width: $sm) {
+  .name {
+    font-size: rem(64);
+  }
+
+  .basicInfo {
+    margin-bottom: rem(32);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .name {
+    font-size: rem(88);
+    margin-bottom: rem(8);
+    max-width: rem(404);
+  }
+
+  .hashtag {
+    font-size: rem(42);
+  }
+
+  .number {
+    font-size: rem(56);
+    letter-spacing: 0.8;
+    line-height: 1;
+
+    &::after {
+      content: '|';
+      font-size: rem(42);
+      margin-left: rem(16);
+      margin-right: rem(16);
+    }
+  }
+
+  .type {
+    height: rem(64);
+  }
+
+  .singleType {
+    &::before {
+      font-size: rem(44);
+    }
+  }
+
+  .dualType {
+    &::before {
+      font-size: rem(36);
+    }
   }
 }
