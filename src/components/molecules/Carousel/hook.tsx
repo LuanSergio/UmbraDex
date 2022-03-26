@@ -167,7 +167,6 @@ const useCarousel = ({
   );
 
   function handleMouseDown(event: MouseEvent | TouchEvent): void {
-    // event.preventDefault();
     isMouseLocked.current = true;
     initialPosition.current = getTouchOrClickClientX(event);
   }
@@ -190,8 +189,7 @@ const useCarousel = ({
     }
   }
 
-  function handleMouseUp(event: MouseEvent | TouchEvent): void {
-    // event.preventDefault();
+  function handleMouseUp(): void {
     let newIndex = 0;
     let currentPosition = Math.abs(position.current);
     isMouseLocked.current = false;
@@ -212,9 +210,9 @@ const useCarousel = ({
     updateCurrentIndex(newIndex);
   }
 
-  function handleMouseLeave(event: MouseEvent | TouchEvent): void {
+  function handleMouseLeave(): void {
     if (isMouseLocked.current) {
-      handleMouseUp(event);
+      handleMouseUp();
     }
     isMouseLocked.current = false;
   }
