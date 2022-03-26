@@ -245,8 +245,10 @@ const useCarousel = ({
   }
 
   useEffect(() => {
-    updateCarouselPositionUsingIndex(myIndex);
-  }, [updateCarouselPositionUsingIndex, myIndex]);
+    if (itemsQuantity > maxItems) {
+      updateCarouselPositionUsingIndex(myIndex);
+    }
+  }, [updateCarouselPositionUsingIndex, myIndex, itemsQuantity, maxItems]);
 
   return {
     handleMouseDown,
