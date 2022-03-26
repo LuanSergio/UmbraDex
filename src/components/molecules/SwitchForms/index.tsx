@@ -57,8 +57,8 @@ const SwitchForms = ({
 
   return (
     <Carousel
-      myIndex={formIndex}
-      updateMyIndex={handleFormIndexChange}
+      currentIndex={formIndex}
+      updateCurrentIndex={handleFormIndexChange}
       tagName="ul"
       itemWidth={50}
       gap={12}

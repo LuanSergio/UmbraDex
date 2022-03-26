@@ -40,8 +40,8 @@ const PokemonBasicInformation = ({
     <div>
       <div className={styles.descriptionContainer}>
         <Carousel
-          myIndex={descriptionIndex}
-          updateMyIndex={handleDescriptionChange}
+          currentIndex={descriptionIndex}
+          updateCurrentIndex={handleDescriptionChange}
           tagName="ol"
           itemWidth={widthList}
           gap={12}

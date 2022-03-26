@@ -15,8 +15,8 @@ interface IUseCarouselParams {
   gap: number;
   maxItems: number;
   animationDuration?: number;
-  myIndex: number;
-  updateMyIndex: (myIndex: number) => void;
+  currentIndex: number;
+  updateCurrentIndex: (CurrentIndex: number) => void;
 }
 
 interface IUseCarouselResponse {
@@ -63,8 +63,8 @@ const useCarousel = ({
   gap,
   maxItems,
   animationDuration = 300,
-  myIndex,
-  updateMyIndex,
+  currentIndex: CurrentIndex,
+  updateCurrentIndex,
 }: IUseCarouselParams): IUseCarouselResponse => {
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
@@ -208,7 +208,7 @@ const useCarousel = ({
       return false;
     });
 
-    updateMyIndex(newIndex);
+    updateCurrentIndex(newIndex);
   }
 
   function handleMouseLeave(event: MouseEvent | TouchEvent): void {
@@ -219,11 +219,11 @@ const useCarousel = ({
   }
 
   function goToPreviousIndex(): void {
-    if (myIndex >= minIndex) {
-      updateMyIndex(myIndex - 1);
+    if (CurrentIndex >= minIndex) {
+      updateCurrentIndex(CurrentIndex - 1);
       const newPosition = getCarouselPositionByIndex(
         itemList,
-        myIndex - 1,
+        CurrentIndex - 1,
         gap,
       );
       position.current = newPosition;
@@ -232,11 +232,11 @@ const useCarousel = ({
   }
 
   function goToNextIndex(): void {
-    if (myIndex < maxIndex) {
-      updateMyIndex(myIndex + 1);
+    if (CurrentIndex < maxIndex) {
+      updateCurrentIndex(CurrentIndex + 1);
       const newPosition = getCarouselPositionByIndex(
         itemList,
-        myIndex + 1,
+        CurrentIndex + 1,
         gap,
       );
       position.current = newPosition;
@@ -246,9 +246,9 @@ const useCarousel = ({
 
   useEffect(() => {
     if (itemsQuantity > maxItems) {
-      updateCarouselPositionUsingIndex(myIndex);
+      updateCarouselPositionUsingIndex(CurrentIndex);
     }
-  }, [updateCarouselPositionUsingIndex, myIndex, itemsQuantity, maxItems]);
+  }, [updateCarouselPositionUsingIndex, CurrentIndex, itemsQuantity, maxItems]);
 
   return {
     handleMouseDown,
