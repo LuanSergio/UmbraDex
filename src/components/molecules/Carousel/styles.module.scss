@@ -4,7 +4,7 @@
 
 .carouselHolder {
   display: flex;
-  gap: rem(16);
+  gap: rem(12);
   justify-content: center;
   position: relative;
   z-index: get-index-level(lvl3);
@@ -47,7 +47,7 @@
   border-width: 0;
   color: get-color(light);
   display: flex;
-  font-size: rem(32);
+  font-size: rem(28);
   opacity: 0.9;
   transition: background-color 0.2s;
   &::before {
@@ -71,6 +71,17 @@
 
 .next:hover {
   opacity: 1;
+}
+
+@media only screen and (min-width: $md) {
+  .carouselHolder {
+    gap: rem(16);
+  }
+
+  .previous,
+  .next {
+    font-size: rem(32);
+  }
 }
 
 @media only screen and (min-width: $lg) {
