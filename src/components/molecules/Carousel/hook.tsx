@@ -151,7 +151,8 @@ const useCarousel = ({
         );
         await updateCarouselPosition(newPosition);
         lastPosition.current = newPosition;
-
+        initialPosition.current = newPosition;
+        position.current = newPosition;
         removeCarouselAnimationDuration();
       }
     },
@@ -166,7 +167,7 @@ const useCarousel = ({
   );
 
   function handleMouseDown(event: MouseEvent | TouchEvent): void {
-    event.preventDefault();
+    // event.preventDefault();
     isMouseLocked.current = true;
     initialPosition.current = getTouchOrClickClientX(event);
   }
@@ -190,7 +191,7 @@ const useCarousel = ({
   }
 
   function handleMouseUp(event: MouseEvent | TouchEvent): void {
-    event.preventDefault();
+    // event.preventDefault();
     let newIndex = 0;
     let currentPosition = Math.abs(position.current);
     isMouseLocked.current = false;
