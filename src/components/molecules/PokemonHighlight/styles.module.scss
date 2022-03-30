@@ -50,6 +50,7 @@
     display: inline-block;
     font-size: rem(132);
     font-weight: bold;
+    left: rem(-24);
     opacity: 0.88;
     position: absolute;
   }
@@ -71,6 +72,5 @@
 
   .japaneseName {
     font-size: rem(152);
-    left: rem(-24);
   }
 }

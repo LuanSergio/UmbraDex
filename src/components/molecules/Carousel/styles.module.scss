@@ -73,19 +73,14 @@
   opacity: 1;
 }
 
-@media only screen and (min-width: $md) {
+@media only screen and (min-width: $lg) {
   .carouselHolder {
     gap: rem(16);
+    justify-content: start;
   }
 
   .previous,
   .next {
     font-size: rem(32);
-  }
-}
-
-@media only screen and (min-width: $lg) {
-  .carouselHolder {
-    justify-content: start;
   }
 }

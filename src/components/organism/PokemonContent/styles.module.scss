@@ -19,7 +19,9 @@
 }
 
 .container {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: rem(8);
@@ -31,19 +33,12 @@
   }
 }
 
-@media only screen and (min-width: $md) {
-  .holder {
-    display: flex;
-    justify-content: center;
-  }
-
-  .smallHolder {
-    display: flex;
-    justify-content: center;
-  }
-}
-
 @media only screen and (min-width: $lg) {
+  .container {
+    align-items: normal;
+    flex-direction: row;
+  }
+
   .holder {
     display: block;
     margin-top: rem(72);
