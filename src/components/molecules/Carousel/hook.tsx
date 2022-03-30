@@ -140,6 +140,12 @@ const useCarousel = ({
     }, animationDuration);
   }, [animationDuration, carouselWrapperRef]);
 
+  // reset carousel position when items quantity change
+  useEffect(() => {
+    carouselWrapperRef.current?.style.setProperty('transition-duration', `0ms`);
+    updateCarouselPosition(0);
+  }, [carouselWrapperRef, itemsQuantity, updateCarouselPosition]);
+
   const updateCarouselPositionUsingIndex = useCallback(
     async newIndex => {
       if (newIndex <= maxIndex) {
