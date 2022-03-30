@@ -43,6 +43,12 @@ const SwitchForms = ({
   }
 
   useEffect(() => {
+    if (pokemon.isDefault) {
+      setFormIndex(0);
+    }
+  }, [pokemon.isDefault]);
+
+  useEffect(() => {
     if (formIndex === 0) {
       handleFormChange(defaultPokemonForm);
     } else {

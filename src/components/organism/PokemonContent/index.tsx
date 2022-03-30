@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import LinearNavigation from '@components/molecules/LinearNavigation';
 import PokemonHighlight from '@components/molecules/PokemonHighlight';
@@ -29,11 +29,11 @@ const PokemonContent = ({
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
   const [windowWidth] = useWindowSize();
 
-  function handleFormChange(form: PokemonForm) {
+  const handleFormChange = useCallback((form: PokemonForm) => {
     if (form) {
       setPokemon(form);
     }
-  }
+  }, []);
 
   useEffect(() => {
     setPokemon(defaultPokemonForm);
