@@ -33,7 +33,7 @@
 
 .card:hover .background {
   opacity: 0.83;
-  transform: translateY(-2px);
+  transform: translateY(rem(-2));
 }
 
 .number {
