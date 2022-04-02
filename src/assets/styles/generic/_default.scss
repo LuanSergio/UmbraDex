@@ -1,4 +1,6 @@
 @use '../tools/get-color' as *;
+@use 'settings/colors-type' as typeColors;
+
 $base-font-size: 1em;
 
 *,
@@ -25,7 +27,7 @@ body {
 }
 
 body {
-  background-color: get-color(neutral);
+  background-color: var(--current-body-background);
 }
 
 ul {
@@ -37,5 +39,14 @@ button {
   cursor: pointer;
   &:disabled {
     cursor: not-allowed;
+  }
+}
+
+@each $type, $color in typeColors.$defaults {
+  body.#{$type} {
+    --current-light-type-color: #{map-get(typeColors.$lights, $type)};
+    --current-dark-type-color: #{map-get(typeColors.$darks, $type)};
+    --current-type-color: #{map-get(typeColors.$defaults, $type)};
+    --current-body-background: #{map-get(typeColors.$lights, $type)};
   }
 }
