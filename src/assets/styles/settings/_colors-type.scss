@@ -1,24 +1,3 @@
-$defaults: (
-  bug: #a8b820,
-  dark: #705848,
-  dragon: #462497,
-  electric: #f1c618,
-  fairy: #f0718d,
-  fighting: #8e1f1a,
-  fire: #f5632d,
-  flying: #a890f0,
-  ghost: #5a3696,
-  grass: #40af31,
-  ground: #c9a950,
-  ice: #0dc0c0,
-  normal: #97977b,
-  poison: #a040a0,
-  psychic: #e44071,
-  rock: #8a6d21,
-  steel: #b8b8d0,
-  water: #507ce4,
-);
-
 $gradient: (
   bug: linear-gradient(180deg, #a8b820 0%, rgba(215, 239, 10, 0.6) 100%),
   dark: linear-gradient(180deg, #705848 0%, rgba(200, 132, 87, 0.9) 100%),
@@ -40,7 +19,28 @@ $gradient: (
   water: linear-gradient(180deg, #4f7ff3 0%, rgba(23, 200, 239, 0.55) 99.99%),
 );
 
-$background: (
+$defaults: (
+  bug: #a8b820,
+  dark: #705848,
+  dragon: #462497,
+  electric: #f1c618,
+  fairy: #f0718d,
+  fighting: #8e1f1a,
+  fire: #f5632d,
+  flying: #a890f0,
+  ghost: #5a3696,
+  grass: #40af31,
+  ground: #c9a950,
+  ice: #0dc0c0,
+  normal: #97977b,
+  poison: #a040a0,
+  psychic: #e44071,
+  rock: #8a6d21,
+  steel: #b8b8d0,
+  water: #507ce4,
+);
+
+$lights: (
   bug: #acb934,
   dark: #7a5d48,
   dragon: rgb(88, 53, 179),
@@ -59,4 +59,25 @@ $background: (
   rock: #b8a345,
   steel: #a0a0b4,
   water: #6890f0,
+);
+
+$darks: (
+  bug: #808d10,
+  dark: #4e3524,
+  dragon: rgb(45, 23, 100),
+  electric: #bf9c12,
+  fairy: #da7288,
+  fighting: #97332d,
+  fire: rgb(159, 80, 24),
+  flying: #9d86e2,
+  ghost: #361c5f,
+  grass: #387d2f,
+  ground: #90752d,
+  ice: rgb(50, 163, 163),
+  normal: #6a6a66,
+  poison: #722572,
+  psychic: #a94160,
+  rock: #8a7723,
+  steel: #6a6a7a,
+  water: #2b56bb,
 );
