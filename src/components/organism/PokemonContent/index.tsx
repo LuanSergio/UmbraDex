@@ -8,6 +8,7 @@ import PokemonDescription from '@components/molecules/PokemonDescription';
 import SwitchForms from '@components/molecules/SwitchForms';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import useWindowSize from '@hooks/useWindowSize';
+import PokemonStats from '@components/molecules/PokemonStats';
 
 import styles from './styles.module.scss';
 
@@ -38,6 +39,11 @@ const PokemonContent = ({
   useEffect(() => {
     setPokemon(defaultPokemonForm);
   }, [defaultPokemonForm]);
+
+  useEffect(() => {
+    const mainType = pokemon.types[0];
+    document.body.className = mainType;
+  }, [pokemon.types]);
 
   return (
     <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
@@ -86,6 +92,7 @@ const PokemonContent = ({
                 descriptions={pokemonDetails.descriptions}
               />
             </div>
+            <PokemonStats stats={pokemon.stats} />
           </div>
           <LinearNavigation
             previous={`/pokemon/${pageId - 1}`}
