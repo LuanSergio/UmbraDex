@@ -1,0 +1,12 @@
+@use 'tools/index' as *;
+
+.label {
+  fill: get-color(light);
+  font-size: rem(18);
+  text-transform: capitalize;
+}
+
+.radar {
+  fill: var(--current-light-type-color);
+  stroke: var(--current-light-type-color);
+}
