@@ -1,6 +1,6 @@
 @use 'tools/index' as *;
 @use 'helpers/icon.scss' as *;
-@use 'animations/growing-border';
+@use 'animations/increasing-horizontal';
 @use 'settings/_breakpoints' as *;
 
 .header {
@@ -22,7 +22,7 @@
 }
 
 .logo:hover::after {
-  animation: growingBorder 0.25s forwards;
+  animation: increasingHorizontal 0.25s forwards;
   background-color: get-color(secondary);
   content: '';
   display: block;
