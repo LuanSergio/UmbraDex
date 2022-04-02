@@ -11,6 +11,6 @@ declare interface PokemonForm {
   types: string[];
   formName: string;
   formOrder: string;
-  stats: PokemonStats;
+  stats: PokemonStats[];
   image: string;
 }
