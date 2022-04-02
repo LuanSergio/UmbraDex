@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import PokemonCard from '@components/molecules/PokemonCard';
 import styles from './styles.module.scss';
 import useController from './index.controller';
@@ -12,6 +12,10 @@ const PokemonCardList = ({
 }: PokemonCardListProps): JSX.Element => {
   const loader = useRef(null);
   const { loadedPokemonList } = useController({ pokemonList, loader });
+
+  useEffect(() => {
+    document.body.className = '';
+  }, []);
 
   return (
     <>
