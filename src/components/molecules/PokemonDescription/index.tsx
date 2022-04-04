@@ -51,6 +51,7 @@ const PokemonBasicInformation = ({
             return (
               <CarouselItem
                 key={`${item.id}`}
+                tagName="li"
                 onClick={() => handleDescriptionChange(index)}
               >
                 <span
