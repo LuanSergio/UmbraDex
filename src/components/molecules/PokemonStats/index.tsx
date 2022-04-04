@@ -10,22 +10,26 @@ interface IPokemonStatsProps {
 const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {
   return (
     <div className={styles.stats}>
-      <div>
+      <div className={styles.statsList}>
         {stats.map(stat => {
           const percentBar = Math.round(stat.value * 100) / 255;
 
           return (
             <div key={stat.name} className={styles.statsHolder}>
-              <label htmlFor={stat.name} className={styles.statsLabel}>
+              <label
+                htmlFor={stat.name}
+                id={stat.name}
+                className={styles.statsLabel}
+              >
                 {formatStats(stat.name)}: {stat.value}
               </label>
               <div
-                id={stat.name}
                 role="meter"
                 aria-valuemax={255}
                 aria-valuemin={0}
                 aria-valuenow={stat.value}
                 className={styles.statsMeter}
+                aria-labelledby={stat.name}
               >
                 <div
                   style={{ width: `${percentBar}%` }}
