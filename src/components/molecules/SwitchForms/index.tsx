@@ -71,6 +71,7 @@ const SwitchForms = ({
       maxItems={4}
     >
       <CarouselItem
+        tagName="li"
         onClick={() => handleFormIndexChange(0)}
         buttonProps={{ disabled: pokemon.isDefault }}
       >
@@ -88,6 +89,7 @@ const SwitchForms = ({
         return (
           <CarouselItem
             key={form.id}
+            tagName="li"
             onClick={() => handleFormIndexChange(index + 1)}
             buttonProps={{ disabled: form.id === pokemon.id }}
           >
