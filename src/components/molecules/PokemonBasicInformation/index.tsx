@@ -33,7 +33,6 @@ const PokemonBasicInformation = ({
               className={`${styles.type} ${styles[types[index]]} ${
                 types.length > 1 ? styles.dualType : styles.singleType
               }`}
-              aria-label={type}
             />
           ))}
         </div>
