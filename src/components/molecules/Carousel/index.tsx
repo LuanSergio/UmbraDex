@@ -74,6 +74,7 @@ const Carousel = ({
             type="button"
             aria-label="Previous slide"
             onClick={goToPreviousIndex}
+            disabled={currentIndex === 0}
             className={styles.previous}
           />
         )}
@@ -95,6 +96,7 @@ const Carousel = ({
             type="button"
             className={styles.next}
             aria-label="Next slide"
+            disabled={currentIndex === itemsQuantity - 1}
             onClick={goToNextIndex}
           />
         )}
