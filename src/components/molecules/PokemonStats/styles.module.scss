@@ -16,9 +16,15 @@
   width: 100%;
 }
 
+.statsList {
+  width: 100%;
+}
+
 .statsHolder {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
+  flex-direction: column;
+  width: 100%;
 
   &:not(:last-child) {
     margin-bottom: rem(40);
@@ -29,12 +35,14 @@
   display: block;
   font-size: rem(18);
   font-weight: bold;
+  margin-bottom: rem(8);
   margin-right: rem(8);
   text-transform: capitalize;
   width: rem(180);
 }
 
 .statsMeter {
+  align-self: center;
   background: get-color(light);
   height: rem(24);
   overflow: hidden;
@@ -62,7 +70,16 @@
     justify-content: space-between;
   }
 
+  .statsHolder {
+    align-items: center;
+    flex-direction: row;
+  }
+
   .statsGraph {
     margin-bottom: 0;
+  }
+
+  .statsLabel {
+    margin-bottom: rem(0);
   }
 }
