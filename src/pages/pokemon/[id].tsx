@@ -3,6 +3,7 @@ import Head from 'next/head';
 import PokemonContent from '@components/organism/PokemonContent';
 
 import getPokemonDetailsData from '@utils/getPokemonDetailsData';
+import { useEffect } from 'react';
 
 interface IPokemonDetailsProps {
   pokemonDetails: IPokemonDetails;
@@ -17,6 +18,10 @@ const Pokemon = ({
   pokedexLimit,
   pokemonDetails,
 }: IPokemonDetailsProps): JSX.Element => {
+  useEffect(() => {
+    console.log('pokemon', pokemonDetails);
+  }, [pokemonDetails]);
+
   return (
     <>
       <Head>
