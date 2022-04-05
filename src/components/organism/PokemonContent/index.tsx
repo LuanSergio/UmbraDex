@@ -14,8 +14,8 @@ import styles from './styles.module.scss';
 
 interface IPokemonContentProps {
   pokemonDetails: IPokemonDetails;
-  defaultPokemonForm: PokemonForm;
-  AlternativePokemonForms: PokemonForm[];
+  defaultPokemonForm: IPokemonForm;
+  AlternativePokemonForms: IPokemonForm[];
   pokedexLimit: number;
 }
 
@@ -30,7 +30,7 @@ const PokemonContent = ({
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
   const [windowWidth] = useWindowSize();
 
-  const handleFormChange = useCallback((form: PokemonForm) => {
+  const handleFormChange = useCallback((form: IPokemonForm) => {
     if (form) {
       setPokemon(form);
     }

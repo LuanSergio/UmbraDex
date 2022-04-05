@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
   pokedexIndex: number;
-  descriptions: PokemonDescription[];
+  descriptions: IPokemonDescription[];
 }
 
 const PokemonBasicInformation = ({

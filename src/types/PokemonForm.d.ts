@@ -1,9 +1,9 @@
-declare interface PokemonStats {
+declare interface IPokemonStats {
   name: string;
   value: number;
 }
 
-declare interface PokemonForm {
+declare interface IPokemonForm {
   id: number;
   name: string;
   isDefault: boolean;

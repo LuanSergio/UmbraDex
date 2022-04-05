@@ -4,7 +4,7 @@ import formatStats from '@utils/formatStats';
 import styles from './styles.module.scss';
 
 interface IPokemonStatsProps {
-  stats: PokemonStats[];
+  stats: IPokemonStats[];
 }
 
 const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {

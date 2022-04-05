@@ -13,10 +13,10 @@ import CarouselItem from '@components/atoms/CarouselItem';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {
-  defaultPokemonForm: PokemonForm;
-  alternativePokemonForms: PokemonForm[];
-  pokemon: PokemonForm;
-  handleFormChange: (form: PokemonForm) => void;
+  defaultPokemonForm: IPokemonForm;
+  alternativePokemonForms: IPokemonForm[];
+  pokemon: IPokemonForm;
+  handleFormChange: (form: IPokemonForm) => void;
 }
 
 const forms = {

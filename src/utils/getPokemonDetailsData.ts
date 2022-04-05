@@ -8,10 +8,10 @@ import extraFormAvailableImages from '@data/extraFormAvailableImages';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
-  forms: PokemonForm[];
+  forms: IPokemonForm[];
   japaneseName: string;
-  descriptions: PokemonDescription[];
-  evolutionChain: PokemonEvolution[];
+  descriptions: IPokemonDescription[];
+  evolutionChain: IPokemonEvolution[];
 }
 
 async function fetchPokemonDetailsData(id: number) {

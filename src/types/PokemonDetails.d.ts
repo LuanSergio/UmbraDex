@@ -1,10 +1,10 @@
-declare interface PokemonDescription {
+declare interface IPokemonDescription {
   id: string;
   description: string;
   gameVersion: number;
 }
 
-declare interface PokemonEvolution {
+declare interface IPokemonEvolution {
   id: number;
   name: string;
   order: number;
@@ -12,13 +12,13 @@ declare interface PokemonEvolution {
 
 declare interface IPokemonDetails {
   japaneseName: string;
-  descriptions: PokemonDescription[];
-  evolutionChain: PokemonEvolution[];
+  descriptions: IPokemonDescription[];
+  evolutionChain: IPokemonEvolution[];
 }
 
 declare interface IPokemonVariantDetails {
-  forms: PokemonForm[];
+  forms: IPokemonForm[];
   japaneseName: string;
-  descriptions: PokemonDescription[];
-  evolutionChain: PokemonEvolution[];
+  descriptions: IPokemonDescription[];
+  evolutionChain: IPokemonEvolution[];
 }
