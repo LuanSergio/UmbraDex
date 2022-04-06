@@ -16,13 +16,20 @@
   filter: drop-shadow(rem(15) rem(10) rem(0) rgba(#000, 0.45));
   height: rem(320);
   margin-bottom: rem(24);
-  position: relative;
   width: calc(100% - 20px);
   z-index: get-index-level(lvl1);
 }
 
 .japaneseName {
-  display: none;
+  display: inline-block;
+  font-size: rem(80);
+  font-weight: bold;
+  left: 50%;
+  opacity: 0.48;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 @media only screen and (min-width: $sm) {
@@ -51,12 +58,10 @@
   }
 
   .japaneseName {
-    display: inline-block;
     font-size: rem(132);
-    font-weight: bold;
     left: rem(-24);
-    opacity: 0.48;
-    position: absolute;
+    text-align: left;
+    transform: translateX(0);
   }
 }
 

@@ -23,17 +23,8 @@
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
-  margin-top: rem(8);
+  margin-top: rem(24);
 }
-
-// .container {
-//   align-items: center;
-//   display: flex;
-//   flex-direction: column;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   margin-top: rem(8);
-// }
 
 @media only screen and (min-width: $sm) {
   .holder {
@@ -45,11 +36,8 @@
   .container {
     align-items: normal;
     grid-template-columns: rem(816) rem(400);
+    margin-top: rem(8);
   }
-  // .container {
-  //   align-items: normal;
-  //   flex-direction: row;
-  // }
 
   .holder {
     display: block;
@@ -67,7 +55,4 @@
     align-items: normal;
     justify-content: space-between;
   }
-  // .container {
-  //   justify-content: space-between;
-  // }
 }
