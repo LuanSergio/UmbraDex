@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: rem(100);
-  padding: rem(48) rem(20) rem(48) rem(32);
+  padding: rem(48) rem(20) rem(48);
   width: calc(100% - 8px);
 }
 
@@ -69,6 +69,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-top: rem(56);
+    padding: rem(48) rem(20) rem(48) rem(32);
   }
 
   .statsMeter {
