@@ -11,8 +11,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: rem(100);
-  padding: rem(48) rem(32);
-  width: 100%;
+  padding: rem(48) rem(20) rem(48) rem(32);
+  width: calc(100% - 8px);
 }
 
 .statsList {
@@ -35,9 +35,9 @@
   font-size: rem(18);
   font-weight: bold;
   margin-bottom: rem(8);
-  margin-right: rem(8);
+  margin-right: rem(16);
   text-transform: capitalize;
-  width: rem(180);
+  width: rem(140);
 }
 
 .statsMeter {
@@ -45,7 +45,7 @@
   background: get-color(light);
   height: rem(24);
   overflow: hidden;
-  width: rem(220);
+  width: 80%;
 }
 
 .statsMeterValue {
@@ -59,6 +59,7 @@
 .statsGraph {
   height: rem(250);
   margin-bottom: rem(80);
+  max-width: 370px;
   width: 100%;
 }
 
@@ -68,6 +69,11 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-top: rem(56);
+  }
+
+  .statsMeter {
+    height: rem(20);
+    width: rem(196);
   }
 
   .statsHolder {

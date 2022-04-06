@@ -20,12 +20,20 @@
 
 .container {
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 100%;
   justify-content: center;
   margin-top: rem(8);
 }
+
+// .container {
+//   align-items: center;
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   margin-top: rem(8);
+// }
 
 @media only screen and (min-width: $sm) {
   .holder {
@@ -36,8 +44,12 @@
 @media only screen and (min-width: $lg) {
   .container {
     align-items: normal;
-    flex-direction: row;
+    grid-template-columns: rem(816) rem(400);
   }
+  // .container {
+  //   align-items: normal;
+  //   flex-direction: row;
+  // }
 
   .holder {
     display: block;
@@ -52,6 +64,10 @@
 
 @media only screen and (min-width: $xl) {
   .container {
+    align-items: normal;
     justify-content: space-between;
   }
+  // .container {
+  //   justify-content: space-between;
+  // }
 }

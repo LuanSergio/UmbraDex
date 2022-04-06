@@ -37,48 +37,46 @@ const PokemonBasicInformation = ({
   }, [pokedexIndex]);
 
   return (
-    <div>
-      <div className={styles.descriptionContainer}>
-        <Carousel
-          currentIndex={descriptionIndex}
-          updateCurrentIndex={handleDescriptionChange}
-          tagName="ol"
-          itemWidth={widthList}
-          gap={12}
-          maxItems={6}
-        >
-          {descriptions.map((item, index) => {
-            return (
-              <CarouselItem
-                key={`${item.id}`}
-                tagName="li"
-                onClick={() => handleDescriptionChange(index)}
+    <div className={styles.generationDescriptionContainer}>
+      <Carousel
+        currentIndex={descriptionIndex}
+        updateCurrentIndex={handleDescriptionChange}
+        tagName="ol"
+        itemWidth={widthList}
+        gap={12}
+        maxItems={6}
+      >
+        {descriptions.map((item, index) => {
+          return (
+            <CarouselItem
+              key={`${item.id}`}
+              tagName="li"
+              onClick={() => handleDescriptionChange(index)}
+            >
+              <span
+                ref={element => {
+                  ref.current[index] = element;
+                }}
+                className={`${styles.generationDescriptionOption} ${
+                  descriptionIndex === index && styles.active
+                }`}
               >
-                <span
-                  ref={element => {
-                    ref.current[index] = element;
-                  }}
-                  className={`${styles.generationDescriptionOption} ${
-                    descriptionIndex === index && styles.active
-                  }`}
-                >
-                  {transformNumberToRomanNumeral(index + 1)}
-                </span>
-              </CarouselItem>
-            );
-          })}
-        </Carousel>
-        <p className={styles.description}>
-          {descriptions[descriptionIndex] &&
-            descriptions[descriptionIndex].description}
-          {(descriptionIndex === 3 || descriptionIndex === 4) && (
-            <small className={styles.sideNote}>
-              <Important className={styles.descriptionImportant} /> The fourth
-              and fifth generation share some descriptions
-            </small>
-          )}
-        </p>
-      </div>
+                {transformNumberToRomanNumeral(index + 1)}
+              </span>
+            </CarouselItem>
+          );
+        })}
+      </Carousel>
+      <p className={styles.description}>
+        {descriptions[descriptionIndex] &&
+          descriptions[descriptionIndex].description}
+        {(descriptionIndex === 3 || descriptionIndex === 4) && (
+          <small className={styles.sideNote}>
+            <Important className={styles.descriptionImportant} /> The fourth and
+            fifth generation share some descriptions
+          </small>
+        )}
+      </p>
     </div>
   );
 };
