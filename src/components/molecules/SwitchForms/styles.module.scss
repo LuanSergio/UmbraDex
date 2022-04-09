@@ -4,6 +4,6 @@
 @use 'animations/pop-in' as *;
 
 .iconContainer:hover {
-  background-color: rgba($color: #fff, $alpha: 0.25);
+  background-color: rgba($color: get-color(light), $alpha: 0.25);
   border-radius: 10%;
 }

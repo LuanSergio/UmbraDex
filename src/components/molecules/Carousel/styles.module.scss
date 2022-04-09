@@ -57,7 +57,7 @@
   }
 
   &:hover {
-    background-color: rgba($color: #fff, $alpha: 0.15);
+    background-color: rgba($color: get-color(light), $alpha: 0.15);
   }
 
   &[disabled] {

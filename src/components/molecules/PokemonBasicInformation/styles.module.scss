@@ -91,7 +91,7 @@
 
 @each $type, $color in typeColors.$defaults {
   .type.#{$type}::before {
-    color: #fff;
+    color: get-color(light);
     content: get-icon($type);
   }
 }
