@@ -9,6 +9,7 @@ import SwitchForms from '@components/molecules/SwitchForms';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import useWindowSize from '@hooks/useWindowSize';
 import PokemonStats from '@components/molecules/PokemonStats';
+import EvolutionChain from '@components/molecules/EvolutionChain';
 
 import styles from './styles.module.scss';
 
@@ -73,11 +74,17 @@ const PokemonContent = ({
           )}
 
           <div className={styles.container}>
-            <PokemonHighlight
-              japaneseName={pokemonDetails.japaneseName}
-              image={pokemon.image}
-              name={pokemon.name}
-            />
+            <div>
+              <PokemonHighlight
+                japaneseName={pokemonDetails.japaneseName}
+                image={pokemon.image}
+                name={pokemon.name}
+              />
+              <EvolutionChain
+                currentId={defaultPokemonForm.id}
+                evolutionChain={pokemonDetails.evolutionChain}
+              />
+            </div>
             <div>
               {windowWidth > 1280 && (
                 <PokemonBasicInformation

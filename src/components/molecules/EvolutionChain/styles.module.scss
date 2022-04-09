@@ -1,0 +1,80 @@
+@use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
+
+.evolutionChain {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: rem(40);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: rem(400);
+  width: 100%;
+}
+
+.evolutionContainer {
+  border-radius: 15%;
+  color: get-color(light);
+  display: inline-block;
+  font-weight: bold;
+  max-width: rem(100);
+  padding: rem(8);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  z-index: get-index-level(lvl3);
+}
+
+.evolutionContainer:not(:last-child) {
+  margin-right: rem(4);
+}
+
+.evolutionContainerActive,
+.evolutionContainer:hover {
+  background-color: rgba($color: get-color(light), $alpha: 8%);
+}
+
+.evolutionName {
+  font-size: rem(16);
+  text-transform: capitalize;
+}
+
+.evolution {
+  background-color: var(--current-dark-type-color);
+  display: inline-block;
+  height: rem(66.67);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: rem(66.67);
+}
+
+@media only screen and (min-width: $sm) {
+  .evolutionChain {
+    margin-top: rem(20);
+  }
+
+  .evolutionContainer {
+    max-width: rem(120);
+  }
+
+  .evolution {
+    height: rem(80);
+    width: rem(80);
+  }
+
+  .evolutionContainer:not(:last-child) {
+    margin-right: rem(10);
+  }
+
+  .evolutionName {
+    font-size: rem(18);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .evolutionChain {
+    margin-bottom: rem(0);
+  }
+}
