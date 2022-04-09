@@ -1,8 +1,5 @@
 import { apiUrl, axios } from '@services/api';
-import {
-  pokemonArtworkImages,
-  pokemonArtworkUploadedQuantity,
-} from '@data/imagesRoutes';
+import getPokemonImageUrl from './getPokemonImageUrl';
 
 async function fetchPokemonListData() {
   const result = await axios.post(apiUrl, {
@@ -37,10 +34,7 @@ export default async function getPokemonListData(): Promise<
       id: response.id,
       name: response.name,
       types: response.information[0].types.map(item => item.type.name),
-      image:
-        pokemonArtworkUploadedQuantity >= response.id
-          ? `${pokemonArtworkImages.main}/${response.id}.png`
-          : `${pokemonArtworkImages.fallback}/${response.id}.png`,
+      image: getPokemonImageUrl(response.id),
     };
 
     pokemonInfoArray.push(pokemonInfo);

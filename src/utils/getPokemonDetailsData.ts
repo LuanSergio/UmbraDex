@@ -1,10 +1,6 @@
 import { apiUrl, axios } from '@services/api';
-import {
-  pokemonArtworkImages,
-  pokemonArtworkUploadedQuantity,
-} from '@data/imagesRoutes';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
-import extraFormAvailableImages from '@data/extraFormAvailableImages';
+import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
@@ -104,14 +100,7 @@ export default async function getPokemonDetailsData(
                 };
               },
             ),
-          image:
-            pokemonArtworkUploadedQuantity >=
-              form.pokemon_v2_pokemonforms[0].pokemon_id ||
-            extraFormAvailableImages.includes(
-              form.pokemon_v2_pokemonforms[0].pokemon_id,
-            )
-              ? `${pokemonArtworkImages.main}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`
-              : `${pokemonArtworkImages.fallback}/${form.pokemon_v2_pokemonforms[0].pokemon_id}.png`,
+          image: getPokemonImageUrl(form.pokemon_v2_pokemonforms[0].pokemon_id),
         };
       },
     ),
