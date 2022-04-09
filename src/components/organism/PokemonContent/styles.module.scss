@@ -35,7 +35,7 @@
 @media only screen and (min-width: $lg) {
   .container {
     align-items: normal;
-    grid-template-columns: rem(816) rem(400);
+    grid-template-columns: rem(768) rem(400);
     margin-top: rem(8);
   }
 
@@ -53,6 +53,7 @@
 @media only screen and (min-width: $xl) {
   .container {
     align-items: normal;
+    grid-template-columns: rem(816) rem(400);
     justify-content: space-between;
   }
 }
