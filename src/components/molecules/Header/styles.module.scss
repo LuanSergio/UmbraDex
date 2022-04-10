@@ -22,7 +22,7 @@
 }
 
 .logo:hover::after {
-  animation: increasingHorizontal 0.25s forwards;
+  animation: increasing-horizontal 0.25s forwards;
   background-color: get-color(secondary);
   content: '';
   display: block;
@@ -57,7 +57,7 @@
 
 .github:hover,
 .github:focus {
-  background-color: rgba($color: get-color(light), $alpha: 0.15);
+  background-color: rgba($color: get-color(light), $alpha: 15%);
 
   > svg > path {
     fill: get-color(secondary);
@@ -80,7 +80,7 @@
 
 .options:hover,
 .options:focus {
-  background-color: rgba($color: get-color(light), $alpha: 0.15);
+  background-color: rgba($color: get-color(light), $alpha: 15%);
 }
 
 .options::before {

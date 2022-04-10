@@ -7,8 +7,7 @@
   background-color: var(--current-dark-type-color);
   border-radius: rem(24);
   display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
+  flex-flow: column-reverse wrap;
   justify-content: center;
   margin-bottom: rem(100);
   padding: rem(48) rem(20) rem(48);
@@ -49,7 +48,7 @@
 }
 
 .statsMeterValue {
-  animation: increasingHorizontal 2s forwards;
+  animation: increasing-horizontal 2s forwards;
   background: var(--current-light-type-color);
   height: rem(32);
   transform-origin: left;
@@ -65,8 +64,7 @@
 
 @media only screen and (min-width: $lg) {
   .stats {
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     margin-top: rem(56);
     padding: rem(48) rem(20) rem(48) rem(32);

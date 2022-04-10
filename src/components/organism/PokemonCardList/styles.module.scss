@@ -12,8 +12,7 @@
   .cardContainer {
     align-content: center;
     display: grid;
-    grid-column-gap: rem(56);
-    grid-row-gap: rem(48);
+    grid-gap: rem(48) rem(56);
     grid-template-columns: repeat(4, 21.37%);
     justify-items: center;
     padding-bottom: rem(40);
@@ -24,8 +23,7 @@
   .cardContainer {
     display: flex;
     flex-wrap: wrap;
-    grid-column-gap: rem(40);
-    grid-row-gap: rem(40);
+    grid-gap: rem(40);
     justify-content: center;
   }
 }

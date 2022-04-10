@@ -30,10 +30,12 @@ $transitionTime: 0.3s;
 .switchFormIcon:hover svg .moon {
   fill: $moon;
 }
+
 .switchFormIcon--active svg .sun,
 .switchFormIcon:hover svg .sun {
   fill: $sun;
 }
+
 .switchFormIcon--active svg .gmax,
 .switchFormIcon:hover svg .gmax {
   fill: $gmax;
@@ -108,27 +110,35 @@ $transitionTime: 0.3s;
 .switchFormIcon--active svg stop:nth-child(1) {
   stop-color: $megaGradient1;
 }
+
 .switchFormIcon--active svg stop:nth-child(2) {
   stop-color: $megaGradient2;
 }
+
 .switchFormIcon--active svg stop:nth-child(3) {
   stop-color: $megaGradient3;
 }
+
 .switchFormIcon--active svg stop:nth-child(4) {
   stop-color: $megaGradient4;
 }
+
 .switchFormIcon--active svg stop:nth-child(5) {
   stop-color: $megaGradient5;
 }
+
 .switchFormIcon--active svg stop:nth-child(6) {
   stop-color: $megaGradient6;
 }
+
 .switchFormIcon--active svg stop:nth-child(7) {
   stop-color: $megaGradient7;
 }
+
 .switchFormIcon--active svg stop:nth-child(8) {
   stop-color: $megaGradient8;
 }
+
 .switchFormIcon--active svg stop:nth-child(9) {
   stop-color: $megaGradient9;
 }
@@ -137,27 +147,35 @@ $transitionTime: 0.3s;
 .switchFormIcon:hover svg stop:nth-child(1) {
   stop-color: $megaGradient1;
 }
+
 .switchFormIcon:hover svg stop:nth-child(2) {
   stop-color: $megaGradient2;
 }
+
 .switchFormIcon:hover svg stop:nth-child(3) {
   stop-color: $megaGradient3;
 }
+
 .switchFormIcon:hover svg stop:nth-child(4) {
   stop-color: $megaGradient4;
 }
+
 .switchFormIcon:hover svg stop:nth-child(5) {
   stop-color: $megaGradient5;
 }
+
 .switchFormIcon:hover svg stop:nth-child(6) {
   stop-color: $megaGradient6;
 }
+
 .switchFormIcon:hover svg stop:nth-child(7) {
   stop-color: $megaGradient7;
 }
+
 .switchFormIcon:hover svg stop:nth-child(8) {
   stop-color: $megaGradient8;
 }
+
 .switchFormIcon:hover svg stop:nth-child(9) {
   stop-color: $megaGradient9;
 }

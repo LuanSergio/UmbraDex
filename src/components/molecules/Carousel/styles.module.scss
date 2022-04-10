@@ -50,6 +50,7 @@
   font-size: rem(28);
   opacity: 0.9;
   transition: background-color 0.2s;
+
   &::before {
     @include h-icon;
 
@@ -57,7 +58,7 @@
   }
 
   &:hover {
-    background-color: rgba($color: get-color(light), $alpha: 0.15);
+    background-color: rgba($color: get-color(light), $alpha: 15%);
   }
 
   &[disabled] {

@@ -4,13 +4,14 @@
 @use 'animations/pop-in' as *;
 @use 'animations/_rotating' as *;
 @use 'animations/_scale-highlight' as *;
+@use 'sass:map';
 
 .card {
   align-items: center;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
-  animation-name: popIn;
+  animation-name: pop-in;
   border-radius: rem(12);
   cursor: pointer;
   display: flex;
@@ -79,7 +80,7 @@
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
-  animation-name: scaleHighlight;
+  animation-name: scale-highlight;
   animation-timing-function: ease;
 }
 
@@ -145,7 +146,7 @@
 
 @each $type, $color in typeColors.$defaults {
   .background.#{$type} {
-    background: map-get(typeColors.$gradient, $type);
+    background: map.get(typeColors.$gradient, $type);
   }
 
   .name.#{$type} {

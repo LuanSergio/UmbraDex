@@ -1,5 +1,6 @@
 @use 'tools/get-color' as *;
 @use 'settings/colors-type' as typeColors;
+@use 'sass:map';
 
 $base-font-size: 1em;
 
@@ -9,7 +10,7 @@ $base-font-size: 1em;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   user-select: -moz-none;
   user-select: none;
   user-select: none;
@@ -24,7 +25,7 @@ html {
 
 html,
 body {
-  font-family: 'Roboto', Helvetica, sans-serif;
+  font-family: Roboto, Helvetica, sans-serif;
 }
 
 h1,
@@ -33,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-family: Montserrat, Helvetica, sans-serif;
 }
 
 body {
@@ -47,6 +48,7 @@ ul {
 
 button {
   cursor: pointer;
+
   &:disabled {
     cursor: not-allowed;
   }
@@ -54,9 +56,9 @@ button {
 
 @each $type, $color in typeColors.$defaults {
   body.#{$type} {
-    --current-light-type-color: #{map-get(typeColors.$lights, $type)};
-    --current-dark-type-color: #{map-get(typeColors.$darks, $type)};
-    --current-type-color: #{map-get(typeColors.$defaults, $type)};
-    --current-body-background: #{map-get(typeColors.$lights, $type)};
+    --current-light-type-color: #{map.get(typeColors.$lights, $type)};
+    --current-dark-type-color: #{map.get(typeColors.$darks, $type)};
+    --current-type-color: #{map.get(typeColors.$defaults, $type)};
+    --current-body-background: #{map.get(typeColors.$lights, $type)};
   }
 }

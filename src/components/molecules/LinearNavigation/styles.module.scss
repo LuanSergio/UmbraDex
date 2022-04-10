@@ -32,6 +32,7 @@
   position: relative;
   transition: background-color 0.2s;
   z-index: get-index-level(lvl3);
+
   &::before {
     @include h-icon;
 
@@ -39,7 +40,7 @@
   }
 
   &:hover {
-    background-color: rgba($color: get-color(light), $alpha: 0.15);
+    background-color: rgba($color: get-color(light), $alpha: 15%);
   }
 
   &[disabled] {
