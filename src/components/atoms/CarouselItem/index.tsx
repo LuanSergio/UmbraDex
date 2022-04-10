@@ -47,7 +47,7 @@ const CarouselItem = ({
           {children}
         </button>
       ) : (
-        { children }
+        <>{children}</>
       )}
     </Tag>
   );
