@@ -90,7 +90,7 @@ const PokemonContent = ({
               />
             </div>
             <div>
-              {windowWidth > 1280 && (
+              {windowWidth >= 1280 && (
                 <PokemonBasicInformation
                   name={pokemon.name}
                   pokedexIndex={defaultPokemonForm.id}
