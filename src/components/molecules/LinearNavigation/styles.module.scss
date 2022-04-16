@@ -18,16 +18,28 @@
   width: 100%;
 }
 
+.next {
+  border-bottom-left-radius: 10%;
+  border-top-left-radius: 10%;
+}
+
+.previous {
+  border-bottom-right-radius: 10%;
+  border-top-right-radius: 10%;
+}
+
 .previous,
 .next {
   align-items: center;
   background-color: transparent;
-  border-radius: 10%;
+  background-color: rgba($color: get-color(dark), $alpha: 65%);
+
+  // border-radius: 10%;
   border-width: 0;
   color: get-color(light);
   display: flex;
   font-size: rem(64);
-  opacity: 0.9;
+  opacity: 1;
   padding: rem(4) rem(8);
   position: relative;
   transition: background-color 0.2s;
@@ -52,8 +64,11 @@
   transform: rotate(180deg);
 }
 
-.next:hover {
-  opacity: 1;
+@media only screen and (min-width: $sm) {
+  .previous,
+  .next {
+    background-color: transparent;
+  }
 }
 
 @media only screen and (min-width: $lg) {
