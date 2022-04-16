@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -24,6 +24,14 @@ const EvolutionChain = ({
     setEvolutionIndex(index);
     router.push(`/pokemon/${evolutionChain[index].id}`);
   }
+
+  useEffect(() => {
+    const currentEvolution = evolutionChain.findIndex(
+      item => item.id.toString() === (router.query.id as string),
+    );
+
+    setEvolutionIndex(currentEvolution);
+  }, [evolutionChain, router.query.id]);
 
   return (
     <>
@@ -53,8 +61,7 @@ const EvolutionChain = ({
                       <div
                         title={transformFirstLetterToUppercase(evolution.name)}
                         role="img"
-                        id={evolution.name}
-                        aria-labelledby={evolution.name}
+                        aria-labelledby={`evolution-${evolution.name}`}
                         className={styles.evolution}
                         style={{
                           WebkitMaskImage: `url(${getPokemonImageUrl(
@@ -64,7 +71,7 @@ const EvolutionChain = ({
                         }}
                       />
                       <span
-                        id={evolution.name}
+                        id={`evolution-${evolution.name}`}
                         className={styles.evolutionName}
                       >
                         {evolution.name}
@@ -95,7 +102,6 @@ const EvolutionChain = ({
                   <div
                     title={transformFirstLetterToUppercase(evolution.name)}
                     role="img"
-                    id={evolution.name}
                     aria-labelledby={evolution.name}
                     className={styles.evolution}
                     style={{
