@@ -20,7 +20,7 @@ const Pokemon = ({
   return (
     <>
       <Head>
-        <title key="title">UmbraDex | {defaultPokemonForm.name}</title>
+        <title key="title">{defaultPokemonForm.name} | UmbraDex</title>
       </Head>
 
       <PokemonContent
