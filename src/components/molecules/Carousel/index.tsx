@@ -42,13 +42,10 @@ const Carousel = ({
   useEffect(() => {
     if (maxPositionIndex === 'auto') {
       setMaxPositionIndexState(itemsQuantity - maxItems);
-      console.log('case 1');
     } else if (maxPositionIndex === 'none') {
       setMaxPositionIndexState(itemsQuantity - 1);
-      console.log('case 2');
     } else {
       setMaxPositionIndexState(maxPositionIndex);
-      console.log('case 3');
     }
   }, [itemsQuantity, maxItems, maxPositionIndex]);
 
