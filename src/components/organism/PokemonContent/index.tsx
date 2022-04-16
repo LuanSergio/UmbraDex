@@ -82,7 +82,11 @@ const PokemonContent = ({
               />
               <EvolutionChain
                 currentId={defaultPokemonForm.id}
-                evolutionChain={pokemonDetails.evolutionChain}
+                evolutionChain={pokemonDetails.evolutionChain.sort(
+                  (evolutionChainA, evolutionChainB) => {
+                    return evolutionChainA.order - evolutionChainB.order;
+                  },
+                )}
               />
             </div>
             <div>
