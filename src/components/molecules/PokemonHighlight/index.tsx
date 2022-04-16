@@ -22,6 +22,7 @@ const PokemonHighlight = ({
         <Image
           quality={100}
           layout="fill"
+          priority
           objectFit="contain"
           src={image}
           alt={name}
