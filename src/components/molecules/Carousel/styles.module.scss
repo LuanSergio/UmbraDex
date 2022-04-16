@@ -7,6 +7,7 @@
   gap: rem(12);
   justify-content: center;
   position: relative;
+  z-index: get-index-level(lvl3);
 }
 
 .carousel {
@@ -82,5 +83,10 @@
   .previous,
   .next {
     font-size: rem(32);
+  }
+
+  .previous.large,
+  .next.large {
+    font-size: rem(42);
   }
 }
