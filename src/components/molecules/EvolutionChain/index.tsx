@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
@@ -17,9 +18,11 @@ const EvolutionChain = ({
   currentId,
 }: IEvolutionChainProps): JSX.Element => {
   const [evolutionIndex, setEvolutionIndex] = useState(0);
+  const router = useRouter();
 
   function handleEvolutionIndexChange(index: number): void {
     setEvolutionIndex(index);
+    router.push(`/pokemon/${evolutionChain[index].id}`);
   }
 
   return (
