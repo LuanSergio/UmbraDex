@@ -52,7 +52,7 @@ const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {
           ]}
           data={stats.map(stat => ({
             stat: stat.value,
-            label: formatStats(stat.name),
+            label: formatStats(stat.name, true),
           }))}
         />
       </div>

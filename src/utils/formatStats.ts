@@ -1,7 +1,13 @@
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 
-export default function formatStats(stat: string): string {
+export default function formatStats(stat: string, shortName?: boolean): string {
   return transformFirstLetterToUppercase(
-    stat.replace('special', 'sp.').replace('-', ' '),
+    shortName
+      ? stat
+          .replace('special', 'sp.')
+          .replace('attack', 'atk')
+          .replace('defense', 'def')
+          .replace('-', ' ')
+      : stat.replace('special', 'sp.').replace('-', ' '),
   );
 }
