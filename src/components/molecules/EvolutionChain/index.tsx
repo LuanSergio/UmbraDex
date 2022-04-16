@@ -33,6 +33,8 @@ const EvolutionChain = ({
             itemWidth={120}
             gap={20}
             maxItems={3}
+            large
+            maxPositionIndex="auto"
           >
             {evolutionChain.map(evolution => {
               return (

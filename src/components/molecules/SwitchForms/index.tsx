@@ -69,6 +69,7 @@ const SwitchForms = ({
       itemWidth={50}
       gap={12}
       maxItems={4}
+      maxPositionIndex="auto"
     >
       <CarouselItem
         tagName="li"

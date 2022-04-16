@@ -11,6 +11,8 @@ interface ICarouselProps {
   maxItems?: number;
   currentIndex: number;
   updateCurrentIndex: (index: number) => void;
+  large?: boolean;
+  maxPositionIndex?: 'auto' | number | 'none';
 }
 
 const Carousel = ({
@@ -20,10 +22,14 @@ const Carousel = ({
   itemWidth,
   gap = 30,
   maxItems = 4,
+  large = false,
   currentIndex,
   updateCurrentIndex,
+  maxPositionIndex = 'none',
 }: ICarouselProps): JSX.Element => {
   const [itemsQuantity, setItemsQuantity] = useState(Children.count(children));
+  const [maxPositionIndexState, setMaxPositionIndexState] =
+    useState(maxPositionIndex);
 
   const Tag = (tagName as keyof JSX.IntrinsicElements) ?? 'div';
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
@@ -32,6 +38,19 @@ const Carousel = ({
   useEffect(() => {
     setItemsQuantity(Children.count(children));
   }, [children]);
+
+  useEffect(() => {
+    if (maxPositionIndex === 'auto') {
+      setMaxPositionIndexState(itemsQuantity - maxItems);
+      console.log('case 1');
+    } else if (maxPositionIndex === 'none') {
+      setMaxPositionIndexState(itemsQuantity - 1);
+      console.log('case 2');
+    } else {
+      setMaxPositionIndexState(maxPositionIndex);
+      console.log('case 3');
+    }
+  }, [itemsQuantity, maxItems, maxPositionIndex]);
 
   const {
     handleMouseDown,
@@ -49,6 +68,7 @@ const Carousel = ({
     maxItems,
     currentIndex,
     updateCurrentIndex,
+    maxPositionIndex: maxPositionIndexState,
   });
 
   const carouselProps = {
@@ -75,7 +95,7 @@ const Carousel = ({
             aria-label="Previous slide"
             onClick={goToPreviousIndex}
             disabled={currentIndex === 0}
-            className={styles.previous}
+            className={`${styles.previous} ${large ? styles.large : ''}`}
           />
         )}
 
@@ -94,7 +114,7 @@ const Carousel = ({
         {itemsQuantity > maxItems && (
           <button
             type="button"
-            className={styles.next}
+            className={`${styles.next} ${large ? styles.large : ''}`}
             aria-label="Next slide"
             disabled={currentIndex === itemsQuantity - 1}
             onClick={goToNextIndex}

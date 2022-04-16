@@ -16,6 +16,7 @@ interface IUseCarouselParams {
   maxItems: number;
   animationDuration?: number;
   currentIndex: number;
+  maxPositionIndex?: 'auto' | number | 'none';
   updateCurrentIndex: (CurrentIndex: number) => void;
 }
 
@@ -65,6 +66,7 @@ const useCarousel = ({
   animationDuration = 300,
   currentIndex: CurrentIndex,
   updateCurrentIndex,
+  maxPositionIndex,
 }: IUseCarouselParams): IUseCarouselResponse => {
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
@@ -101,14 +103,17 @@ const useCarousel = ({
   useEffect(() => {
     if (itemList.length) {
       maxPosition.current =
-        itemList.reduce(
-          (previousValue, currentValue) => previousValue + currentValue + gap,
-        ) -
+        itemList.reduce((previousValue, currentValue, index) => {
+          if (index <= maxPositionIndex) {
+            return previousValue + currentValue + gap;
+          }
+          return previousValue;
+        }) -
         gap -
         itemList[itemList.length - 1] +
         20;
     }
-  }, [gap, itemList]);
+  }, [gap, itemList, maxPositionIndex]);
 
   useEffect(() => {
     carouselWrapperRef.current?.style.setProperty('--carousel-gap', `${gap}px`);
@@ -148,7 +153,7 @@ const useCarousel = ({
 
   const updateCarouselPositionUsingIndex = useCallback(
     async newIndex => {
-      if (newIndex <= maxIndex) {
+      if (newIndex <= maxIndex && newIndex <= maxPositionIndex) {
         setCarouselAnimationDuration();
         const newPosition = getCarouselPositionByIndex(
           itemList,
@@ -166,6 +171,7 @@ const useCarousel = ({
       gap,
       itemList,
       maxIndex,
+      maxPositionIndex,
       removeCarouselAnimationDuration,
       setCarouselAnimationDuration,
       updateCarouselPosition,
