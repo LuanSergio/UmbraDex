@@ -36,13 +36,13 @@ npm run check-types ||
 )
 
 # Try to build the project
-echo '👷🔨 Trying to build.'
+# echo '👷🔨 Trying to build.'
 
-npm run build ||
-(
-    echo '❌ Next build failed: View the errors above to see why.'
-    false;
-)
+# npm run build ||
+# (
+#     echo '❌ Next build failed: View the errors above to see why.'
+#     false;
+# )
 
 # If everything passes... Now we can commit
 echo '✅ Sucess! Your commit is being made'
