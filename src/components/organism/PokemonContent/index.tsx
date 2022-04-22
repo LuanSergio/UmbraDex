@@ -43,7 +43,13 @@ const PokemonContent = ({
 
   useEffect(() => {
     const mainType = pokemon.types[0];
-    document.body.className = mainType;
+
+    if (!document.body.classList.contains('initial')) {
+      document.body.className = mainType;
+      document.body.classList.add('body-transition');
+    } else {
+      document.body.className = mainType;
+    }
   }, [pokemon.types]);
 
   return (

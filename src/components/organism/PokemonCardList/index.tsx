@@ -14,7 +14,7 @@ const PokemonCardList = ({
   const { loadedPokemonList } = useController({ pokemonList, loader });
 
   useEffect(() => {
-    document.body.className = '';
+    document.body.className = 'initial';
   }, []);
 
   return (

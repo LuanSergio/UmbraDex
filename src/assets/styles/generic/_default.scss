@@ -39,6 +39,9 @@ h6 {
 
 body {
   background-color: var(--current-body-background);
+}
+
+.body-transition {
   transition: background-color 0.28s ease-out;
 }
 
