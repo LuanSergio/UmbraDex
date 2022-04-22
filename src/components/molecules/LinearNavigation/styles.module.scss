@@ -33,8 +33,6 @@
   align-items: center;
   background-color: transparent;
   background-color: rgba($color: get-color(dark), $alpha: 65%);
-
-  // border-radius: 10%;
   border-width: 0;
   color: get-color(light);
   display: flex;
@@ -78,6 +76,7 @@
 
   .previous,
   .next {
+    border-radius: 10%;
     font-size: rem(80);
   }
 }
