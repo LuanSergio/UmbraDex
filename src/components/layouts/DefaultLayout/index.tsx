@@ -1,11 +1,12 @@
-import Header from '@components/molecules/Header';
 import { ReactNode } from 'react';
+
+import Header from '@components/molecules/Header';
 
 interface DefaultLayoutProps {
   children: ReactNode;
 }
 
-const HomeLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
+const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   return (
     <>
       <Header />
@@ -14,4 +15,4 @@ const HomeLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   );
 };
 
-export default HomeLayout;
+export default DefaultLayout;
