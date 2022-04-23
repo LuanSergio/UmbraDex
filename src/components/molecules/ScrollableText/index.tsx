@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState, Children } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import getElementHeight from '@utils/getElementHeight';
 
