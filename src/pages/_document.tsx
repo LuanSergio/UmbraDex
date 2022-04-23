@@ -19,7 +19,7 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html lang="en">
+      <Html lang="en" translate="no">
         <Head>
           <HeadConfiguration />
         </Head>
