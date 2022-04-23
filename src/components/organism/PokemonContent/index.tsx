@@ -53,73 +53,71 @@ const PokemonContent = ({
   }, [pokemon.types]);
 
   return (
-    <div className={`${styles.content} ${styles[pokemon.types[0]]}`}>
-      <DefaultLayout>
-        <div
-          className={
-            AlternativePokemonForms.length > 0
-              ? styles.smallHolder
-              : styles.holder
-          }
-        >
-          {windowWidth < 1280 && (
-            <PokemonBasicInformation
-              name={pokemon.name}
-              pokedexIndex={defaultPokemonForm.id}
-              types={pokemon.types}
-            />
-          )}
-
-          {AlternativePokemonForms.length > 0 && (
-            <SwitchForms
-              pokemon={pokemon}
-              handleFormChange={handleFormChange}
-              defaultPokemonForm={defaultPokemonForm}
-              alternativePokemonForms={AlternativePokemonForms}
-            />
-          )}
-
-          <div className={styles.container}>
-            <div>
-              <PokemonHighlight
-                japaneseName={pokemonDetails.japaneseName}
-                image={pokemon.image}
-                name={pokemon.name}
-              />
-              <EvolutionChain
-                currentId={defaultPokemonForm.id}
-                evolutionChain={pokemonDetails.evolutionChain.sort(
-                  (evolutionChainA, evolutionChainB) => {
-                    return evolutionChainA.order - evolutionChainB.order;
-                  },
-                )}
-              />
-            </div>
-            <div>
-              {windowWidth >= 1280 && (
-                <PokemonBasicInformation
-                  name={pokemon.name}
-                  pokedexIndex={defaultPokemonForm.id}
-                  types={pokemon.types}
-                />
-              )}
-
-              <PokemonDescription
-                pokedexIndex={defaultPokemonForm.id}
-                descriptions={pokemonDetails.descriptions}
-              />
-            </div>
-            <PokemonStats stats={pokemon.stats} />
-          </div>
-          <LinearNavigation
-            previous={`/pokemon/${pageId - 1}`}
-            next={`/pokemon/${pageId + 1}`}
-            disablePrevious={pageId <= 1}
-            disableNext={pageId >= pokedexLimit}
+    <DefaultLayout>
+      <div
+        className={
+          AlternativePokemonForms.length > 0
+            ? styles.smallHolder
+            : styles.holder
+        }
+      >
+        {windowWidth < 1280 && (
+          <PokemonBasicInformation
+            name={pokemon.name}
+            pokedexIndex={defaultPokemonForm.id}
+            types={pokemon.types}
           />
+        )}
+
+        {AlternativePokemonForms.length > 0 && (
+          <SwitchForms
+            pokemon={pokemon}
+            handleFormChange={handleFormChange}
+            defaultPokemonForm={defaultPokemonForm}
+            alternativePokemonForms={AlternativePokemonForms}
+          />
+        )}
+
+        <div className={styles.container}>
+          <div>
+            <PokemonHighlight
+              japaneseName={pokemonDetails.japaneseName}
+              image={pokemon.image}
+              name={pokemon.name}
+            />
+            <EvolutionChain
+              currentId={defaultPokemonForm.id}
+              evolutionChain={pokemonDetails.evolutionChain.sort(
+                (evolutionChainA, evolutionChainB) => {
+                  return evolutionChainA.order - evolutionChainB.order;
+                },
+              )}
+            />
+          </div>
+          <div>
+            {windowWidth >= 1280 && (
+              <PokemonBasicInformation
+                name={pokemon.name}
+                pokedexIndex={defaultPokemonForm.id}
+                types={pokemon.types}
+              />
+            )}
+
+            <PokemonDescription
+              pokedexIndex={defaultPokemonForm.id}
+              descriptions={pokemonDetails.descriptions}
+            />
+          </div>
+          <PokemonStats stats={pokemon.stats} />
         </div>
-      </DefaultLayout>
-    </div>
+        <LinearNavigation
+          previous={`/pokemon/${pageId - 1}`}
+          next={`/pokemon/${pageId + 1}`}
+          disablePrevious={pageId <= 1}
+          disableNext={pageId >= pokedexLimit}
+        />
+      </div>
+    </DefaultLayout>
   );
 };
 
