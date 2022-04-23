@@ -1,0 +1,68 @@
+@use 'tools/index' as *;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+
+.scrollableText {
+  height: rem(196);
+  margin-bottom: rem(64);
+  padding-top: rem(24);
+}
+
+.scrollableTextContentContained {
+  max-height: rem(180);
+  overflow-y: scroll;
+  padding-right: rem(8);
+  scrollbar-arrow-color: rgba($color: get-color(light), $alpha: 32%);
+
+  /* firefox custom scrollbar */
+  scrollbar-color: get-color(light) rgba($color: get-color(light), $alpha: 32%);
+
+  /* ie and edge custom scroll bar */
+  scrollbar-face-color: rgba($color: get-color(light), $alpha: 32%);
+  scrollbar-shadow-color: rgba($color: get-color(light), $alpha: 32%);
+  scrollbar-track-color: get-color(light);
+  scrollbar-width: thin;
+}
+
+.scrollableTextContentContained::-webkit-scrollbar {
+  height: rem(5);
+  width: rem(5);
+}
+
+.scrollableTextContentContained::-webkit-scrollbar-track {
+  background-color: rgba($color: get-color(light), $alpha: 32%);
+  border-radius: rem(30);
+}
+
+.scrollableTextContentContained::-webkit-scrollbar-thumb {
+  background-color: get-color(light);
+  border-radius: rem(30);
+}
+
+.scrollableTextContentContained::-webkit-scrollbar-corner {
+  background-color: get-color(light);
+}
+
+.scrollableTextOverflowContained::after {
+  @include h-icon;
+
+  content: get-icon('arrow');
+  display: block;
+  font-size: rem(24);
+  margin-top: rem(8);
+  text-align: center;
+  transform: rotate(270deg);
+}
+
+@media only screen and (min-width: $lg) {
+  .scrollableText {
+    height: auto;
+    margin-bottom: 0;
+    max-height: rem(180);
+  }
+
+  .scrollableTextOverflowContained::after {
+    font-size: rem(32);
+    margin-top: rem(16);
+  }
+}
