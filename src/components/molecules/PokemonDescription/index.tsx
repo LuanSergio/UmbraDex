@@ -3,6 +3,7 @@ import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral'
 import Carousel from '@components/molecules/Carousel';
 import CarouselItem from '@components/atoms/CarouselItem';
 import Important from '@public/icons/important.svg';
+import ScrollableText from '@components/molecules/ScrollableText';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -68,16 +69,18 @@ const PokemonBasicInformation = ({
           );
         })}
       </Carousel>
-      <p className={styles.description}>
-        {descriptions[descriptionIndex] &&
-          descriptions[descriptionIndex].description}
-        {(descriptionIndex === 3 || descriptionIndex === 4) && (
-          <small className={styles.sideNote}>
-            <Important className={styles.descriptionImportant} /> The fourth and
-            fifth generation share some descriptions
-          </small>
-        )}
-      </p>
+      <ScrollableText maxHeight={168} shouldChange={descriptionIndex}>
+        <p className={styles.description}>
+          {descriptions[descriptionIndex] &&
+            descriptions[descriptionIndex].description}
+          {(descriptionIndex === 3 || descriptionIndex === 4) && (
+            <small className={styles.sideNote}>
+              <Important className={styles.descriptionImportant} /> The fourth
+              and fifth generation share some descriptions
+            </small>
+          )}
+        </p>
+      </ScrollableText>
     </div>
   );
 };
