@@ -19,7 +19,7 @@
   display: inline-block;
   font-size: rem(28);
   font-weight: bold;
-  margin-bottom: rem(8);
+  margin-bottom: rem(0);
   opacity: 0.8;
   padding: rem(1) rem(6);
   transition: opacity 0.2s;
@@ -35,8 +35,8 @@
   font-size: rem(22);
   font-weight: bold;
   line-height: 1.5;
-  margin-bottom: rem(40);
-  margin-top: rem(24);
+  margin-bottom: rem(0);
+  margin-top: 0;
   max-width: rem(400);
   padding-left: rem(20);
   padding-right: rem(20);
@@ -75,7 +75,7 @@
   .description {
     font-size: rem(26);
     margin-bottom: 0;
-    margin-bottom: rem(80);
+    margin-bottom: rem(0);
     text-align: left;
   }
 }

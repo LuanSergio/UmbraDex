@@ -12,7 +12,7 @@
   margin-bottom: rem(100);
   margin-left: auto;
   margin-right: auto;
-  padding: rem(48) rem(20) rem(48);
+  padding: rem(48) rem(10) rem(48);
   transition: background-color 0.28s ease-out;
   width: calc(100% - 8px);
 }
@@ -63,6 +63,12 @@
   margin-bottom: rem(64);
   max-width: 370px;
   width: 100%;
+}
+
+@media only screen and (min-width: $xs) {
+  .stats {
+    padding: rem(48) rem(20) rem(48);
+  }
 }
 
 @media only screen and (min-width: $lg) {

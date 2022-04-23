@@ -4,7 +4,7 @@
 @use 'settings/_breakpoints' as *;
 
 .name {
-  font-size: rem(56);
+  font-size: rem(48);
   margin-bottom: rem(8);
   margin-top: 0;
   max-width: 100%;
@@ -93,6 +93,12 @@
   .type.#{$type}::before {
     color: get-color(light);
     content: get-icon($type);
+  }
+}
+
+@media only screen and (min-width: $xs) {
+  .name {
+    font-size: rem(56);
   }
 }
 
