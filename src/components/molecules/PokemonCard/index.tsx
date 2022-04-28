@@ -13,9 +13,9 @@ const PokemonCard = ({
     <Link href={`/pokemon/${id}`}>
       <div className={styles.card}>
         {id <= 10 ? (
-          <span className={styles.number}># 0{id}</span>
+          <p className={styles.number}># 0{id}</p>
         ) : (
-          <span className={styles.number}># {id}</span>
+          <p className={styles.number}># {id}</p>
         )}
 
         <div className={styles.pokemonContainer}>
@@ -29,17 +29,14 @@ const PokemonCard = ({
             title={transformFirstLetterToUppercase(name)}
           />
 
-          <span className={`${styles.name} ${styles[types[0]]}`}>{name}</span>
+          <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
         </div>
 
         <div className={styles.typeContainer}>
           {types.map((type, index) => (
-            <span
-              key={type}
-              className={`${styles.type} ${styles[types[index]]}`}
-            >
+            <p key={type} className={`${styles.type} ${styles[types[index]]}`}>
               {type}
-            </span>
+            </p>
           ))}
         </div>
 

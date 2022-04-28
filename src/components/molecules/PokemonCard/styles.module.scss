@@ -41,6 +41,8 @@
   color: get-color(light);
   font-size: rem(21);
   font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
   position: absolute;
   top: rem(10);
   z-index: get-index-level(lvl2);
@@ -89,9 +91,12 @@
   border-radius: rem(6);
   bottom: 0;
   display: block;
+  font-family: Roboto, Helvetica, sans-serif;
   font-size: rem(21);
   font-weight: bold;
   left: 50%;
+  margin-bottom: 0;
+  margin-top: 0;
   padding: rem(6) rem(17);
   position: absolute;
   text-align: center;
@@ -119,6 +124,8 @@
   display: flex;
   font-size: rem(18);
   font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
   padding: rem(5) rem(12);
   text-align: center;
   text-transform: capitalize;
