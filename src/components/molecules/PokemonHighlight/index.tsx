@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import substitutePlaceholder from '@data/substitutePlaceholder';
 import styles from './styles.module.scss';
 
 interface PokemonHighlightProps {
@@ -12,6 +14,16 @@ const PokemonHighlight = ({
   image,
   name,
 }: PokemonHighlightProps): JSX.Element => {
+  const [imageSrc, setImageSrc] = useState(image);
+
+  function handleImageError(): void {
+    setImageSrc(substitutePlaceholder);
+  }
+
+  useEffect(() => {
+    setImageSrc(image);
+  }, [image]);
+
   return (
     <div className={styles.pokemonContainer}>
       <span className={styles.japaneseName} aria-hidden="true">
@@ -24,8 +36,9 @@ const PokemonHighlight = ({
           layout="fill"
           priority
           objectFit="contain"
-          src={image}
+          src={imageSrc}
           alt={name}
+          onError={handleImageError}
           title={name}
         />
       </div>
