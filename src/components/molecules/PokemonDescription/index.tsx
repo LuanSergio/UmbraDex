@@ -69,7 +69,7 @@ const PokemonBasicInformation = ({
           );
         })}
       </Carousel>
-      <ScrollableText maxHeight={168} shouldChange={descriptionIndex}>
+      <ScrollableText maxHeight={178} shouldChange={descriptionIndex}>
         <p className={styles.description}>
           {descriptions[descriptionIndex] &&
             descriptions[descriptionIndex].description}
