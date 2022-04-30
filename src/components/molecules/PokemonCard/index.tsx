@@ -25,8 +25,7 @@ const PokemonCard = ({
             height={216}
             className={styles.pokemon}
             src={image}
-            alt={name}
-            title={transformFirstLetterToUppercase(name)}
+            alt=""
           />
 
           <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
