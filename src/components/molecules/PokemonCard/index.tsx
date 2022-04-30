@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import PokemonPicture from '@components/atoms/PokemonPicture';
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import styles from './styles.module.scss';
 
 const PokemonCard = ({
