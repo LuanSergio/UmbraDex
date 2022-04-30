@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import PokemonContent from '@components/organism/PokemonContent';
 
-import getPokemonDetailsData from '@utils/getPokemonDetailsData';
+import getPokemonDetailsData from '@requests/getPokemonDetailsData';
 
 interface IPokemonDetailsProps {
   pokemonDetails: IPokemonDetails;

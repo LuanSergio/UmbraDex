@@ -2,7 +2,7 @@ import Head from 'next/head';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import { GetStaticProps } from 'next';
 import PokemonCardList from '@components/organism/PokemonCardList';
-import getPokemonListData from '@utils/getPokemonListData';
+import getPokemonListData from '@requests/getPokemonListData';
 
 interface HomeProps {
   pokemonList: IBasicPokemonInfo[];

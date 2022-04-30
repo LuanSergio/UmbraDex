@@ -1,5 +1,5 @@
 import { apiUrl, axios } from '@services/api';
-import getPokemonImageUrl from './getPokemonImageUrl';
+import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 
 async function fetchPokemonListData() {
   const result = await axios.post(apiUrl, {

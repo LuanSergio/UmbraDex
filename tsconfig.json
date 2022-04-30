@@ -22,6 +22,7 @@
       "@services/*": ["src/services/*"],
       "@images/*": ["src/assets/images/*"],
       "@data/*": ["src/data/*"],
+      "@requests/*": ["src/requests/*"],
       "@public/*": ["public/*"]
     },
     "incremental": true
