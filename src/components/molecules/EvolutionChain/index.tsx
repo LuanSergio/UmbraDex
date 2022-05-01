@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -6,6 +6,8 @@ import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Carousel from '@components/molecules/Carousel';
 import CarouselItem from '@components/atoms/CarouselItem';
+import useWindowSize from '@hooks/useWindowSize';
+
 import styles from './styles.module.scss';
 
 interface IEvolutionChainProps {
@@ -18,6 +20,11 @@ const EvolutionChain = ({
   currentId,
 }: IEvolutionChainProps): JSX.Element => {
   const [evolutionIndex, setEvolutionIndex] = useState(0);
+  const [widthList, setWidthList] = useState([]);
+  const [windowWidth] = useWindowSize();
+  const [clearWidthListCount, setClearWidthListCount] = useState(0);
+  const evolutionRef = useRef([]);
+
   const router = useRouter();
 
   function handleEvolutionIndexChange(index: number): void {
@@ -33,6 +40,23 @@ const EvolutionChain = ({
     setEvolutionIndex(currentEvolution);
   }, [evolutionChain, router.query.id]);
 
+  useEffect(() => {
+    // force the width list to be redone when the window width change
+    setWidthList([]);
+    setClearWidthListCount(previousState => previousState + 1);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    evolutionRef.current.forEach(element => {
+      if (element?.getBoundingClientRect()?.width) {
+        setWidthList(previousState => [
+          ...previousState,
+          element.getBoundingClientRect().width,
+        ]);
+      }
+    });
+  }, [evolutionChain, router.query.id, clearWidthListCount]);
+
   return (
     <>
       {evolutionChain.length > 3 ? (
@@ -41,13 +65,13 @@ const EvolutionChain = ({
             currentIndex={evolutionIndex}
             updateCurrentIndex={handleEvolutionIndexChange}
             tagName="ul"
-            itemWidth={120}
+            itemWidth={widthList}
             gap={20}
             maxItems={3}
             large
             maxPositionIndex="auto"
           >
-            {evolutionChain.map(evolution => {
+            {evolutionChain.map((evolution, index) => {
               return (
                 <CarouselItem key={evolution.id} tagName="li">
                   <Link href={`/pokemon/${evolution.id}`} passHref>
@@ -57,6 +81,9 @@ const EvolutionChain = ({
                           ? styles.evolutionContainerActive
                           : ''
                       }`}
+                      ref={element => {
+                        evolutionRef.current[index] = element;
+                      }}
                     >
                       <div
                         title={transformFirstLetterToUppercase(evolution.name)}
