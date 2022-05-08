@@ -18,14 +18,14 @@ const PokemonBasicInformation = ({
   const [descriptionIndex, setDescriptionIndex] = useState(0);
   const [widthList, setWidthList] = useState([]);
 
-  const ref = useRef([]);
+  const descriptionIndexRef = useRef([]);
 
   function handleDescriptionChange(index: number): void {
     setDescriptionIndex(index);
   }
 
   useEffect(() => {
-    ref.current.forEach(element => {
+    descriptionIndexRef.current.forEach(element => {
       setWidthList(previousState => [
         ...previousState,
         element.getBoundingClientRect().width,
@@ -57,7 +57,7 @@ const PokemonBasicInformation = ({
             >
               <span
                 ref={element => {
-                  ref.current[index] = element;
+                  descriptionIndexRef.current[index] = element;
                 }}
                 className={`${styles.generationDescriptionOption} ${
                   descriptionIndex === index && styles.active
