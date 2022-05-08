@@ -16,16 +16,19 @@
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
+  z-index: get-index-level(lvl4);
 }
 
 .next {
   border-bottom-left-radius: 10%;
   border-top-left-radius: 10%;
+  right: 0;
 }
 
 .previous {
   border-bottom-right-radius: 10%;
   border-top-right-radius: 10%;
+  left: 0;
 }
 
 .previous,
@@ -39,9 +42,9 @@
   font-size: rem(64);
   opacity: 1;
   padding: rem(4) rem(8);
-  position: relative;
+  position: fixed;
   transition: background-color 0.2s;
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl4);
 
   &::before {
     @include h-icon;
@@ -63,9 +66,28 @@
 }
 
 @media only screen and (min-width: $sm) {
+  .navigation {
+    z-index: 0;
+  }
+
+  .next {
+    border-bottom-left-radius: 10%;
+    border-top-left-radius: 10%;
+    right: auto;
+  }
+
+  .previous {
+    border-bottom-right-radius: 10%;
+    border-top-right-radius: 10%;
+    left: auto;
+  }
+
   .previous,
   .next {
     background-color: transparent;
+    position: relative;
+    top: auto;
+    transform: none;
   }
 }
 
