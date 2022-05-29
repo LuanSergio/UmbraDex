@@ -4,6 +4,7 @@
     "stylelint-config-prettier-scss",
     "stylelint-config-sass-guidelines"
   ],
+  "stylelint.validate": ["css", "scss"],
   "plugins": ["stylelint-order"],
   "rules": {
     "order/properties-alphabetical-order": true,
