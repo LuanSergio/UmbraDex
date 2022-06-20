@@ -6,7 +6,7 @@ import PokemonHighlight from '@components/molecules/PokemonHighlight';
 import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
 import PokemonDescription from '@components/molecules/PokemonDescription';
 import SwitchForms from '@components/molecules/SwitchForms';
-import DefaultLayout from '@components/layouts/DefaultLayout';
+import ContentLayout from '@components/layouts/ContentLayout';
 import useWindowSize from '@hooks/useWindowSize';
 import PokemonStats from '@components/molecules/PokemonStats';
 import EvolutionChain from '@components/molecules/EvolutionChain';
@@ -53,7 +53,7 @@ const PokemonContent = ({
   }, [pokemon.types]);
 
   return (
-    <DefaultLayout>
+    <ContentLayout>
       <div
         className={
           AlternativePokemonForms.length > 0
@@ -117,7 +117,7 @@ const PokemonContent = ({
           disableNext={pageId >= pokedexLimit}
         />
       </div>
-    </DefaultLayout>
+    </ContentLayout>
   );
 };
 
