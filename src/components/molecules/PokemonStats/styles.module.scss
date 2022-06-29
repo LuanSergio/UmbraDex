@@ -5,7 +5,7 @@
 .stats {
   align-items: center;
   background-color: var(--current-dark-type-color);
-  border-radius: rem(24);
+  border-radius: 24px;
   display: flex;
   flex-flow: column-reverse wrap;
   justify-content: center;
@@ -61,7 +61,7 @@
 .statsGraph {
   height: rem(250);
   margin-bottom: rem(64);
-  max-width: 370px;
+  max-width: rem(370);
   width: 100%;
 }
 

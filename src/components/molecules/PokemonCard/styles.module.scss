@@ -12,7 +12,7 @@
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
   animation-name: pop-in;
-  border-radius: rem(12);
+  border-radius: 12px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
 }
 
 .background {
-  border-radius: rem(13);
+  border-radius: 13px;
   height: rem(299);
   position: absolute;
   transition: opacity ease-out 0.15s, transform ease-out 0.15s,
@@ -74,7 +74,9 @@
 }
 
 .pokemon {
+  height: rem(201);
   position: relative;
+  width: rem(201);
   z-index: get-index-level(lvl2);
 }
 
@@ -88,7 +90,7 @@
 
 .name {
   background-color: get-color(light);
-  border-radius: rem(6);
+  border-radius: 6px;
   bottom: 0;
   display: block;
   font-family: Roboto, Helvetica, sans-serif;
@@ -119,7 +121,7 @@
 
 .type {
   align-items: center;
-  border-radius: rem(6);
+  border-radius: 6px;
   color: get-color(light);
   display: flex;
   font-size: rem(18);
