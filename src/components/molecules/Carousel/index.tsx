@@ -31,7 +31,7 @@ const Carousel = ({
   const [maxPositionIndexState, setMaxPositionIndexState] =
     useState(maxPositionIndex);
 
-  const Tag = (tagName as keyof JSX.IntrinsicElements) ?? 'div';
+  const Tag = tagName as keyof JSX.IntrinsicElements;
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
