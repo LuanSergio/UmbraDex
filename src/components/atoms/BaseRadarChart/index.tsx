@@ -49,7 +49,6 @@ const BaseRadarChart = ({
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey={label} tick={customLabel} />
-        {/* <PolarRadiusAxis tick={false} angle={90} domain={[0, 255]} /> */}
         {radars.map(radar => (
           <Radar
             key={radar.name}
