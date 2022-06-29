@@ -1,8 +1,13 @@
 @use 'tools/get-color' as *;
+@use 'tools/index' as *;
 @use 'settings/colors-type' as typeColors;
 @use 'sass:map';
 
 $base-font-size: 1em;
+
+:root {
+  --header-height: 4.8125rem;
+}
 
 *,
 *::before,

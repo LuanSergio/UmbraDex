@@ -7,7 +7,7 @@
 .holder,
 .smallHolder {
   color: get-color(light);
-  margin-top: rem(16);
+  margin-top: calc(rem(16) + var(--header-height));
 }
 
 .container {
@@ -20,7 +20,7 @@
 
 @media only screen and (min-width: $sm) {
   .holder {
-    margin-top: rem(28);
+    margin-top: calc(rem(28) + var(--header-height));
   }
 }
 
@@ -33,12 +33,12 @@
 
   .holder {
     display: block;
-    margin-top: rem(72);
+    margin-top: calc(rem(72) + var(--header-height));
   }
 
   .smallHolder {
     display: block;
-    margin-top: rem(24);
+    margin-top: calc(rem(24) + var(--header-height));
   }
 }
 

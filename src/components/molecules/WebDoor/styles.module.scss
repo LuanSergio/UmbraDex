@@ -11,13 +11,12 @@
 
   background-color: var(--webdoor-primary-color);
   display: flex;
-  min-height: var(--screen-available-height);
-  min-height: 94.1vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 .container {
-  padding-top: rem(80);
+  padding-top: calc(rem(80) + var(--header-height));
   position: relative;
   width: 100%;
 }
@@ -36,22 +35,18 @@
   color: get-color(light);
   font-size: 1em;
   position: relative;
-  text-shadow: em(-1) em(-1) 0 var(--webdoor-contrast-color),
-    em(1) em(-1) 0 var(--webdoor-contrast-color),
-    em(-1) em(1) 0 var(--webdoor-contrast-color),
-    em(1) em(1) 0 var(--webdoor-contrast-color);
-  z-index: 2;
+  z-index: 1;
 }
 
 .titleShadow {
-  color: get-color(light);
+  color: var(--webdoor-contrast-color);
   display: block;
   font-family: Montserrat, Helvetica, sans-serif;
   font-size: 1em;
   font-weight: bold;
   left: 50%;
   position: absolute;
-  -webkit-text-stroke: em(2) var(--webdoor-contrast-color);
+  -webkit-text-stroke: em(1.5) var(--webdoor-contrast-color);
   top: 0;
   transform: translateX(-50%);
   width: 100%;
@@ -71,7 +66,8 @@
   display: none;
   position: absolute;
   right: rem(0);
-  top: rem(-40);
+  top: rem(37);
+  z-index: get-index-level(lvl5);
 }
 
 .zubat1 {

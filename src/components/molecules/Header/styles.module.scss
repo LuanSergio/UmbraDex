@@ -5,7 +5,11 @@
 
 .header {
   background-color: get-color(primary);
-  height: rem(77);
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: get-index-level(lvl4);
 }
 
 .headerContainer {
