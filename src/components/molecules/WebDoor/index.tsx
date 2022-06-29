@@ -1,12 +1,9 @@
 import Gengar from '@public/webdoor/gengar/gengar.svg';
 import Crobat from '@public/webdoor/gengar/crobat.svg';
 import Zubat from '@public/webdoor/gengar/zubat.svg';
-import useWindowSize from '@hooks/useWindowSize';
 import styles from './styles.module.scss';
 
 const WebDoor = (): JSX.Element => {
-  const [_, windowHeight] = useWindowSize();
-
   const title = (
     <>
       Find everything <br />
@@ -15,10 +12,7 @@ const WebDoor = (): JSX.Element => {
     </>
   );
   return (
-    <section
-      className={styles.webDoor}
-      style={{ minHeight: `${windowHeight - 77}px` }}
-    >
+    <section className={styles.webDoor}>
       <div className={`${styles.container} h-container`}>
         <div className={styles.titleHolder}>
           <h1 className={styles.title}>{title}</h1>
