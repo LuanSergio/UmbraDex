@@ -35,7 +35,7 @@
   color: get-color(light);
   font-size: 1em;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .titleShadow {
@@ -50,7 +50,7 @@
   top: 0;
   transform: translateX(-50%);
   width: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 .gengar {
@@ -85,7 +85,6 @@
   position: absolute;
   right: rem(0);
   top: 50%;
-  transform: translateY(-50%);
   width: 203px;
 }
 
@@ -109,36 +108,14 @@
   }
 }
 
-@media only screen and (min-width: $sm) {
-  .titleHolder {
-    font-size: rem(42);
-  }
-
-  .gengar {
-    bottom: 0;
-    height: 585.56px;
-    width: 620.95px;
-  }
-}
-
 @media only screen and (min-width: $md) {
-  .webDoor {
-    overflow: visible;
-  }
-
   .titleHolder {
     font-size: rem(56);
-  }
-
-  .gengar {
-    height: 680px;
-    width: 686px;
   }
 }
 
 @media only screen and (min-width: $lg) {
   .titleHolder {
-    font-size: rem(68);
     margin-left: rem(80);
     text-align: left;
   }
@@ -148,5 +125,17 @@
   .zubat2,
   .zubat3 {
     display: block;
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .titleHolder {
+    font-size: rem(68);
+  }
+
+  .gengar {
+    bottom: 0;
+    height: 680px;
+    width: 686px;
   }
 }
