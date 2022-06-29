@@ -18,14 +18,10 @@ const PokemonCard = ({
         )}
 
         <div className={styles.pokemonContainer}>
-          <span className={styles.pokeball}>{/* <PokeballIcon /> */}</span>
-          <PokemonPicture
-            width={216}
-            height={216}
-            className={styles.pokemon}
-            src={image}
-            alt=""
-          />
+          <span className={styles.pokeball} />
+          <div className={styles.pokemon}>
+            <PokemonPicture layout="fill" src={image} alt="" />
+          </div>
 
           <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
         </div>
