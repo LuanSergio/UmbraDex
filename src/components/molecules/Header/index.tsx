@@ -1,11 +1,30 @@
 import Link from 'next/link';
 import Logo from '@public/icons/logo.svg';
 import Github from '@public/icons/github.svg';
+import { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 
 const Header = (): JSX.Element => {
+  const headerRef = useRef(null);
+
+  const hasScrolled = e => {
+    const scrollTop = window.scrollY;
+    if (scrollTop > 0) {
+      headerRef.current.classList.add(styles.scrolled);
+    } else {
+      headerRef.current.classList.remove(styles.scrolled);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', hasScrolled);
+    return () => {
+      window.removeEventListener('scroll', hasScrolled);
+    };
+  });
+
   return (
-    <header className={styles.header}>
+    <header className={styles.header} ref={headerRef}>
       <div className={`${styles.headerContainer} h-container`}>
         <Link href="/">
           <a className={styles.logo} aria-label="UmbraDex">

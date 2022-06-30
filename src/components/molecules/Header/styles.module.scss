@@ -5,10 +5,15 @@
 
 .header {
   background-color: get-color(primary);
+  box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
   height: var(--header-height);
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: get-index-level(lvl2);
+}
+
+.scrolled {
   z-index: get-index-level(lvl4);
 }
 
@@ -52,6 +57,7 @@
   height: rem(45.1);
   justify-content: center;
   padding: rem(5);
+  position: relative;
   transition: background-color ease-out 0.15s;
   width: rem(46.9);
 
