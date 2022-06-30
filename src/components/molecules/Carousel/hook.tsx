@@ -153,11 +153,13 @@ const useCarousel = ({
 
   const updateCarouselPositionUsingIndex = useCallback(
     async newIndex => {
-      if (newIndex <= maxIndex && newIndex <= maxPositionIndex) {
+      if (newIndex <= maxIndex) {
         setCarouselAnimationDuration();
         const newPosition = getCarouselPositionByIndex(
           itemList,
-          newIndex - 1,
+          newIndex <= maxPositionIndex && typeof maxPositionIndex === 'number'
+            ? newIndex - 1
+            : (maxPositionIndex as number) - 1,
           gap,
         );
         await updateCarouselPosition(newPosition);
