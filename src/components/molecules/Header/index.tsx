@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const Header = (): JSX.Element => {
   const headerRef = useRef(null);
 
-  const hasScrolled = e => {
+  const hasScrolled = () => {
     const scrollTop = window.scrollY;
     if (scrollTop > 0) {
       headerRef.current.classList.add(styles.scrolled);
