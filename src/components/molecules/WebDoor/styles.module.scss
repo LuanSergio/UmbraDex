@@ -11,14 +11,24 @@
 
   background-color: var(--webdoor-primary-color);
   display: flex;
-  min-height: 100vh;
+
+  // min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .container {
+  flex-shrink: 0;
   padding-top: calc(rem(80) + var(--header-height));
   position: relative;
   width: 100%;
+}
+
+.titleContainer {
+  position: relative;
+  top: unset;
 }
 
 .titleHolder {
@@ -62,20 +72,24 @@
   width: 331px;
 }
 
+.crobatHolder {
+  position: relative;
+  z-index: get-index-level(lvl3);
+}
+
 .crobat {
   display: none;
   position: absolute;
-  right: rem(0);
-  top: rem(64);
-  z-index: get-index-level(lvl3);
+  right: -20px;
+  top: 64px;
 }
 
 .zubat1 {
   display: none;
   height: 115px;
-  left: -4%;
+  left: -6%;
   position: absolute;
-  top: 30%;
+  top: 30vh;
   width: 122px;
 }
 
@@ -83,17 +97,17 @@
   display: none;
   height: 193px;
   position: absolute;
-  right: rem(0);
-  top: 50%;
+  right: rem(-20);
+  top: 50vh;
   width: 203px;
 }
 
 .zubat3 {
   bottom: 20%;
   display: none;
-  left: -18%;
+  left: -20%;
   position: absolute;
-  width: 278px;
+  top: calc(80vh - 250px);
   width: 264px;
 }
 
@@ -115,9 +129,24 @@
 }
 
 @media only screen and (min-width: $lg) {
+  .container {
+    padding-top: 0;
+  }
+
+  .titleContainer {
+    position: absolute;
+    top: calc(rem(80) + var(--header-height));
+  }
+
   .titleHolder {
     margin-left: rem(80);
     text-align: left;
+  }
+
+  .gengar {
+    bottom: 0;
+    height: 680px;
+    width: 686px;
   }
 
   .crobat,
@@ -131,11 +160,5 @@
 @media only screen and (min-width: $xl) {
   .titleHolder {
     font-size: rem(68);
-  }
-
-  .gengar {
-    bottom: 0;
-    height: 680px;
-    width: 686px;
   }
 }
