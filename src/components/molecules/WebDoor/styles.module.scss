@@ -143,12 +143,6 @@
     text-align: left;
   }
 
-  .gengar {
-    bottom: 0;
-    height: 680px;
-    width: 686px;
-  }
-
   .crobat,
   .zubat1,
   .zubat2,
@@ -158,6 +152,12 @@
 }
 
 @media only screen and (min-width: $xl) {
+  .gengar {
+    bottom: 0;
+    height: 680px;
+    width: 686px;
+  }
+
   .titleHolder {
     font-size: rem(68);
   }
