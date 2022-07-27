@@ -1,26 +1,26 @@
-import { apiUrl, axios } from '@services/api';
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import graphqlClient from '@services/api';
 
 async function fetchPokemonListData() {
-  const result = await axios.post(apiUrl, {
-    query: `
-          query samplePokeAPIquery {
-            species: pokemon_v2_pokemonspecies(order_by: {id: asc}) {
-              name
-              id
-              information: pokemon_v2_pokemons {
-                types: pokemon_v2_pokemontypes {
-                  type: pokemon_v2_type {
-                    name
-                  }
-                }
+  const query = `
+      query samplePokeAPIquery {
+        species: pokemon_v2_pokemonspecies(order_by: {id: asc}) {
+          name
+          id
+          information: pokemon_v2_pokemons {
+            types: pokemon_v2_pokemontypes {
+              type: pokemon_v2_type {
+                name
               }
             }
           }
-        `,
-  });
+        }
+      }
+  `;
 
-  return result.data.data.species;
+  const result = await graphqlClient.request(query);
+
+  return result.species;
 }
 
 export default async function getPokemonListData(): Promise<

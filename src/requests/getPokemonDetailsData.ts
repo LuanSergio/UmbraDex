@@ -1,6 +1,6 @@
-import { apiUrl, axios } from '@services/api';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import graphqlClient from '@services/api';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
@@ -11,8 +11,7 @@ interface GetPokemonDetailsDataResponse {
 }
 
 async function fetchPokemonDetailsData(id: number) {
-  const result = await axios.post(apiUrl, {
-    query: `
+  const query = `
     query PokemonSpecies {
       pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
         pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
@@ -59,11 +58,11 @@ async function fetchPokemonDetailsData(id: number) {
         }
       }
     }
-    
-    `,
-  });
+  `;
 
-  return result.data.data;
+  const result = await graphqlClient.request(query);
+
+  return result;
 }
 
 export default async function getPokemonDetailsData(
