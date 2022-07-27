@@ -11,9 +11,7 @@
 
   background-color: var(--webdoor-primary-color);
   display: flex;
-
-  // min-height: 100vh;
-  height: 100vh;
+  height: var(--webdoor-height);
   justify-content: center;
   overflow: hidden;
   width: 100%;
