@@ -5,11 +5,3 @@ const graphqlClient = new GraphQLClient(
 );
 
 export default graphqlClient;
-
-// const apiUrl = 'https://beta.pokeapi.co/graphql/v1beta';
-
-// const api = axios.create({
-//   baseURL: apiUrl,
-// });
-
-// export { axios, api, apiUrl };
