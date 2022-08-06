@@ -12,7 +12,7 @@ interface GetPokemonDetailsDataResponse {
 
 async function fetchPokemonDetailsData(id: number) {
   const query = `
-    query PokemonSpecies {
+    query PokemonDetails {
       pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
         pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
           pokedex_number
@@ -38,6 +38,13 @@ async function fetchPokemonDetailsData(id: number) {
                   name
                 }
               }
+              weight
+              height
+            }
+          }
+          pokemon_v2_pokemonabilities {
+            pokemon_v2_ability {
+              name
             }
           }
         }
@@ -56,8 +63,9 @@ async function fetchPokemonDetailsData(id: number) {
             order
           }
         }
+        generation_id
       }
-    }
+    }  
   `;
 
   const result = await graphqlClient.request(query);
