@@ -114,7 +114,7 @@
 
 @media only screen and (min-width: $lg) {
   .name {
-    font-size: rem(88);
+    font-size: rem(64);
     margin-bottom: rem(8);
     max-width: rem(404);
   }
@@ -150,5 +150,11 @@
     &::before {
       font-size: rem(36);
     }
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .name {
+    font-size: rem(80);
   }
 }
