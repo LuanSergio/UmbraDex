@@ -28,7 +28,7 @@ const WebDoor = (): JSX.Element => {
         </div>
 
         <motion.div
-          transition={{ delay: 0, type: 'tween', duration: 0.85 }}
+          transition={{ delay: 0, type: 'tween', duration: 0.65 }}
           initial={{ x: '-300%', y: '400vh' }}
           animate={{ y: 0, x: 0 }}
         >
@@ -36,7 +36,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          transition={{ delay: 0, type: 'tween', duration: 0.85 }}
+          transition={{ delay: 0, type: 'tween', duration: 0.65 }}
           initial={{ x: '-300%', y: '400vh' }}
           animate={{ y: 0, x: 0 }}
         >
@@ -44,7 +44,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          transition={{ delay: 0, type: 'tween', duration: 0.85 }}
+          transition={{ delay: 0, type: 'tween', duration: 0.65 }}
           initial={{ x: '-300%', y: '400vh' }}
           animate={{ x: 0, y: '0' }}
         >
@@ -53,7 +53,7 @@ const WebDoor = (): JSX.Element => {
 
         <motion.div
           className={styles.crobatHolder}
-          transition={{ delay: 0.35, type: 'tween', duration: 0.75 }}
+          transition={{ delay: 0.25, type: 'tween', duration: 0.55 }}
           initial={{ x: '-300%', y: '400vh' }}
           animate={{ y: 0, x: 0 }}
         >
