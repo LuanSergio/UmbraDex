@@ -10,9 +10,9 @@ const Header = (): JSX.Element => {
   const hasScrolled = () => {
     const scrollTop = window.scrollY;
     if (scrollTop > 0) {
-      headerRef.current.classList.add(styles.scrolled);
+      headerRef.current?.classList.add(styles.scrolled);
     } else {
-      headerRef.current.classList.remove(styles.scrolled);
+      headerRef.current?.classList.remove(styles.scrolled);
     }
   };
 
