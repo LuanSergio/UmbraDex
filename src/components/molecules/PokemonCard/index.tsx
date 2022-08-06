@@ -10,7 +10,7 @@ const PokemonCard = ({
 }: IBasicPokemonInfo): JSX.Element => {
   return (
     <Link href={`/pokemon/${id}`}>
-      <div className={styles.card}>
+      <div className={styles.card} id={`${id}`}>
         {id <= 10 ? (
           <p className={styles.number}># 0{id}</p>
         ) : (

@@ -1,34 +1,16 @@
-import { MutableRefObject, useCallback, useEffect, useState } from 'react';
+import { MutableRefObject, useCallback, useEffect } from 'react';
 
 interface ControllerProps {
-  pokemonList: IBasicPokemonInfo[];
   loader: MutableRefObject<HTMLElement>;
+  setSize: (
+    size: number | ((_size: number) => number),
+  ) => Promise<IBasicPokemonInfo[][]>;
 }
 
-interface IController {
-  loadedPokemonList: IBasicPokemonInfo[];
-}
-
-const amountOfPokemonPerLoad = 24;
-
-const useController = ({
-  pokemonList,
-  loader,
-}: ControllerProps): IController => {
-  const [loadedPokemonCounter, setLoadedPokemonCounter] = useState(0);
-  const [loadedPokemon, setLoadedPokemon] = useState<IBasicPokemonInfo[]>([]);
-
-  const handleObserver = useCallback(
-    (entities: IntersectionObserverEntry[]) => {
-      if (pokemonList.length > loadedPokemonCounter) {
-        const target = entities[0];
-        if (target.isIntersecting) {
-          setLoadedPokemonCounter(counter => counter + amountOfPokemonPerLoad);
-        }
-      }
-    },
-    [loadedPokemonCounter, pokemonList.length],
-  );
+const useController = ({ loader, setSize }: ControllerProps) => {
+  const handleObserver = useCallback(() => {
+    setSize(previousValue => previousValue + 1);
+  }, [setSize]);
 
   // Create Observer loader
   useEffect(() => {
@@ -42,19 +24,6 @@ const useController = ({
       observer.observe(loader.current);
     }
   }, [loader, handleObserver]);
-
-  // Update loaded pokemon list
-  useEffect(() => {
-    setLoadedPokemon(previousState => [
-      ...previousState,
-      ...pokemonList.slice(
-        loadedPokemonCounter,
-        loadedPokemonCounter + amountOfPokemonPerLoad,
-      ),
-    ]);
-  }, [loadedPokemonCounter, pokemonList]);
-
-  return { loadedPokemonList: loadedPokemon };
 };
 
 export default useController;
