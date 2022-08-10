@@ -3,30 +3,32 @@ import DefaultLayout from '@components/layouts/DefaultLayout';
 import { GetStaticProps } from 'next';
 import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
+import { SWRConfig } from 'swr';
 
-interface HomeProps {
-  pokemonList: IBasicPokemonInfo[];
-}
-
-const Home = ({ pokemonList }: HomeProps): JSX.Element => {
+const Home = ({ fallback }): JSX.Element => {
   return (
     <div>
       <Head>
         <title>UmbraDex</title>
       </Head>
       <DefaultLayout>
-        <PokemonCardList pokemonList={pokemonList} />
+        <SWRConfig value={fallback}>
+          <PokemonCardList />
+        </SWRConfig>
       </DefaultLayout>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pokemonList = await getPokemonListData();
+  const pokemonList = await getPokemonListData({});
 
   return {
     props: {
-      pokemonList,
+      fallback: {
+        'pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 24)':
+          pokemonList,
+      },
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };

@@ -1,9 +1,7 @@
-import axios from 'axios';
+import { GraphQLClient } from 'graphql-request';
 
-const apiUrl = 'https://beta.pokeapi.co/graphql/v1beta';
+const graphqlClient = new GraphQLClient(
+  'https://beta.pokeapi.co/graphql/v1beta',
+);
 
-const api = axios.create({
-  baseURL: apiUrl,
-});
-
-export { axios, api, apiUrl };
+export default graphqlClient;
