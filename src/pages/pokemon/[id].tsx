@@ -1,6 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import PokemonContent from '@components/organism/PokemonContent';
 
@@ -19,14 +17,6 @@ const Pokemon = ({
   pokedexLimit,
   pokemonDetails,
 }: IPokemonDetailsProps): JSX.Element => {
-  const {
-    query: { id },
-  } = useRouter();
-
-  useEffect(() => {
-    sessionStorage.setItem('currentPokemonId', id as string);
-  }, [id]);
-
   return (
     <>
       <Head>

@@ -26,10 +26,16 @@ const PokemonContent = ({
   pokedexLimit,
   pokemonDetails,
 }: IPokemonContentProps): JSX.Element => {
-  const router = useRouter();
-  const pageId = parseInt(router.query.id as string, 10);
+  const {
+    query: { id },
+  } = useRouter();
+  const pageId = parseInt(id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
   const [windowWidth] = useWindowSize();
+
+  useEffect(() => {
+    sessionStorage.setItem('currentPokemonId', id as string);
+  }, [id]);
 
   const handleFormChange = useCallback((form: IPokemonForm) => {
     if (form) {
