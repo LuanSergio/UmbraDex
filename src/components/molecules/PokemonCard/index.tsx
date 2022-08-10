@@ -23,7 +23,7 @@ const PokemonCard = ({
             <PokemonPicture layout="fill" src={image} alt="" />
           </div>
 
-          <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
+          <p className={`${styles.name} ${styles[types[0]]}`}>{name}</p>
         </div>
 
         <div className={styles.typeContainer}>
