@@ -30,6 +30,7 @@ const PokemonCardList = (): JSX.Element => {
 
       if (currentPokemonId) {
         router.replace({ hash: currentPokemonId.toString() });
+        sessionStorage.setItem('currentPokemonId', '' as string);
       }
     }
   }, [router, windowWidth]);
