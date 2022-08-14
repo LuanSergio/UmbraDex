@@ -31,6 +31,9 @@ html {
 html,
 body {
   font-family: Roboto, Helvetica, sans-serif;
+
+  // firefox custom scrollbar
+  scrollbar-color: get-color(primary) get-color(secondary);
 }
 
 h1,
@@ -44,6 +47,29 @@ h6 {
 
 body {
   background-color: var(--current-body-background);
+  scrollbar-arrow-color: get-color(primary);
+
+  // ie and edge custom scroll bar
+  scrollbar-face-color: get-color(primary);
+  scrollbar-shadow-color: get-color(primary); // border
+  scrollbar-track-color: get-color(secondary);
+  scrollbar-width: auto;
+}
+
+// chrome custom scroll bar
+body::-webkit-scrollbar {
+  height: rem(15);
+  width: rem(15);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: get-color(primary);
+  border-radius: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: get-color(secondary);
+  border-radius: 0;
 }
 
 .body-transition {
