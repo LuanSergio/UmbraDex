@@ -21,12 +21,16 @@ const Home = ({ fallback }): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pokemonList = await getPokemonListData({});
+  const url =
+    'species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 0)';
+  const pokemonList = await getPokemonListData({
+    url,
+  });
 
   return {
     props: {
       fallback: {
-        'pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 24)':
+        'pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 0)':
           pokemonList,
       },
     },

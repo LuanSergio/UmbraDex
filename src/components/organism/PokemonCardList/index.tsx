@@ -44,7 +44,7 @@ const PokemonCardList = (): JSX.Element => {
       <ol className={styles.cardContainer}>
         {pokemonList && (
           <>
-            {pokemonList.map((list, index) => (
+            {pokemonList?.map((list, index) => (
               <Fragment key={index}>
                 {list.map(pokemon => (
                   <li key={pokemon.id}>
