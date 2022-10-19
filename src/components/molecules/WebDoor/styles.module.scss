@@ -49,11 +49,13 @@
 .titleShadow {
   color: var(--webdoor-contrast-color);
   display: block;
-  font-family: Montserrat, Helvetica, sans-serif;
+  font-family: sans-serif;
   font-size: 1em;
   font-weight: bold;
   left: 50%;
+  letter-spacing: 2px;
   position: absolute;
+  text-shadow: 4px 12px 18px rgba($color: #000, $alpha: 80%);
   -webkit-text-stroke: em(1.5) var(--webdoor-contrast-color);
   top: 0;
   transform: translateX(-50%);
