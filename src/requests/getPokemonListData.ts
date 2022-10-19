@@ -1,14 +1,19 @@
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import graphqlClient from '@services/api';
 
+const POKEMON_PER_REQUEST = 48;
+
 interface IPaginationParams {
-  url?: string;
+  queryName?: string;
+  page;
 }
 
-async function fetchPokemonListData({ url }: IPaginationParams) {
+async function fetchPokemonListData({ queryName, page }: IPaginationParams) {
   const query = `
-    query pokemonList {
-      ${url || 'species: pokemon_v2_pokemonspecies(order_by: {id: asc})'} {
+    query ${queryName} {
+      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${POKEMON_PER_REQUEST}, offset: ${
+        page * POKEMON_PER_REQUEST
+      })`} {
         name
         id
         information: pokemon_v2_pokemons {
@@ -20,7 +25,6 @@ async function fetchPokemonListData({ url }: IPaginationParams) {
         }
       }
     }
-    
   `;
 
   const result = await graphqlClient.request(query);
@@ -29,9 +33,10 @@ async function fetchPokemonListData({ url }: IPaginationParams) {
 }
 
 export default async function getPokemonListData({
-  url,
+  queryName,
+  page,
 }: IPaginationParams): Promise<IBasicPokemonInfo[]> {
-  const responses = await fetchPokemonListData({ url });
+  const responses = await fetchPokemonListData({ queryName, page });
   const pokemonInfoArray = [];
   responses.forEach(response => {
     const pokemonInfo: IBasicPokemonInfo = {

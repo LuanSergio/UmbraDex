@@ -1,37 +1,45 @@
 import Head from 'next/head';
-import DefaultLayout from '@components/layouts/DefaultLayout';
 import { GetStaticProps } from 'next';
+// eslint-disable-next-line camelcase
+import { unstable_serialize } from 'swr';
+
+import DefaultLayout from '@components/layouts/DefaultLayout';
 import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
-import { SWRConfig } from 'swr';
+import { useEffect } from 'react';
 
 const Home = ({ fallback }): JSX.Element => {
+  function getPokemonFallbackList(): IBasicPokemonInfo[][] {
+    return Object.values(fallback)[0] as IBasicPokemonInfo[][];
+  }
+
+  useEffect(() => {
+    document.body.className = 'initial';
+  }, []);
+
   return (
     <div>
       <Head>
         <title>UmbraDex</title>
       </Head>
       <DefaultLayout>
-        <SWRConfig value={fallback}>
-          <PokemonCardList />
-        </SWRConfig>
+        <PokemonCardList fallback={getPokemonFallbackList()} />
       </DefaultLayout>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const url =
-    'species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 0)';
+  const queryName = 'pokemonList';
   const pokemonList = await getPokemonListData({
-    url,
+    queryName,
+    page: 0,
   });
 
   return {
     props: {
       fallback: {
-        'pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 24, offset: 0)':
-          pokemonList,
+        [unstable_serialize([queryName, 1])]: [pokemonList],
       },
     },
     revalidate: 60 * 60 * 24, // 24 hours

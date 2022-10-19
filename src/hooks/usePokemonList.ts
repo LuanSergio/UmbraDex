@@ -3,6 +3,7 @@ import useSWRInfinite from 'swr/infinite';
 
 interface IUsePokemonListParams {
   limit?: number;
+  fallback?: IBasicPokemonInfo[][];
 }
 
 interface IUsePokemonListReponse {
@@ -15,17 +16,20 @@ interface IUsePokemonListReponse {
 }
 
 export default function usePokemonList({
-  limit,
+  fallback,
 }: IUsePokemonListParams): IUsePokemonListReponse {
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
-    return `species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${limit}, offset: ${
-      pageIndex * limit
-    })`;
+    return [`pokemonList`, pageIndex];
   };
 
-  const { data, error, size, setSize } = useSWRInfinite(getKey, url =>
-    getPokemonListData({ url }),
+  const { data, error, size, setSize } = useSWRInfinite(
+    getKey,
+    (key, page) => getPokemonListData({ queryName: key, page }),
+    {
+      fallbackData: fallback,
+      fallback,
+    },
   );
 
   return {

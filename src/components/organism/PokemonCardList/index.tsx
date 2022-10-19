@@ -9,10 +9,14 @@ import useController from './index.controller';
 
 import styles from './styles.module.scss';
 
-const PokemonCardList = (): JSX.Element => {
+interface IPokemonCardListProps {
+  fallback?: IBasicPokemonInfo[][];
+}
+
+const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
   const loader = useRef(null);
   const isFirstRender = useRef(true);
-  const { pokemonList, setSize } = usePokemonList({ limit: 24 });
+  const { pokemonList, setSize } = usePokemonList({ limit: 24, fallback });
   const [windowWidth] = useWindowSize();
 
   const router = useRouter();
@@ -35,31 +39,23 @@ const PokemonCardList = (): JSX.Element => {
     }
   }, [router, windowWidth]);
 
-  useEffect(() => {
-    document.body.className = 'initial';
-  }, []);
-
   return (
     <>
       <ol className={styles.cardContainer}>
-        {pokemonList && (
-          <>
-            {pokemonList?.map((list, index) => (
-              <Fragment key={index}>
-                {list.map(pokemon => (
-                  <li key={pokemon.id}>
-                    <PokemonCard
-                      id={pokemon.id}
-                      name={pokemon.name}
-                      types={pokemon.types}
-                      image={pokemon.image}
-                    />
-                  </li>
-                ))}
-              </Fragment>
+        {pokemonList?.map((list, index) => (
+          <Fragment key={index}>
+            {list.map(pokemon => (
+              <li key={pokemon.id}>
+                <PokemonCard
+                  id={pokemon.id}
+                  name={pokemon.name}
+                  types={pokemon.types}
+                  image={pokemon.image}
+                />
+              </li>
             ))}
-          </>
-        )}
+          </Fragment>
+        ))}
       </ol>
       <div ref={loader} />
     </>
