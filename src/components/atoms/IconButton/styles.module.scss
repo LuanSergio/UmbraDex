@@ -1,0 +1,35 @@
+@use 'tools/index' as *;
+
+.iconButton {
+  align-items: center;
+  background-color: get-color(primary-light);
+  border-radius: 4px;
+  border-style: none;
+  color: get-color(dark);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  padding: rem(6);
+  transition: background-color linear 0.12s;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+.elevation {
+  box-shadow: 2px 2px 0 0 get-color(dark);
+}
+
+.iconButton:hover {
+  background-color: get-color(secondary);
+}
+
+.round {
+  border-radius: 30px;
+}
+
+.iconButton[disabled]:hover {
+  background-color: get-color(light);
+}
