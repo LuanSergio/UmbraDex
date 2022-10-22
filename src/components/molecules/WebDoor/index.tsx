@@ -32,7 +32,7 @@ const WebDoor = (): JSX.Element => {
             </div>
           </div>
 
-          {windowWidth && (
+          {windowWidth > 0 && (
             <>
               <motion.div
                 transition={{ delay: 0, type: 'tween', duration: 0.65 }}

@@ -1,19 +1,19 @@
 import NextLink from 'next/link';
 import styles from './styles.module.scss';
 
-interface LinearNavigationProps {
+interface InnerPageNavigationProps {
   previous: string;
   next: string;
   disablePrevious?: boolean;
   disableNext?: boolean;
 }
 
-const LinearNavigation = ({
+const InnerPageNavigation = ({
   previous,
   next,
   disablePrevious,
   disableNext,
-}: LinearNavigationProps): JSX.Element => {
+}: InnerPageNavigationProps): JSX.Element => {
   return (
     <div className={styles.navigation}>
       <NextLink href={previous}>
@@ -25,6 +25,7 @@ const LinearNavigation = ({
           className={styles.previous}
         />
       </NextLink>
+
       <NextLink href={next}>
         <button
           type="button"
@@ -38,4 +39,4 @@ const LinearNavigation = ({
   );
 };
 
-export default LinearNavigation;
+export default InnerPageNavigation;

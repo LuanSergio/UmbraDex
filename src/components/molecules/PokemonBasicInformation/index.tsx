@@ -15,6 +15,7 @@ const PokemonBasicInformation = ({
   return (
     <div>
       <h1 className={styles.name}>{replaceDashWithSpace(name)}</h1>
+
       <div className={styles.basicInfo}>
         {pokedexIndex <= 10 ? (
           <span className={styles.number}>
@@ -25,6 +26,7 @@ const PokemonBasicInformation = ({
             <span className={styles.hashtag}>#</span> {pokedexIndex}
           </span>
         )}
+
         <div className={styles.typeContainer}>
           {types.map((type, index) => (
             <span

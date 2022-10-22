@@ -1,6 +1,6 @@
 import { Children, ReactNode, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
-import useCarousel from './hook';
+import useCarousel from './useCarousel';
 
 interface ICarouselProps {
   children: ReactNode;

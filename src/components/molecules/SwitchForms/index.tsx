@@ -42,18 +42,21 @@ const SwitchForms = ({
     setFormIndex(index);
   }
 
+  // Change back to default form when pokemon changes
   useEffect(() => {
     if (pokemon.isDefault) {
       setFormIndex(0);
     }
   }, [pokemon.isDefault]);
 
+  // Change form
   useEffect(() => {
     if (formIndex === 0) {
       handleFormChange(defaultPokemonForm);
-    } else {
-      handleFormChange(alternativePokemonForms[formIndex - 1]);
+      return;
     }
+
+    handleFormChange(alternativePokemonForms[formIndex - 1]);
   }, [
     alternativePokemonForms,
     defaultPokemonForm,
@@ -84,6 +87,7 @@ const SwitchForms = ({
           <DefaultFormIcon />
         </div>
       </CarouselItem>
+
       {alternativePokemonForms.map((form, index) => {
         const formName = transformDashedCaseToCamelCase(form.formName);
 

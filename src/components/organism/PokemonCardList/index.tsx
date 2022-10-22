@@ -5,7 +5,7 @@ import { useEffect, useRef, Fragment } from 'react';
 import PokemonCard from '@components/molecules/PokemonCard';
 import usePokemonList from '@hooks/usePokemonList';
 import useWindowSize from '@hooks/useWindowSize';
-import useController from './index.controller';
+import useCardListLoader from './useCardListLoader';
 
 import styles from './styles.module.scss';
 
@@ -21,7 +21,7 @@ const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
 
   const router = useRouter();
 
-  useController({ loader, setSize });
+  useCardListLoader({ loader, setSize });
 
   useEffect(() => {
     if (isFirstRender.current && windowWidth > 0) {

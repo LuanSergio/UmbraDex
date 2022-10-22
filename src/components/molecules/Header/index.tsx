@@ -31,6 +31,7 @@ const Header = (): JSX.Element => {
             <Logo />
           </a>
         </Link>
+
         <div className={styles.rightContainer}>
           <a
             href="https://github.com/LuanSergio/UmbraDex"

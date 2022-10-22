@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
-import LinearNavigation from '@components/molecules/LinearNavigation';
+import InnerPageNavigation from '@components/molecules/InnerPageNavigation';
 import PokemonHighlight from '@components/molecules/PokemonHighlight';
 import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
 import PokemonDescription from '@components/molecules/PokemonDescription';
@@ -118,7 +118,7 @@ const PokemonContent = ({
           </div>
           <PokemonStats stats={pokemon.stats} />
         </div>
-        <LinearNavigation
+        <InnerPageNavigation
           previous={`/pokemon/${pageId - 1}`}
           next={`/pokemon/${pageId + 1}`}
           disablePrevious={pageId <= 1}

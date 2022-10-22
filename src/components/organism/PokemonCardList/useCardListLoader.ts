@@ -7,7 +7,7 @@ interface ControllerProps {
   ) => Promise<IBasicPokemonInfo[][]>;
 }
 
-const useController = ({ loader, setSize }: ControllerProps) => {
+const useCardListLoader = ({ loader, setSize }: ControllerProps) => {
   const handleObserver = useCallback(() => {
     setSize(previousValue => previousValue + 1);
   }, [setSize]);
@@ -26,4 +26,4 @@ const useController = ({ loader, setSize }: ControllerProps) => {
   }, [loader, handleObserver]);
 };
 
-export default useController;
+export default useCardListLoader;
