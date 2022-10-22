@@ -1,0 +1,93 @@
+@use 'tools/index' as *;
+
+.textField {
+  width: 100%;
+}
+
+.container {
+  align-items: center;
+  background-color: get-color(primary-dark);
+  border: 2px solid get-color(primary-dark);
+  border-radius: 4px;
+  cursor: text;
+  display: flex;
+  height: rem(46);
+  position: relative;
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.container:focus-within,
+.container:hover {
+  border-color: get-color(secondary);
+}
+
+.input {
+  background-color: transparent;
+  border-style: none;
+  color: get-color(light);
+  display: block;
+  height: 100%;
+  padding-left: rem(8);
+  padding-right: rem(8);
+  width: 100%;
+}
+
+.input:invalid {
+  color: rgb(233 45 45);
+}
+
+.inputWithAdornment {
+  padding-right: rem(50);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.label {
+  color: get-color(light);
+  left: 8px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.container:focus-within .label,
+.input:not(:placeholder-shown) ~ .labelTransformed {
+  font-size: rem(0);
+}
+
+.container.small:focus-within .label,
+.input:not(:placeholder-shown) ~ .labelTransformed {
+  top: 12px;
+}
+
+.adornment {
+  position: absolute;
+  right: 8px;
+  z-index: get-index-level(lvl1);
+}
+
+.textHelper {
+  font-size: rem(14);
+  margin-left: rem(10);
+}
+
+// styles for chrome autofill
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px get-color(primary) inset !important;
+}
+
+.input:-webkit-autofill:not(:placeholder-shown) {
+  -webkit-text-fill-color: get-color(dark) !important;
+}
+
+.input:-webkit-autofill:not(:placeholder-shown) ~ .label {
+  font-size: rem(12);
+  -webkit-text-fill-color: get-color(light) !important;
+  top: 14px;
+}
