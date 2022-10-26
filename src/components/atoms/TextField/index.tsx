@@ -35,7 +35,7 @@ const TextField = ({
       />
       <label
         className={`${styles.label} ${
-          value.length > 0 ? styles.labelTransformed : ''
+          value?.length > 0 ? styles.labelTransformed : ''
         }`}
         htmlFor={inputProps?.name}
       >

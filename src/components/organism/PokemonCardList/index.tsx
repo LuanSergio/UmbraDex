@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, Fragment } from 'react';
 
+import { useSearchContext } from '@contexts/SearchContext';
 import PokemonCard from '@components/molecules/PokemonCard';
 import usePokemonList from '@hooks/usePokemonList';
 import useWindowSize from '@hooks/useWindowSize';
@@ -14,14 +15,19 @@ interface IPokemonCardListProps {
 }
 
 const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
+  const { searchValue } = useSearchContext();
   const loader = useRef(null);
   const isFirstRender = useRef(true);
-  const { pokemonList, setSize } = usePokemonList({ limit: 24, fallback });
+
+  const { pokemonList, setSize } = usePokemonList({
+    fallback,
+    search: searchValue,
+  });
   const [windowWidth] = useWindowSize();
 
   const router = useRouter();
 
-  useCardListLoader({ loader, setSize });
+  useCardListLoader({ loader, setSize, shouldUpdate: !searchValue.length });
 
   useEffect(() => {
     if (isFirstRender.current && windowWidth > 0) {

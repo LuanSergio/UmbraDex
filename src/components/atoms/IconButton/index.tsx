@@ -8,7 +8,7 @@ interface IButtonProps {
   round?: boolean;
   label: string;
   type?: 'button' | 'submit' | 'reset';
-  elevation?: boolean;
+  theme?: 'primary' | 'secondary';
   fill?: boolean;
   props?: ButtonHTMLAttributes<HTMLButtonElement>;
 }
@@ -19,7 +19,7 @@ const IconButton = ({
   round,
   label,
   fill,
-  elevation = false,
+  theme = 'primary',
   type = 'button',
 }: IButtonProps): JSX.Element => (
   <button
@@ -27,7 +27,7 @@ const IconButton = ({
     aria-label={label}
     {...props}
     className={`${styles.iconButton} ${round ? styles.round : ''} ${
-      elevation ? styles.elevation : ''
+      styles[theme]
     } ${fill ? styles.fill : ''}`}
   >
     {children}

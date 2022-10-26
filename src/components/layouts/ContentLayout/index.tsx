@@ -9,7 +9,7 @@ interface ContentLayoutProps {
 const ContentLayout = ({ children }: ContentLayoutProps): JSX.Element => {
   return (
     <>
-      <Header />
+      <Header innerPage />
       <main className="h-container">{children}</main>
     </>
   );

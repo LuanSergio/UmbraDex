@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 // eslint-disable-next-line camelcase
@@ -6,7 +7,7 @@ import { unstable_serialize } from 'swr';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
-import { useEffect } from 'react';
+import { SearchContextProvider } from '@contexts/SearchContext';
 
 const Home = ({ fallback }): JSX.Element => {
   function getPokemonFallbackList(): IBasicPokemonInfo[][] {
@@ -22,9 +23,11 @@ const Home = ({ fallback }): JSX.Element => {
       <Head>
         <title>UmbraDex</title>
       </Head>
-      <DefaultLayout>
-        <PokemonCardList fallback={getPokemonFallbackList()} />
-      </DefaultLayout>
+      <SearchContextProvider>
+        <DefaultLayout>
+          <PokemonCardList fallback={getPokemonFallbackList()} />
+        </DefaultLayout>
+      </SearchContextProvider>
     </div>
   );
 };
@@ -34,6 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const pokemonList = await getPokemonListData({
     queryName,
     page: 0,
+    search: '',
   });
 
   return {

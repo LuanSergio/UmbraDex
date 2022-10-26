@@ -3,17 +3,25 @@ import graphqlClient from '@services/api';
 
 const POKEMON_PER_REQUEST = 48;
 
-interface IPaginationParams {
+interface IFetchPokemonListParams {
   queryName?: string;
-  page;
+  page: number;
+  search: string;
 }
 
-async function fetchPokemonListData({ queryName, page }: IPaginationParams) {
+async function fetchPokemonListData({
+  queryName,
+  page,
+  search,
+}: IFetchPokemonListParams) {
+  const searchQuery =
+    search.length > 0 ? `where: {name: {_regex: ${search}}}` : '';
+  const offset = page * POKEMON_PER_REQUEST;
+
   const query = `
     query ${queryName} {
-      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${POKEMON_PER_REQUEST}, offset: ${
-        page * POKEMON_PER_REQUEST
-      })`} {
+      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${searchQuery}
+      )`} {
         name
         id
         information: pokemon_v2_pokemons {
@@ -35,8 +43,9 @@ async function fetchPokemonListData({ queryName, page }: IPaginationParams) {
 export default async function getPokemonListData({
   queryName,
   page,
-}: IPaginationParams): Promise<IBasicPokemonInfo[]> {
-  const responses = await fetchPokemonListData({ queryName, page });
+  search,
+}: IFetchPokemonListParams): Promise<IBasicPokemonInfo[]> {
+  const responses = await fetchPokemonListData({ queryName, page, search });
   const pokemonInfoArray = [];
   responses.forEach(response => {
     const pokemonInfo: IBasicPokemonInfo = {

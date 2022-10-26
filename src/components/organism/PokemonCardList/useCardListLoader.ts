@@ -2,15 +2,22 @@ import { MutableRefObject, useCallback, useEffect } from 'react';
 
 interface ControllerProps {
   loader: MutableRefObject<HTMLElement>;
+  shouldUpdate?: boolean;
   setSize: (
     size: number | ((_size: number) => number),
   ) => Promise<IBasicPokemonInfo[][]>;
 }
 
-const useCardListLoader = ({ loader, setSize }: ControllerProps) => {
+const useCardListLoader = ({
+  loader,
+  setSize,
+  shouldUpdate = false,
+}: ControllerProps) => {
   const handleObserver = useCallback(() => {
-    setSize(previousValue => previousValue + 1);
-  }, [setSize]);
+    if (shouldUpdate) {
+      setSize(previousValue => previousValue + 1);
+    }
+  }, [setSize, shouldUpdate]);
 
   // Create Observer loader
   useEffect(() => {
