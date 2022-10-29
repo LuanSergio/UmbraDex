@@ -6,7 +6,7 @@ interface IUsePokemonListParams {
   search?: string;
 }
 
-interface IUsePokemonListReponse {
+interface IUsePokemonListResponse {
   pokemonList: IBasicPokemonInfo[][];
   isLoading: boolean;
   size: number;
@@ -18,7 +18,7 @@ interface IUsePokemonListReponse {
 export default function usePokemonList({
   fallback,
   search = '',
-}: IUsePokemonListParams): IUsePokemonListReponse {
+}: IUsePokemonListParams): IUsePokemonListResponse {
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
     return [`pokemonList`, pageIndex, search];
@@ -30,7 +30,6 @@ export default function usePokemonList({
       getPokemonListData({ queryName: key, page, search: searchKey }),
     {
       fallbackData: fallback,
-      fallback,
     },
   );
 
