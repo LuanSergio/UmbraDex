@@ -20,7 +20,7 @@ const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
   const isFirstRender = useRef(true);
 
   const { pokemonList, setSize } = usePokemonList({
-    fallback,
+    fallback: searchValue.length ? undefined : fallback,
     search: searchValue,
   });
   const [windowWidth] = useWindowSize();
