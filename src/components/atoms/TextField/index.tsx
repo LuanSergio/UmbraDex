@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, Ref } from 'react';
+import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -10,41 +10,45 @@ interface ITextFieldProps {
   onAdornmentClick?: () => void;
   value: string;
   theme?: 'primary' | 'secondary';
-  inputProps?: InputHTMLAttributes<HTMLInputElement> & {
-    ref?: Ref<HTMLInputElement>;
-  };
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
-const TextField = ({
-  label,
-  helperText,
-  value,
-  theme = 'primary',
-  inputProps,
-  adornment,
-  size = 'normal',
-}: ITextFieldProps): JSX.Element => (
-  <div className={styles.textField}>
-    <div className={`${styles.container} ${styles[theme]} ${styles[size]}`}>
-      <input
-        {...inputProps}
-        value={value}
-        className={`${styles.input} ${
-          adornment ? styles.inputWithAdornment : ''
-        }`}
-      />
-      <label
-        className={`${styles.label} ${
-          value?.length > 0 ? styles.labelTransformed : ''
-        }`}
-        htmlFor={inputProps?.name}
-      >
-        {label}
-      </label>
-      <div className={styles.adornment}>{adornment}</div>
+const TextField = forwardRef(
+  (
+    {
+      label,
+      helperText,
+      value,
+      theme = 'primary',
+      inputProps,
+      adornment,
+      size = 'normal',
+    }: ITextFieldProps,
+    ref: LegacyRef<HTMLInputElement>,
+  ): JSX.Element => (
+    <div className={styles.textField}>
+      <div className={`${styles.container} ${styles[theme]} ${styles[size]}`}>
+        <input
+          {...inputProps}
+          value={value}
+          ref={ref}
+          className={`${styles.input} ${
+            adornment ? styles.inputWithAdornment : ''
+          }`}
+        />
+        <label
+          className={`${styles.label} ${
+            value?.length > 0 ? styles.labelTransformed : ''
+          }`}
+          htmlFor={inputProps?.name}
+        >
+          {label}
+        </label>
+        <div className={styles.adornment}>{adornment}</div>
+      </div>
+      {helperText && <span className={styles.textHelper}>{helperText}</span>}
     </div>
-    {helperText && <span className={styles.textHelper}>{helperText}</span>}
-  </div>
+  ),
 );
 
 export default TextField;

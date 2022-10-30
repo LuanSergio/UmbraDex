@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { useSearchContext } from '@contexts/SearchContext';
 import Link from 'next/link';
@@ -16,7 +16,23 @@ interface IHeaderProps {
   innerPage?: boolean;
 }
 
-const SearchInputIcon = ({ isLoading, value }): JSX.Element => {
+interface ISearchInputIconProps {
+  isLoading: boolean;
+  value: string;
+  setInputValue: (value: string) => void;
+  setInputFocus: () => void;
+}
+
+const SearchInputIcon = ({
+  isLoading,
+  value,
+  setInputValue,
+  setInputFocus,
+}: ISearchInputIconProps): JSX.Element => {
+  function clearInputValue() {
+    setInputValue('');
+  }
+
   if (isLoading) {
     return (
       <IconButton
@@ -41,13 +57,21 @@ const SearchInputIcon = ({ isLoading, value }): JSX.Element => {
       label="Search"
       aria-label="Search"
       type="button"
+      props={{
+        onClick: clearInputValue,
+      }}
     >
       <ClearIcon
         className={`${styles.searchInputIcon} ${styles.searchInputIconActive}`}
       />
     </IconButton>
   ) : (
-    <IconButton label="Search" aria-label="Search" type="button">
+    <IconButton
+      label="Search"
+      aria-label="Search"
+      type="button"
+      props={{ onClick: setInputFocus }}
+    >
       <SearchIcon className={styles.searchInputIcon} />
     </IconButton>
   );
@@ -58,6 +82,7 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
   const { updateSearchValue } = useSearchContext();
+  const searchRef = useRef(null);
 
   const onSearchValueChange = useDebounce(updateSearchValue, 700);
 
@@ -81,6 +106,14 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
   function handleOpenSearchClick() {
     setIsSearchOpen(previousState => !previousState);
   }
+
+  function setSearchInputFocus() {
+    searchRef.current.focus();
+  }
+
+  useEffect(() => {
+    if (isSearchOpen) setSearchInputFocus();
+  }, [isSearchOpen]);
 
   useEffect(() => {
     window.addEventListener('scroll', hasScrolled);
@@ -110,8 +143,14 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
                     handleSearchInputChange(event.target.value),
                 }}
                 adornment={
-                  <SearchInputIcon isLoading={false} value={searchInputValue} />
+                  <SearchInputIcon
+                    isLoading={false}
+                    value={searchInputValue}
+                    setInputValue={setSearchInputValue}
+                    setInputFocus={setSearchInputFocus}
+                  />
                 }
+                ref={searchRef}
               />
             )}
           </div>
