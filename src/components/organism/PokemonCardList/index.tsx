@@ -2,32 +2,28 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, Fragment } from 'react';
 
-import { useSearchContext } from '@contexts/SearchContext';
+import { usePokemonListContext } from '@contexts/PokemonListContext';
+
 import PokemonCard from '@components/molecules/PokemonCard';
-import usePokemonList from '@hooks/usePokemonList';
 import useWindowSize from '@hooks/useWindowSize';
 import useCardListLoader from './useCardListLoader';
 
 import styles from './styles.module.scss';
 
-interface IPokemonCardListProps {
-  fallback?: IBasicPokemonInfo[][];
-}
-
-const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
-  const { searchValue } = useSearchContext();
+const PokemonCardList = (): JSX.Element => {
+  const { searchValue, pokemonList, setPokemonListSize } =
+    usePokemonListContext();
   const loader = useRef(null);
   const isFirstRender = useRef(true);
 
-  const { pokemonList, setSize } = usePokemonList({
-    fallback: searchValue.length ? undefined : fallback,
-    search: searchValue,
-  });
   const [windowWidth] = useWindowSize();
 
   const router = useRouter();
 
-  useCardListLoader({ loader, setSize, shouldUpdate: !searchValue.length });
+  useCardListLoader({
+    loader,
+    setSize: setPokemonListSize,
+  });
 
   useEffect(() => {
     if (isFirstRender.current && windowWidth > 0) {
@@ -63,7 +59,7 @@ const PokemonCardList = ({ fallback }: IPokemonCardListProps): JSX.Element => {
           </Fragment>
         ))}
       </ol>
-      <div ref={loader} />
+      {searchValue.length === 0 && <div ref={loader} />}
     </>
   );
 };

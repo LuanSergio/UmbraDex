@@ -7,7 +7,7 @@ import { unstable_serialize } from 'swr';
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
-import { SearchContextProvider } from '@contexts/SearchContext';
+import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 
 const Home = ({ fallback }): JSX.Element => {
   function getPokemonFallbackList(): IBasicPokemonInfo[][] {
@@ -23,11 +23,11 @@ const Home = ({ fallback }): JSX.Element => {
       <Head>
         <title>UmbraDex</title>
       </Head>
-      <SearchContextProvider>
+      <PokemonListContextProvider fallback={getPokemonFallbackList()}>
         <DefaultLayout>
-          <PokemonCardList fallback={getPokemonFallbackList()} />
+          <PokemonCardList />
         </DefaultLayout>
-      </SearchContextProvider>
+      </PokemonListContextProvider>
     </div>
   );
 };

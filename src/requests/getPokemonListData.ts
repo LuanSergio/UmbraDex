@@ -20,7 +20,9 @@ async function fetchPokemonListData({
 
   const query = `
     query ${queryName} {
-      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${searchQuery}
+      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, ${
+        searchQuery ? '' : `limit: ${POKEMON_PER_REQUEST},`
+      } offset: ${offset}, ${searchQuery}
       )`} {
         name
         id

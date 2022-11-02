@@ -10,89 +10,16 @@ import Github from '@public/icons/github.svg';
 import TextField from '@components/atoms/TextField';
 import IconButton from '@components/atoms/IconButton';
 import useDebounce from '@hooks/useDebounce';
+import SearchInput from '@components/molecules/SearchInput';
 import styles from './styles.module.scss';
 
 interface IHeaderProps {
   innerPage?: boolean;
 }
 
-interface ISearchInputIconProps {
-  isLoading: boolean;
-  value: string;
-  setInputValue: (value: string) => void;
-  setInputFocus: () => void;
-}
-
-const SearchInputIcon = ({
-  isLoading,
-  value,
-  setInputValue,
-  setInputFocus,
-}: ISearchInputIconProps): JSX.Element => {
-  function clearInputValue() {
-    setInputValue('');
-  }
-
-  if (isLoading) {
-    return (
-      <IconButton
-        theme="secondary"
-        label="Search"
-        aria-label="Search"
-        type="button"
-        props={{
-          disabled: true,
-        }}
-      >
-        <LoadingIcon
-          className={`${styles.searchInputIcon} ${styles.searchInputIconActive}`}
-        />
-      </IconButton>
-    );
-  }
-
-  return value.length ? (
-    <IconButton
-      theme="secondary"
-      label="Search"
-      aria-label="Search"
-      type="button"
-      props={{
-        onClick: clearInputValue,
-      }}
-    >
-      <ClearIcon
-        className={`${styles.searchInputIcon} ${styles.searchInputIconActive}`}
-      />
-    </IconButton>
-  ) : (
-    <IconButton
-      label="Search"
-      aria-label="Search"
-      type="button"
-      props={{ onClick: setInputFocus }}
-    >
-      <SearchIcon className={styles.searchInputIcon} />
-    </IconButton>
-  );
-};
-
 const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
   const headerRef = useRef(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchInputValue, setSearchInputValue] = useState('');
-  const { updateSearchValue } = useSearchContext();
-  const searchRef = useRef(null);
-
-  const onSearchValueChange = useDebounce(updateSearchValue, 700);
-
-  useEffect(() => {
-    onSearchValueChange(searchInputValue);
-  }, [onSearchValueChange, searchInputValue]);
-
-  function handleSearchInputChange(value: string) {
-    setSearchInputValue(value);
-  }
 
   const hasScrolled = () => {
     const scrollTop = window.scrollY;
@@ -106,14 +33,6 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
   function handleOpenSearchClick() {
     setIsSearchOpen(previousState => !previousState);
   }
-
-  function setSearchInputFocus() {
-    searchRef.current.focus();
-  }
-
-  useEffect(() => {
-    if (isSearchOpen) setSearchInputFocus();
-  }, [isSearchOpen]);
 
   useEffect(() => {
     window.addEventListener('scroll', hasScrolled);
@@ -132,27 +51,7 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
         </Link>
         {!innerPage && (
           <div className={styles.search}>
-            {isSearchOpen && (
-              <TextField
-                value={searchInputValue}
-                label="Search..."
-                theme="secondary"
-                inputProps={{
-                  spellCheck: 'false',
-                  onChange: event =>
-                    handleSearchInputChange(event.target.value),
-                }}
-                adornment={
-                  <SearchInputIcon
-                    isLoading={false}
-                    value={searchInputValue}
-                    setInputValue={setSearchInputValue}
-                    setInputFocus={setSearchInputFocus}
-                  />
-                }
-                ref={searchRef}
-              />
-            )}
+            <SearchInput isOpen={isSearchOpen} />
           </div>
         )}
 
