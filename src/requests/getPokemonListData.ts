@@ -1,7 +1,6 @@
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import graphqlClient from '@services/api';
-
-const POKEMON_PER_REQUEST = 48;
+import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
 
 interface IFetchPokemonListParams {
   queryName?: string;
@@ -20,9 +19,7 @@ async function fetchPokemonListData({
 
   const query = `
     query ${queryName} {
-      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, ${
-        searchQuery ? '' : `limit: ${POKEMON_PER_REQUEST},`
-      } offset: ${offset}, ${searchQuery}
+      ${`species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${searchQuery}
       )`} {
         name
         id

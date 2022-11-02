@@ -1,0 +1,3 @@
+const POKEMON_PER_REQUEST = 48;
+
+export default POKEMON_PER_REQUEST;

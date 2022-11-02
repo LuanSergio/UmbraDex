@@ -6,13 +6,13 @@ import { usePokemonListContext } from '@contexts/PokemonListContext';
 
 import PokemonCard from '@components/molecules/PokemonCard';
 import useWindowSize from '@hooks/useWindowSize';
+import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
 import useCardListLoader from './useCardListLoader';
 
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {
-  const { searchValue, pokemonList, setPokemonListSize } =
-    usePokemonListContext();
+  const { pokemonList, setPokemonListSize } = usePokemonListContext();
   const loader = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -59,7 +59,9 @@ const PokemonCardList = (): JSX.Element => {
           </Fragment>
         ))}
       </ol>
-      {searchValue.length === 0 && <div ref={loader} />}
+      {pokemonList && pokemonList[0].length >= POKEMON_PER_REQUEST && (
+        <div ref={loader} />
+      )}
     </>
   );
 };
