@@ -42,7 +42,8 @@
 }
 
 .search {
-  max-width: 52%;
+  max-width: 90%;
+  padding-right: rem(20);
   width: 100%;
 }
 
@@ -98,6 +99,10 @@
   }
 }
 
+.hiddenMobileItem {
+  display: none;
+}
+
 .options:hover,
 .options:focus,
 .searchIcon:hover,
@@ -122,6 +127,15 @@
 }
 
 @media only screen and (min-width: $md) {
+  .search {
+    max-width: 52%;
+    width: 100%;
+  }
+
+  .hiddenMobileItem {
+    display: flex;
+  }
+
   .rightContainer > *:not(:last-child) {
     margin-right: rem(16);
   }
