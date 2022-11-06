@@ -127,11 +127,6 @@
 }
 
 @media only screen and (min-width: $md) {
-  .search {
-    max-width: 52%;
-    width: 100%;
-  }
-
   .hiddenMobileItem {
     display: flex;
   }
@@ -148,6 +143,11 @@
   .github {
     height: rem(49);
     width: rem(51);
+  }
+
+  .search {
+    max-width: 52%;
+    width: 100%;
   }
 
   .options {
