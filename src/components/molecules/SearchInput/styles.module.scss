@@ -1,6 +1,147 @@
 @use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
 
 .searchInputIcon {
   height: rem(20);
   width: rem(20);
+}
+
+.searchInput {
+  position: relative;
+  width: 100%;
+}
+
+.searchResults {
+  background-color: get-color('primary');
+  border: 2px solid get-color('primary-lighter');
+  border-radius: rem(6);
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 56%);
+  display: none;
+  padding: rem(12) rem(10) rem(12);
+  position: absolute;
+  top: 142%;
+  width: 100%;
+}
+
+.inputContainer:focus-within ~ .searchResults {
+  display: block;
+}
+
+.searchResultsContent {
+  margin-bottom: 0;
+  margin-top: 0;
+  max-height: rem(148);
+  overflow-y: scroll;
+}
+
+.searchResultsContentScrollable {
+  padding-right: rem(8);
+}
+
+.searchResultsContent > *:not(:last-child) {
+  border-bottom: 1px solid get-color(secondary);
+}
+
+.searchResultsItem {
+  font-size: rem(16);
+}
+
+.searchResultsItemLink {
+  border: 2px solid get-color('primary');
+  border-radius: 4px;
+  color: get-color('light');
+  display: block;
+  padding: rem(4) rem(8);
+  text-decoration: none;
+  transition: background-color ease-out 0.1s;
+}
+
+.searchResultsItemLink:hover {
+  background-color: get-color('primary-light');
+  border-color: get-color('primary-light');
+}
+
+.searchResultsItemLink:focus {
+  background-color: get-color('primary-light');
+  border-color: get-color('primary-lighter');
+  outline: none;
+}
+
+.searchResultsItemLink > *:not(:last-child) {
+  margin-right: rem(14);
+}
+
+.pokemonName {
+  display: inline-block;
+  width: 48%;
+}
+
+.pokemonType {
+  display: none;
+  width: 0%;
+}
+
+.pokemonNumber {
+  display: inline-block;
+  width: 20%;
+}
+
+.searchResultsContent
+  > .searchResultsItem:not(:last-child)
+  > .searchResultsItemLink {
+  margin-bottom: rem(8);
+}
+
+.searchResultsContent
+  > .searchResultsItem:not(:first-child)
+  > .searchResultsItemLink {
+  margin-top: rem(8);
+}
+
+@media only screen and (min-width: $xs) {
+  .pokemonName {
+    display: inline-block;
+    width: 36%;
+  }
+
+  .pokemonType {
+    display: inline-block;
+    width: 36%;
+  }
+
+  .pokemonNumber {
+    display: inline-block;
+    width: 10%;
+  }
+
+  .searchResultsItem {
+    font-size: rem(14);
+  }
+}
+
+@media only screen and (min-width: $sm) {
+  .searchResultsItem {
+    font-size: rem(16);
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .pokemonName {
+    display: inline-block;
+    width: 28%;
+  }
+
+  .pokemonType {
+    display: inline-block;
+    width: 32%;
+  }
+
+  .pokemonNumber {
+    display: inline-block;
+    width: 20%;
+  }
+
+  .searchResultsItem {
+    font-size: rem(18);
+  }
 }

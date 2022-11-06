@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+/* eslint-disable react/no-array-index-key */
+import { Fragment, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
@@ -8,6 +10,7 @@ import LoadingIcon from '@public/icons/loading.svg';
 import TextField from '@components/atoms/TextField';
 import IconButton from '@components/atoms/IconButton';
 
+import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import styles from './styles.module.scss';
 
 interface ISearchInputIconProps {
@@ -76,7 +79,8 @@ interface ISearchInputProps {
 const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
   const searchRef = useRef(null);
   const [searchInputValue, setSearchInputValue] = useState('');
-  const { handleSearchValueChange, isLoading } = usePokemonListContext();
+  const { handleSearchValueChange, isLoading, pokemonList, searchValue } =
+    usePokemonListContext();
 
   function handleSearchInputChange(value: string) {
     setSearchInputValue(value);
@@ -97,24 +101,69 @@ const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
   return (
     <>
       {isOpen && (
-        <TextField
-          value={searchInputValue}
-          label="Search..."
-          theme="secondary"
-          inputProps={{
-            spellCheck: 'false',
-            onChange: event => handleSearchInputChange(event.target.value),
-          }}
-          adornment={
-            <SearchInputIcon
-              isLoading={isLoading}
+        <div className={styles.searchInput}>
+          <div className={styles.inputContainer}>
+            <TextField
               value={searchInputValue}
-              setInputValue={setSearchInputValue}
-              setInputFocus={setSearchInputFocus}
+              label="Search..."
+              theme="secondary"
+              inputProps={{
+                spellCheck: 'false',
+                onChange: event => handleSearchInputChange(event.target.value),
+              }}
+              adornment={
+                <SearchInputIcon
+                  isLoading={isLoading}
+                  value={searchInputValue}
+                  setInputValue={setSearchInputValue}
+                  setInputFocus={setSearchInputFocus}
+                />
+              }
+              ref={searchRef}
             />
-          }
-          ref={searchRef}
-        />
+          </div>
+          {searchValue.length > 0 && pokemonList?.[0].length > 0 && (
+            <div className={styles.searchResults}>
+              <ul
+                className={`${styles.searchResultsContent} h-secondary-scroll ${
+                  pokemonList?.[0].length > 3
+                    ? styles.searchResultsContentScrollable
+                    : ''
+                }`}
+              >
+                {pokemonList?.map((list, index) => (
+                  <Fragment key={index}>
+                    {list.map(pokemon => (
+                      <li className={styles.searchResultsItem} key={pokemon.id}>
+                        <Link href={`/pokemon/${pokemon.id}`}>
+                          <a className={styles.searchResultsItemLink}>
+                            <span className={styles.pokemonName}>
+                              {transformFirstLetterToUppercase(pokemon.name)}
+                            </span>
+
+                            <span className={styles.pokemonType}>
+                              {pokemon.types.map((type, typeIndex) => (
+                                <Fragment key={type}>
+                                  {transformFirstLetterToUppercase(type)}{' '}
+                                  {typeIndex + 1 !== pokemon.types.length &&
+                                    '/'}
+                                </Fragment>
+                              ))}
+                            </span>
+
+                            <span className={styles.pokemonNumber}>
+                              #{pokemon.id}
+                            </span>
+                          </a>
+                        </Link>
+                      </li>
+                    ))}
+                  </Fragment>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       )}
     </>
   );
