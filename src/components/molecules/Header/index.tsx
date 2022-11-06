@@ -1,15 +1,9 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { useSearchContext } from '@contexts/SearchContext';
 import Link from 'next/link';
 import Logo from '@public/icons/logo.svg';
 import SearchIcon from '@public/icons/search.svg';
-import ClearIcon from '@public/icons/close.svg';
-import LoadingIcon from '@public/icons/loading.svg';
 import Github from '@public/icons/github.svg';
-import TextField from '@components/atoms/TextField';
-import IconButton from '@components/atoms/IconButton';
-import useDebounce from '@hooks/useDebounce';
 import SearchInput from '@components/molecules/SearchInput';
 import styles from './styles.module.scss';
 
@@ -44,11 +38,13 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
   return (
     <header className={styles.header} ref={headerRef}>
       <div className={`${styles.headerContainer} h-container`}>
-        <Link href="/">
-          <a className={styles.logo} aria-label="UmbraDex">
-            <Logo />
-          </a>
-        </Link>
+        <div className={`${isSearchOpen ? `${styles.hiddenMobileItem}` : ''}`}>
+          <Link href="/">
+            <a className={styles.logo} aria-label="UmbraDex">
+              <Logo />
+            </a>
+          </Link>
+        </div>
         {!innerPage && (
           <div className={styles.search}>
             <SearchInput isOpen={isSearchOpen} />
@@ -61,7 +57,9 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
             target="_blank"
             aria-label="GitHub"
             title="GitHub"
-            className={styles.github}
+            className={`${styles.github} ${
+              isSearchOpen ? `${styles.hiddenMobileItem}` : ''
+            }`}
             rel="noreferrer"
           >
             <Github />
@@ -79,7 +77,9 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
           )}
           <button
             type="button"
-            className={styles.options}
+            className={`${styles.options} ${
+              isSearchOpen ? `${styles.hiddenMobileItem}` : ''
+            }`}
             aria-label="options"
             title="options"
           />
