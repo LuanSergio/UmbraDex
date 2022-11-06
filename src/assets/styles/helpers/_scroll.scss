@@ -1,0 +1,59 @@
+@use 'tools/get-color' as *;
+@use 'tools/rem' as *;
+
+.h-primary-scroll {
+  scrollbar-arrow-color: get-color(primary);
+
+  // firefox custom scrollbar
+  scrollbar-color: get-color(primary) get-color(secondary);
+
+  // ie and edge custom scroll bar
+  scrollbar-face-color: get-color(primary);
+  scrollbar-shadow-color: get-color(primary); // border
+  scrollbar-track-color: get-color(secondary);
+  scrollbar-width: auto;
+}
+
+// chrome custom scroll bar
+.h-primary-scroll::-webkit-scrollbar {
+  height: rem(15);
+  width: rem(15);
+}
+
+.h-primary-scroll::-webkit-scrollbar-track {
+  background-color: get-color(primary);
+  border-radius: 0;
+}
+
+.h-primary-scroll::-webkit-scrollbar-thumb {
+  background-color: get-color(secondary);
+  border-radius: 0;
+}
+
+.h-secondary-scroll {
+  // firefox scroll bar
+  scrollbar-arrow-color: get-color(primary);
+  scrollbar-color: get-color(secondary) get-color(primary-light);
+
+  // ie and edge custom scroll bar
+  scrollbar-face-color: get-color(primary);
+  scrollbar-shadow-color: get-color(primary); // border
+  scrollbar-track-color: get-color(secondary);
+  scrollbar-width: auto;
+}
+
+// chrome custom scroll bar
+.h-secondary-scroll::-webkit-scrollbar {
+  height: rem(8);
+  width: rem(8);
+}
+
+.h-secondary-scroll::-webkit-scrollbar-track {
+  background-color: get-color(primary);
+  border-radius: 0;
+}
+
+.h-secondary-scroll::-webkit-scrollbar-thumb {
+  background-color: get-color(secondary);
+  border-radius: 0;
+}
