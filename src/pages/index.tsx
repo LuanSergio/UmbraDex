@@ -8,6 +8,7 @@ import DefaultLayout from '@components/layouts/DefaultLayout';
 import PokemonCardList from '@components/organism/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
+import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
 const Home = ({ fallback }): JSX.Element => {
   function getPokemonFallbackList(): IBasicPokemonInfo[][] {
@@ -15,7 +16,7 @@ const Home = ({ fallback }): JSX.Element => {
   }
 
   useEffect(() => {
-    document.body.className = 'initial h-primary-scroll';
+    document.body.className = `initial ${bodyDefaultClasses}`;
   }, []);
 
   return (

@@ -10,6 +10,7 @@ import ContentLayout from '@components/layouts/ContentLayout';
 import useWindowSize from '@hooks/useWindowSize';
 import PokemonStats from '@components/molecules/PokemonStats';
 import EvolutionChain from '@components/molecules/EvolutionChain';
+import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
 import styles from './styles.module.scss';
 
@@ -50,7 +51,7 @@ const PokemonContent = ({
   }, [defaultPokemonForm]);
 
   useEffect(() => {
-    const mainType = `${pokemon.types[0]} h-primary-scroll`;
+    const mainType = `${pokemon.types[0]} ${bodyDefaultClasses}`;
 
     if (!document.body.classList.contains('initial')) {
       document.body.className = mainType;

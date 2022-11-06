@@ -8,6 +8,8 @@ import Document, {
 } from 'next/document';
 import HeadConfiguration from '@components/molecules/HeadConfiguration';
 
+import bodyDefaultClasses from '@data/bodyDefaultClasses';
+
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext,
@@ -23,7 +25,7 @@ class MyDocument extends Document {
         <Head>
           <HeadConfiguration />
         </Head>
-        <body className="initial h-primary-scroll">
+        <body className={`initial ${bodyDefaultClasses}`}>
           <Main />
           <NextScript />
         </body>
