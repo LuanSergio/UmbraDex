@@ -35,7 +35,7 @@ export function PokemonListContextProvider({
   });
 
   function updateSearchValue(pokemonName: string) {
-    setSearchValue(pokemonName);
+    setSearchValue(pokemonName.toLowerCase());
   }
 
   const handleSearchValueChange = useDebounce(updateSearchValue, 700);
