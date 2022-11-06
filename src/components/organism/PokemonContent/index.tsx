@@ -50,7 +50,7 @@ const PokemonContent = ({
   }, [defaultPokemonForm]);
 
   useEffect(() => {
-    const mainType = pokemon.types[0];
+    const mainType = `${pokemon.types[0]} h-primary-scroll`;
 
     if (!document.body.classList.contains('initial')) {
       document.body.className = mainType;
