@@ -24,9 +24,12 @@ const WebDoor = (): JSX.Element => {
         <div className={`${styles.container} h-container`}>
           <div className={styles.titleContainer}>
             <div className={styles.titleHolder}>
-              <h1 className={styles.title}>{title}</h1>
+              <h1 className={`h-title ${styles.title}`}>{title}</h1>
 
-              <span aria-hidden="true" className={styles.titleShadow}>
+              <span
+                aria-hidden="true"
+                className={`h-title ${styles.titleShadow}`}
+              >
                 {title}
               </span>
             </div>

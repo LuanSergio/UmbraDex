@@ -23,7 +23,7 @@ class MyDocument extends Document {
         <Head>
           <HeadConfiguration />
         </Head>
-        <body className="initial">
+        <body className="initial h-primary-scroll">
           <Main />
           <NextScript />
         </body>

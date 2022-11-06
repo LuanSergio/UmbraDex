@@ -15,7 +15,7 @@ const Home = ({ fallback }): JSX.Element => {
   }
 
   useEffect(() => {
-    document.body.className = 'initial';
+    document.body.className = 'initial h-primary-scroll';
   }, []);
 
   return (
