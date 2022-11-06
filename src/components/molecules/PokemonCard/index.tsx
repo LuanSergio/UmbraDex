@@ -10,11 +10,11 @@ const PokemonCard = ({
 }: IBasicPokemonInfo): JSX.Element => {
   return (
     <Link href={`/pokemon/${id}`}>
-      <div className={styles.card} id={`${id}`}>
+      <article className={styles.card} id={`${id}`}>
         {id <= 10 ? (
-          <p className={styles.number}># 0{id}</p>
+          <span className={styles.number}># 0{id}</span>
         ) : (
-          <p className={styles.number}># {id}</p>
+          <span className={styles.number}># {id}</span>
         )}
 
         <div className={styles.pokemonContainer}>
@@ -23,19 +23,19 @@ const PokemonCard = ({
             <PokemonPicture layout="fill" src={image} alt="" />
           </div>
 
-          <p className={`${styles.name} ${styles[types[0]]}`}>{name}</p>
+          <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
         </div>
 
-        <div className={styles.typeContainer}>
+        <ul className={styles.typeContainer}>
           {types.map((type, index) => (
-            <p key={type} className={`${styles.type} ${styles[types[index]]}`}>
+            <li key={type} className={`${styles.type} ${styles[types[index]]}`}>
               {type}
-            </p>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className={`${styles.background} ${styles[types[0]]}`} />
-      </div>
+      </article>
     </Link>
   );
 };
