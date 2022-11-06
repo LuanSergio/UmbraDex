@@ -2,7 +2,8 @@
   "extends": [
     "stylelint-config-standard-scss",
     "stylelint-config-prettier-scss",
-    "stylelint-config-sass-guidelines"
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-prettier"
   ],
   "stylelint.validate": ["css", "scss"],
   "plugins": ["stylelint-order"],
