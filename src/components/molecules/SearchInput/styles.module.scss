@@ -1,14 +1,14 @@
 @use 'tools/index' as *;
 @use 'settings/_breakpoints' as *;
 
-.searchInputIcon {
-  height: rem(20);
-  width: rem(20);
-}
-
 .searchInput {
   position: relative;
   width: 100%;
+}
+
+.searchInputIcon {
+  height: rem(20);
+  width: rem(20);
 }
 
 .searchResults {
@@ -23,7 +23,7 @@
   width: 100%;
 }
 
-.inputContainer:focus-within ~ .searchResults {
+.searchInput:focus-within .searchResults {
   display: block;
 }
 
