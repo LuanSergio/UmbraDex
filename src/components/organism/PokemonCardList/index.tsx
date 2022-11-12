@@ -21,7 +21,7 @@ const PokemonCardList = (): JSX.Element => {
   const router = useRouter();
 
   useCardListLoader({
-    loader,
+    loader: loader.current,
     setSize: setPokemonListSize,
   });
 

@@ -1,7 +1,7 @@
-import { MutableRefObject, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 interface ControllerProps {
-  loader: MutableRefObject<HTMLElement>;
+  loader: HTMLElement;
   setSize: (
     size: number | ((_size: number) => number),
   ) => Promise<IBasicPokemonInfo[][]>;
@@ -20,10 +20,10 @@ const useCardListLoader = ({ loader, setSize }: ControllerProps) => {
       threshold: 1.0,
     };
     const observer = new IntersectionObserver(handleObserver, options);
-    if (loader?.current) {
-      observer.observe(loader.current);
+    if (loader) {
+      observer.observe(loader);
     }
-  }, [loader, handleObserver]);
+  }, [handleObserver, loader]);
 };
 
 export default useCardListLoader;

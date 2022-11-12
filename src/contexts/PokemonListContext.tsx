@@ -15,7 +15,7 @@ interface IPokemonListContextData {
 export const PokemonListContext = createContext({} as IPokemonListContextData);
 
 type PokemonListContextProviderProps = {
-  fallback: IBasicPokemonInfo[][];
+  fallback?: IBasicPokemonInfo[][];
   children: ReactNode;
 };
 
