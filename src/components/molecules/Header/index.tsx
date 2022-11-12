@@ -7,11 +7,7 @@ import Github from '@public/icons/github.svg';
 import SearchInput from '@components/molecules/SearchInput';
 import styles from './styles.module.scss';
 
-interface IHeaderProps {
-  innerPage?: boolean;
-}
-
-const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
+const Header = (): JSX.Element => {
   const headerRef = useRef(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -45,11 +41,10 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
             </a>
           </Link>
         </div>
-        {!innerPage && (
-          <div className={styles.search}>
-            <SearchInput isOpen={isSearchOpen} />
-          </div>
-        )}
+
+        <div className={styles.search}>
+          <SearchInput isOpen={isSearchOpen} />
+        </div>
 
         <div className={styles.rightContainer}>
           <a
@@ -64,17 +59,17 @@ const Header = ({ innerPage }: IHeaderProps): JSX.Element => {
           >
             <Github />
           </a>
-          {!innerPage && (
-            <button
-              aria-label="Search"
-              title="Search"
-              className={styles.searchIcon}
-              type="button"
-              onClick={handleOpenSearchClick}
-            >
-              <SearchIcon />
-            </button>
-          )}
+
+          <button
+            aria-label="Search"
+            title="Search"
+            className={styles.searchIcon}
+            type="button"
+            onClick={handleOpenSearchClick}
+          >
+            <SearchIcon />
+          </button>
+
           <button
             type="button"
             className={`${styles.options} ${

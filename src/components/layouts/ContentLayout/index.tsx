@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import Header from '@components/molecules/Header';
+import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 
 interface ContentLayoutProps {
   children: ReactNode;
@@ -9,7 +10,9 @@ interface ContentLayoutProps {
 const ContentLayout = ({ children }: ContentLayoutProps): JSX.Element => {
   return (
     <>
-      <Header innerPage />
+      <PokemonListContextProvider>
+        <Header />
+      </PokemonListContextProvider>
       <main className="h-container">{children}</main>
     </>
   );
