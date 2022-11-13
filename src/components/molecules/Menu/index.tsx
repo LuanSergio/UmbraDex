@@ -39,7 +39,11 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
                   </span>
                   Dark mode
                 </span>
-                <SwitchToggle isChecked={isDarkMode} name="dark-mode" />
+                <SwitchToggle
+                  label="Toggle dark mode theme"
+                  isChecked={isDarkMode}
+                  name="dark-mode"
+                />
               </button>
             </li>
           </ul>
