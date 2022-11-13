@@ -4,19 +4,22 @@
 @use 'settings/_breakpoints' as *;
 
 .navigation {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
   left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: $container;
   position: fixed;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  z-index: get-index-level(lvl4);
+  z-index: get-index-level(lvl3);
+}
+
+.navigationContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $container;
 }
 
 .next {
@@ -92,7 +95,7 @@
 }
 
 @media only screen and (min-width: $lg) {
-  .navigation {
+  .navigationContainer {
     max-width: calc(100% - 32px);
   }
 
@@ -104,7 +107,7 @@
 }
 
 @media only screen and (min-width: $xl) {
-  .navigation {
+  .navigationContainer {
     max-width: $xl;
   }
 }

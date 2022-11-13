@@ -1,9 +1,11 @@
 import { ReactNode, useEffect } from 'react';
 
+import { usePokemonListContext } from '@contexts/PokemonListContext';
 import Header from '@components/molecules/Header';
 import WebDoor from '@components/molecules/WebDoor';
 import useWindowSize from '@hooks/useWindowSize';
-import { usePokemonListContext } from '@contexts/PokemonListContext';
+
+import styles from './styles.module.scss';
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -25,11 +27,15 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
     <>
       <Header />
       {!searchValue?.length && <WebDoor />}
-      <main
-        className="h-container"
-        style={{ paddingTop: `${searchValue?.length > 0 ? '64px' : '0'}` }}
-      >
-        {children}
+      <main className={styles.main}>
+        <div
+          className="h-container"
+          style={{
+            paddingTop: `${searchValue?.length > 0 ? '64px' : '0'}`,
+          }}
+        >
+          {children}
+        </div>
       </main>
     </>
   );
