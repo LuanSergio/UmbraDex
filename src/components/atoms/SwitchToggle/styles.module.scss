@@ -1,0 +1,53 @@
+@use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
+
+.switch {
+  display: inline-block;
+  height: rem(24);
+  position: relative;
+  width: rem(48);
+}
+
+.switch .input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.slider {
+  background-color: get-color('light');
+  border-radius: rem(34);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.24s;
+}
+
+.slider::before {
+  background-color: get-color('primary');
+  border-radius: 50%;
+  content: '';
+  height: rem(18);
+  left: rem(4);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.24s;
+  width: rem(18);
+}
+
+.input:checked + .slider {
+  background-color: get-color('secondary');
+}
+
+.input:focus + .slider {
+  box-shadow: 0 0 rem(1) get-color('secondary');
+}
+
+.input:checked + .slider::before {
+  background-color: get-color('primary');
+  transform: translate(rem(22), -50%);
+}
