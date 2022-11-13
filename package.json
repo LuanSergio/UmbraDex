@@ -27,6 +27,7 @@
     "next": "12.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-remove-scroll": "^2.5.5",
     "recharts": "^2.1.9",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
