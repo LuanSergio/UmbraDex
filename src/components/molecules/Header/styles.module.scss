@@ -4,17 +4,25 @@
 @use 'settings/_breakpoints' as *;
 
 .header {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: get-index-level(lvl4);
+}
+
+.headerBackground {
   background-color: get-color(primary);
   box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
   height: var(--header-height);
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl2);
 }
 
 .scrolled {
-  z-index: get-index-level(lvl4);
+  z-index: get-index-level(lvl3);
 }
 
 .headerContainer {
@@ -124,6 +132,10 @@
 .options:hover::before,
 .options:focus::before {
   color: get-color(secondary);
+}
+
+.optionsMenu {
+  position: relative;
 }
 
 @media only screen and (min-width: $md) {
