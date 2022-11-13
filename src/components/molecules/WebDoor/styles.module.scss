@@ -73,14 +73,14 @@
 
 .crobatHolder {
   position: relative;
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl2);
 }
 
 .crobat {
   display: none;
   position: absolute;
   right: -20px;
-  top: 72px;
+  top: 68px;
   width: 440px;
 }
 
@@ -123,22 +123,31 @@
 }
 
 @media only screen and (min-width: $md) {
+  .webDoor {
+    min-height: rem(820);
+  }
+
   .titleHolder {
-    font-size: rem(56);
+    font-size: rem(52);
   }
 }
 
 @media only screen and (min-width: $lg) {
+  .webDoor {
+    min-height: rem(740);
+  }
+
   .container {
     padding-top: 0;
   }
 
   .titleContainer {
     position: absolute;
-    top: calc(rem(80) + var(--header-height));
+    top: calc(rem(40) + var(--header-height));
   }
 
   .titleHolder {
+    font-size: rem(52);
     margin-left: rem(80);
     text-align: left;
   }
@@ -160,5 +169,6 @@
 
   .titleHolder {
     font-size: rem(68);
+    top: calc(rem(-40) + var(--header-height));
   }
 }
