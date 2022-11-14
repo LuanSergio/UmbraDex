@@ -2,7 +2,7 @@
 @use 'settings/_breakpoints' as *;
 
 .dialogOverlay {
-  animation: overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: overlay-show 180ms cubic-bezier(0.16, 1, 0.3, 1);
   background-color: rgba($color: #000, $alpha: 52%);
   inset: 0;
   position: fixed;
@@ -10,7 +10,7 @@
 }
 
 .dialogContent {
-  animation: content-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: content-show 240ms cubic-bezier(0.16, 1, 0.3, 1);
   background-color: get-color('primary');
   border: 2px solid get-color('primary-lighter');
   border-radius: 6px;
@@ -20,8 +20,6 @@
   left: 50%;
   max-height: 85vh;
   max-height: 600px;
-  max-width: 450px;
-  overflow-y: scroll;
   padding: 25px;
   position: fixed;
   top: 50%;
@@ -30,77 +28,58 @@
   z-index: calc(999 + 1);
 }
 
+.small {
+  max-width: rem(600);
+}
+
+.medium {
+  max-width: rem(900);
+}
+
+.scroll {
+  overflow-y: scroll;
+}
+
 .dialogContent:focus {
   outline: none;
 }
 
 .dialogTitle {
-  color: var(--mauve12);
-  font-size: 17px;
-  font-weight: 500;
-  margin: 0;
-}
-
-.dialogDescription {
-  color: var(--mauve11);
-  font-size: 15px;
-  line-height: 1.5;
-  margin: 10px 0 20px;
-}
-
-.iconButton {
   align-items: center;
+  border-bottom: 2px solid get-color('light');
+  display: flex;
+  font-size: rem(32);
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.closeButton {
+  align-items: center;
+  background-color: transparent;
   border-radius: 100%;
-  color: var(--violet11);
-  display: inline-flex;
+  border-width: 0;
+  color: get-color('light');
+  display: flex;
   font-family: inherit;
-  height: 25px;
+  height: 48px;
   justify-content: center;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 25px;
+  padding-top: 4px;
+  transition: background-color 0.2s;
+  width: 48px;
 }
 
-.iconButton:hover {
-  background-color: var(--violet4);
+.closeButton:hover {
+  background-color: get-color('primary-light');
 }
 
-.iconButton:focus {
+.closeButton:focus {
   box-shadow: 0 0 0 2px var(--violet7);
 }
 
-.fieldset {
-  align-items: center;
-  display: flex;
-  gap: 20px;
-  margin-bottom: 15px;
-}
-
-.label {
-  color: var(--violet11);
-  font-size: 15px;
-  text-align: right;
-  width: 90px;
-}
-
-.input {
-  align-items: center;
-  border-radius: 4px;
-  box-shadow: 0 0 0 1px var(--violet7);
-  color: var(--violet11);
-  display: inline-flex;
-  flex: 1;
-  font-size: 15px;
-  height: 35px;
-  justify-content: center;
-  line-height: 1;
-  padding: 0 10px;
-  width: 100%;
-}
-
-.input:focus {
-  box-shadow: 0 0 0 2px var(--violet8);
+.icon {
+  display: block;
+  width: 24px;
 }
 
 @keyframes overlay-show {
