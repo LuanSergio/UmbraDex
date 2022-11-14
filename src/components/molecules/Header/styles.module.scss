@@ -123,14 +123,12 @@
     width: 100%;
   }
 
-  .icon {
+  .iconButton {
+    height: rem(48);
     width: rem(48);
   }
 
-  .options::before {
-    @include h-icon;
-
-    content: get-icon(vertical-dots);
-    font-size: rem(36);
+  .icon {
+    width: rem(38);
   }
 }
