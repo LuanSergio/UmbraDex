@@ -4,12 +4,14 @@ interface ISwitchToggleProps {
   isChecked: boolean;
   name: string;
   label: string;
+  readonly?: boolean;
 }
 
 const SwitchToggle = ({
   isChecked,
   name,
   label,
+  readonly = false,
 }: ISwitchToggleProps): JSX.Element => {
   return (
     <label htmlFor={name} className={styles.switch}>
@@ -19,6 +21,7 @@ const SwitchToggle = ({
         checked={isChecked}
         type="checkbox"
         className={styles.input}
+        readOnly={readonly}
       />
       <span className={styles.slider} />
     </label>

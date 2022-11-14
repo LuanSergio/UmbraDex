@@ -5,9 +5,10 @@ import RandomIcon from '@public/icons/random.svg';
 import MoonIcon from '@public/icons/moon.svg';
 import FilterIcon from '@public/icons/filter.svg';
 import DocumentIcon from '@public/icons/document.svg';
-
 import SwitchToggle from '@components/atoms/SwitchToggle';
 import Modal from '@components/atoms/Modal';
+
+import { useThemeContext } from '@contexts/ThemeContext';
 
 import styles from './styles.module.scss';
 
@@ -16,10 +17,10 @@ interface IMenuProps {
 }
 
 const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { handleThemeChange, isDarkMode } = useThemeContext();
 
   function handleDarkModeToggle() {
-    setIsDarkMode(previousValue => !previousValue);
+    handleThemeChange(!isDarkMode);
   }
 
   return (
@@ -40,6 +41,7 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
                   Dark mode
                 </span>
                 <SwitchToggle
+                  readonly
                   label="Toggle dark mode theme"
                   isChecked={isDarkMode}
                   name="dark-mode"
