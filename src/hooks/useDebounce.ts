@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 
-export default function useDebounce(fn, delay) {
+export default function useDebounce(
+  fn: (...args: unknown[]) => unknown,
+  delay: number,
+) {
   const timeoutRef = useRef(null);
 
   function debouncedFunction(...args: unknown[]) {
