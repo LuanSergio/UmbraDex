@@ -39,36 +39,40 @@ const PokemonBasicInformation = ({
 
   return (
     <div className={styles.generationDescriptionContainer}>
-      <Carousel
-        currentIndex={descriptionIndex}
-        updateCurrentIndex={handleDescriptionChange}
-        tagName="ol"
-        itemWidth={widthList}
-        gap={12}
-        maxItems={6}
-        maxPositionIndex={descriptions.length - 3}
-      >
-        {descriptions.map((item, index) => {
-          return (
-            <CarouselItem
-              key={`${item.id}`}
-              tagName="li"
-              onClick={() => handleDescriptionChange(index)}
-            >
-              <span
-                ref={element => {
-                  descriptionIndexRef.current[index] = element;
-                }}
-                className={`${styles.generationDescriptionOption} ${
-                  descriptionIndex === index && styles.active
-                }`}
-              >
-                {transformNumberToRomanNumeral(index + 1)}
-              </span>
-            </CarouselItem>
-          );
-        })}
-      </Carousel>
+      {descriptions.length > 1 && (
+        <div className={styles.carouselContainer}>
+          <Carousel
+            currentIndex={descriptionIndex}
+            updateCurrentIndex={handleDescriptionChange}
+            tagName="ol"
+            itemWidth={widthList}
+            gap={12}
+            maxItems={6}
+            maxPositionIndex={descriptions.length - 3}
+          >
+            {descriptions.map((item, index) => {
+              return (
+                <CarouselItem
+                  key={`${item.id}`}
+                  tagName="li"
+                  onClick={() => handleDescriptionChange(index)}
+                >
+                  <span
+                    ref={element => {
+                      descriptionIndexRef.current[index] = element;
+                    }}
+                    className={`${styles.generationDescriptionOption} ${
+                      descriptionIndex === index && styles.active
+                    }`}
+                  >
+                    {transformNumberToRomanNumeral(index + 1)}
+                  </span>
+                </CarouselItem>
+              );
+            })}
+          </Carousel>
+        </div>
+      )}
 
       <ScrollableText maxHeight={178} shouldChange={descriptionIndex}>
         <p className={styles.description}>
