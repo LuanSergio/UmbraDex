@@ -11,8 +11,9 @@ import getPokemonListData from '@requests/getPokemonListData';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 import { ThemeContextProvider } from '@contexts/ThemeContext';
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
+import getPokedexLimit from '@requests/getPokedexLimit';
 
-const Home = ({ fallback }): JSX.Element => {
+const Home = ({ fallback, pokedexLimit }): JSX.Element => {
   function getPokemonFallbackList(): IBasicPokemonInfo[][] {
     return Object.values(fallback)[0] as IBasicPokemonInfo[][];
   }
@@ -52,22 +53,28 @@ const Home = ({ fallback }): JSX.Element => {
           );
         `}
       </Script>
+
       <Head>
         <title>UmbraDex</title>
       </Head>
-      <PokemonListContextProvider fallback={getPokemonFallbackList()}>
-        <ThemeContextProvider>
+      <ThemeContextProvider>
+        <PokemonListContextProvider
+          fallback={getPokemonFallbackList()}
+          pokedexLimit={pokedexLimit}
+        >
           <DefaultLayout>
             <PokemonCardList />
           </DefaultLayout>
-        </ThemeContextProvider>
-      </PokemonListContextProvider>
+        </PokemonListContextProvider>
+      </ThemeContextProvider>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryName = 'pokemonList';
+  const pokedexLimit = await getPokedexLimit();
+
   const pokemonList = await getPokemonListData({
     queryName,
     page: 0,
@@ -79,6 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
       fallback: {
         [unstable_serialize([queryName, 1])]: [pokemonList],
       },
+      pokedexLimit,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };

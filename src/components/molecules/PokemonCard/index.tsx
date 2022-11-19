@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import PokemonPicture from '@components/atoms/PokemonPicture';
+import Routes from '@data/routes';
+
 import styles from './styles.module.scss';
 
 const PokemonCard = ({
@@ -9,7 +11,7 @@ const PokemonCard = ({
   image,
 }: IBasicPokemonInfo): JSX.Element => {
   return (
-    <Link href={`/pokemon/${id}`}>
+    <Link href={`${Routes.pokemonDetails}/${id}`}>
       <article className={styles.card} id={`${id}`}>
         {id <= 10 ? (
           <span className={styles.number}># 0{id}</span>

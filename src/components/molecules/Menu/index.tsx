@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-import SortIcon from '@public/icons/sort.svg';
 import RandomIcon from '@public/icons/random.svg';
 import MoonIcon from '@public/icons/moon.svg';
 import FilterIcon from '@public/icons/filter.svg';
 import DocumentIcon from '@public/icons/document.svg';
 import SwitchToggle from '@components/atoms/SwitchToggle';
 import Modal from '@components/atoms/Modal';
-
+import createRandomNumber from '@utils/createRandomNumber';
 import { useThemeContext } from '@contexts/ThemeContext';
+import { usePokemonListContext } from '@contexts/PokemonListContext';
+import Routes from '@data/routes';
+import useThrottle from '@hooks/useThrottle';
 
 import styles from './styles.module.scss';
 
@@ -17,11 +19,19 @@ interface IMenuProps {
 }
 
 const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
+  const router = useRouter();
   const { handleThemeChange, isDarkMode } = useThemeContext();
+  const { pokedexLimit } = usePokemonListContext();
 
   function handleDarkModeToggle() {
     handleThemeChange(!isDarkMode);
   }
+
+  function handleGoToRandomPokemon() {
+    router.push(`${Routes.pokemonDetails}/${createRandomNumber(pokedexLimit)}`);
+  }
+
+  const throttled = useThrottle(handleGoToRandomPokemon, 5000);
 
   return (
     <>
@@ -52,7 +62,11 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
 
           <ul className={styles.optionsList}>
             <li className={styles.optionsListItem}>
-              <button type="button" className={styles.button}>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={throttled}
+              >
                 <span className={styles.icon}>
                   <RandomIcon />
                 </span>
@@ -68,15 +82,6 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
                 Filters / Sort
               </button>
             </li>
-
-            {/* <li className={styles.optionsListItem}>
-              <button type="button" className={styles.button}>
-                <span className={styles.icon}>
-                  <SortIcon />
-                </span>
-                Sort
-              </button>
-            </li> */}
           </ul>
 
           <ul className={styles.optionsList}>

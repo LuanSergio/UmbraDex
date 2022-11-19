@@ -1,8 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+
 import PokemonContent from '@components/organism/PokemonContent';
 
 import getPokemonDetailsData from '@requests/getPokemonDetailsData';
+import getPokedexLimit from '@requests/getPokedexLimit';
+import Header from '@components/molecules/Header';
+import { PokemonListContextProvider } from '@contexts/PokemonListContext';
+import { ThemeContextProvider } from '@contexts/ThemeContext';
 
 interface IPokemonDetailsProps {
   pokemonDetails: IPokemonDetails;
@@ -22,6 +27,12 @@ const Pokemon = ({
       <Head>
         <title key="title">{defaultPokemonForm.name} | UmbraDex</title>
       </Head>
+
+      <PokemonListContextProvider pokedexLimit={pokedexLimit}>
+        <ThemeContextProvider>
+          <Header />
+        </ThemeContextProvider>
+      </PokemonListContextProvider>
 
       <PokemonContent
         AlternativePokemonForms={AlternativePokemonForms}
@@ -44,14 +55,13 @@ export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
   const pokemonIdAsNumber = parseInt(id as string, 10);
   const pokemonForms = await getPokemonDetailsData(pokemonIdAsNumber);
+  const pokedexLimit = await getPokedexLimit();
 
   const pokemonDetails = { ...pokemonForms };
   const defaultPokemonForm = pokemonForms.forms.find(form => form.isDefault);
   const AlternativePokemonForms = pokemonForms.forms.filter(
     form => !form.isDefault,
   );
-
-  const { pokedexLimit } = pokemonForms;
 
   return {
     props: {

@@ -6,6 +6,7 @@ interface IPokemonListContextData {
   searchValue: string;
   pokemonList: IBasicPokemonInfo[][];
   isLoading: boolean;
+  pokedexLimit: number;
   handleSearchValueChange: (pokemonName: string) => void;
   setPokemonListSize: (
     size: number | ((_size: number) => number),
@@ -16,12 +17,14 @@ export const PokemonListContext = createContext({} as IPokemonListContextData);
 
 type PokemonListContextProviderProps = {
   fallback?: IBasicPokemonInfo[][];
+  pokedexLimit: number;
   children: ReactNode;
 };
 
 export function PokemonListContextProvider({
   children,
   fallback,
+  pokedexLimit,
 }: PokemonListContextProviderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -42,17 +45,19 @@ export function PokemonListContextProvider({
 
   const contextValue = useMemo(
     () => ({
-      searchValue,
-      handleSearchValueChange,
-      pokemonList,
       isLoading,
+      pokemonList,
+      searchValue,
+      pokedexLimit,
+      handleSearchValueChange,
       setPokemonListSize,
     }),
     [
-      handleSearchValueChange,
       isLoading,
       pokemonList,
       searchValue,
+      pokedexLimit,
+      handleSearchValueChange,
       setPokemonListSize,
     ],
   );

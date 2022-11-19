@@ -31,6 +31,11 @@ async function fetchPokemonListData({
           }
         }
       }
+      pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
+        pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
+          pokedex_number
+        }
+      }
     }
   `;
 
