@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PokemonPicture from '@components/atoms/PokemonPicture';
 import Routes from '@data/routes';
+import PokeBallIcon from '@public/icons/pokeball.svg';
 
 import styles from './styles.module.scss';
 
@@ -20,7 +21,9 @@ const PokemonCard = ({
         )}
 
         <div className={styles.pokemonContainer}>
-          <span className={styles.pokeball} />
+          <span className={styles.pokeball}>
+            <PokeBallIcon />
+          </span>
           <div className={styles.pokemon}>
             <PokemonPicture layout="fill" src={image} alt="" />
           </div>

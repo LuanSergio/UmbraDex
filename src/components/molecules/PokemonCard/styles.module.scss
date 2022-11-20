@@ -38,7 +38,7 @@
 }
 
 .number {
-  color: get-color(light);
+  color: var(--theme-color-light);
   font-size: rem(21);
   font-weight: bold;
   margin-bottom: 0;
@@ -54,14 +54,13 @@
 }
 
 .pokeball {
-  background-image: url('../../../assets/icons/pokeball.webp');
-  background-repeat: no-repeat;
-  background-size: contain;
+  color: var(--theme-color-light);
   display: block;
   height: rem(160);
   position: absolute;
   right: rem(-6);
   top: rem(7);
+  transition: ease-out 0.2s;
   width: rem(155);
   z-index: get-index-level(lvl1);
 }
@@ -89,7 +88,7 @@
 }
 
 .name {
-  background-color: get-color(light);
+  background-color: var(--theme-color);
   border-radius: 6px;
   bottom: 0;
   display: block;
@@ -104,7 +103,7 @@
   text-align: center;
   text-transform: capitalize;
   transform: translate(-50%, 36%);
-  transition: ease-out 0.35s;
+  transition: ease-out 0.2s;
   white-space: nowrap;
   z-index: get-index-level(lvl2);
 }
@@ -122,7 +121,7 @@
 .type {
   align-items: center;
   border-radius: 6px;
-  color: get-color(light);
+  color: var(--theme-color-light);
   display: flex;
   font-size: rem(18);
   font-weight: bold;
@@ -131,7 +130,7 @@
   padding: rem(5) rem(12);
   text-align: center;
   text-transform: capitalize;
-  transition: opacity ease-out 0.25s;
+  transition: ease-out 0.2s;
 }
 
 .type:not(:last-child) {
@@ -142,15 +141,15 @@
   @include h-icon;
 
   align-items: center;
-  background-color: get-color(light);
+  background-color: var(--theme-color-light);
   border-radius: 50%;
   display: flex;
   font-size: rem(13);
-  height: rem(20);
+  height: rem(22);
   justify-content: center;
   margin-right: rem(6);
   padding: rem(3);
-  width: rem(20);
+  width: rem(22);
 }
 
 @each $type, $color in typeColors.$defaults {

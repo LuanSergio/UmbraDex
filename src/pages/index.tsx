@@ -48,9 +48,16 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
           }
 
           document.documentElement.style.setProperty(
-            "--color-background",
+            "--theme-color",
             getInitialThemeScheme() === "light" ? "#fbfbfb" : "#161b3f"
           );
+
+          document.documentElement.style.setProperty(
+            "--theme-color-light",
+            getInitialThemeScheme() === "light" ? "#fbfbfb" : "#21285a"
+          );
+
+         
         `}
       </Script>
 

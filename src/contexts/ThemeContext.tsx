@@ -38,8 +38,13 @@ export const ThemeContextProvider = ({
     // 3. Update each color
 
     root.style.setProperty(
-      '--color-background',
+      '--theme-color',
       isDarkScheme ? '#161b3f' : '#fbfbfb',
+    );
+
+    root.style.setProperty(
+      '--theme-color-light',
+      isDarkScheme ? '#21285a' : '#fbfbfb',
     );
   }
 
