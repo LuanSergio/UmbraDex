@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 interface IModalProps {
   children: ReactChild;
   openButton: ReactChild;
+  title: string;
   size?: 'small' | 'medium';
 }
 
@@ -14,6 +15,7 @@ const Modal = ({
   children,
   openButton,
   size = 'medium',
+  title,
 }: IModalProps): JSX.Element => (
   <Dialog.Root>
     <Dialog.Trigger asChild>{openButton}</Dialog.Trigger>
@@ -21,7 +23,7 @@ const Modal = ({
       <Dialog.Overlay className={styles.dialogOverlay} />
       <Dialog.Content className={`${styles.dialogContent} ${styles[size]}`}>
         <Dialog.Title className={styles.dialogTitle}>
-          <span>Disclaimer</span>
+          <span>{title}</span>
           <Dialog.Close asChild>
             <button
               type="button"
