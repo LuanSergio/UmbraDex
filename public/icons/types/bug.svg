@@ -1,8 +1,8 @@
-<svg width="124" height="132" viewBox="0 0 124 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 124 132" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_606_1)" filter="url(#filter0_d_606_1)">
-<path d="M51.5 52C45 50 30.9 43.7 26.5 34.5C8.33333 47.8333 -14.6 84.3 39 123.5C51 114.833 70.3 88.4 51.5 52Z" fill="black"/>
-<path d="M71.9086 51.5C78.4498 49.5 92.6392 43.2 97.0671 34C115.349 47.3333 138.428 83.8 84.4879 123C72.4118 114.333 52.9895 87.9 71.9086 51.5Z" fill="black"/>
-<path d="M31.5 8L39.5 1L57 21.5C61 20.3 66 21 68 21.5L82.5 0L92 6.5L79.5 24L89.5 28C81.5 42.8 67.1667 45.5 61 45C55.1667 44.8333 41.6 41.4 34 29L44.5 24L31.5 8Z" fill="black" stroke="black"/>
+<path d="M51.5 52C45 50 30.9 43.7 26.5 34.5C8.33333 47.8333 -14.6 84.3 39 123.5C51 114.833 70.3 88.4 51.5 52Z" fill="currentColor"/>
+<path d="M71.9086 51.5C78.4498 49.5 92.6392 43.2 97.0671 34C115.349 47.3333 138.428 83.8 84.4879 123C72.4118 114.333 52.9895 87.9 71.9086 51.5Z" fill="currentColor"/>
+<path d="M31.5 8L39.5 1L57 21.5C61 20.3 66 21 68 21.5L82.5 0L92 6.5L79.5 24L89.5 28C81.5 42.8 67.1667 45.5 61 45C55.1667 44.8333 41.6 41.4 34 29L44.5 24L31.5 8Z" fill="currentColor" stroke="currentColor"/>
 </g>
 <defs>
 <filter id="filter0_d_606_1" x="-4" y="0" width="131.512" height="131.511" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -16,7 +16,7 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_606_1" result="shape"/>
 </filter>
 <clipPath id="clip0_606_1">
-<rect width="123.512" height="123.512" fill="white"/>
+<rect width="123.512" height="123.512" fill="currentColor"/>
 </clipPath>
 </defs>
 </svg>
