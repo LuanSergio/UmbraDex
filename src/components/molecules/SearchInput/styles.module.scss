@@ -12,8 +12,8 @@
 }
 
 .searchResults {
-  background-color: get-color('primary');
-  border: 2px solid get-color('primary-lighter');
+  background-color: get-color(primary);
+  border: 2px solid get-color(primary-lighter);
   border-radius: rem(6);
   box-shadow: 0 4px 20px 0 rgb(0 0 0 / 56%);
   display: none;
@@ -47,9 +47,9 @@
 }
 
 .searchResultsItemLink {
-  border: 2px solid get-color('primary');
+  border: 2px solid get-color(primary);
   border-radius: 4px;
-  color: get-color('light');
+  color: get-color(light);
   display: block;
   padding: rem(4) rem(8);
   text-decoration: none;
@@ -57,13 +57,13 @@
 }
 
 .searchResultsItemLink:hover {
-  background-color: get-color('primary-light');
-  border-color: get-color('primary-light');
+  background-color: get-color(primary-light);
+  border-color: get-color(primary-light);
 }
 
 .searchResultsItemLink:focus {
-  background-color: get-color('primary-light');
-  border-color: get-color('primary-lighter');
+  background-color: get-color(primary-light);
+  border-color: get-color(primary-lighter);
   outline: none;
 }
 

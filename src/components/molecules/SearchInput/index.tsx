@@ -122,6 +122,7 @@ const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
               ref={searchRef}
             />
           </div>
+
           {searchValue.length > 0 && pokemonList?.[0].length > 0 && (
             <div className={styles.searchResults}>
               <ul
