@@ -36,7 +36,9 @@ const Modal = ({
             </button>
           </Dialog.Close>
         </Dialog.Title>
-        {children}
+        <div className={`${styles.contentContainer} h-secondary-scroll`}>
+          {children}
+        </div>
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>

@@ -18,14 +18,19 @@
     hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
   color: get-color('light');
   left: 50%;
-  max-height: 85vh;
-  max-height: 600px;
-  padding: 25px;
+  padding: 26px;
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
   z-index: calc(999 + 1);
+}
+
+.contentContainer {
+  height: 100%;
+  margin-top: rem(24);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .small {
