@@ -1,16 +1,21 @@
 import { useRouter } from 'next/router';
 
-import RandomIcon from '@public/icons/random.svg';
-import MoonIcon from '@public/icons/moon.svg';
-import FilterIcon from '@public/icons/filter.svg';
-import DocumentIcon from '@public/icons/document.svg';
-import SwitchToggle from '@components/atoms/SwitchToggle';
-import Modal from '@components/atoms/Modal';
+import Routes from '@data/routes';
 import createRandomNumber from '@utils/createRandomNumber';
+import useThrottle from '@hooks/useThrottle';
+
 import { useThemeContext } from '@contexts/ThemeContext';
 import { usePokemonListContext } from '@contexts/PokemonListContext';
-import Routes from '@data/routes';
-import useThrottle from '@hooks/useThrottle';
+
+import SwitchToggle from '@components/atoms/SwitchToggle';
+import Modal from '@components/atoms/Modal';
+import FilterOptions from '@components/molecules/FilterOptions';
+import Disclaimer from '@components/molecules/Disclaimer';
+
+import FilterIcon from '@public/icons/filter.svg';
+import DocumentIcon from '@public/icons/document.svg';
+import MoonIcon from '@public/icons/moon.svg';
+import RandomIcon from '@public/icons/random.svg';
 
 import styles from './styles.module.scss';
 
@@ -21,6 +26,7 @@ interface IMenuProps {
 const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
   const router = useRouter();
   const { handleThemeChange, isDarkMode } = useThemeContext();
+
   const { pokedexLimit } = usePokemonListContext();
 
   function handleDarkModeToggle() {
@@ -75,12 +81,20 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
             </li>
 
             <li className={styles.optionsListItem}>
-              <button type="button" className={styles.button}>
-                <span className={styles.icon}>
-                  <FilterIcon />
-                </span>
-                Filters / Sort
-              </button>
+              <Modal
+                title="Filter / Sort"
+                size="small"
+                openButton={
+                  <button type="button" className={styles.button}>
+                    <span className={styles.icon}>
+                      <FilterIcon />
+                    </span>
+                    Filters / Sort
+                  </button>
+                }
+              >
+                <FilterOptions />
+              </Modal>
             </li>
           </ul>
 
@@ -88,6 +102,7 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
             <li className={styles.optionsListItem}>
               <Modal
                 size="small"
+                title="Disclaimer"
                 openButton={
                   <button type="button" className={styles.button}>
                     <span className={styles.icon}>
@@ -97,19 +112,7 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
                   </button>
                 }
               >
-                <p className={styles.disclaimerText}>
-                  This website was made as a study project, with no no financial
-                  purpose. <br />
-                  <br />
-                  All image contents within are Copyright The Pokémon Company.
-                  Pokémon © 2002-2023 Pokémon. © 1995-2023 Nintendo/Creatures
-                  Inc./GAME FREAK inc. TM, ® and Pokémon character names are
-                  trademarks of Nintendo.
-                  <br />
-                  <br />
-                  No copyright or trademark infringement is intended in using
-                  Pokémon content on this website.
-                </p>
+                <Disclaimer />
               </Modal>
             </li>
           </ul>

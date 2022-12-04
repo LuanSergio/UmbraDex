@@ -1,7 +1,9 @@
 @use 'tools/index' as *;
+@use 'sass:map';
+@use 'settings/colors-type' as typeColors;
 
 .filterOptions {
-  padding-top: rem(32);
+  padding-top: rem(8);
 }
 
 .subtitle {
@@ -12,11 +14,6 @@
 
 .categoryContainer:not(:last-child) {
   padding-bottom: rem(12);
-}
-
-.categoryContainer:not(:first-child) {
-  border-top: 1px solid get-color('primary-lightest');
-  padding-top: rem(32);
 }
 
 .categoryTitle {
@@ -30,12 +27,14 @@
   flex-wrap: wrap;
 }
 
-.spacedCategory {
-  margin-top: rem(46);
+.category:not(.categoryGrid) > *:not(:last-child) {
+  margin-right: rem(8);
 }
 
-.category > *:not(:last-child) {
-  margin-right: rem(8);
+.categoryGrid {
+  display: grid;
+  gap: rem(8);
+  grid-template-columns: repeat(auto-fit, rem(64));
 }
 
 .categoryItem {
@@ -50,7 +49,7 @@
   height: rem(64);
   justify-content: center;
   line-height: 0;
-  transition: background-color 0.12s linear;
+  transition: background-color 0.12s linear, border-color 0.08s linear;
   width: rem(64);
 }
 
@@ -65,4 +64,106 @@
 
 .icon.small {
   width: rem(28);
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionContainer,
+.categoryContainer:not(:first-child) {
+  border-top: 1px solid get-color(primary-lightest);
+  padding-top: rem(32);
+}
+
+.button {
+  background-color: get-color(secondary);
+  border-radius: 4px;
+  border-width: 0;
+  color: get-color(primary);
+  cursor: pointer;
+  font-size: rem(16);
+  font-weight: bold;
+  padding: 12px 14px;
+  text-transform: uppercase;
+  transition: background-color 0.12s linear;
+}
+
+.button:hover {
+  background-color: get-color(secondary-dark);
+}
+
+.checkboxContainer {
+  cursor: pointer;
+  display: block;
+  font-size: 22px;
+  height: rem(64);
+  padding-left: 35px;
+  position: relative;
+  user-select: none;
+  width: rem(64);
+}
+
+.checkMark {
+  align-items: center;
+  background-color: get-color('primary-darker');
+  border: 2px solid get-color('primary-lighter');
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  font-size: rem(28);
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  line-height: 0;
+  position: absolute;
+  top: 0;
+  transition: background-color 0.12s linear, border-color 0.08s linear;
+  width: 100%;
+}
+
+.checkboxContainer .checkboxInput {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.checkboxInput:checked ~ .checkMarkDark .icon {
+  color: get-color(primary);
+}
+
+.checkboxInput:checked ~ .checkMark {
+  background: get-color(secondary);
+  border-color: get-color(secondary-dark);
+  color: get-color(primary);
+}
+
+.checkboxContainer:hover .checkMark {
+  background-color: get-color(secondary);
+  border-color: get-color(secondary-dark);
+  color: get-color(primary);
+}
+
+.checkboxContainer:hover .checkMarkDark .icon {
+  color: get-color(primary);
+}
+
+@each $type, $color in typeColors.$defaults {
+  .checkboxTypeContainer .checkboxInput:checked ~ .checkMark.#{$type} {
+    background: $color;
+    border-color: #{map.get(typeColors.$lights, $type)};
+  }
+
+  .checkboxTypeContainer:hover .checkMark.#{$type} {
+    background-color: #{map.get(typeColors.$darks, $type)};
+    border-color: #{map.get(typeColors.$lights, $type)};
+  }
+
+  // .checkboxTypeContainer .checkboxInput:checked ~ .checkMark.#{$type} {
+  //   border-color: get-color(light);
+  // }
 }
