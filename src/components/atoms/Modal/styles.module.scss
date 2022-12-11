@@ -17,7 +17,12 @@
   box-shadow: hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
     hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
   color: get-color('light');
+  display: flex;
+  flex-direction: column;
   left: 50%;
+  max-height: calc(100% - 64px);
+  overflow: auto;
+  overflow-y: auto;
   padding: 26px;
   position: fixed;
   top: 50%;
@@ -27,9 +32,8 @@
 }
 
 .contentContainer {
-  height: 100%;
+  flex: 1 1 auto;
   margin-top: rem(24);
-  max-height: 80vh;
   overflow-y: auto;
 }
 
@@ -53,6 +57,7 @@
   align-items: center;
   border-bottom: 2px solid get-color('light');
   display: flex;
+  flex: 0 0 auto;
   font-size: rem(32);
   justify-content: space-between;
   margin: 0;

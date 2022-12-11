@@ -8,14 +8,16 @@ interface IModalProps {
   children: ReactChild;
   openButton: ReactChild;
   title: string;
+  footer?: ReactChild;
   size?: 'small' | 'medium';
 }
 
 const Modal = ({
   children,
   openButton,
-  size = 'medium',
   title,
+  footer,
+  size = 'medium',
 }: IModalProps): JSX.Element => (
   <Dialog.Root>
     <Dialog.Trigger asChild>{openButton}</Dialog.Trigger>
@@ -39,6 +41,7 @@ const Modal = ({
         <div className={`${styles.contentContainer} h-secondary-scroll`}>
           {children}
         </div>
+        {footer && <div>{footer}</div>}
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>
