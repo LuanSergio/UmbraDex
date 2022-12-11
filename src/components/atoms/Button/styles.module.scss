@@ -1,0 +1,18 @@
+@use 'tools/index' as *;
+
+.button {
+  background-color: get-color(secondary);
+  border-radius: 4px;
+  border-width: 0;
+  color: get-color(primary);
+  cursor: pointer;
+  font-size: rem(16);
+  font-weight: bold;
+  padding: 12px 14px;
+  text-transform: uppercase;
+  transition: background-color 0.12s linear;
+}
+
+.button:hover {
+  background-color: get-color(secondary-dark);
+}
