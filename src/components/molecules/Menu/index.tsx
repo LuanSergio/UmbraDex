@@ -7,6 +7,7 @@ import useThrottle from '@hooks/useThrottle';
 import { useThemeContext } from '@contexts/ThemeContext';
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
+import Button from '@components/atoms/Button';
 import SwitchToggle from '@components/atoms/SwitchToggle';
 import Modal from '@components/atoms/Modal';
 import FilterOptions from '@components/molecules/FilterOptions';
@@ -84,6 +85,11 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
               <Modal
                 title="Filter / Sort"
                 size="small"
+                footer={
+                  <div className={styles.filterActionContainer}>
+                    <Button>Apply filter</Button>
+                  </div>
+                }
                 openButton={
                   <button type="button" className={styles.button}>
                     <span className={styles.icon}>

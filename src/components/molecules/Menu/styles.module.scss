@@ -62,6 +62,14 @@
   width: rem(24);
 }
 
+.filterActionContainer {
+  border-top: 2px solid get-color(light);
+  display: flex;
+  justify-content: flex-end;
+  margin-top: rem(18);
+  padding-top: rem(24);
+}
+
 .disclaimerText {
   font-size: rem(18);
 }

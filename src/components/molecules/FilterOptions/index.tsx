@@ -62,7 +62,7 @@ const FilterOptions = (): JSX.Element => {
       <div className={styles.categoryContainer}>
         <h3 className={styles.subtitle}>Filter by type:</h3>
 
-        <ul className={`${styles.category} ${styles.categoryGrid}`}>
+        <ul className={styles.category}>
           {Object.keys(types).map(item => (
             <li>
               <label
@@ -149,12 +149,6 @@ const FilterOptions = (): JSX.Element => {
             );
           })}
         </ul>
-      </div>
-
-      <div className={styles.actionContainer}>
-        <button type="button" className={styles.button}>
-          Apply filter
-        </button>
       </div>
     </div>
   );
