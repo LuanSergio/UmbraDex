@@ -1,31 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo 'Testing and building project before committing'
+echo 'Testing project before committing'
 
-# Check Prettier standards
-echo '📋 Checking Prettier.'
-npm run check-format ||
-(
-    echo '❌ Prettier Check Failed. Run npm run format, add changes and try commit again.';
-    false;
-)
-
-# Check ESLint Standards
-echo '📋 Checking ESlint rules.'
-npm run check-lint ||
-(
-        echo '❌ ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
-)
-
-# Check Stylelint Standards
-echo '📋 Checking Styles rules.'
-npm run check-styles ||
-(
-        echo '❌ Stylelint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
-)
 
 # Check tsconfig standards
 echo '📋 Validating types.'
@@ -35,14 +12,6 @@ npm run check-types ||
     false;
 )
 
-# Try to build the project
-# echo '👷🔨 Trying to build.'
+npx lint-staged
 
-# npm run build ||
-# (
-#     echo '❌ Next build failed: View the errors above to see why.'
-#     false;
-# )
-
-# If everything passes... Now we can commit
 echo '✅ Sucess! Your commit is being made'

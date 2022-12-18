@@ -1,0 +1,5 @@
+{
+  "*.{js,ts,jsx,tsx}": "eslint . --ext ts --ext tsx --ext js",
+  "*.{css,scss}": "stylelint \"**/*.scss\"",
+  "*": "prettier --check ."
+}
