@@ -77,6 +77,7 @@ export default async function getPokemonDetailsData(
   id: number,
 ): Promise<GetPokemonDetailsDataResponse> {
   const response = await fetchPokemonDetailsData(id);
+  // console.log('🚀 ~ response', response);
 
   function formatPokemonDescription(description) {
     return description.replace('\f', ' ').replace('POKéMON', 'Pokémon');
@@ -98,6 +99,8 @@ export default async function getPokemonDetailsData(
           }),
           formName: form.pokemon_v2_pokemonforms[0].form_name,
           formOrder: form.pokemon_v2_pokemonforms[0].form_order,
+          height: form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.height,
+          weight: form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.weight,
           stats:
             form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.pokemon_v2_pokemonstats.map(
               stats => {
@@ -127,6 +130,6 @@ export default async function getPokemonDetailsData(
       response.pokemon_v2_pokemonspecies[0].pokemon_v2_evolutionchain
         .pokemon_v2_pokemonspecies,
   };
-
+  console.log('details', pokemonDetails);
   return pokemonDetails;
 }

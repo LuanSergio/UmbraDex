@@ -5,7 +5,9 @@ import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
 interface IFetchPokemonListParams {
   queryName?: string;
   page: number;
-  search: string;
+  search?: string;
+  generations?: string[];
+  types?: string[];
 }
 
 async function fetchPokemonListData({

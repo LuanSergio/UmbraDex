@@ -1,6 +1,19 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import usePokemonList from '@hooks/usePokemonList';
 import useDebounce from '@hooks/useDebounce';
+
+interface IFilterOptions {
+  generation?: string[];
+  type?: string[];
+}
 
 interface IPokemonListContextData {
   searchValue: string;
@@ -11,15 +24,16 @@ interface IPokemonListContextData {
   setPokemonListSize: (
     size: number | ((_size: number) => number),
   ) => Promise<IBasicPokemonInfo[][]>;
+  handleFilterChange: (params: keyof IFilterOptions, value: unknown) => void;
 }
 
 export const PokemonListContext = createContext({} as IPokemonListContextData);
 
-type PokemonListContextProviderProps = {
+interface PokemonListContextProviderProps {
   fallback?: IBasicPokemonInfo[][];
   pokedexLimit: number;
   children: ReactNode;
-};
+}
 
 export function PokemonListContextProvider({
   children,
@@ -27,6 +41,17 @@ export function PokemonListContextProvider({
   pokedexLimit,
 }: PokemonListContextProviderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [filterValues, setFiltersValues] = useState<IFilterOptions>({});
+
+  const handleFilterChange = useCallback(
+    (params: keyof IFilterOptions, value: unknown): void => {
+      setFiltersValues(currentState => ({
+        ...currentState,
+        [params]: value,
+      }));
+    },
+    [],
+  );
 
   const {
     pokemonList,
@@ -35,6 +60,7 @@ export function PokemonListContextProvider({
   } = usePokemonList({
     fallback: searchValue.length ? undefined : fallback,
     search: searchValue,
+    filterValues,
   });
 
   function updateSearchValue(pokemonName: string) {
@@ -51,6 +77,7 @@ export function PokemonListContextProvider({
       pokedexLimit,
       handleSearchValueChange,
       setPokemonListSize,
+      handleFilterChange,
     }),
     [
       isLoading,
@@ -59,6 +86,7 @@ export function PokemonListContextProvider({
       pokedexLimit,
       handleSearchValueChange,
       setPokemonListSize,
+      handleFilterChange,
     ],
   );
 

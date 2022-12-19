@@ -121,6 +121,14 @@
   color: get-color(primary);
 }
 
+.filterActionContainer {
+  border-top: 2px solid get-color(light);
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(18);
+  padding-top: rem(24);
+}
+
 @each $type, $color in typeColors.$defaults {
   .checkboxTypeContainer:hover .checkMark.#{$type} {
     background-color: #{map.get(typeColors.$darks, $type)};
