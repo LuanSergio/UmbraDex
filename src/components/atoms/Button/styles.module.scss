@@ -1,10 +1,8 @@
 @use 'tools/index' as *;
 
 .button {
-  background-color: get-color(secondary);
   border-radius: 4px;
   border-width: 0;
-  color: get-color(primary);
   cursor: pointer;
   font-size: rem(16);
   font-weight: bold;
@@ -13,6 +11,20 @@
   transition: background-color 0.12s linear;
 }
 
-.button:hover {
+.primary {
+  background-color: get-color(secondary);
+  color: get-color(primary);
+}
+
+.secondary {
+  background-color: get-color(primary-light);
+  color: get-color(light);
+}
+
+.secondary:hover {
+  background-color: get-color(primary-dark);
+}
+
+.primary:hover {
   background-color: get-color(secondary-dark);
 }
