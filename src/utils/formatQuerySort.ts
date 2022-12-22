@@ -1,20 +1,19 @@
-interface IFormatQuerySortParams {
-  numeralOrder: 'desc' | 'asc' | undefined;
-  nameOrder: 'desc' | 'asc' | undefined;
-}
+function formatQuerySort(sortValue) {
+  if (!sortValue?.length) return '';
 
-function formatQuerySort({ numeralOrder, nameOrder }: IFormatQuerySortParams) {
-  const sort = `
-  ${
-    numeralOrder?.length || nameOrder?.length
-      ? `order_by: {
-    ${numeralOrder.length ? numeralOrder : ''}
-    ${nameOrder.length ? nameOrder : ''}
-  }`
-      : ''
-  }`;
+  if (sortValue === 'numeral-ascending' || sortValue === 'numeral-descending') {
+    if (sortValue === 'numeral-ascending') {
+      return `order_by: {id: asc}`;
+    }
 
-  return sort;
+    return `order_by: {id: desc}`;
+  }
+
+  if (sortValue === 'alphabetical-ascending') {
+    return `order_by: {name: asc}`;
+  }
+
+  return `order_by: {name: desc}`;
 }
 
 export default formatQuerySort;

@@ -77,7 +77,6 @@ export default async function getPokemonDetailsData(
   id: number,
 ): Promise<GetPokemonDetailsDataResponse> {
   const response = await fetchPokemonDetailsData(id);
-  // console.log('🚀 ~ response', response);
 
   function formatPokemonDescription(description) {
     return description.replace('\f', ' ').replace('POKéMON', 'Pokémon');
@@ -130,6 +129,6 @@ export default async function getPokemonDetailsData(
       response.pokemon_v2_pokemonspecies[0].pokemon_v2_evolutionchain
         .pokemon_v2_pokemonspecies,
   };
-  console.log('details', pokemonDetails);
+
   return pokemonDetails;
 }

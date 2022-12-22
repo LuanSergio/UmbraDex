@@ -30,7 +30,7 @@ import NumeralDescendingIcon from '@public/icons/numeral-descending.svg';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 
-import { ReactChild, useState } from 'react';
+import { ReactChild, useEffect, useState } from 'react';
 
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import styles from './styles.module.scss';
@@ -63,18 +63,26 @@ const types = {
 };
 
 const sort = {
-  'alphabetical-ascending': <AlphabeticalAscendingIcon />,
-  'alphabetical-descending': <AlphabeticalDescendingIcon />,
   'numeral-ascending': <NumeralAscendingIcon />,
   'numeral-descending': <NumeralDescendingIcon />,
+  'alphabetical-ascending': <AlphabeticalAscendingIcon />,
+  'alphabetical-descending': <AlphabeticalDescendingIcon />,
 };
 
 const FilterModal = ({ children }: IFilterModal): JSX.Element => {
-  const { handleFilterChange } = usePokemonListContext();
+  const {
+    filterValues,
+    sortValue: currentSortValue,
+    updateFilters,
+    updateSort,
+  } = usePokemonListContext();
   const [typeFilterValue, setTypeFilterValue] = useState<string[]>([]);
   const [generationFilterValue, setGenerationFilterValue] = useState<string[]>(
     [],
   );
+  const [sortValue, setSortValue] = useState<string>('numeral-ascending');
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   function handleTypeFilterChange(value) {
     setTypeFilterValue(currentState => {
@@ -96,18 +104,35 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     });
   }
 
-  function handleApplyFilters() {
-    handleFilterChange('type', typeFilterValue);
-    handleFilterChange('generation', generationFilterValue);
+  function handleSortChange(value: string) {
+    setSortValue(value);
   }
 
+  function handleApplyFilters() {
+    updateFilters('type', typeFilterValue);
+    updateFilters('generation', generationFilterValue);
+    updateSort(sortValue);
+    setIsFilterOpen(false);
+  }
+
+  useEffect(() => {
+    if (filterValues.type?.length) setTypeFilterValue(filterValues.type);
+    if (filterValues.generation?.length)
+      setGenerationFilterValue(filterValues.generation);
+    if (currentSortValue?.length) setSortValue(currentSortValue);
+  }, [filterValues.type, filterValues.generation]);
+
   function handleClearFilters() {
-    handleFilterChange('type', []);
-    handleFilterChange('generation', []);
+    updateFilters('type', []);
+    setTypeFilterValue([]);
+    updateFilters('generation', []);
+    setGenerationFilterValue([]);
   }
 
   return (
     <Modal
+      open={isFilterOpen}
+      onOpenChange={setIsFilterOpen}
       title="Filter / Sort"
       size="small"
       footer={
@@ -144,6 +169,9 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     onChange={event =>
                       handleTypeFilterChange(event.target.value)
                     }
+                    checked={typeFilterValue?.some(
+                      typeItem => typeItem === item,
+                    )}
                     value={item}
                   />
                   <span className={`${styles.checkMark} ${styles[item]} `}>
@@ -174,6 +202,9 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     type="checkbox"
                     id={`filter-by-generation-${item}`}
                     name={`filter-by-generation-${item}`}
+                    checked={generationFilterValue?.some(
+                      generationItem => generationItem === item,
+                    )}
                     onChange={event =>
                       handleGenerationFilterChange(event.target.value)
                     }
@@ -192,7 +223,7 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
           <h3 className={styles.subtitle}>Sort:</h3>
 
           <ul className={styles.category}>
-            {Object.keys(sort).map((item, index) => {
+            {Object.keys(sort).map(item => {
               const itemName = transformFirstLetterToUppercase(
                 replaceDashWithSpace(item),
               );
@@ -208,9 +239,10 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     <input
                       className={styles.checkboxInput}
                       type="radio"
-                      defaultChecked={index === 0}
+                      defaultChecked={item === sortValue}
                       id={`sort-${item}`}
                       name="sort"
+                      onChange={evt => handleSortChange(evt.target.value)}
                       value={item}
                     />
                     <span

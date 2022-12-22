@@ -8,6 +8,7 @@ import Github from '@public/icons/github.svg';
 import Options from '@public/icons/options.svg';
 import SearchInput from '@components/molecules/SearchInput';
 import Menu from '@components/molecules/Menu';
+import useEscapeKeyPress from '@hooks/useEscapeKeyPress';
 import styles from './styles.module.scss';
 
 const Header = (): JSX.Element => {
@@ -38,6 +39,8 @@ const Header = (): JSX.Element => {
       window.removeEventListener('scroll', hasScrolled);
     };
   });
+
+  useEscapeKeyPress({ fn: () => setIsOptionsOpen(false) });
 
   return (
     <header>

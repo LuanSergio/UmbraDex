@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { ReactChild } from 'react';
+import { Dispatch, ReactChild, SetStateAction } from 'react';
 import CloseIcon from '@public/icons/close.svg';
 
 import styles from './styles.module.scss';
@@ -10,6 +10,8 @@ interface IModalProps {
   title: string;
   footer?: ReactChild;
   size?: 'small' | 'medium';
+  open?: boolean;
+  onOpenChange?: Dispatch<SetStateAction<boolean>>;
 }
 
 const Modal = ({
@@ -18,8 +20,10 @@ const Modal = ({
   title,
   footer,
   size = 'medium',
+  open,
+  onOpenChange,
 }: IModalProps): JSX.Element => (
-  <Dialog.Root>
+  <Dialog.Root open={open} onOpenChange={onOpenChange}>
     <Dialog.Trigger asChild>{openButton}</Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className={styles.dialogOverlay} />

@@ -11,6 +11,7 @@ import TextField from '@components/atoms/TextField';
 import IconButton from '@components/atoms/IconButton';
 
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import useEscapeKeyPress from '@hooks/useEscapeKeyPress';
 import styles from './styles.module.scss';
 
 interface ISearchInputIconProps {
@@ -81,6 +82,8 @@ const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const { handleSearchValueChange, isLoading, pokemonList, searchValue } =
     usePokemonListContext();
+
+  useEscapeKeyPress({ fn: () => setSearchInputValue('') });
 
   function handleSearchInputChange(value: string) {
     setSearchInputValue(value);

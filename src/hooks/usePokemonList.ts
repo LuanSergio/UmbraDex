@@ -1,5 +1,5 @@
-import getPokemonListData from '@requests/getPokemonListData';
 import useSWRInfinite from 'swr/infinite';
+import getPokemonListData from '@requests/getPokemonListData';
 
 interface IFilterOptions {
   generation?: string[];
@@ -10,6 +10,7 @@ interface IUsePokemonListParams {
   fallback?: IBasicPokemonInfo[][];
   search?: string;
   filterValues?: IFilterOptions;
+  sortValue?: string;
 }
 
 interface IUsePokemonListResponse {
@@ -25,12 +26,13 @@ export default function usePokemonList({
   fallback,
   filterValues,
   search = '',
+  sortValue,
 }: IUsePokemonListParams): IUsePokemonListResponse {
   const { generation, type } = filterValues;
 
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
-    return [`pokemonList`, pageIndex, search, generation, type];
+    return [`pokemonList`, pageIndex, search, generation, type, sortValue];
   };
 
   const { data, error, size, setSize } = useSWRInfinite(
@@ -40,8 +42,9 @@ export default function usePokemonList({
         queryName: key,
         page,
         search: searchKey,
-        generations: generationKey,
-        types: typeKey,
+        generationsFilter: generationKey,
+        typesFilter: typeKey,
+        sortValue,
       }),
     {
       fallbackData: fallback,

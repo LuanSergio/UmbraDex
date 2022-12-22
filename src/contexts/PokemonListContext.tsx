@@ -20,11 +20,14 @@ interface IPokemonListContextData {
   pokemonList: IBasicPokemonInfo[][];
   isLoading: boolean;
   pokedexLimit: number;
+  filterValues: IFilterOptions;
+  sortValue: string;
+  updateSort: (value: string) => void;
   handleSearchValueChange: (pokemonName: string) => void;
   setPokemonListSize: (
     size: number | ((_size: number) => number),
   ) => Promise<IBasicPokemonInfo[][]>;
-  handleFilterChange: (params: keyof IFilterOptions, value: unknown) => void;
+  updateFilters: (params: keyof IFilterOptions, value: unknown) => void;
 }
 
 export const PokemonListContext = createContext({} as IPokemonListContextData);
@@ -42,8 +45,9 @@ export function PokemonListContextProvider({
 }: PokemonListContextProviderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
   const [filterValues, setFiltersValues] = useState<IFilterOptions>({});
+  const [sortValue, setSortValue] = useState<string>('');
 
-  const handleFilterChange = useCallback(
+  const updateFilters = useCallback(
     (params: keyof IFilterOptions, value: unknown): void => {
       setFiltersValues(currentState => ({
         ...currentState,
@@ -53,6 +57,10 @@ export function PokemonListContextProvider({
     [],
   );
 
+  const updateSort = useCallback((value: string): void => {
+    setSortValue(value);
+  }, []);
+
   const {
     pokemonList,
     isLoading,
@@ -61,6 +69,7 @@ export function PokemonListContextProvider({
     fallback: searchValue.length ? undefined : fallback,
     search: searchValue,
     filterValues,
+    sortValue,
   });
 
   function updateSearchValue(pokemonName: string) {
@@ -75,18 +84,24 @@ export function PokemonListContextProvider({
       pokemonList,
       searchValue,
       pokedexLimit,
+      filterValues,
+      sortValue,
       handleSearchValueChange,
+      updateSort,
       setPokemonListSize,
-      handleFilterChange,
+      updateFilters,
     }),
     [
       isLoading,
       pokemonList,
       searchValue,
       pokedexLimit,
+      filterValues,
+      sortValue,
+      updateSort,
       handleSearchValueChange,
       setPokemonListSize,
-      handleFilterChange,
+      updateFilters,
     ],
   );
 
