@@ -12,35 +12,40 @@ const PokemonCard = ({
   image,
 }: IBasicPokemonInfo): JSX.Element => {
   return (
-    <Link href={`${Routes.pokemonDetails}/${id}`}>
-      <article className={styles.card} id={`${id}`}>
-        {id <= 10 ? (
-          <span className={styles.number}># 0{id}</span>
-        ) : (
-          <span className={styles.number}># {id}</span>
-        )}
+    <Link href={`${Routes.pokemonDetails}/${id}`} passHref>
+      <a>
+        <article className={styles.card} id={`${id}`}>
+          {id <= 10 ? (
+            <span className={styles.number}># 0{id}</span>
+          ) : (
+            <span className={styles.number}># {id}</span>
+          )}
 
-        <div className={styles.pokemonContainer}>
-          <span className={styles.pokeball}>
-            <PokeBallIcon />
-          </span>
-          <div className={styles.pokemon}>
-            <PokemonPicture layout="fill" src={image} alt="" />
+          <div className={styles.pokemonContainer}>
+            <span className={styles.pokeball}>
+              <PokeBallIcon />
+            </span>
+            <div className={styles.pokemon}>
+              <PokemonPicture layout="fill" src={image} alt="" />
+            </div>
+
+            <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
           </div>
 
-          <h2 className={`${styles.name} ${styles[types[0]]}`}>{name}</h2>
-        </div>
+          <ul className={styles.typeContainer}>
+            {types.map((type, index) => (
+              <li
+                key={type}
+                className={`${styles.type} ${styles[types[index]]}`}
+              >
+                {type}
+              </li>
+            ))}
+          </ul>
 
-        <ul className={styles.typeContainer}>
-          {types.map((type, index) => (
-            <li key={type} className={`${styles.type} ${styles[types[index]]}`}>
-              {type}
-            </li>
-          ))}
-        </ul>
-
-        <div className={`${styles.background} ${styles[types[0]]}`} />
-      </article>
+          <div className={`${styles.background} ${styles[types[0]]}`} />
+        </article>
+      </a>
     </Link>
   );
 };
