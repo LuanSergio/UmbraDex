@@ -46,6 +46,7 @@ export function PokemonListContextProvider({
   const [searchValue, setSearchValue] = useState<string>('');
   const [filterValues, setFiltersValues] = useState<IFilterOptions>({});
   const [sortValue, setSortValue] = useState<string>('');
+  const [hasFilter, setHasFilter] = useState(false);
 
   const updateFilters = useCallback(
     (params: keyof IFilterOptions, value: unknown): void => {
@@ -61,12 +62,24 @@ export function PokemonListContextProvider({
     setSortValue(value);
   }, []);
 
+  useEffect(() => {
+    if (
+      searchValue.length ||
+      Object.values(filterValues).filter(item => item?.length > 0).length
+    ) {
+      setHasFilter(true);
+      return;
+    }
+
+    setHasFilter(false);
+  }, [filterValues, searchValue]);
+
   const {
     pokemonList,
     isLoading,
     setSize: setPokemonListSize,
   } = usePokemonList({
-    fallback: searchValue.length ? undefined : fallback,
+    fallback: hasFilter ? undefined : fallback,
     search: searchValue,
     filterValues,
     sortValue,
