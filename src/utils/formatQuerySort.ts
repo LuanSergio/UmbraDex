@@ -1,5 +1,5 @@
 function formatQuerySort(sortValue) {
-  if (!sortValue?.length) return '';
+  if (!sortValue?.length) return 'order_by: {id: asc}';
 
   if (sortValue === 'numeral-ascending' || sortValue === 'numeral-descending') {
     if (sortValue === 'numeral-ascending') {

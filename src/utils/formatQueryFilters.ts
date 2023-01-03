@@ -1,7 +1,7 @@
 interface IFormatQueryFiltersParams {
-  search: string;
-  generation: string[];
-  type: string[];
+  search?: string;
+  generation?: string[];
+  type?: string[];
 }
 
 function formatQueryFilters({
@@ -9,6 +9,8 @@ function formatQueryFilters({
   generation,
   type,
 }: IFormatQueryFiltersParams) {
+  if (!search.length && !generation?.length && !type?.length) return '';
+
   const filterSearch = `
   ${
     search?.length
@@ -30,7 +32,7 @@ function formatQueryFilters({
       : ''
   }`;
 
-  return `where: {${filterSearch} ${filterGeneration} ${filterType}}, `;
+  return `where: {${filterSearch}${filterGeneration}${filterType}}, `;
 }
 
 export default formatQueryFilters;
