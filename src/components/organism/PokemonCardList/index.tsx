@@ -48,12 +48,7 @@ const PokemonCardList = (): JSX.Element => {
           <Fragment key={index}>
             {list.map(pokemon => (
               <li key={pokemon.id}>
-                <PokemonCard
-                  id={pokemon.id}
-                  name={pokemon.name}
-                  types={pokemon.types}
-                  image={pokemon.image}
-                />
+                <PokemonCard id={pokemon.id} form={pokemon.forms[0]} />
               </li>
             ))}
           </Fragment>

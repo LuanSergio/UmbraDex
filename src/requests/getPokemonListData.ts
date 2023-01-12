@@ -31,11 +31,14 @@ async function fetchPokemonListData({
 
   const query = `
     query ${queryName} {
-      ${`species: pokemon_v2_pokemonspecies(limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${filterQuery} ${sortQuery}
-      )`} {
-        name
+      pokemonSpecieList: pokemon_v2_pokemonspecies(limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${filterQuery} ${sortQuery}) {
         id
-        information: pokemon_v2_pokemons {
+        pokemon: pokemon_v2_pokemons {
+          forms: pokemon_v2_pokemonforms {
+            name
+            isDefault: is_default
+            formId: pokemon_id
+          }
           types: pokemon_v2_pokemontypes {
             type: pokemon_v2_type {
               name
@@ -49,11 +52,12 @@ async function fetchPokemonListData({
         }
       }
     }
+    
   `;
 
   const result = await graphqlClient.request(query);
 
-  return result.species;
+  return result;
 }
 
 export default async function getPokemonListData({
@@ -64,7 +68,7 @@ export default async function getPokemonListData({
   generationsFilter,
   sortValue,
 }: IFetchPokemonListParams): Promise<IBasicPokemonInfo[]> {
-  const responses = await fetchPokemonListData({
+  const response = await fetchPokemonListData({
     queryName,
     page,
     search,
@@ -73,12 +77,17 @@ export default async function getPokemonListData({
     sortValue,
   });
   const pokemonInfoArray = [];
-  responses.forEach(response => {
+  response.pokemonSpecieList.forEach(pokemonSpecies => {
     const pokemonInfo: IBasicPokemonInfo = {
-      id: response.id,
-      name: response.name,
-      types: response.information[0].types.map(item => item.type.name),
-      image: getPokemonImageUrl(response.id),
+      id: pokemonSpecies.id,
+      forms: pokemonSpecies.pokemon.map(pokemon => {
+        return {
+          name: pokemon.forms[0].name,
+          types: pokemon.types.map(item => item.type.name),
+          isDefault: pokemon.forms[0].isDefault ?? false,
+          image: getPokemonImageUrl(pokemon.forms[0].formId),
+        };
+      }),
     };
 
     pokemonInfoArray.push(pokemonInfo);
