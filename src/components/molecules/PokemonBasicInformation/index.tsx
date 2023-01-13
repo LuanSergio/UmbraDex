@@ -14,7 +14,7 @@ const PokemonBasicInformation = ({
 }: PokemonBasicInformationProps): JSX.Element => {
   return (
     <div>
-      <h1 className={styles.name}>{replaceDashWithSpace(name)}</h1>
+      <h1 className={styles.name}>{name}</h1>
 
       <div className={styles.basicInfo}>
         {pokedexIndex <= 10 ? (

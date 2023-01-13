@@ -3,6 +3,8 @@ import graphqlClient from '@services/api';
 import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
 import formatQueryFilters from '@utils/formatQueryFilters';
 import formatQuerySort from '@utils/formatQuerySort';
+import checkIfPokemonHasType from '@utils/checkIfPokemonHasType';
+import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 
 interface IFetchPokemonListParams {
   queryName?: string;
@@ -36,7 +38,6 @@ async function fetchPokemonListData({
         pokemon: pokemon_v2_pokemons {
           forms: pokemon_v2_pokemonforms {
             name
-            isDefault: is_default
             formId: pokemon_id
           }
           types: pokemon_v2_pokemontypes {
@@ -44,6 +45,7 @@ async function fetchPokemonListData({
               name
             }
           }
+          isDefault: is_default
         }
       }
       pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
@@ -76,21 +78,28 @@ export default async function getPokemonListData({
     generationsFilter,
     sortValue,
   });
-  const pokemonInfoArray = [];
-  response.pokemonSpecieList.forEach(pokemonSpecies => {
-    const pokemonInfo: IBasicPokemonInfo = {
-      id: pokemonSpecies.id,
-      forms: pokemonSpecies.pokemon.map(pokemon => {
-        return {
-          name: pokemon.forms[0].name,
-          types: pokemon.types.map(item => item.type.name),
-          isDefault: pokemon.forms[0].isDefault ?? false,
-          image: getPokemonImageUrl(pokemon.forms[0].formId),
-        };
-      }),
-    };
 
-    pokemonInfoArray.push(pokemonInfo);
+  const pokemonInfoArray = response.pokemonSpecieList.map(pokemonSpecies => {
+    const test = pokemonSpecies.pokemon.find(pokemon => {
+      if (!typesFilter && pokemon.isDefault) {
+        return true;
+      }
+
+      const types = pokemon.types.map(item => item.type.name);
+      if (typesFilter && checkIfPokemonHasType(types, typesFilter)) {
+        return true;
+      }
+
+      return false;
+    });
+
+    return {
+      types: test.types.map(item => item.type.name),
+      isDefault: test.isDefault,
+      name: replaceDashWithSpace(test.forms[0].name),
+      image: getPokemonImageUrl(test.forms[0].formId),
+      id: pokemonSpecies.id,
+    };
   });
 
   return pokemonInfoArray;

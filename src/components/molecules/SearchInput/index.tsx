@@ -142,17 +142,15 @@ const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
                         <Link href={`/pokemon/${pokemon.id}`}>
                           <a className={styles.searchResultsItemLink}>
                             <span className={styles.pokemonName}>
-                              {transformFirstLetterToUppercase(
-                                pokemon.forms[0].name,
-                              )}
+                              {transformFirstLetterToUppercase(pokemon.name)}
                             </span>
 
                             <span className={styles.pokemonType}>
-                              {pokemon.forms[0].types.map((type, typeIndex) => (
+                              {pokemon.types.map((type, typeIndex) => (
                                 <Fragment key={type}>
                                   {transformFirstLetterToUppercase(type)}{' '}
-                                  {typeIndex + 1 !==
-                                    pokemon.forms[0].types.length && '/'}
+                                  {typeIndex + 1 !== pokemon.types.length &&
+                                    '/'}
                                 </Fragment>
                               ))}
                             </span>

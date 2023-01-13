@@ -1,11 +1,7 @@
-declare interface IBasicFormInfo {
-  name: string;
-  types: string[];
-  image: string;
-  isDefault: boolean;
-}
-
 declare interface IBasicPokemonInfo {
+  types: string[];
+  isDefault: boolean;
+  name: string;
+  image: string;
   id: number;
-  forms: IBasicFormInfo[];
 }

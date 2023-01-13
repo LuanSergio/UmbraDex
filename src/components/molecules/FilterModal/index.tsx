@@ -224,23 +224,21 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
 
           <ul className={styles.category}>
             {Object.keys(sort).map(item => {
-              const itemName = transformFirstLetterToUppercase(
-                replaceDashWithSpace(item),
-              );
+              const nameId = item.replace(/\s/g, '');
 
               return (
-                <li key={itemName}>
+                <li key={item}>
                   <label
                     className={styles.checkboxContainer}
-                    htmlFor={`sort-${item}`}
-                    aria-label={`Sort by ${itemName}`}
-                    title={itemName}
+                    htmlFor={`sort-${nameId}`}
+                    aria-label={`Sort by ${item}`}
+                    title={item}
                   >
                     <input
                       className={styles.checkboxInput}
                       type="radio"
                       defaultChecked={item === sortValue}
-                      id={`sort-${item}`}
+                      id={`sort-${nameId}`}
                       name="sort"
                       onChange={evt => handleSortChange(evt.target.value)}
                       value={item}

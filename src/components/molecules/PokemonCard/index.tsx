@@ -6,11 +6,12 @@ import PokeBallIcon from '@public/icons/pokeball.svg';
 import styles from './styles.module.scss';
 
 interface IPokemonCard {
-  id: number;
-  form: IBasicFormInfo;
+  pokemon: IBasicPokemonInfo;
 }
 
-const PokemonCard = ({ id, form }: IPokemonCard): JSX.Element => {
+const PokemonCard = ({ pokemon }: IPokemonCard): JSX.Element => {
+  const { id, image, name, types } = pokemon;
+
   return (
     <Link href={`${Routes.pokemonDetails}/${id}`} passHref>
       <a>
@@ -26,26 +27,24 @@ const PokemonCard = ({ id, form }: IPokemonCard): JSX.Element => {
               <PokeBallIcon />
             </span>
             <div className={styles.pokemon}>
-              <PokemonPicture layout="fill" src={form.image} alt="" />
+              <PokemonPicture layout="fill" src={image} alt="" />
             </div>
 
-            <h2 className={`${styles.name} ${styles[form.types[0]]}`}>
-              {form.name}
-            </h2>
+            <h2 className={`${styles.name} ${styles[types?.[0]]}`}>{name}</h2>
           </div>
 
           <ul className={styles.typeContainer}>
-            {form.types.map((type, index) => (
+            {types?.map((type, index) => (
               <li
                 key={type}
-                className={`${styles.type} ${styles[form.types[index]]}`}
+                className={`${styles.type} ${styles[types?.[index]]}`}
               >
                 {type}
               </li>
             ))}
           </ul>
 
-          <div className={`${styles.background} ${styles[form.types[0]]}`} />
+          <div className={`${styles.background} ${styles[types?.[0]]}`} />
         </article>
       </a>
     </Link>

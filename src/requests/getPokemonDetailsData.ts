@@ -1,6 +1,7 @@
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import graphqlClient from '@services/api';
+import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
@@ -91,7 +92,9 @@ export default async function getPokemonDetailsData(
       form => {
         return {
           id: form.pokemon_v2_pokemonforms[0].pokemon_id,
-          name: transformFirstLetterToUppercase(form.name),
+          name: transformFirstLetterToUppercase(
+            replaceDashWithSpace(form.name),
+          ),
           isDefault: form.is_default,
           types: form.pokemon_v2_pokemontypes.map(type => {
             return type.pokemon_v2_type.name;
