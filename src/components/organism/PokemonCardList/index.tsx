@@ -7,12 +7,14 @@ import { usePokemonListContext } from '@contexts/PokemonListContext';
 import PokemonCard from '@components/molecules/PokemonCard';
 import useWindowSize from '@hooks/useWindowSize';
 import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
+import PokemonCardSkeleton from '@components/molecules/PokemonCardSkeleton';
 import useCardListLoader from './useCardListLoader';
 
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {
-  const { pokemonList, setPokemonListSize } = usePokemonListContext();
+  const { pokemonList, isLoading, setPokemonListSize } =
+    usePokemonListContext();
   const loader = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -43,19 +45,29 @@ const PokemonCardList = (): JSX.Element => {
 
   return (
     <>
-      <ol className={styles.cardContainer}>
-        {pokemonList?.map((list, index) => (
-          <Fragment key={index}>
-            {list.map(pokemon => (
-              <li key={pokemon.id}>
-                <PokemonCard pokemon={pokemon} />
-              </li>
+      {isLoading ? (
+        <ul className={styles.cardContainer}>
+          {Array.from(Array(24), (e, i) => {
+            return <PokemonCardSkeleton key={i} />;
+          })}
+        </ul>
+      ) : (
+        <>
+          <ol className={styles.cardContainer}>
+            {pokemonList?.map((list, index) => (
+              <Fragment key={index}>
+                {list.map(pokemon => (
+                  <li key={pokemon.id}>
+                    <PokemonCard pokemon={pokemon} />
+                  </li>
+                ))}
+              </Fragment>
             ))}
-          </Fragment>
-        ))}
-      </ol>
-      {pokemonList && pokemonList[0].length >= POKEMON_PER_REQUEST && (
-        <div ref={loader} />
+          </ol>
+          {pokemonList && pokemonList[0].length >= POKEMON_PER_REQUEST && (
+            <div ref={loader} />
+          )}
+        </>
       )}
     </>
   );

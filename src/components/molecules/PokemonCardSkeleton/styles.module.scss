@@ -8,12 +8,6 @@
 
 .card {
   align-items: center;
-
-  // animation-duration: 0.5s;
-  // animation-fill-mode: forwards;
-  // animation-iteration-count: 1;
-
-  // animation-name: pop-in;
   border-radius: 12px;
   cursor: pointer;
   display: flex;
@@ -26,16 +20,16 @@
 }
 
 .background {
+  background-color: get-color(neutral-lighter);
   border-radius: 13px;
   height: rem(299);
   position: absolute;
-  transition: opacity ease-out 0.15s, transform ease-out 0.15s,
-    box-shadow ease-out 0.25s;
+  transition: background-color ease-out 0.15s;
   width: rem(265);
 }
 
 .card:hover .background {
-  opacity: 0.83;
+  background-color: get-color(neutral-light);
   transform: translateY(rem(-2));
 }
 
@@ -93,20 +87,20 @@
   background-color: var(--theme-color);
   border-radius: 6px;
   bottom: 0;
+  color: get-color(neutral-dark);
   display: block;
   font-family: Roboto, Helvetica, sans-serif;
   font-size: rem(21);
   font-weight: bold;
+  height: 32px;
   left: 50%;
   margin-bottom: 0;
   margin-top: 0;
   padding: rem(6) rem(17);
   position: absolute;
   text-align: center;
-  text-transform: capitalize;
   transform: translate(-50%, 36%);
-  transition: ease-out 0.2s;
-  white-space: nowrap;
+  width: 121px;
   z-index: get-index-level(lvl2);
 }
 
@@ -122,11 +116,13 @@
 
 .type {
   align-items: center;
+  background-color: get-color(neutral-dark);
   border-radius: 6px;
   color: var(--theme-color-light);
   display: flex;
   font-size: rem(18);
   font-weight: bold;
+  height: 32px;
   margin-bottom: 0;
   margin-top: 0;
   padding: rem(5) rem(12);
@@ -145,35 +141,9 @@
   align-items: center;
   background-color: var(--theme-color-light);
   border-radius: 50%;
-  display: flex;
-  font-size: rem(13);
+  content: '';
+  display: block;
   height: rem(22);
-  justify-content: center;
   margin-right: rem(6);
-  padding: rem(3);
   width: rem(22);
-}
-
-@each $type, $color in typeColors.$defaults {
-  .background.#{$type} {
-    background: map.get(typeColors.$gradient, $type);
-  }
-
-  .name.#{$type} {
-    color: $color;
-  }
-
-  .type.#{$type} {
-    background-color: $color;
-  }
-  .type.#{$type}::before {
-    color: $color;
-    content: get-icon($type);
-  }
-}
-
-.type.grass::before,
-.type.electric::before {
-  padding-right: rem(4);
-  padding-top: rem(4);
 }
