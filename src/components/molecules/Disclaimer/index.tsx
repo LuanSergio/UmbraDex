@@ -6,7 +6,7 @@ const Disclaimer = (): JSX.Element => {
       This website was made as a study project, with no no financial purpose.{' '}
       <br />
       <br />
-      All image contents within are Copyright The Pokémon Company. Pokémon ©
+      All image contents within are Copyright of The Pokémon Company. Pokémon ©
       2002-2023 Pokémon. © 1995-2023 Nintendo/Creatures Inc./GAME FREAK inc. TM,
       ® and Pokémon character names are trademarks of Nintendo.
       <br />
