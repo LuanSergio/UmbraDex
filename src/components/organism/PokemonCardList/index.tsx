@@ -10,16 +10,18 @@ import useWindowSize from '@hooks/useWindowSize';
 import PokemonCardSkeleton from '@components/molecules/PokemonCardSkeleton';
 import SnackBar from '@components/atoms/SnackBar';
 import LoadingDots from '@public/icons/loading-dots.svg';
+import LoadingIcon from '@public/icons/loading.svg';
 import useCardListLoader from './useCardListLoader';
+
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {
-  const { pokemonList, setPokemonListSize, isLoading } =
+  const { pokemonList, isLoading, setPokemonListSize } =
     usePokemonListContext();
   const loader = useRef(null);
 
   const isFirstRender = useRef(true);
-  // const isLoading = true;
+
   const [windowWidth] = useWindowSize();
 
   const router = useRouter();
@@ -54,13 +56,17 @@ const PokemonCardList = (): JSX.Element => {
               return <PokemonCardSkeleton key={i} />;
             })}
           </ul>
-          <SnackBar>
-            <p className={styles.snackBar}>
-              Loading
-              <span className={styles.loadingDots}>
-                <LoadingDots />
-              </span>
-            </p>
+          <SnackBar
+            adornment={
+              <div className={styles.snackBarLoadingIcon}>
+                <LoadingIcon />
+              </div>
+            }
+          >
+            Loading
+            <span className={styles.loadingDots}>
+              <LoadingDots />
+            </span>
           </SnackBar>
         </>
       ) : (
