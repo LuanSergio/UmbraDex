@@ -145,3 +145,11 @@
     background-color: #{map.get(typeColors.$darks, $type)};
   }
 }
+
+.snackBarFilterButton {
+  background-color: transparent;
+  border-width: 0;
+  color: get-color(primary);
+  font-weight: bold;
+  text-decoration: underline;
+}

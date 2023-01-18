@@ -16,6 +16,7 @@ import PsychicIcon from '@public/icons/types/psychic.svg';
 import RockIcon from '@public/icons/types/rock.svg';
 import SteelIcon from '@public/icons/types/steel.svg';
 import WaterIcon from '@public/icons/types/water.svg';
+import SnackBar from '@components/atoms/SnackBar';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
@@ -75,6 +76,7 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     sortValue: currentSortValue,
     updateFilters,
     updateSort,
+    isLoading,
   } = usePokemonListContext();
   const [typeFilterValue, setTypeFilterValue] = useState<string[]>([]);
   const [generationFilterValue, setGenerationFilterValue] = useState<string[]>(
@@ -104,6 +106,10 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     });
   }
 
+  function handleFilterOpen() {
+    setIsFilterOpen(true);
+  }
+
   function handleSortChange(value: string) {
     setSortValue(value);
   }
@@ -120,7 +126,7 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     if (filterValues.generation?.length)
       setGenerationFilterValue(filterValues.generation);
     if (currentSortValue?.length) setSortValue(currentSortValue);
-  }, [filterValues.type, filterValues.generation]);
+  }, [filterValues.type, filterValues.generation, currentSortValue]);
 
   function handleClearFilters() {
     updateFilters('type', []);
@@ -130,132 +136,155 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
   }
 
   return (
-    <Modal
-      open={isFilterOpen}
-      onOpenChange={setIsFilterOpen}
-      title="Filter / Sort"
-      size="small"
-      footer={
-        <div className={styles.filterActionContainer}>
-          <Button
-            theme="secondary"
-            buttonProps={{ onClick: handleClearFilters }}
-          >
-            Clear filter
-          </Button>
-          <Button buttonProps={{ onClick: handleApplyFilters }}>Apply</Button>
-        </div>
-      }
-      openButton={children}
-    >
-      <div className={styles.filterModal}>
-        <div className={styles.categoryContainer}>
-          <h3 className={styles.subtitle}>Filter by type:</h3>
+    <>
+      <Modal
+        open={isFilterOpen}
+        onOpenChange={setIsFilterOpen}
+        title="Filter / Sort"
+        size="small"
+        footer={
+          <div className={styles.filterActionContainer}>
+            <Button
+              theme="secondary"
+              buttonProps={{ onClick: handleClearFilters }}
+            >
+              Clear filter
+            </Button>
+            <Button buttonProps={{ onClick: handleApplyFilters }}>Apply</Button>
+          </div>
+        }
+        openButton={children}
+      >
+        <div className={styles.filterModal}>
+          <div className={styles.categoryContainer}>
+            <h3 className={styles.subtitle}>Filter by type:</h3>
 
-          <ul className={styles.category}>
-            {Object.keys(types).map(item => (
-              <li key={item}>
-                <label
-                  className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                  htmlFor={`filter-by-type-${item}`}
-                  aria-label={`Filter by ${item}`}
-                  title={transformFirstLetterToUppercase(item)}
-                >
-                  <input
-                    className={styles.checkboxInput}
-                    type="checkbox"
-                    id={`filter-by-type-${item}`}
-                    name={`filter-by-type-${item}`}
-                    onChange={event =>
-                      handleTypeFilterChange(event.target.value)
-                    }
-                    checked={typeFilterValue?.some(
-                      typeItem => typeItem === item,
-                    )}
-                    value={item}
-                  />
-                  <span className={`${styles.checkMark} ${styles[item]} `}>
-                    <span className={`${styles.icon} ${styles.small}`}>
-                      {types[item]}
-                    </span>
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={styles.categoryContainer}>
-          <h3 className={styles.subtitle}>Filter by generations:</h3>
-
-          <ul className={styles.category}>
-            {generations.map(item => (
-              <li key={item}>
-                <label
-                  className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                  htmlFor={`filter-by-generation-${item}`}
-                  aria-label={`Filter by generation ${item}`}
-                  title={`Generation ${item}`}
-                >
-                  <input
-                    className={styles.checkboxInput}
-                    type="checkbox"
-                    id={`filter-by-generation-${item}`}
-                    name={`filter-by-generation-${item}`}
-                    checked={generationFilterValue?.some(
-                      generationItem => generationItem === item,
-                    )}
-                    onChange={event =>
-                      handleGenerationFilterChange(event.target.value)
-                    }
-                    value={`${item}`}
-                  />
-                  <span className={styles.checkMark}>
-                    {transformNumberToRomanNumeral(parseInt(item, 10))}
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={styles.categoryContainer}>
-          <h3 className={styles.subtitle}>Sort:</h3>
-
-          <ul className={styles.category}>
-            {Object.keys(sort).map(item => {
-              const nameId = item.replace(/\s/g, '');
-
-              return (
+            <ul className={styles.category}>
+              {Object.keys(types).map(item => (
                 <li key={item}>
                   <label
-                    className={styles.checkboxContainer}
-                    htmlFor={`sort-${nameId}`}
-                    aria-label={`Sort by ${item}`}
-                    title={item}
+                    className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                    htmlFor={`filter-by-type-${item}`}
+                    aria-label={`Filter by ${item}`}
+                    title={transformFirstLetterToUppercase(item)}
                   >
                     <input
                       className={styles.checkboxInput}
-                      type="radio"
-                      defaultChecked={item === sortValue}
-                      id={`sort-${nameId}`}
-                      name="sort"
-                      onChange={evt => handleSortChange(evt.target.value)}
+                      type="checkbox"
+                      id={`filter-by-type-${item}`}
+                      name={`filter-by-type-${item}`}
+                      onChange={event =>
+                        handleTypeFilterChange(event.target.value)
+                      }
+                      checked={typeFilterValue?.some(
+                        typeItem => typeItem === item,
+                      )}
                       value={item}
                     />
-                    <span
-                      className={`${styles.checkMark} ${styles.checkMarkDark}`}
-                    >
-                      <span className={styles.icon}>{sort[item]}</span>
+                    <span className={`${styles.checkMark} ${styles[item]} `}>
+                      <span className={`${styles.icon} ${styles.small}`}>
+                        {types[item]}
+                      </span>
                     </span>
                   </label>
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.categoryContainer}>
+            <h3 className={styles.subtitle}>Filter by generations:</h3>
+
+            <ul className={styles.category}>
+              {generations.map(item => (
+                <li key={item}>
+                  <label
+                    className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                    htmlFor={`filter-by-generation-${item}`}
+                    aria-label={`Filter by generation ${item}`}
+                    title={`Generation ${item}`}
+                  >
+                    <input
+                      className={styles.checkboxInput}
+                      type="checkbox"
+                      id={`filter-by-generation-${item}`}
+                      name={`filter-by-generation-${item}`}
+                      checked={generationFilterValue?.some(
+                        generationItem => generationItem === item,
+                      )}
+                      onChange={event =>
+                        handleGenerationFilterChange(event.target.value)
+                      }
+                      value={`${item}`}
+                    />
+                    <span className={styles.checkMark}>
+                      {transformNumberToRomanNumeral(parseInt(item, 10))}
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.categoryContainer}>
+            <h3 className={styles.subtitle}>Sort:</h3>
+
+            <ul className={styles.category}>
+              {Object.keys(sort).map(item => {
+                const nameId = item.replace(/\s/g, '');
+
+                return (
+                  <li key={item}>
+                    <label
+                      className={styles.checkboxContainer}
+                      htmlFor={`sort-${nameId}`}
+                      aria-label={`Sort by ${item}`}
+                      title={item}
+                    >
+                      <input
+                        className={styles.checkboxInput}
+                        type="radio"
+                        defaultChecked={item === sortValue}
+                        id={`sort-${nameId}`}
+                        name="sort"
+                        onChange={evt => handleSortChange(evt.target.value)}
+                        value={item}
+                      />
+                      <span
+                        className={`${styles.checkMark} ${styles.checkMarkDark}`}
+                      >
+                        <span className={styles.icon}>{sort[item]}</span>
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
+
+      {!isLoading &&
+        (filterValues.generation?.length > 0 || filterValues.type?.length) >
+          0 && (
+          <SnackBar
+            adornment={
+              <div className={styles.snackBarLoadingIcon}>
+                {/* <LoadingIcon /> */}
+              </div>
+            }
+          >
+            You have some filters applied, some pokemon may not appear!{' '}
+            <button
+              type="button"
+              onClick={handleFilterOpen}
+              className={styles.snackBarFilterButton}
+            >
+              Click here to check your filters.
+            </button>
+          </SnackBar>
+        )}
+    </>
   );
 };
 
