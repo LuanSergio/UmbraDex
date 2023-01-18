@@ -24,7 +24,7 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
 
   return (
     <div>
-      <Script strategy="afterInteractive">
+      <Script strategy="beforeInteractive">
         {`
           function getInitialThemeScheme() {
             const persistedColorPreference = window.localStorage.getItem("color-mode");
