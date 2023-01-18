@@ -82,7 +82,9 @@ const PokemonCardList = (): JSX.Element => {
               </Fragment>
             ))}
           </ol>
-          <div ref={loader} />
+          {pokemonList && pokemonList[0].length >= POKEMON_PER_REQUEST && (
+            <div ref={loader} />
+          )}
         </>
       )}
     </>
