@@ -1,0 +1,5 @@
+@use 'animations/_skeleton-loading' as *;
+
+.skeleton-loading {
+  animation: skeleton-loading 0.8s linear infinite alternate;
+}

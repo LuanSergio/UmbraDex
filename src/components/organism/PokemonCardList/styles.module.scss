@@ -8,6 +8,22 @@
   padding-left: 0;
 }
 
+.snackBar {
+  align-items: baseline;
+  display: flex;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.loadingDots {
+  align-items: flex-end;
+  display: flex;
+  height: 24px;
+  margin-left: 3px;
+  transform: translateY(3px);
+  width: 24px;
+}
+
 @media only screen and (min-width: $lg) {
   .cardContainer {
     align-content: center;

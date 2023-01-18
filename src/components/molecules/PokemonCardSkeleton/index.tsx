@@ -24,7 +24,7 @@ const PokemonCardSkeleton = (): JSX.Element => {
         <div className={styles.type}>????</div>
       </div>
 
-      <div className={styles.background} />
+      <div className={`${styles.background} skeleton-loading`} />
     </article>
   );
 };

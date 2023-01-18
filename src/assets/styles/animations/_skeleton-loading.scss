@@ -1,0 +1,11 @@
+@use 'tools/index' as *;
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #d7d6d6;
+  }
+
+  100% {
+    background-color: get-color(neutral-lighter);
+  }
+}
