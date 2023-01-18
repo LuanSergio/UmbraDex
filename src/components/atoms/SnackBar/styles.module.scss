@@ -1,0 +1,17 @@
+@use 'tools/index' as *;
+@use 'sass:map';
+@use 'settings/colors-type' as typeColors;
+
+.snackBar {
+  background-color: get-color(secondary);
+  border-radius: 6px;
+  bottom: 24px;
+  color: get-color(primary);
+  font-size: rem(20);
+  font-weight: bold;
+  min-width: 340px;
+  padding: 24px;
+  position: fixed;
+  right: 24px;
+  z-index: get-index-level(max);
+}
