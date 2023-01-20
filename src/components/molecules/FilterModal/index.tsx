@@ -126,7 +126,12 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     if (filterValues.generation?.length)
       setGenerationFilterValue(filterValues.generation);
     if (currentSortValue?.length) setSortValue(currentSortValue);
-  }, [filterValues.type, filterValues.generation, currentSortValue]);
+  }, [
+    filterValues.type,
+    filterValues.generation,
+    currentSortValue,
+    isFilterOpen,
+  ]);
 
   function handleClearFilters() {
     updateFilters('type', []);
