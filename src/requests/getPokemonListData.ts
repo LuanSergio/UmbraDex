@@ -80,12 +80,12 @@ export default async function getPokemonListData({
   });
 
   const pokemonInfoArray = response.pokemonSpecieList.map(pokemonSpecies => {
-    const test = pokemonSpecies.pokemon.find(pokemon => {
-      if (!typesFilter && pokemon.isDefault) {
+    const pokemonForm = pokemonSpecies.pokemon.find(pokemon => {
+      if ((!typesFilter || typesFilter.length === 0) && pokemon.isDefault) {
         return true;
       }
 
-      const types = pokemon.types.map(item => item.type.name);
+      const types = pokemon?.types.map(item => item.type.name);
       if (typesFilter && checkIfPokemonHasType(types, typesFilter)) {
         return true;
       }
@@ -94,10 +94,10 @@ export default async function getPokemonListData({
     });
 
     return {
-      types: test.types.map(item => item.type.name),
-      isDefault: test.isDefault,
-      name: replaceDashWithSpace(test.forms[0].name),
-      image: getPokemonImageUrl(test.forms[0].formId),
+      types: pokemonForm?.types.map(item => item.type.name),
+      isDefault: pokemonForm?.isDefault,
+      name: replaceDashWithSpace(pokemonForm.forms[0].name),
+      image: getPokemonImageUrl(pokemonForm?.forms[0].formId),
       id: pokemonSpecies.id,
     };
   });
