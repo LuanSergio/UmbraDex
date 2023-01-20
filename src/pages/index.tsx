@@ -3,7 +3,6 @@ import { unstable_serialize } from 'swr';
 import { useEffect } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import Script from 'next/script';
 
 import DefaultLayout from '@components/layouts/DefaultLayout';
 import PokemonCardList from '@components/organism/PokemonCardList';
@@ -24,43 +23,6 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
 
   return (
     <div>
-      <Script strategy="beforeInteractive">
-        {`
-          function getInitialThemeScheme() {
-            const persistedColorPreference = window.localStorage.getItem("color-mode");
-            const hasPersistedPreference = typeof persistedColorPreference === "string";
-
-            if (hasPersistedPreference) {
-              return persistedColorPreference;
-            }
-
-          const mediaQueryPreference = window.matchMedia(
-              "(prefers-color-scheme: dark)"
-            );
-            const hasMediaQueryPreference =
-              typeof mediaQueryPreference.matches === "boolean";
-
-            if (hasMediaQueryPreference) {
-              return mediaQueryPreference.matches ? "dark" : "light";
-            }
-
-            return "light";
-          }
-
-          document.documentElement.style.setProperty(
-            "--theme-color",
-            getInitialThemeScheme() === "light" ? "#fbfbfb" : "#161b3f"
-          );
-
-          document.documentElement.style.setProperty(
-            "--theme-color-light",
-            getInitialThemeScheme() === "light" ? "#fbfbfb" : "#21285a"
-          );
-
-         
-        `}
-      </Script>
-
       <Head>
         <title>UmbraDex</title>
       </Head>
