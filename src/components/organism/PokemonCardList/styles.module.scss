@@ -1,11 +1,35 @@
 @use 'tools/index' as *;
 @use 'settings/_breakpoints' as *;
 
+.cardList {
+  padding-bottom: rem(40);
+  padding-top: rem(40);
+}
+
+.cardListSpaced {
+  padding-top: rem(104);
+}
+
 .cardContainer {
   list-style: none;
   margin-bottom: 0;
   margin-top: 0;
   padding-left: 0;
+}
+
+.loadingCircleContainer {
+  align-items: center;
+  display: flex;
+  height: var(--screen-height);
+}
+
+.loadingCircle {
+  color: get-color(secondary);
+  display: block;
+  height: em(180);
+  margin-left: auto;
+  margin-right: auto;
+  width: em(180);
 }
 
 .loadingDots {
@@ -22,6 +46,50 @@
   width: em(24);
 }
 
+.pokemonNotFound {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.pokemonNotFoundTitle {
+  color: var(--theme-text);
+  font-size: rem(56);
+  text-transform: uppercase;
+}
+
+.pokemonNotFoundText {
+  color: var(--theme-text);
+  font-size: rem(42);
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.psyduck {
+  color: var(--theme-text);
+  height: rem(320);
+  width: rem(320);
+}
+
+@media only screen and (min-width: $md) {
+  .pokemonNotFoundTitle {
+    font-size: rem(84);
+  }
+
+  .pokemonNotFoundText {
+    font-size: rem(56);
+  }
+
+  .psyduck {
+    color: var(--theme-text);
+    height: rem(480);
+    width: rem(480);
+  }
+}
+
 @media only screen and (min-width: $lg) {
   .cardContainer {
     align-content: center;
@@ -30,6 +98,11 @@
     grid-template-columns: repeat(4, 21.37%);
     justify-items: center;
     padding-bottom: rem(40);
+  }
+
+  .loadingCircle {
+    height: em(280);
+    width: em(280);
   }
 }
 

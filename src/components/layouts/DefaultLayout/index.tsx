@@ -18,7 +18,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
 
   useEffect(() => {
     document.documentElement.style.setProperty(
-      '--webdoor-height',
+      '--screen-height',
       `${document.documentElement.clientHeight.toString()}px`,
     );
   }, [windowHeight]);
@@ -28,14 +28,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
       <Header />
       {!searchValue?.length && <WebDoor />}
       <main className={styles.main}>
-        <div
-          className="h-container"
-          style={{
-            paddingTop: `${searchValue?.length > 0 ? '64px' : '0'}`,
-          }}
-        >
-          {children}
-        </div>
+        <div className="h-container">{children}</div>
       </main>
     </>
   );

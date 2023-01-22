@@ -10,13 +10,14 @@ import useWindowSize from '@hooks/useWindowSize';
 import PokemonCardSkeleton from '@components/molecules/PokemonCardSkeleton';
 import SnackBar from '@components/atoms/SnackBar';
 import LoadingDots from '@public/icons/loading-dots.svg';
-import LoadingIcon from '@public/icons/loading.svg';
+import LoadingCircleIcon from '@public/icons/loading.svg';
+import ConfusedPsyduck from '@public/confused-psyduck.svg';
 import useCardListLoader from './useCardListLoader';
 
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {
-  const { pokemonList, isLoading, setPokemonListSize } =
+  const { pokemonList, isLoading, searchValue, setPokemonListSize } =
     usePokemonListContext();
   const loader = useRef(null);
 
@@ -25,6 +26,12 @@ const PokemonCardList = (): JSX.Element => {
   const [windowWidth] = useWindowSize();
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (pokemonList) {
+      console.log('🚀 ~ PokemonCardList ~ pokemonList', pokemonList[0].length);
+    }
+  }, [pokemonList]);
 
   useCardListLoader({
     loader: loader.current,
@@ -51,15 +58,26 @@ const PokemonCardList = (): JSX.Element => {
     <>
       {isLoading ? (
         <>
-          <ul className={styles.cardContainer}>
-            {Array.from(Array(POKEMON_PER_REQUEST), (e, i) => {
-              return <PokemonCardSkeleton key={i} />;
-            })}
-          </ul>
+          {searchValue.length > 0 ? (
+            <div className={styles.loadingCircleContainer}>
+              <span className={styles.loadingCircle}>
+                <LoadingCircleIcon />
+              </span>
+            </div>
+          ) : (
+            <div className={styles.cardList}>
+              <ul className={styles.cardContainer}>
+                {Array.from(Array(POKEMON_PER_REQUEST), (e, i) => {
+                  return <PokemonCardSkeleton key={i} />;
+                })}
+              </ul>
+            </div>
+          )}
+
           <SnackBar
             adornment={
-              <div className={styles.snackBarLoadingIcon}>
-                <LoadingIcon />
+              <div className={styles.snackBarLoadingCircleIcon}>
+                <LoadingCircleIcon />
               </div>
             }
           >
@@ -70,22 +88,38 @@ const PokemonCardList = (): JSX.Element => {
           </SnackBar>
         </>
       ) : (
-        <>
-          <ol className={styles.cardContainer}>
-            {pokemonList?.map((list, index) => (
-              <Fragment key={index}>
-                {list.map(pokemon => (
-                  <li key={pokemon.id}>
-                    <PokemonCard pokemon={pokemon} />
-                  </li>
+        <div
+          className={`${styles.cardList} ${
+            searchValue?.length > 0 ? styles.cardListSpaced : ''
+          }`}
+        >
+          {pokemonList && pokemonList[0].length === 0 ? (
+            <div className={styles.pokemonNotFound}>
+              <h2 className={styles.pokemonNotFoundTitle}>Ops...</h2>
+              <div className={styles.psyduck}>
+                <ConfusedPsyduck />
+              </div>
+              <p className={styles.pokemonNotFoundText}>Pokemon not found</p>
+            </div>
+          ) : (
+            <>
+              <ol className={styles.cardContainer}>
+                {pokemonList?.map((list, index) => (
+                  <Fragment key={index}>
+                    {list.map(pokemon => (
+                      <li key={pokemon.id}>
+                        <PokemonCard pokemon={pokemon} />
+                      </li>
+                    ))}
+                  </Fragment>
                 ))}
-              </Fragment>
-            ))}
-          </ol>
-          {pokemonList && pokemonList[0].length >= POKEMON_PER_REQUEST && (
-            <div ref={loader} />
+              </ol>
+              {pokemonList[0].length >= POKEMON_PER_REQUEST && (
+                <div ref={loader} />
+              )}
+            </>
           )}
-        </>
+        </div>
       )}
     </>
   );
