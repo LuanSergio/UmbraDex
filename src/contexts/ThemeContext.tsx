@@ -46,6 +46,11 @@ export const ThemeContextProvider = ({
       '--theme-color-light',
       isDarkScheme ? '#21285a' : '#fbfbfb',
     );
+
+    root.style.setProperty(
+      '--theme-text',
+      isDarkScheme ? '#fbfbfb' : '#323232',
+    );
   }
 
   return (

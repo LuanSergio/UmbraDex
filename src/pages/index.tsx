@@ -25,6 +25,47 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
     <div>
       <Head>
         <title>UmbraDex</title>
+
+        <script>
+          {`
+          function getInitialThemeScheme() {
+            const persistedColorPreference = window.localStorage.getItem("color-mode");
+            const hasPersistedPreference = typeof persistedColorPreference === "string";
+
+            if (hasPersistedPreference) {
+              return persistedColorPreference;
+            }
+
+          const mediaQueryPreference = window.matchMedia(
+              "(prefers-color-scheme: dark)"
+            );
+            const hasMediaQueryPreference =
+              typeof mediaQueryPreference.matches === "boolean";
+
+            if (hasMediaQueryPreference) {
+              return mediaQueryPreference.matches ? "dark" : "light";
+            }
+
+            return "light";
+          }
+
+          document.documentElement.style.setProperty(
+            "--theme-color",
+            getInitialThemeScheme() === "light" ? "#fbfbfb" : "#161b3f"
+          );
+
+          document.documentElement.style.setProperty(
+            "--theme-color-light",
+            getInitialThemeScheme() === "light" ? "#fbfbfb" : "#21285a"
+          );
+
+
+          document.documentElement.style.setProperty(
+            "--theme-text",
+            getInitialThemeScheme() === "light" ? "#323232" : "#fbfbfb"
+          );
+        `}
+        </script>
       </Head>
       <ThemeContextProvider>
         <PokemonListContextProvider
