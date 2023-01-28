@@ -89,12 +89,14 @@ const Header = (): JSX.Element => {
                 </span>
               </button>
 
-              <div className={styles.optionsMenu}>
+              <div
+                className={`${styles.optionsMenu} ${
+                  isSearchOpen ? `${styles.hiddenMobileItem}` : ''
+                }`}
+              >
                 <button
                   type="button"
-                  className={`${styles.iconButton} ${
-                    isSearchOpen ? `${styles.hiddenMobileItem}` : ''
-                  }`}
+                  className={`${styles.iconButton} `}
                   aria-label="options"
                   title="options"
                   onClick={handleOpenOptionsClick}
