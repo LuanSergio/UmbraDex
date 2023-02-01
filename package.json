@@ -20,6 +20,7 @@
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.2",
     "css-loader": "^6.3.0",
     "framer-motion": "^6.3.16",
     "graphql": "^16.5.0",

@@ -29,11 +29,11 @@ import NumeralAscendingIcon from '@public/icons/numeral-ascending.svg';
 import NumeralDescendingIcon from '@public/icons/numeral-descending.svg';
 
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
-import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 
 import { ReactChild, useEffect, useState } from 'react';
 
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
+import TabsDemo from '@components/atoms/Tabs';
 import styles from './styles.module.scss';
 
 interface IFilterModal {
@@ -78,7 +78,12 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     updateSort,
     isLoading,
   } = usePokemonListContext();
-  const [typeFilterValue, setTypeFilterValue] = useState<string[]>([]);
+  const [primaryTypeFilterValue, setPrimaryTypeFilterValue] = useState<
+    string[]
+  >([]);
+  const [secondaryTypeFilterValue, setSecondaryTypeFilterValue] = useState<
+    string[]
+  >([]);
   const [generationFilterValue, setGenerationFilterValue] = useState<string[]>(
     [],
   );
@@ -86,8 +91,18 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  function handleTypeFilterChange(value) {
-    setTypeFilterValue(currentState => {
+  function handlePrimaryTypeFilterChange(value) {
+    setPrimaryTypeFilterValue(currentState => {
+      if (currentState.includes(value)) {
+        return currentState.filter(item => item !== value);
+      }
+
+      return [...currentState, value];
+    });
+  }
+
+  function handleSecondaryTypeFilterChange(value) {
+    setSecondaryTypeFilterValue(currentState => {
       if (currentState.includes(value)) {
         return currentState.filter(item => item !== value);
       }
@@ -115,27 +130,40 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
   }
 
   function handleApplyFilters() {
-    updateFilters('type', typeFilterValue);
+    updateFilters('primaryType', primaryTypeFilterValue);
+    updateFilters('secondaryType', secondaryTypeFilterValue);
     updateFilters('generation', generationFilterValue);
     updateSort(sortValue);
     setIsFilterOpen(false);
   }
 
   useEffect(() => {
-    if (filterValues.type?.length) setTypeFilterValue(filterValues.type);
+    if (filterValues.primaryType?.length)
+      setPrimaryTypeFilterValue(filterValues.primaryType);
+    if (filterValues.secondaryType?.length)
+      setSecondaryTypeFilterValue(filterValues.secondaryType);
     if (filterValues.generation?.length)
       setGenerationFilterValue(filterValues.generation);
     if (currentSortValue?.length) setSortValue(currentSortValue);
   }, [
-    filterValues.type,
+    filterValues.primaryType,
+    filterValues.secondaryType,
     filterValues.generation,
     currentSortValue,
     isFilterOpen,
   ]);
 
+  useEffect(() => {
+    if (primaryTypeFilterValue.length === 0) {
+      setSecondaryTypeFilterValue([]);
+    }
+  }, [primaryTypeFilterValue]);
+
   function handleClearFilters() {
-    updateFilters('type', []);
-    setTypeFilterValue([]);
+    updateFilters('primaryType', []);
+    updateFilters('secondaryType', []);
+    setPrimaryTypeFilterValue([]);
+    setSecondaryTypeFilterValue([]);
     updateFilters('generation', []);
     setGenerationFilterValue([]);
   }
@@ -163,38 +191,100 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
         <div className={styles.filterModal}>
           <div className={styles.categoryContainer}>
             <h3 className={styles.subtitle}>Filter by type:</h3>
-
-            <ul className={styles.category}>
-              {Object.keys(types).map(item => (
-                <li key={item}>
-                  <label
-                    className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                    htmlFor={`filter-by-type-${item}`}
-                    aria-label={`Filter by ${item}`}
-                    title={transformFirstLetterToUppercase(item)}
-                  >
-                    <input
-                      className={styles.checkboxInput}
-                      type="checkbox"
-                      id={`filter-by-type-${item}`}
-                      name={`filter-by-type-${item}`}
-                      onChange={event =>
-                        handleTypeFilterChange(event.target.value)
-                      }
-                      checked={typeFilterValue?.some(
-                        typeItem => typeItem === item,
-                      )}
-                      value={item}
-                    />
-                    <span className={`${styles.checkMark} ${styles[item]} `}>
-                      <span className={`${styles.icon} ${styles.small}`}>
-                        {types[item]}
-                      </span>
-                    </span>
-                  </label>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.typesContainer}>
+              <TabsDemo
+                label="Type filter options"
+                items={[
+                  {
+                    title: 'PrimaryType',
+                    value: 'PrimaryType',
+                    content: (
+                      <ul className={styles.category}>
+                        {Object.keys(types).map(item => (
+                          <li key={item}>
+                            <label
+                              className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                              htmlFor={`filter-by-type-${item}`}
+                              aria-label={`Filter by ${item}`}
+                              title={transformFirstLetterToUppercase(item)}
+                            >
+                              <input
+                                className={styles.checkboxInput}
+                                type="checkbox"
+                                id={`filter-by-type-${item}`}
+                                name={`filter-by-type-${item}`}
+                                onChange={event =>
+                                  handlePrimaryTypeFilterChange(
+                                    event.target.value,
+                                  )
+                                }
+                                checked={primaryTypeFilterValue?.some(
+                                  typeItem => typeItem === item,
+                                )}
+                                value={item}
+                              />
+                              <span
+                                className={`${styles.checkMark} ${styles[item]} `}
+                              >
+                                <span
+                                  className={`${styles.icon} ${styles.small}`}
+                                >
+                                  {types[item]}
+                                </span>
+                              </span>
+                            </label>
+                          </li>
+                        ))}
+                      </ul>
+                    ),
+                  },
+                  {
+                    title: 'SecondaryType',
+                    value: 'SecondaryType',
+                    disabled: !(primaryTypeFilterValue?.length > 0),
+                    content: (
+                      <ul className={styles.category}>
+                        {Object.keys(types).map(item => (
+                          <li key={item}>
+                            <label
+                              className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                              htmlFor={`filter-by-type-${item}`}
+                              aria-label={`Filter by ${item}`}
+                              title={transformFirstLetterToUppercase(item)}
+                            >
+                              <input
+                                className={styles.checkboxInput}
+                                type="checkbox"
+                                id={`filter-by-type-${item}`}
+                                name={`filter-by-type-${item}`}
+                                onChange={event =>
+                                  handleSecondaryTypeFilterChange(
+                                    event.target.value,
+                                  )
+                                }
+                                checked={secondaryTypeFilterValue?.some(
+                                  typeItem => typeItem === item,
+                                )}
+                                value={item}
+                              />
+                              <span
+                                className={`${styles.checkMark} ${styles[item]} `}
+                              >
+                                <span
+                                  className={`${styles.icon} ${styles.small}`}
+                                >
+                                  {types[item]}
+                                </span>
+                              </span>
+                            </label>
+                          </li>
+                        ))}
+                      </ul>
+                    ),
+                  },
+                ]}
+              />
+            </div>
           </div>
 
           <div className={styles.categoryContainer}>
@@ -270,8 +360,9 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
       </Modal>
 
       {!isLoading &&
-        (filterValues.generation?.length > 0 || filterValues.type?.length) >
-          0 && (
+        (filterValues.generation?.length > 0 ||
+          filterValues.primaryType?.length > 0 ||
+          filterValues.secondaryType?.length > 0) && (
           <SnackBar
             adornment={
               <div className={styles.snackBarLoadingIcon}>

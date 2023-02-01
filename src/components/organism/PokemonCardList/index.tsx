@@ -27,12 +27,6 @@ const PokemonCardList = (): JSX.Element => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (pokemonList) {
-      console.log('🚀 ~ PokemonCardList ~ pokemonList', pokemonList[0].length);
-    }
-  }, [pokemonList]);
-
   useCardListLoader({
     loader: loader.current,
     setSize: setPokemonListSize,
@@ -114,7 +108,7 @@ const PokemonCardList = (): JSX.Element => {
                   </Fragment>
                 ))}
               </ol>
-              {pokemonList[0].length >= POKEMON_PER_REQUEST && (
+              {pokemonList?.[0].length >= POKEMON_PER_REQUEST && (
                 <div ref={loader} />
               )}
             </>

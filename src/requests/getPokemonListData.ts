@@ -11,7 +11,8 @@ interface IFetchPokemonListParams {
   page: number;
   search?: string;
   generationsFilter?: string[];
-  typesFilter?: string[];
+  primaryTypeFilter?: string[];
+  secondaryTypeFilter?: string[];
   sortValue?: string;
 }
 
@@ -19,14 +20,16 @@ async function fetchPokemonListData({
   queryName,
   page,
   search,
-  typesFilter,
+  primaryTypeFilter,
+  secondaryTypeFilter,
   generationsFilter,
   sortValue,
 }: IFetchPokemonListParams) {
   const filterQuery = formatQueryFilters({
     search,
     generation: generationsFilter,
-    type: typesFilter,
+    primaryType: primaryTypeFilter,
+    secondaryType: secondaryTypeFilter,
   });
   const sortQuery = formatQuerySort(sortValue);
   const offset = page * POKEMON_PER_REQUEST;
@@ -66,7 +69,8 @@ export default async function getPokemonListData({
   queryName,
   page,
   search,
-  typesFilter,
+  primaryTypeFilter,
+  secondaryTypeFilter,
   generationsFilter,
   sortValue,
 }: IFetchPokemonListParams): Promise<IBasicPokemonInfo[]> {
@@ -74,19 +78,28 @@ export default async function getPokemonListData({
     queryName,
     page,
     search,
-    typesFilter,
+    primaryTypeFilter,
+    secondaryTypeFilter,
     generationsFilter,
     sortValue,
   });
 
   const pokemonInfoArray = response.pokemonSpecieList.map(pokemonSpecies => {
     const pokemonForm = pokemonSpecies.pokemon.find(pokemon => {
-      if ((!typesFilter || typesFilter.length === 0) && pokemon.isDefault) {
+      if (
+        ((!primaryTypeFilter && !secondaryTypeFilter) ||
+          (primaryTypeFilter.length === 0 &&
+            secondaryTypeFilter.length === 0)) &&
+        pokemon.isDefault
+      ) {
         return true;
       }
 
       const types = pokemon?.types.map(item => item.type.name);
-      if (typesFilter && checkIfPokemonHasType(types, typesFilter)) {
+      if (
+        `primaryTypeFilter` &&
+        checkIfPokemonHasType(types, primaryTypeFilter, secondaryTypeFilter)
+      ) {
         return true;
       }
 

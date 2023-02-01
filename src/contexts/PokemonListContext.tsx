@@ -12,7 +12,8 @@ import useDebounce from '@hooks/useDebounce';
 
 interface IFilterOptions {
   generation?: string[];
-  type?: string[];
+  primaryType?: string[];
+  secondaryType?: string[];
 }
 
 interface IPokemonListContextData {

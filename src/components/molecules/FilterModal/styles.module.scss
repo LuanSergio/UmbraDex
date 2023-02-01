@@ -1,6 +1,7 @@
 @use 'tools/index' as *;
 @use 'sass:map';
 @use 'settings/colors-type' as typeColors;
+@use 'settings/_breakpoints' as *;
 
 .filterOptions {
   padding-top: rem(8);
@@ -22,11 +23,17 @@
   margin-top: rem(12);
 }
 
+.typesContainer {
+  margin-top: rem(24);
+}
+
 .category {
   display: grid;
   flex-wrap: wrap;
   gap: rem(8);
   grid-template-columns: repeat(auto-fit, rem(64));
+  justify-content: space-between;
+  padding-right: rem(24);
 }
 
 .categoryItem {
@@ -152,4 +159,11 @@
   color: get-color(primary);
   font-weight: bold;
   text-decoration: underline;
+}
+
+@media only screen and (min-width: $md) {
+  .category {
+    justify-content: flex-start;
+    padding-right: 0;
+  }
 }

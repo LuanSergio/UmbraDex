@@ -26,7 +26,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   return (
     <>
       <Header />
-      {!searchValue?.length && <WebDoor />}
+      {!(searchValue?.length > 0) && <WebDoor />}
       <main className={styles.main}>
         <div className="h-container">{children}</div>
       </main>

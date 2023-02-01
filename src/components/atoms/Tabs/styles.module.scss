@@ -1,0 +1,63 @@
+@use 'tools/index' as *;
+
+.tabsRoot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tabsList {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.tabsTrigger {
+  align-items: center;
+  background-color: get-color(primary-dark);
+  border-width: 0;
+  color: get-color(light);
+  display: flex;
+  flex: 1;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  height: 45px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 20px;
+  text-transform: uppercase;
+  transition: all 0.14s linear;
+  user-select: none;
+}
+
+.tabsTrigger:first-child {
+  border-top-left-radius: 6px;
+}
+
+.tabsTrigger:last-child {
+  border-top-right-radius: 6px;
+}
+
+.tabsTrigger[data-state='active'] {
+  background-color: get-color(primary-light);
+  box-shadow: inset 0 -4px 0 0 get-color(secondary);
+}
+
+.tabsTrigger:focus {
+  outline: none;
+}
+
+.tabsTrigger:disabled {
+  opacity: 0.4;
+}
+
+.tabsTrigger:not(:disabled):hover {
+  background-color: get-color(primary-lighter);
+}
+
+.tabsContent {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  flex-grow: 1;
+  padding: 20px;
+}

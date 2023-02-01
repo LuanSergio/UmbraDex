@@ -47,7 +47,7 @@ const SearchInputIcon = ({
     );
   }
 
-  return value.length ? (
+  return value.length > 0 ? (
     <IconButton
       theme="secondary"
       label="Search"
