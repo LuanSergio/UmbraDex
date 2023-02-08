@@ -196,7 +196,7 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                 label="Type filter options"
                 items={[
                   {
-                    title: 'PrimaryType',
+                    title: 'Type 1',
                     value: 'PrimaryType',
                     content: (
                       <ul className={styles.category}>
@@ -239,7 +239,7 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     ),
                   },
                   {
-                    title: 'SecondaryType',
+                    title: 'Type 2',
                     value: 'SecondaryType',
                     disabled: !(primaryTypeFilterValue?.length > 0),
                     content: (
