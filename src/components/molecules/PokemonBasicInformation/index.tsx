@@ -13,10 +13,10 @@ const PokemonBasicInformation = ({
   types,
 }: PokemonBasicInformationProps): JSX.Element => {
   return (
-    <div>
+    <div className={styles.basicInfo}>
       <h1 className={styles.name}>{name}</h1>
 
-      <div className={styles.basicInfo}>
+      <div className={styles.container}>
         {pokedexIndex <= 10 ? (
           <span className={styles.number}>
             <span className={styles.hashtag}>#</span> 0{pokedexIndex}
