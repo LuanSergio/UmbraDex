@@ -48,7 +48,7 @@ const PokemonBasicInformation = ({
             itemWidth={widthList}
             gap={12}
             maxItems={6}
-            maxPositionIndex={descriptions.length - 3}
+            maxPositionIndex={descriptions.length - 5}
           >
             {descriptions.map((item, index) => {
               return (
