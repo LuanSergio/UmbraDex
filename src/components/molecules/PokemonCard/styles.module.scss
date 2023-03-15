@@ -120,38 +120,8 @@
   z-index: get-index-level(lvl2);
 }
 
-.type {
-  align-items: center;
-  border-radius: 6px;
-  color: var(--theme-color-light);
-  display: flex;
-  font-size: rem(18);
-  font-weight: bold;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: rem(5) rem(12);
-  text-align: center;
-  text-transform: capitalize;
-  transition: ease-out 0.2s;
-}
-
-.type:not(:last-child) {
+.typeContainer > *:not(:last-child) {
   margin-right: rem(6);
-}
-
-.type::before {
-  @include h-icon;
-
-  align-items: center;
-  background-color: var(--theme-color-light);
-  border-radius: 50%;
-  display: flex;
-  font-size: rem(13);
-  height: rem(22);
-  justify-content: center;
-  margin-right: rem(6);
-  padding: rem(3);
-  width: rem(22);
 }
 
 @each $type, $color in typeColors.$defaults {
@@ -162,18 +132,4 @@
   .name.#{$type} {
     color: $color;
   }
-
-  .type.#{$type} {
-    background-color: $color;
-  }
-  .type.#{$type}::before {
-    color: $color;
-    content: get-icon($type);
-  }
-}
-
-.type.grass::before,
-.type.electric::before {
-  padding-right: rem(4);
-  padding-top: rem(4);
 }

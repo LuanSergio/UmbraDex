@@ -3,6 +3,7 @@ import PokemonPicture from '@components/atoms/PokemonPicture';
 import Routes from '@data/routes';
 import PokeBallIcon from '@public/icons/pokeball.svg';
 
+import TypeBadge from '@components/atoms/TypeBadge';
 import styles from './styles.module.scss';
 
 interface IPokemonCard {
@@ -37,9 +38,9 @@ const PokemonCard = ({ pokemon }: IPokemonCard): JSX.Element => {
             {types?.map((type, index) => (
               <li
                 key={type}
-                className={`${styles.type} ${styles[types?.[index]]}`}
+                // className={`${styles.type} ${styles[types?.[index]]}`}
               >
-                {type}
+                <TypeBadge>{type}</TypeBadge>
               </li>
             ))}
           </ul>
