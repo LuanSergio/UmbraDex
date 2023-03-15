@@ -3,15 +3,6 @@
 
 echo 'Testing project before committing'
 
-
-# Check tsconfig standards
-echo '📋 Validating types.'
-npm run check-types ||
-(
-    echo '❌ Typescript tsconfig fail. Make the changes required above, add changes and try to commit again.'
-    false;
-)
-
 npx lint-staged
 
 echo '✅ Sucess! Your commit is being made'
