@@ -6,7 +6,7 @@ interface ITextFieldProps {
   label: string;
   helperText?: string;
   adornment?: JSX.Element;
-  size?: 'small' | 'normal';
+  size?: 'small' | 'medium';
   onAdornmentClick?: () => void;
   value: string;
   theme?: 'primary' | 'secondary';
@@ -22,7 +22,7 @@ const TextField = forwardRef(
       theme = 'primary',
       inputProps,
       adornment,
-      size = 'normal',
+      size = 'medium',
     }: ITextFieldProps,
     ref: LegacyRef<HTMLInputElement>,
   ): JSX.Element => (
