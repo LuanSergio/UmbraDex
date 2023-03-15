@@ -11,7 +11,6 @@ function formatQueryFilters({
   primaryType,
   secondaryType,
 }: IFormatQueryFiltersParams) {
-  console.log('🚀 ~ secondaryType', secondaryType);
   if (!search.length && !generation?.length && !primaryType?.length) return '';
 
   const filterSearch = `
