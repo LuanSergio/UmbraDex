@@ -2,14 +2,13 @@ import graphqlClient from '@services/api';
 
 async function fetchGenerations() {
   const query = `
-  query MyQuery {
-    pokemon_v2_generation {
-      id
-      name
+    query PokemonGeneration {
+      pokemon_v2_generation {
+        id
+        name
     }
   }
-  
-  `;
+`;
 
   const result = await graphqlClient.request(query);
 
