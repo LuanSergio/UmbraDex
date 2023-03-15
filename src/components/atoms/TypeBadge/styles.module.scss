@@ -1,0 +1,92 @@
+@use 'tools/index' as *;
+@use 'helpers/icon.scss' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'sass:map';
+
+.typeBadge {
+  align-items: center;
+  border-radius: 6px;
+  color: var(--theme-color-light);
+  display: flex;
+  font-size: rem(18);
+  font-weight: bold;
+  justify-content: space-between;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  padding: rem(5) rem(12);
+  padding-left: rem(12);
+  text-align: center;
+  text-transform: capitalize;
+  transition: ease-out 0.2s;
+}
+
+.typeBadgeWithModifier {
+  padding-left: rem(12);
+  padding-right: 0;
+}
+
+.small {
+  font-size: rem(16);
+}
+
+.typeBadge::before {
+  @include h-icon;
+
+  align-items: center;
+  background-color: var(--theme-color-light);
+  border-radius: 50%;
+  display: flex;
+  font-size: rem(13);
+  height: rem(22);
+  justify-content: center;
+  margin-right: rem(6);
+  padding: rem(3);
+  width: rem(22);
+}
+
+.small.typeBadge::before {
+  font-size: rem(12);
+  height: rem(18);
+  width: rem(18);
+}
+
+@each $type, $color in typeColors.$defaults {
+  .typeBadge.#{$type} {
+    background-color: $color;
+  }
+  .typeBadge.#{$type}::before {
+    color: $color;
+    content: get-icon($type);
+  }
+}
+
+.typeBadge.grass::before,
+.typeBadge.electric::before {
+  padding-right: rem(4);
+  padding-top: rem(4);
+}
+
+.modifier {
+  color: get-color(primary);
+  display: block;
+  margin-left: rem(12);
+  padding: rem(2) rem(5) rem(2) rem(5);
+  position: relative;
+  z-index: 4;
+}
+
+.modifier::after {
+  background-color: get-color(secondary);
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  content: '';
+  display: block;
+  height: 200%;
+  position: absolute;
+  right: rem(-4);
+  top: -64%;
+  transform: rotate(-24deg);
+  width: 124%;
+  z-index: -1;
+}
