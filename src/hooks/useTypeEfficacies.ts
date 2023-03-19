@@ -4,11 +4,11 @@ import getTypeEfficacies from '@requests/getTypeEfficacies';
 import { useEffect, useState } from 'react';
 
 interface IUseTypeEfficaciesParams {
-  types: string[];
+  types: number[];
 }
 
 interface IUseTypeEfficaciesResponse {
-  types: string[] | undefined;
+  typeEfficiency: ITypesEfficiency | undefined;
   isLoading: boolean;
 }
 
@@ -28,7 +28,7 @@ export default function useTypeEfficacies({
   }, [data, error]);
 
   return {
-    types: data,
+    typeEfficiency: data,
     isLoading,
   };
 }

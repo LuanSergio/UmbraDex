@@ -1,16 +1,29 @@
 import graphqlClient from '@services/api';
+import formatTypeEfficiency from '@utils/formatTypeEfficiency';
 
-async function fetchTypeEfficacies(types: string[]) {
+interface ITypeEfficaciesResponse {
+  name: string;
+  efficacies: [
+    {
+      damageFactor: number;
+      typeId: number;
+    },
+  ];
+}
+
+async function fetchTypeEfficacies(types: number[]) {
   const query = `
   query TypeEfficacies {
-    pokemon_v2_type(where: {id: {_in: [${types.toString()}]}}) {
-      id
-      pokemon_v2_typeefficacies(where: {damage_factor: {_neq: 100}}) {
-        damage_factor
-        id
+    typeEfficacies: pokemon_v2_type {
+      name
+      efficacies: pokemon_v2_typeefficacies(where: {damage_factor: {_neq: 100}, target_type_id: {_in: [${types.toString()}]}}) {
+        damageFactor: damage_factor
+        typeId: target_type_id
       }
     }
   }
+  
+  
   `;
 
   const result = await graphqlClient.request(query);
@@ -19,11 +32,11 @@ async function fetchTypeEfficacies(types: string[]) {
 }
 
 export default async function getTypeEfficacies(
-  types: string[],
-): Promise<string[]> {
+  types: number[],
+): Promise<ITypesEfficiency> {
   const response = await fetchTypeEfficacies(types);
 
-  const typeEfficacies = response.pokemon_v2_type;
+  const { typeEfficacies } = response;
 
-  return typeEfficacies;
+  return formatTypeEfficiency(typeEfficacies);
 }
