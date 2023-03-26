@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import styles from './styles.module.scss';
 
 interface ITypeBadge {
   children: string;
   size?: 'small' | 'medium';
-  modifier?: string;
+  modifier?: ReactNode;
 }
 
 const TypeBadge = ({
@@ -17,7 +18,7 @@ const TypeBadge = ({
     }`}
   >
     {children}
-    {modifier && <span className={styles.modifier}>2x</span>}
+    {modifier && <span className={styles.modifier}>{modifier}</span>}
   </div>
 );
 

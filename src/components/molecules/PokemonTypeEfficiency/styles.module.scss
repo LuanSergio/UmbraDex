@@ -1,0 +1,127 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'helpers/container.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'animations/_rotating' as *;
+
+.pokemonTypeEfficiency {
+  background-color: var(--current-dark-type-color);
+  border-radius: 24px;
+  color: get-color(light);
+  display: block;
+  height: 100%;
+  min-height: 420px;
+  overflow-y: hidden;
+  padding: rem(24) rem(18);
+  padding-bottom: rem(24);
+  padding-left: rem(18);
+  padding-top: rem(24);
+  width: 100%;
+}
+
+.pokemonTypeEfficiencyContent {
+  height: 100%;
+  width: 100%;
+}
+
+.pokemonTypeEfficiencyContainer {
+  display: grid;
+  grid-template-rows: auto;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.pokemonTypeEfficiencyCategory {
+  text-align: left;
+}
+
+.pokemonTypeEfficiencyTitle {
+  display: block;
+}
+
+.pokemonTypeEfficiencyValuesContainer {
+  display: block;
+  width: 100%;
+}
+
+.pokemonTypeEfficiencyValues {
+  column-gap: rem(10);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  justify-content: center;
+  margin-top: rem(14);
+  padding-left: rem(12);
+  padding-right: rem(8);
+  row-gap: rem(10);
+}
+
+.loading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.loadingPokeball {
+  animation-duration: 2.8s;
+  animation-iteration-count: infinite;
+  animation-name: rotating;
+  animation-timing-function: linear;
+  width: 48%;
+}
+
+.loadingText {
+  align-items: center;
+  display: flex;
+  font-size: rem(20);
+  justify-content: center;
+  line-height: 100%;
+}
+
+.loadingDots {
+  align-items: flex-end;
+  color: get-color(light);
+  display: flex;
+  height: em(20);
+  margin-left: em(3);
+  transform: translateY(em(-3));
+  width: em(20);
+}
+
+.pokemonTypeEfficiencyNone {
+  align-items: center;
+  background-color: get-color(dark);
+  border-radius: 6px;
+  display: inline-flex;
+  font-weight: bold;
+  height: rem(32);
+  justify-content: center;
+  min-width: rem(120);
+  padding: rem(5) rem(12);
+}
+
+.pokemonTypeEfficiencyModifier {
+  display: block;
+  font-size: rem(18);
+  height: rem(20);
+  width: rem(20);
+}
+
+@media (min-width: $lg) {
+  .pokemonTypeEfficiency {
+    min-height: auto;
+    padding-right: rem(8);
+  }
+
+  .pokemonTypeEfficiencyValuesContainer {
+    display: initial;
+    width: auto;
+  }
+
+  .pokemonTypeEfficiencyValues {
+    grid-template-columns: auto auto auto;
+    justify-content: start;
+  }
+}

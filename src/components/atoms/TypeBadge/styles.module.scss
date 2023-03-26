@@ -22,7 +22,7 @@
 }
 
 .typeBadgeWithModifier {
-  padding-left: rem(12);
+  padding-left: rem(8);
   padding-right: 0;
 }
 
@@ -70,7 +70,10 @@
 .modifier {
   color: get-color(primary);
   display: block;
+  font-size: 18px;
+  line-height: 1;
   margin-left: rem(12);
+  min-width: 24px;
   padding: rem(2) rem(5) rem(2) rem(5);
   position: relative;
   z-index: 4;
