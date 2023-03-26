@@ -32,7 +32,9 @@ const ScrollableText = ({
         <div
           ref={textRef}
           className={
-            height > maxHeight ? styles.scrollableTextContentContained : ''
+            height > maxHeight
+              ? `${styles.scrollableTextContentContained} h-neutral-scroll`
+              : ''
           }
         >
           {children}
