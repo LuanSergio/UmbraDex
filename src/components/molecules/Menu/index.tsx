@@ -27,7 +27,8 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
   const router = useRouter();
   const { handleThemeChange, isDarkMode } = useThemeContext();
 
-  const { pokedexLimit } = usePokemonListContext();
+  const { staticData } = usePokemonListContext();
+  const { pokedexLimit } = staticData;
 
   function handleDarkModeToggle() {
     handleThemeChange(!isDarkMode);

@@ -16,6 +16,7 @@ import PsychicIcon from '@public/icons/types/psychic.svg';
 import RockIcon from '@public/icons/types/rock.svg';
 import SteelIcon from '@public/icons/types/steel.svg';
 import WaterIcon from '@public/icons/types/water.svg';
+import QuestionMark from '@public/icons/question-mark.svg';
 import SnackBar from '@components/atoms/SnackBar';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
@@ -34,15 +35,15 @@ import { ReactChild, useEffect, useState } from 'react';
 
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import TabsDemo from '@components/atoms/Tabs';
+import isTypeExcluded from '@utils/isTypeExcluded';
+import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
 import styles from './styles.module.scss';
 
 interface IFilterModal {
   children: ReactChild;
 }
 
-const generations = ['1', '2', '3', '4', '5', '6', '7', '8'];
-
-const types = {
+const typesIcons = {
   bug: <BugIcon />,
   dark: <DarkIcon />,
   dragon: <DragonIcon />,
@@ -61,6 +62,7 @@ const types = {
   rock: <RockIcon />,
   steel: <SteelIcon />,
   water: <WaterIcon />,
+  unknown: <QuestionMark />,
 };
 
 const sort = {
@@ -77,14 +79,18 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
     updateFilters,
     updateSort,
     isLoading,
+    staticData,
   } = usePokemonListContext();
+
+  const { generations, pokemonTypes: types } = staticData;
+
   const [primaryTypeFilterValue, setPrimaryTypeFilterValue] = useState<
     string[]
   >([]);
   const [secondaryTypeFilterValue, setSecondaryTypeFilterValue] = useState<
     string[]
   >([]);
-  const [generationFilterValue, setGenerationFilterValue] = useState<string[]>(
+  const [generationFilterValue, setGenerationFilterValue] = useState<number[]>(
     [],
   );
   const [sortValue, setSortValue] = useState<string>('numeral-ascending');
@@ -200,41 +206,52 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     value: 'PrimaryType',
                     content: (
                       <ul className={styles.category}>
-                        {Object.keys(types).map(item => (
-                          <li key={item}>
-                            <label
-                              className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                              htmlFor={`filter-by-type-${item}`}
-                              aria-label={`Filter by ${item}`}
-                              title={transformFirstLetterToUppercase(item)}
-                            >
-                              <input
-                                className={styles.checkboxInput}
-                                type="checkbox"
-                                id={`filter-by-type-${item}`}
-                                name={`filter-by-type-${item}`}
-                                onChange={event =>
-                                  handlePrimaryTypeFilterChange(
-                                    event.target.value,
-                                  )
-                                }
-                                checked={primaryTypeFilterValue?.some(
-                                  typeItem => typeItem === item,
-                                )}
-                                value={item}
-                              />
-                              <span
-                                className={`${styles.checkMark} ${styles[item]} `}
-                              >
-                                <span
-                                  className={`${styles.icon} ${styles.small}`}
+                        {types.map(
+                          item =>
+                            isTypeExcluded(item.name) || (
+                              <li key={item.name}>
+                                <label
+                                  className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                                  htmlFor={`filter-by-type-${item.name}`}
+                                  aria-label={`Filter by ${item.name}`}
+                                  title={transformFirstLetterToUppercase(
+                                    item.name,
+                                  )}
                                 >
-                                  {types[item]}
-                                </span>
-                              </span>
-                            </label>
-                          </li>
-                        ))}
+                                  <input
+                                    className={styles.checkboxInput}
+                                    type="checkbox"
+                                    id={`filter-by-type-${item.name}`}
+                                    name={`filter-by-type-${item.name}`}
+                                    onChange={event =>
+                                      handlePrimaryTypeFilterChange(
+                                        event.target.value,
+                                      )
+                                    }
+                                    checked={primaryTypeFilterValue?.some(
+                                      typeItem => typeItem === item.name,
+                                    )}
+                                    value={item.name}
+                                  />
+                                  <span
+                                    className={`${styles.checkMark} ${
+                                      styles[item.name]
+                                    } `}
+                                  >
+                                    <span
+                                      className={`${styles.icon} ${styles.small}`}
+                                    >
+                                      {Object.keys(typesIcons).includes(
+                                        item.name,
+                                      )
+                                        ? typesIcons[item.name]
+                                        : typesIcons.unknown}
+                                    </span>
+                                  </span>
+                                </label>
+                              </li>
+                            ),
+                        )}
                       </ul>
                     ),
                   },
@@ -244,41 +261,52 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
                     disabled: !(primaryTypeFilterValue?.length > 0),
                     content: (
                       <ul className={styles.category}>
-                        {Object.keys(types).map(item => (
-                          <li key={item}>
-                            <label
-                              className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                              htmlFor={`filter-by-type-${item}`}
-                              aria-label={`Filter by ${item}`}
-                              title={transformFirstLetterToUppercase(item)}
-                            >
-                              <input
-                                className={styles.checkboxInput}
-                                type="checkbox"
-                                id={`filter-by-type-${item}`}
-                                name={`filter-by-type-${item}`}
-                                onChange={event =>
-                                  handleSecondaryTypeFilterChange(
-                                    event.target.value,
-                                  )
-                                }
-                                checked={secondaryTypeFilterValue?.some(
-                                  typeItem => typeItem === item,
-                                )}
-                                value={item}
-                              />
-                              <span
-                                className={`${styles.checkMark} ${styles[item]} `}
-                              >
-                                <span
-                                  className={`${styles.icon} ${styles.small}`}
+                        {types.map(
+                          item =>
+                            isTypeExcluded(item.name) || (
+                              <li key={item.name}>
+                                <label
+                                  className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
+                                  htmlFor={`filter-by-type-${item.name}`}
+                                  aria-label={`Filter by ${item.name}`}
+                                  title={transformFirstLetterToUppercase(
+                                    item.name,
+                                  )}
                                 >
-                                  {types[item]}
-                                </span>
-                              </span>
-                            </label>
-                          </li>
-                        ))}
+                                  <input
+                                    className={styles.checkboxInput}
+                                    type="checkbox"
+                                    id={`filter-by-type-${item.name}`}
+                                    name={`filter-by-type-${item.name}`}
+                                    onChange={event =>
+                                      handleSecondaryTypeFilterChange(
+                                        event.target.value,
+                                      )
+                                    }
+                                    checked={secondaryTypeFilterValue?.some(
+                                      typeItem => typeItem === item.name,
+                                    )}
+                                    value={item.name}
+                                  />
+                                  <span
+                                    className={`${styles.checkMark} ${
+                                      styles[item.name]
+                                    } `}
+                                  >
+                                    <span
+                                      className={`${styles.icon} ${styles.small}`}
+                                    >
+                                      {Object.keys(typesIcons).includes(
+                                        item.name,
+                                      )
+                                        ? typesIcons[item.name]
+                                        : typesIcons.unknown}
+                                    </span>
+                                  </span>
+                                </label>
+                              </li>
+                            ),
+                        )}
                       </ul>
                     ),
                   },
@@ -292,28 +320,28 @@ const FilterModal = ({ children }: IFilterModal): JSX.Element => {
 
             <ul className={styles.category}>
               {generations.map(item => (
-                <li key={item}>
+                <li key={item.id}>
                   <label
                     className={`${styles.checkboxContainer} ${styles.checkboxTypeContainer}`}
-                    htmlFor={`filter-by-generation-${item}`}
-                    aria-label={`Filter by generation ${item}`}
-                    title={`Generation ${item}`}
+                    htmlFor={`filter-by-generation-${item.id}`}
+                    aria-label={`Filter by generation ${item.id}`}
+                    title={`Generation ${item.id}`}
                   >
                     <input
                       className={styles.checkboxInput}
                       type="checkbox"
-                      id={`filter-by-generation-${item}`}
-                      name={`filter-by-generation-${item}`}
+                      id={`filter-by-generation-${item.id}`}
+                      name={`filter-by-generation-${item.id}`}
                       checked={generationFilterValue?.some(
-                        generationItem => generationItem === item,
+                        generationItem => generationItem === item.id,
                       )}
                       onChange={event =>
                         handleGenerationFilterChange(event.target.value)
                       }
-                      value={`${item}`}
+                      value={`${item.id}`}
                     />
                     <span className={styles.checkMark}>
-                      {transformNumberToRomanNumeral(parseInt(item, 10))}
+                      {transformNumberToRomanNumeral(item.id)}
                     </span>
                   </label>
                 </li>
