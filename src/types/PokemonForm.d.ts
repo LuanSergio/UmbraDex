@@ -13,4 +13,6 @@ declare interface IPokemonForm {
   formOrder: string;
   stats: PokemonStats[];
   image: string;
+  weight: string;
+  height: string;
 }
