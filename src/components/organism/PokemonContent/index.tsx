@@ -111,7 +111,7 @@ const PokemonContent = ({
           />
         )}
         <div className={styles.container}>
-          <div className={styles.content1}>
+          <div className={styles.contentOdd}>
             <PokemonHighlight
               japaneseName={pokemonDetails.japaneseName}
               image={pokemon.image}
@@ -126,7 +126,7 @@ const PokemonContent = ({
               )}
             />
           </div>
-          <div className={styles.content2}>
+          <div className={styles.contentEven}>
             {windowWidth > 1280 && (
               <PokemonBasicInformation
                 name={pokemon.name}
@@ -156,11 +156,11 @@ const PokemonContent = ({
               </div>
             </dl>
           </div>
-          <div className={styles.content1}>
+          <div className={styles.contentOdd}>
             <PokemonStats stats={pokemon.stats} />
           </div>
 
-          <div className={styles.content2}>
+          <div className={styles.contentEven}>
             <PokemonTypeEfficiency
               typeEfficiency={typeEfficiency}
               isLoading={isLoading}
