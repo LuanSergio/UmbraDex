@@ -1,4 +1,4 @@
-<svg id="dots" viewBox="0 0 132 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg id="dots" viewBox="0 0 132 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <style>
     #dots #dot1{
       animation: load 1s infinite;
@@ -27,11 +27,11 @@
     }
     </style>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="dots" sketch:type="MSArtboardGroup" fill="#21285a">
-            <circle id="dot1" sketch:type="MSShapeGroup" cx="25" cy="30" r="13"></circle>
-            <circle id="dot2" sketch:type="MSShapeGroup" cx="65" cy="30" r="13"></circle>
-            <circle id="dot3" sketch:type="MSShapeGroup" cx="105" cy="30" r="13"></circle>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dots" fill="currentColor">
+            <circle id="dot1" cx="25" cy="30" r="13"></circle>
+            <circle id="dot2" cx="65" cy="30" r="13"></circle>
+            <circle id="dot3" cx="105" cy="30" r="13"></circle>
         </g>
     </g>
 </svg>
