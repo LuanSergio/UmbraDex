@@ -11,8 +11,10 @@ import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 import { ThemeContextProvider } from '@contexts/ThemeContext';
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
 import getPokedexLimit from '@requests/getPokedexLimit';
+import getGenerations from '@requests/getGenerations';
+import getPokemonTypes from '@requests/getPokemonTypes';
 
-const Home = ({ fallback, pokedexLimit }): JSX.Element => {
+const Home = ({ fallback, staticData }): JSX.Element => {
   function getPokemonFallbackList(): IBasicPokemonInfo[][] {
     return Object.values(fallback)[0] as IBasicPokemonInfo[][];
   }
@@ -70,7 +72,7 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
       <ThemeContextProvider>
         <PokemonListContextProvider
           fallback={getPokemonFallbackList()}
-          pokedexLimit={pokedexLimit}
+          staticData={staticData}
         >
           <DefaultLayout>
             <PokemonCardList />
@@ -84,6 +86,13 @@ const Home = ({ fallback, pokedexLimit }): JSX.Element => {
 export const getStaticProps: GetStaticProps = async () => {
   const queryName = 'pokemonList';
   const pokedexLimit = await getPokedexLimit();
+  const generations = await getGenerations();
+  const pokemonTypes = await getPokemonTypes();
+  const staticData = {
+    pokedexLimit,
+    generations,
+    pokemonTypes,
+  };
 
   const pokemonList = await getPokemonListData({
     queryName,
@@ -96,7 +105,7 @@ export const getStaticProps: GetStaticProps = async () => {
       fallback: {
         [unstable_serialize([queryName, 1])]: [pokemonList],
       },
-      pokedexLimit,
+      staticData,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };
