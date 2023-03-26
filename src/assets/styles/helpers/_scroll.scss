@@ -57,3 +57,36 @@
   background-color: get-color(secondary);
   border-radius: 0;
 }
+
+.h-neutral-scroll {
+  scrollbar-arrow-color: rgba($color: get-color(light), $alpha: 32%);
+
+  /* firefox custom scrollbar */
+  scrollbar-color: get-color(light) rgba($color: get-color(light), $alpha: 32%);
+
+  /* ie and edge custom scroll bar */
+  scrollbar-face-color: rgba($color: get-color(light), $alpha: 32%);
+  scrollbar-shadow-color: rgba($color: get-color(light), $alpha: 32%);
+  scrollbar-track-color: get-color(light);
+  scrollbar-width: thin;
+}
+
+// chrome custom scroll bar
+.h-neutral-scroll::-webkit-scrollbar {
+  height: rem(5);
+  width: rem(5);
+}
+
+.h-neutral-scroll::-webkit-scrollbar-track {
+  background-color: rgba($color: get-color(light), $alpha: 32%);
+  border-radius: 30px;
+}
+
+.h-neutral-scroll::-webkit-scrollbar-thumb {
+  background-color: get-color(light);
+  border-radius: 30px;
+}
+
+.h-neutral-scroll::-webkit-scrollbar-corner {
+  background-color: get-color(light);
+}
