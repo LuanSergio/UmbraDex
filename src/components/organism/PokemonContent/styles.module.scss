@@ -4,48 +4,78 @@
 @use 'helpers/container.scss' as *;
 @use 'settings/_breakpoints' as *;
 
-.holder,
-.smallHolder {
+.basicInformation {
+  margin-bottom: rem(20);
+}
+
+.content {
   color: get-color(light);
-  margin-top: calc(rem(16) + var(--header-height));
+  margin-bottom: rem(40);
 }
 
 .container {
-  align-items: center;
   display: grid;
-  grid-template-columns: 100%;
-  justify-content: center;
-  margin-top: rem(48);
+  gap: rem(40) rem(40);
+  grid-template-columns: 1fr;
 }
 
-@media only screen and (min-width: $sm) {
-  .holder {
-    margin-top: calc(rem(28) + var(--header-height));
-  }
+.content1 {
+  width: 100%;
+}
+
+.content2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.characteristic {
+  background-color: var(--current-dark-type-color);
+  border-radius: rem(8);
+  display: flex;
+  justify-content: space-around;
+  padding: rem(20) rem(14);
+  text-align: left;
+  width: 100%;
+}
+
+.characteristic > *:not(:last-child) {
+  margin-right: rem(20);
+}
+
+.characteristicLabel {
+  font-size: rem(18);
+  font-weight: bold;
+  text-align: left;
+}
+
+.characteristicValue {
+  font-size: rem(16);
+  margin-left: 0;
+  margin-top: rem(12);
+  text-align: right;
+}
+
+.content--small {
+  margin-top: calc(rem(24) + var(--header-height));
+}
+
+.content--large {
+  margin-top: calc(rem(24) + var(--header-height));
 }
 
 @media only screen and (min-width: $lg) {
   .container {
-    align-items: normal;
-    grid-template-columns: rem(768) rem(400);
-    margin-top: rem(8);
+    gap: 40px 40px;
+    grid-template-columns: 5fr 3fr;
   }
 
-  .holder {
-    display: block;
-    margin-top: calc(rem(72) + var(--header-height));
+  .content--large {
+    margin-top: calc(rem(92) + var(--header-height));
   }
 
-  .smallHolder {
-    display: block;
-    margin-top: calc(rem(24) + var(--header-height));
-  }
-}
-
-@media only screen and (min-width: $xl) {
-  .container {
-    align-items: normal;
-    grid-template-columns: rem(816) rem(400);
-    justify-content: space-between;
+  .content--small {
+    margin-top: calc(rem(38) + var(--header-height));
   }
 }

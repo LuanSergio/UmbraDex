@@ -1,9 +1,8 @@
 import useSWRInfinite from 'swr/infinite';
 import getPokemonListData from '@requests/getPokemonListData';
-import { useEffect } from 'react';
 
 interface IFilterOptions {
-  generation?: string[];
+  generation?: number[];
   primaryType?: string[];
   secondaryType?: string[];
 }

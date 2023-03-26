@@ -8,19 +8,25 @@ import getPokedexLimit from '@requests/getPokedexLimit';
 import Header from '@components/molecules/Header';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 import { ThemeContextProvider } from '@contexts/ThemeContext';
+import getGenerations from '@requests/getGenerations';
+import getPokemonTypes from '@requests/getPokemonTypes';
 
 interface IPokemonDetailsProps {
   pokemonDetails: IPokemonDetails;
   defaultPokemonForm: IPokemonForm;
   AlternativePokemonForms: IPokemonForm[];
-  pokedexLimit: number;
+  staticData: {
+    pokedexLimit: number;
+    generations: IGeneration[];
+    pokemonTypes: IPokemonType[];
+  };
 }
 
 const Pokemon = ({
   defaultPokemonForm,
   AlternativePokemonForms,
-  pokedexLimit,
   pokemonDetails,
+  staticData,
 }: IPokemonDetailsProps): JSX.Element => {
   return (
     <>
@@ -28,18 +34,18 @@ const Pokemon = ({
         <title key="title">{defaultPokemonForm.name} | UmbraDex</title>
       </Head>
 
-      <PokemonListContextProvider pokedexLimit={pokedexLimit}>
+      <PokemonListContextProvider staticData={staticData}>
         <ThemeContextProvider>
           <Header />
         </ThemeContextProvider>
-      </PokemonListContextProvider>
 
-      <PokemonContent
-        AlternativePokemonForms={AlternativePokemonForms}
-        defaultPokemonForm={defaultPokemonForm}
-        pokedexLimit={pokedexLimit}
-        pokemonDetails={pokemonDetails}
-      />
+        <PokemonContent
+          AlternativePokemonForms={AlternativePokemonForms}
+          defaultPokemonForm={defaultPokemonForm}
+          pokedexLimit={staticData.pokedexLimit}
+          pokemonDetails={pokemonDetails}
+        />
+      </PokemonListContextProvider>
     </>
   );
 };
@@ -55,7 +61,15 @@ export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
   const pokemonIdAsNumber = parseInt(id as string, 10);
   const pokemonForms = await getPokemonDetailsData(pokemonIdAsNumber);
+
   const pokedexLimit = await getPokedexLimit();
+  const generations = await getGenerations();
+  const pokemonTypes = await getPokemonTypes();
+  const staticData = {
+    pokedexLimit,
+    generations,
+    pokemonTypes,
+  };
 
   const pokemonDetails = { ...pokemonForms };
   const defaultPokemonForm = pokemonForms.forms.find(form => form.isDefault);
@@ -68,7 +82,7 @@ export const getStaticProps: GetStaticProps = async context => {
       pokemonDetails,
       AlternativePokemonForms,
       defaultPokemonForm,
-      pokedexLimit,
+      staticData,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };

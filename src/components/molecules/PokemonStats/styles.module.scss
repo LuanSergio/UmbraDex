@@ -9,12 +9,12 @@
   display: flex;
   flex-flow: column-reverse wrap;
   justify-content: center;
-  margin-bottom: rem(100);
   margin-left: auto;
   margin-right: auto;
   padding: rem(48) rem(10) rem(48);
   transition: background-color 0.28s ease-out;
   width: calc(100% - 8px);
+  width: 100%;
 }
 
 .statsList {
@@ -45,6 +45,7 @@
 .statsMeter {
   align-self: center;
   background-color: get-color(light);
+  border-radius: 4px;
   height: rem(24);
   overflow: hidden;
   width: 80%;
@@ -77,8 +78,7 @@
     justify-content: space-between;
     margin-left: initial;
     margin-right: initial;
-    margin-top: rem(56);
-    padding: rem(48) rem(20) rem(48) rem(32);
+    padding: rem(48) rem(0) rem(48) rem(32);
   }
 
   .statsMeter {

@@ -12,6 +12,12 @@ import PokemonStats from '@components/molecules/PokemonStats';
 import EvolutionChain from '@components/molecules/EvolutionChain';
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
+import PokemonTypeEfficiency from '@components/molecules/PokemonTypeEfficiency';
+import useTypeEfficacies from '@hooks/useTypeEfficacies';
+import getTypeByName from '@utils/getTypeByName';
+import { usePokemonListContext } from '@contexts/PokemonListContext';
+import convertHectogramToKilogram from '@utils/convertHectogramToKilogram';
+import convertDecimetersToMeters from '@utils/convertDecimetersToMeters';
 import styles from './styles.module.scss';
 
 interface IPokemonContentProps {
@@ -32,7 +38,13 @@ const PokemonContent = ({
   } = useRouter();
   const pageId = parseInt(id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
+  const [typesIdList, setTypesIdsList] = useState<number[]>([]);
+  const { staticData } = usePokemonListContext();
   const [windowWidth] = useWindowSize();
+
+  const { isLoading, typeEfficiency } = useTypeEfficacies({
+    types: typesIdList,
+  });
 
   useEffect(() => {
     if (!sessionStorage.getItem('currentPokemonId')) {
@@ -61,21 +73,33 @@ const PokemonContent = ({
     document.body.className = mainType;
   }, [pokemon.types]);
 
+  useEffect(() => {
+    if (pokemon?.types.length && staticData?.pokemonTypes.length) {
+      const typesIds = pokemon.types.map(
+        type =>
+          getTypeByName({ name: type, typesList: staticData.pokemonTypes }).id,
+      );
+      setTypesIdsList(typesIds);
+    }
+  }, [pokemon?.types, staticData?.pokemonTypes]);
+
   return (
     <ContentLayout>
       <div
-        className={
+        className={`${styles.content} ${
           AlternativePokemonForms.length > 0
-            ? styles.smallHolder
-            : styles.holder
-        }
+            ? styles['content--small']
+            : styles['content--large']
+        }`}
       >
         {windowWidth < 1280 && (
-          <PokemonBasicInformation
-            name={pokemon.name}
-            pokedexIndex={defaultPokemonForm.id}
-            types={pokemon.types}
-          />
+          <div className={styles.basicInformation}>
+            <PokemonBasicInformation
+              name={pokemon.name}
+              pokedexIndex={defaultPokemonForm.id}
+              types={pokemon.types}
+            />
+          </div>
         )}
 
         {AlternativePokemonForms.length > 0 && (
@@ -86,9 +110,8 @@ const PokemonContent = ({
             alternativePokemonForms={AlternativePokemonForms}
           />
         )}
-
         <div className={styles.container}>
-          <div>
+          <div className={styles.content1}>
             <PokemonHighlight
               japaneseName={pokemonDetails.japaneseName}
               image={pokemon.image}
@@ -103,8 +126,8 @@ const PokemonContent = ({
               )}
             />
           </div>
-          <div>
-            {windowWidth >= 1280 && (
+          <div className={styles.content2}>
+            {windowWidth > 1280 && (
               <PokemonBasicInformation
                 name={pokemon.name}
                 pokedexIndex={defaultPokemonForm.id}
@@ -116,16 +139,41 @@ const PokemonContent = ({
               pokedexIndex={defaultPokemonForm.id}
               descriptions={pokemonDetails.descriptions}
             />
+
+            <dl className={styles.characteristic}>
+              <div>
+                <dt className={styles.characteristicLabel}>Height:</dt>
+                <dd className={styles.characteristicValue}>
+                  {convertDecimetersToMeters(pokemon.height)} M
+                </dd>
+              </div>
+
+              <div>
+                <dt className={styles.characteristicLabel}>Weight:</dt>
+                <dd className={styles.characteristicValue}>
+                  {convertHectogramToKilogram(pokemon.weight)} Kg
+                </dd>
+              </div>
+            </dl>
           </div>
-          <PokemonStats stats={pokemon.stats} />
+          <div className={styles.content1}>
+            <PokemonStats stats={pokemon.stats} />
+          </div>
+
+          <div className={styles.content2}>
+            <PokemonTypeEfficiency
+              typeEfficiency={typeEfficiency}
+              isLoading={isLoading}
+            />
+          </div>
         </div>
-        <InnerPageNavigation
-          previous={`/pokemon/${pageId - 1}`}
-          next={`/pokemon/${pageId + 1}`}
-          disablePrevious={pageId <= 1}
-          disableNext={pageId >= pokedexLimit}
-        />
       </div>
+      <InnerPageNavigation
+        previous={`/pokemon/${pageId - 1}`}
+        next={`/pokemon/${pageId + 1}`}
+        disablePrevious={pageId <= 1}
+        disableNext={pageId >= pokedexLimit}
+      />
     </ContentLayout>
   );
 };

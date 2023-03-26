@@ -11,7 +11,7 @@ import usePokemonList from '@hooks/usePokemonList';
 import useDebounce from '@hooks/useDebounce';
 
 interface IFilterOptions {
-  generation?: string[];
+  generation?: number[];
   primaryType?: string[];
   secondaryType?: string[];
 }
@@ -20,7 +20,11 @@ interface IPokemonListContextData {
   searchValue: string;
   pokemonList: IBasicPokemonInfo[][];
   isLoading: boolean;
-  pokedexLimit: number;
+  staticData: {
+    pokedexLimit: number;
+    generations: IGeneration[];
+    pokemonTypes: IPokemonType[];
+  };
   filterValues: IFilterOptions;
   sortValue: string;
   updateSort: (value: string) => void;
@@ -35,14 +39,18 @@ export const PokemonListContext = createContext({} as IPokemonListContextData);
 
 interface PokemonListContextProviderProps {
   fallback?: IBasicPokemonInfo[][];
-  pokedexLimit: number;
+  staticData: {
+    pokedexLimit: number;
+    generations: IGeneration[];
+    pokemonTypes: IPokemonType[];
+  };
   children: ReactNode;
 }
 
 export function PokemonListContextProvider({
   children,
   fallback,
-  pokedexLimit,
+  staticData,
 }: PokemonListContextProviderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
   const [filterValues, setFiltersValues] = useState<IFilterOptions>({});
@@ -97,7 +105,7 @@ export function PokemonListContextProvider({
       isLoading,
       pokemonList,
       searchValue,
-      pokedexLimit,
+      staticData,
       filterValues,
       sortValue,
       handleSearchValueChange,
@@ -109,7 +117,7 @@ export function PokemonListContextProvider({
       isLoading,
       pokemonList,
       searchValue,
-      pokedexLimit,
+      staticData,
       filterValues,
       sortValue,
       updateSort,
