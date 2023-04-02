@@ -55,6 +55,18 @@ button {
   }
 }
 
+.light {
+  --theme-color: #fbfbfb;
+  --theme-color-light: #fbfbfb;
+  --theme-text: #323232;
+}
+
+.dark {
+  --theme-color: #161b3f;
+  --theme-color-light: #21285a;
+  --theme-text: #fbfbfb;
+}
+
 @each $type, $color in typeColors.$defaults {
   body.#{$type} {
     --current-light-type-color: #{map.get(typeColors.$lights, $type)};
