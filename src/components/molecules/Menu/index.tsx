@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
+import { useTheme } from 'next-themes';
 
 import Routes from '@data/routes';
 import createRandomNumber from '@utils/createRandomNumber';
 import useThrottle from '@hooks/useThrottle';
 
-import { useThemeContext } from '@contexts/ThemeContext';
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
 import SwitchToggle from '@components/atoms/SwitchToggle';
@@ -25,13 +25,13 @@ interface IMenuProps {
 
 const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
   const router = useRouter();
-  const { handleThemeChange, isDarkMode } = useThemeContext();
+  const { theme, setTheme } = useTheme();
 
   const { staticData } = usePokemonListContext();
   const { pokedexLimit } = staticData;
 
   function handleDarkModeToggle() {
-    handleThemeChange(!isDarkMode);
+    setTheme(theme !== 'light' ? 'light' : 'dark');
   }
 
   function handleGoToRandomPokemon() {
@@ -60,7 +60,7 @@ const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
                 <SwitchToggle
                   readonly
                   label="Toggle dark mode theme"
-                  isChecked={isDarkMode}
+                  isChecked={theme !== 'light'}
                   name="dark-mode"
                 />
               </button>

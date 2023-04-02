@@ -7,7 +7,6 @@ import getPokemonDetailsData from '@requests/getPokemonDetailsData';
 import getPokedexLimit from '@requests/getPokedexLimit';
 import Header from '@components/molecules/Header';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
-import { ThemeContextProvider } from '@contexts/ThemeContext';
 import getGenerations from '@requests/getGenerations';
 import getPokemonTypes from '@requests/getPokemonTypes';
 
@@ -35,10 +34,7 @@ const Pokemon = ({
       </Head>
 
       <PokemonListContextProvider staticData={staticData}>
-        <ThemeContextProvider>
-          <Header />
-        </ThemeContextProvider>
-
+        <Header />
         <PokemonContent
           AlternativePokemonForms={AlternativePokemonForms}
           defaultPokemonForm={defaultPokemonForm}
