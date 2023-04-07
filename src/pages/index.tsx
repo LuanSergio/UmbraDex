@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 
-import DefaultLayout from '@components/layouts/DefaultLayout';
-import PokemonCardList from '@components/organism/PokemonCardList';
+import DefaultLayout from '@layouts/DefaultLayout';
+import PokemonCardList from '@components/PokemonCardList';
 import getPokemonListData from '@requests/getPokemonListData';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 import bodyDefaultClasses from '@data/bodyDefaultClasses';

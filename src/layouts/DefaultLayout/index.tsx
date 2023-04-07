@@ -1,8 +1,8 @@
 import { ReactNode, useEffect } from 'react';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
-import Header from '@components/molecules/Header';
-import WebDoor from '@components/molecules/WebDoor';
+import Header from '@components/Header';
+import WebDoor from '@components/WebDoor';
 import useWindowSize from '@hooks/useWindowSize';
 
 import styles from './styles.module.scss';

@@ -5,10 +5,10 @@ import { useEffect, useRef, Fragment } from 'react';
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
 
-import PokemonCard from '@components/molecules/PokemonCard';
+import PokemonCard from '@components/PokemonCard';
 import useWindowSize from '@hooks/useWindowSize';
-import PokemonCardSkeleton from '@components/molecules/PokemonCardSkeleton';
-import SnackBar from '@components/atoms/SnackBar';
+import PokemonCardSkeleton from '@components/PokemonCardSkeleton';
+import SnackBar from '@components/SnackBar';
 import LoadingDots from '@public/icons/loading-dots.svg';
 import LoadingCircleIcon from '@public/icons/loading.svg';
 import ConfusedPsyduck from '@public/confused-psyduck.svg';

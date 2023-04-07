@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
-import Carousel from '@components/molecules/Carousel';
-import CarouselItem from '@components/atoms/CarouselItem';
+import Carousel from '@components/Carousel';
+import CarouselItem from '@components/CarouselItem';
 import Important from '@public/icons/important.svg';
-import ScrollableText from '@components/molecules/ScrollableText';
+import ScrollableText from '@components/ScrollableText';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {

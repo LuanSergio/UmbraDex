@@ -7,10 +7,10 @@ import useThrottle from '@hooks/useThrottle';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
-import SwitchToggle from '@components/atoms/SwitchToggle';
-import Modal from '@components/atoms/Modal';
-import FilterModal from '@components/molecules/FilterModal';
-import Disclaimer from '@components/molecules/Disclaimer';
+import SwitchToggle from '@components/SwitchToggle';
+import Modal from '@components/Modal';
+import FilterModal from '@components/FilterModal';
+import Disclaimer from '@components/Disclaimer';
 
 import FilterIcon from '@public/icons/filter.svg';
 import DocumentIcon from '@public/icons/document.svg';

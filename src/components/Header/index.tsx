@@ -6,8 +6,8 @@ import Logo from '@public/icons/logo.svg';
 import SearchIcon from '@public/icons/search.svg';
 import Github from '@public/icons/github.svg';
 import Options from '@public/icons/options.svg';
-import SearchInput from '@components/molecules/SearchInput';
-import Menu from '@components/molecules/Menu';
+import SearchInput from '@components/SearchInput';
+import Menu from '@components/Menu';
 import useEscapeKeyPress from '@hooks/useEscapeKeyPress';
 import styles from './styles.module.scss';
 

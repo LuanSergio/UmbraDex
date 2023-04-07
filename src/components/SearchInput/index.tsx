@@ -7,8 +7,8 @@ import { usePokemonListContext } from '@contexts/PokemonListContext';
 import SearchIcon from '@public/icons/search.svg';
 import ClearIcon from '@public/icons/close.svg';
 import LoadingIcon from '@public/icons/loading.svg';
-import TextField from '@components/atoms/TextField';
-import IconButton from '@components/atoms/IconButton';
+import TextField from '@components/TextField';
+import IconButton from '@components/IconButton';
 
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import useEscapeKeyPress from '@hooks/useEscapeKeyPress';

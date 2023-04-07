@@ -1,4 +1,4 @@
-import BaseRadarChart from '@components/atoms/BaseRadarChart';
+import BaseRadarChart from '@components/BaseRadarChart';
 import formatStats from '@utils/formatStats';
 
 import styles from './styles.module.scss';

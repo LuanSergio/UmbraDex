@@ -1,15 +1,15 @@
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
-import AlolaFormIcon from '@components/atoms/formIcons/AlolaFormIcon';
-import DefaultFormIcon from '@components/atoms/formIcons/DefaultFormIcon';
-import GmaxFormIcon from '@components/atoms/formIcons/GmaxFormIcon';
-import MegaXFormIcon from '@components/atoms/formIcons/MegaXFormIcon';
-import MegaYFormIcon from '@components/atoms/formIcons/MegaYFormIcon';
-import MegaFormIcon from '@components/atoms/formIcons/MegaFormIcon';
-import SwordAndShieldFormIcon from '@components/atoms/formIcons/SwordAndShieldFormIcon';
-import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
-import Carousel from '@components/molecules/Carousel';
+import AlolaFormIcon from '@components/FormIcons/AlolaFormIcon';
+import DefaultFormIcon from '@components/FormIcons/DefaultFormIcon';
+import GmaxFormIcon from '@components/FormIcons/GmaxFormIcon';
+import MegaXFormIcon from '@components/FormIcons/MegaXFormIcon';
+import MegaYFormIcon from '@components/FormIcons/MegaYFormIcon';
+import MegaFormIcon from '@components/FormIcons/MegaFormIcon';
+import SwordAndShieldFormIcon from '@components/FormIcons/SwordAndShieldFormIcon';
+import UnknownFormIcon from '@components/FormIcons/UnknownFormIcon';
+import Carousel from '@components/Carousel';
 import { useEffect, useState } from 'react';
-import CarouselItem from '@components/atoms/CarouselItem';
+import CarouselItem from '@components/CarouselItem';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {

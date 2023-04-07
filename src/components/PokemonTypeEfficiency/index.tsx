@@ -1,7 +1,7 @@
 import PokeBallIcon from '@public/icons/pokeball.svg';
 import LoadingDots from '@public/icons/loading-dots.svg';
 
-import TypeBadge from '@components/atoms/TypeBadge';
+import TypeBadge from '@components/TypeBadge';
 
 import styles from './styles.module.scss';
 

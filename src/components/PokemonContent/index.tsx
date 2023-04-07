@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
-import InnerPageNavigation from '@components/molecules/InnerPageNavigation';
-import PokemonHighlight from '@components/molecules/PokemonHighlight';
-import PokemonBasicInformation from '@components/molecules/PokemonBasicInformation';
-import PokemonDescription from '@components/molecules/PokemonDescription';
-import SwitchForms from '@components/molecules/SwitchForms';
-import ContentLayout from '@components/layouts/ContentLayout';
+import InnerPageNavigation from '@components/InnerPageNavigation';
+import PokemonHighlight from '@components/PokemonHighlight';
+import PokemonBasicInformation from '@components/PokemonBasicInformation';
+import PokemonDescription from '@components/PokemonDescription';
+import SwitchForms from '@components/SwitchForms';
+import ContentLayout from 'src/layouts/ContentLayout';
 import useWindowSize from '@hooks/useWindowSize';
-import PokemonStats from '@components/molecules/PokemonStats';
-import EvolutionChain from '@components/molecules/EvolutionChain';
+import PokemonStats from '@components/PokemonStats';
+import EvolutionChain from '@components/EvolutionChain';
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
-import PokemonTypeEfficiency from '@components/molecules/PokemonTypeEfficiency';
+import PokemonTypeEfficiency from '@components/PokemonTypeEfficiency';
 import useTypeEfficacies from '@hooks/useTypeEfficacies';
 import getTypeByName from '@utils/getTypeByName';
 import { usePokemonListContext } from '@contexts/PokemonListContext';

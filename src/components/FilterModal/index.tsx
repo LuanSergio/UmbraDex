@@ -17,12 +17,12 @@ import RockIcon from '@public/icons/types/rock.svg';
 import SteelIcon from '@public/icons/types/steel.svg';
 import WaterIcon from '@public/icons/types/water.svg';
 import QuestionMark from '@public/icons/question-mark.svg';
-import SnackBar from '@components/atoms/SnackBar';
+import SnackBar from '@components/SnackBar';
 
 import { usePokemonListContext } from '@contexts/PokemonListContext';
 
-import Modal from '@components/atoms/Modal';
-import Button from '@components/atoms/Button';
+import Modal from '@components/Modal';
+import Button from '@components/Button';
 
 import AlphabeticalAscendingIcon from '@public/icons/alphabetical-ascending.svg';
 import AlphabeticalDescendingIcon from '@public/icons/alphabetical-descending.svg';
@@ -34,9 +34,9 @@ import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUpperc
 import { ReactChild, useEffect, useState } from 'react';
 
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
-import TabsDemo from '@components/atoms/Tabs';
+import TabsDemo from '@components/Tabs';
 import isTypeExcluded from '@utils/isTypeExcluded';
-import UnknownFormIcon from '@components/atoms/formIcons/UnknownFormIcon';
+
 import styles from './styles.module.scss';
 
 interface IFilterModal {

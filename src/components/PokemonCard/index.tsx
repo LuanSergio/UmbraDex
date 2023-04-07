@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import PokemonPicture from '@components/atoms/PokemonPicture';
+import PokemonPicture from '@components/PokemonPicture';
 import Routes from '@data/routes';
 import PokeBallIcon from '@public/icons/pokeball.svg';
 
-import TypeBadge from '@components/atoms/TypeBadge';
+import TypeBadge from '@components/TypeBadge';
 import styles from './styles.module.scss';
 
 interface IPokemonCard {

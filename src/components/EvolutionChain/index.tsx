@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 
 import getPokemonImageUrl from '@utils/getPokemonImageUrl';
 import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
-import Carousel from '@components/molecules/Carousel';
-import CarouselItem from '@components/atoms/CarouselItem';
+import Carousel from '@components/Carousel';
+import CarouselItem from '@components/CarouselItem';
 import useWindowSize from '@hooks/useWindowSize';
 
 import styles from './styles.module.scss';

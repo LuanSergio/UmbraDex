@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 
-import PokemonContent from '@components/organism/PokemonContent';
+import PokemonContent from '@components/PokemonContent';
 
 import getPokemonDetailsData from '@requests/getPokemonDetailsData';
 import getPokedexLimit from '@requests/getPokedexLimit';
-import Header from '@components/molecules/Header';
+import Header from '@components/Header';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 import getGenerations from '@requests/getGenerations';
 import getPokemonTypes from '@requests/getPokemonTypes';

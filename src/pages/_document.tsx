@@ -6,7 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import HeadConfiguration from '@components/molecules/HeadConfiguration';
+import HeadConfiguration from '@components/HeadConfiguration';
 
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
