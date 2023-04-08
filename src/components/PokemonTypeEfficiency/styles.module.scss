@@ -29,6 +29,7 @@
   display: grid;
   grid-template-rows: auto;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
