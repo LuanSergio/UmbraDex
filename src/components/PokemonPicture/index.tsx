@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import NextImage, { ImageProps } from 'next/image';
 import { useEffect, useState } from 'react';
+
 import substitutePlaceholder from '@data/substitutePlaceholder';
 
 interface IPokemonPictureProps extends Omit<ImageProps, 'src'> {

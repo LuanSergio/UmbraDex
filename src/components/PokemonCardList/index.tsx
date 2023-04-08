@@ -2,18 +2,19 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, Fragment } from 'react';
 
-import { usePokemonListContext } from '@contexts/PokemonListContext';
-import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
-
-import PokemonCard from '@components/PokemonCard';
-import useWindowSize from '@hooks/useWindowSize';
-import PokemonCardSkeleton from '@components/PokemonCardSkeleton';
-import SnackBar from '@components/SnackBar';
-import LoadingDots from '@public/icons/loading-dots.svg';
 import LoadingCircleIcon from '@public/icons/loading.svg';
 import ConfusedPsyduck from '@public/confused-psyduck.svg';
-import useCardListLoader from './useCardListLoader';
+import LoadingDots from '@public/icons/loading-dots.svg';
 
+import { usePokemonListContext } from '@contexts/PokemonListContext';
+import POKEMON_PER_REQUEST from '@data/pokemonPerRequest';
+import useWindowSize from '@hooks/useWindowSize';
+
+import PokemonCard from '@components/PokemonCard';
+import PokemonCardSkeleton from '@components/PokemonCardSkeleton';
+import SnackBar from '@components/SnackBar';
+
+import useCardListLoader from './useCardListLoader';
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {

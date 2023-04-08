@@ -1,4 +1,3 @@
-import replaceDashWithSpace from '@utils/replaceDashWithSpace';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {

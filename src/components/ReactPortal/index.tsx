@@ -1,6 +1,7 @@
-import createWrapperAndAppendToBody from '@utils/createWrapperAndAppendToBody';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+import createWrapperAndAppendToBody from '@utils/createWrapperAndAppendToBody';
 
 interface IReactPortal {
   children: ReactNode;

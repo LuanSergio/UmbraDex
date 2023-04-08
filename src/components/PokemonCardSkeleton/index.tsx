@@ -1,7 +1,8 @@
+import Image from 'next/image';
+
 import PokeBallIcon from '@public/icons/pokeball.svg';
 import substitutePlaceholder from '@data/substitutePlaceholder';
 
-import Image from 'next/image';
 import styles from './styles.module.scss';
 
 const PokemonCardSkeleton = (): JSX.Element => {

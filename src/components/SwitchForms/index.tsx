@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
+
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
+
 import AlolaFormIcon from '@components/FormIcons/AlolaFormIcon';
 import DefaultFormIcon from '@components/FormIcons/DefaultFormIcon';
 import GmaxFormIcon from '@components/FormIcons/GmaxFormIcon';
@@ -8,8 +11,8 @@ import MegaFormIcon from '@components/FormIcons/MegaFormIcon';
 import SwordAndShieldFormIcon from '@components/FormIcons/SwordAndShieldFormIcon';
 import UnknownFormIcon from '@components/FormIcons/UnknownFormIcon';
 import Carousel from '@components/Carousel';
-import { useEffect, useState } from 'react';
 import CarouselItem from '@components/CarouselItem';
+
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
-import ReactPortal from '../ReactPortal';
+
+import ReactPortal from '@components/ReactPortal';
 
 import styles from './styles.module.scss';
 

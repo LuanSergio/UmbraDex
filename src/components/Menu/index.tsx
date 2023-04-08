@@ -1,6 +1,11 @@
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 
+import FilterIcon from '@public/icons/filter.svg';
+import DocumentIcon from '@public/icons/document.svg';
+import MoonIcon from '@public/icons/moon.svg';
+import RandomIcon from '@public/icons/random.svg';
+
 import Routes from '@data/routes';
 import createRandomNumber from '@utils/createRandomNumber';
 import useThrottle from '@hooks/useThrottle';
@@ -11,11 +16,6 @@ import SwitchToggle from '@components/SwitchToggle';
 import Modal from '@components/Modal';
 import FilterModal from '@components/FilterModal';
 import Disclaimer from '@components/Disclaimer';
-
-import FilterIcon from '@public/icons/filter.svg';
-import DocumentIcon from '@public/icons/document.svg';
-import MoonIcon from '@public/icons/moon.svg';
-import RandomIcon from '@public/icons/random.svg';
 
 import styles from './styles.module.scss';
 

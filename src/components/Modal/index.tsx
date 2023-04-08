@@ -1,5 +1,6 @@
-import * as Dialog from '@radix-ui/react-dialog';
 import { Dispatch, ReactChild, SetStateAction } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+
 import CloseIcon from '@public/icons/close.svg';
 
 import styles from './styles.module.scss';

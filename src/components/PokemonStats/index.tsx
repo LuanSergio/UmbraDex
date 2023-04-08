@@ -1,5 +1,5 @@
-import BaseRadarChart from '@components/BaseRadarChart';
 import formatStats from '@utils/formatStats';
+import BaseRadarChart from '@components/BaseRadarChart';
 
 import styles from './styles.module.scss';
 

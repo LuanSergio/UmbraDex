@@ -1,6 +1,8 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
 import substitutePlaceholder from '@data/substitutePlaceholder';
+
 import styles from './styles.module.scss';
 
 interface PokemonHighlightProps {

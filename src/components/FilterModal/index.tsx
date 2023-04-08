@@ -1,3 +1,5 @@
+import { ReactChild, useEffect, useState } from 'react';
+
 import BugIcon from '@public/icons/types/bug.svg';
 import DarkIcon from '@public/icons/types/dark.svg';
 import DragonIcon from '@public/icons/types/dragon.svg';
@@ -16,25 +18,21 @@ import PsychicIcon from '@public/icons/types/psychic.svg';
 import RockIcon from '@public/icons/types/rock.svg';
 import SteelIcon from '@public/icons/types/steel.svg';
 import WaterIcon from '@public/icons/types/water.svg';
-import QuestionMark from '@public/icons/question-mark.svg';
-import SnackBar from '@components/SnackBar';
-
-import { usePokemonListContext } from '@contexts/PokemonListContext';
-
-import Modal from '@components/Modal';
-import Button from '@components/Button';
-
+import QuestionMarkIcon from '@public/icons/question-mark.svg';
 import AlphabeticalAscendingIcon from '@public/icons/alphabetical-ascending.svg';
 import AlphabeticalDescendingIcon from '@public/icons/alphabetical-descending.svg';
 import NumeralAscendingIcon from '@public/icons/numeral-ascending.svg';
 import NumeralDescendingIcon from '@public/icons/numeral-descending.svg';
 
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import { usePokemonListContext } from '@contexts/PokemonListContext';
 
-import { ReactChild, useEffect, useState } from 'react';
-
-import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
+import Button from '@components/Button';
+import Modal from '@components/Modal';
+import SnackBar from '@components/SnackBar';
 import TabsDemo from '@components/Tabs';
+
+import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import isTypeExcluded from '@utils/isTypeExcluded';
 
 import styles from './styles.module.scss';
@@ -62,7 +60,7 @@ const typesIcons = {
   rock: <RockIcon />,
   steel: <SteelIcon />,
   water: <WaterIcon />,
-  unknown: <QuestionMark />,
+  unknown: <QuestionMarkIcon />,
 };
 
 const sort = {

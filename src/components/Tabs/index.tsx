@@ -1,5 +1,6 @@
 import { Root, List, Trigger, Content } from '@radix-ui/react-tabs';
 import { ReactNode } from 'react';
+
 import styles from './styles.module.scss';
 
 interface ITabItem {

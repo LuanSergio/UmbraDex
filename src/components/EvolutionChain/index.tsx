@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-import getPokemonImageUrl from '@utils/getPokemonImageUrl';
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 import Carousel from '@components/Carousel';
 import CarouselItem from '@components/CarouselItem';
 import useWindowSize from '@hooks/useWindowSize';
+
+import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 
 import styles from './styles.module.scss';
 

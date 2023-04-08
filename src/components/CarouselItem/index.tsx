@@ -1,4 +1,5 @@
 import { ReactNode, MouseEvent, HTMLProps } from 'react';
+
 import styles from './styles.module.scss';
 
 interface ICarouselItem {

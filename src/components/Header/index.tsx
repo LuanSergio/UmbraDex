@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
-
 import Link from 'next/link';
-import Logo from '@public/icons/logo.svg';
+
+import LogoIcon from '@public/icons/logo.svg';
 import SearchIcon from '@public/icons/search.svg';
-import Github from '@public/icons/github.svg';
-import Options from '@public/icons/options.svg';
+import GithubIcon from '@public/icons/github.svg';
+import OptionsIcon from '@public/icons/options.svg';
+
 import SearchInput from '@components/SearchInput';
 import Menu from '@components/Menu';
 import useEscapeKeyPress from '@hooks/useEscapeKeyPress';
@@ -52,7 +53,7 @@ const Header = (): JSX.Element => {
             >
               <Link href="/">
                 <a className={styles.logo} aria-label="UmbraDex">
-                  <Logo />
+                  <LogoIcon />
                 </a>
               </Link>
             </div>
@@ -73,7 +74,7 @@ const Header = (): JSX.Element => {
                 rel="noreferrer"
               >
                 <span className={styles.icon}>
-                  <Github />
+                  <GithubIcon />
                 </span>
               </a>
 
@@ -102,7 +103,7 @@ const Header = (): JSX.Element => {
                   onClick={handleOpenOptionsClick}
                 >
                   <span className={styles.icon}>
-                    <Options />
+                    <OptionsIcon />
                   </span>
                 </button>
                 <Menu isOpen={isOptionsOpen} />
