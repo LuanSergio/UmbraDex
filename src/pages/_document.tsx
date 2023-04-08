@@ -6,7 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import HeadConfiguration from '@components/HeadConfiguration';
+import HeadComponent from '@components/Head';
 
 import bodyDefaultClasses from '@data/bodyDefaultClasses';
 
@@ -23,7 +23,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en" translate="no">
         <Head>
-          <HeadConfiguration />
+          <HeadComponent />
         </Head>
 
         <body className={`initial ${bodyDefaultClasses}`}>
