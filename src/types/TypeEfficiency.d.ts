@@ -1,10 +1,10 @@
-interface ITypeEfficiency {
+interface TypeEfficiency {
   name: string;
   damageFactor: number;
 }
 
-declare interface ITypesEfficiency {
-  weakness: ITypeEfficiency[];
-  immunities: ITypeEfficiency[];
-  resistances: ITypeEfficiency[];
+declare interface PokemonTypeEfficiency {
+  weakness: TypeEfficiency[];
+  immunities: TypeEfficiency[];
+  resistances: TypeEfficiency[];
 }

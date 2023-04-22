@@ -1,5 +1,5 @@
 node_modules
 .next
 /*.js
-src/assets/fonts/icons/selection.json
-/src/components/FormIcons
+src/presentation/assets
+/src/presentation/components/FormIcons
