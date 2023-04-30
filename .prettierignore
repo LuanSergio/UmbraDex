@@ -3,3 +3,4 @@ node_modules
 /*.js
 src/presentation/assets
 /src/presentation/components/FormIcons
+package-lock.json

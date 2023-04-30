@@ -2,3 +2,4 @@ node_modules
 .next
 /*.js
 /src/presentation/components/FormIcons
+package-lock.json
