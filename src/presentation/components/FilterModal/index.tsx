@@ -31,7 +31,7 @@ import Modal from 'src/presentation/components/Modal';
 import SnackBar from 'src/presentation/components/SnackBar';
 import TabsDemo from 'src/presentation/components/Tabs';
 
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
 import transformNumberToRomanNumeral from '@utils/transformNumberToRomanNumeral';
 import isTypeExcluded from '@utils/isTypeExcluded';
 

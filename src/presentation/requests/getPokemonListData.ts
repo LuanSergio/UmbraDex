@@ -1,10 +1,10 @@
-import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
 import graphqlClient from '@clients/api';
 import POKEMON_PER_REQUEST from 'src/presentation/constants/pokemonPerRequest';
 import formatQueryFilters from '@utils/formatQueryFilters';
 import formatQuerySort from '@utils/formatQuerySort';
 import checkIfPokemonHasType from '@utils/checkIfPokemonHasType';
-import replaceDashWithSpace from '@utils/replaceDashWithSpace';
+import replaceDashWithSpace from '@helpers/replaceDashWithSpace';
 
 interface IFetchPokemonListParams {
   queryName?: string;
@@ -35,8 +35,8 @@ async function fetchPokemonListData({
   const offset = page * POKEMON_PER_REQUEST;
 
   const query = `
-    query ${queryName} {
-      pokemonSpecieList: pokemon_v2_pokemonspecies(limit: ${POKEMON_PER_REQUEST}, offset: ${offset}, ${filterQuery} ${sortQuery}) {
+    query pokemon {
+      pokemonSpecieList: pokemon_v2_pokemonspecies(limit: 24, offset: 0) {
         id
         pokemon: pokemon_v2_pokemons {
           forms: pokemon_v2_pokemonforms {
@@ -56,9 +56,7 @@ async function fetchPokemonListData({
           pokedex_number
         }
       }
-    }
-    
-  `;
+    }`;
 
   const result = await graphqlClient.request(query);
 

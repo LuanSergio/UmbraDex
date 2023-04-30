@@ -1,10 +1,12 @@
-import Pokemon from '@domain/entities/Generation';
-import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
 import { Either } from '@core/Either';
 
-interface GetAllParams {
+import Pokemon from '@domain/entities/Pokemon';
+import PokemonSummary from '@domain/entities/PokemonSummary';
+
+export interface GetAllParams {
   queryName?: string;
   page: number;
+  pokemonPerRequest: number;
   search?: string;
   generationsFilter?: string[];
   primaryTypeFilter?: string[];
@@ -13,9 +15,6 @@ interface GetAllParams {
 }
 
 export default interface PokemonRepository {
-  getAll: (params: GetAllParams) => Promise<Either<Error, Pokemon[]>>;
-  get: (id: number) => Promise<Either<Error, Pokemon>>;
-  getTypeEfficacies: (
-    typesId: number[],
-  ) => Promise<Either<Error, PokemonTypeEfficiency>>;
+  getAll: (params: GetAllParams) => Promise<Either<Error, PokemonSummary[]>>;
+  getById: (id: number) => Promise<Either<Error, Pokemon>>;
 }

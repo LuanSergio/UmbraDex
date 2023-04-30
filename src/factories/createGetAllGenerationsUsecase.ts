@@ -1,10 +1,10 @@
 import GraphqlClient from '@infra/GraphqlClient';
-import Generations from '@data/generations';
+import GenerationData from '@data/GenerationData';
 import GetGenerationsUsecase from '@domain/usecases/GetGenerationsUsecase';
 
 const createGetAllGenerationsUsecase = () => {
   const httpClient = new GraphqlClient();
-  const generationsRepository = new Generations(httpClient);
+  const generationsRepository = new GenerationData(httpClient);
 
   return new GetGenerationsUsecase(generationsRepository);
 };

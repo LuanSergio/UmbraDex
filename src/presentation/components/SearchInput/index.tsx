@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { usePokemonListContext } from 'src/presentation/contexts/PokemonListContext';
 import useEscapeKeyPress from '@hooks/useEscapeKeyPress';
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
 
 import SearchIcon from '@public/icons/search.svg';
 import ClearIcon from '@public/icons/close.svg';

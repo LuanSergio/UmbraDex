@@ -6,8 +6,8 @@ import Carousel from 'src/presentation/components/Carousel';
 import CarouselItem from 'src/presentation/components/CarouselItem';
 import useWindowSize from '@hooks/useWindowSize';
 
-import getPokemonImageUrl from '@utils/getPokemonImageUrl';
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
+import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
 
 import styles from './styles.module.scss';
 

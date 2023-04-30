@@ -1,13 +1,14 @@
+import { Either, right, left } from '@core/Either';
+
 import GenerationRepository from '@domain/repository/GenerationRepository';
 import Generation from '@domain/entities/Generation';
-import { Either, right, left } from '@core/Either';
 import IHttpClient from '@services/http/IHttpClient';
 
 interface IGetAllResponse {
   generations: Generation[];
 }
 
-export default class Generations implements GenerationRepository {
+export default class GenerationData implements GenerationRepository {
   private readonly getAllQuery = `
   query PokemonGeneration {
     generations: pokemon_v2_generation {

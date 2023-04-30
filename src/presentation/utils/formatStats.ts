@@ -1,4 +1,4 @@
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
+import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
 
 export default function formatStats(stat: string, shortName?: boolean): string {
   return transformFirstLetterToUppercase(

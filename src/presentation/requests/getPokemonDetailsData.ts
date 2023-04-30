@@ -1,7 +1,7 @@
-import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
-import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
+import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
 import graphqlClient from '@clients/api';
-import replaceDashWithSpace from '@utils/replaceDashWithSpace';
+import replaceDashWithSpace from '@helpers/replaceDashWithSpace';
 
 interface GetPokemonDetailsDataResponse {
   pokedexLimit: number;
@@ -85,52 +85,36 @@ export default async function getPokemonDetailsData(
 
   // Map graphql response
   const pokemonDetails: GetPokemonDetailsDataResponse = {
-    pokedexLimit:
-      response.pokemon_v2_pokedex[0].pokemon_v2_pokemondexnumbers[0]
-        .pokedex_number,
-    forms: response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons.map(
-      form => {
-        return {
-          id: form.pokemon_v2_pokemonforms[0].pokemon_id,
-          name: transformFirstLetterToUppercase(
-            replaceDashWithSpace(form.name),
-          ),
-          isDefault: form.is_default,
-          types: form.pokemon_v2_pokemontypes.map(type => {
-            return type.pokemon_v2_type.name;
-          }),
-          formName: form.pokemon_v2_pokemonforms[0].form_name,
-          formOrder: form.pokemon_v2_pokemonforms[0].form_order,
-          height: form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.height,
-          weight: form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.weight,
-          stats:
-            form.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon.pokemon_v2_pokemonstats.map(
-              stats => {
-                return {
-                  name: stats.pokemon_v2_stat.name,
-                  value: stats.base_stat,
-                };
-              },
-            ),
-          image: getPokemonImageUrl(form.pokemon_v2_pokemonforms[0].pokemon_id),
-        };
-      },
-    ),
-    japaneseName:
-      response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesnames[0]
-        .name,
-
-    descriptions:
-      response.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts.map(
-        item => ({
-          id: item.id,
-          description: formatPokemonDescription(item.flavor_text),
-          gameVersion: item.version_id,
+    pokedexLimit: response.pokedex.pokedexNumbers[0].number,
+    forms: response.species[0].pokemon.map(form => {
+      return {
+        id: form.pokemonForms[0].formId,
+        name: transformFirstLetterToUppercase(replaceDashWithSpace(form.name)),
+        isDefault: form.isDefault,
+        types: form.types.map(type => {
+          return type.type.name;
         }),
-      ),
-    evolutionChain:
-      response.pokemon_v2_pokemonspecies[0].pokemon_v2_evolutionchain
-        .pokemon_v2_pokemonspecies,
+        formName: form.pokemonForms[0].form_name,
+        formOrder: form.pokemonForms[0].form_order,
+        height: form.pokemonForms[0].pokemonDetails.height,
+        weight: form.pokemonForms[0].pokemonDetails.weight,
+        stats: form.pokemonForms[0].pokemonDetails.stats.map(stats => {
+          return {
+            name: stats.stat.name,
+            value: stats.statValue,
+          };
+        }),
+        image: getPokemonImageUrl(form.pokemonForms[0].id),
+      };
+    }),
+    japaneseName: response.species.specieName[0].name,
+
+    descriptions: response.species.flavorTexts.map(item => ({
+      id: item.id,
+      description: formatPokemonDescription(item.flavor_text),
+      gameVersion: item.version_id,
+    })),
+    evolutionChain: response.species[0].evolutionChain.specie,
   };
 
   return pokemonDetails;

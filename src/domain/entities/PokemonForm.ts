@@ -7,8 +7,6 @@ export default class PokemonForm {
 
   public isDefault: boolean;
 
-  public formsDetails;
-
   public types: string[];
 
   public formName: string;
@@ -27,7 +25,7 @@ export default class PokemonForm {
     id: number,
     name: string,
     isDefault: boolean,
-    formsDetails,
+
     types: string[],
     formName: string,
     formOrder: string,
@@ -39,7 +37,7 @@ export default class PokemonForm {
     this.id = id;
     this.name = name;
     this.isDefault = isDefault;
-    this.formsDetails = formsDetails;
+
     this.types = types;
     this.formName = formName;
     this.formOrder = formOrder;
