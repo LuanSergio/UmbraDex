@@ -17,9 +17,11 @@ export default class Pokemon {
     japaneseName: string,
     descriptions: PokemonDescription[],
     evolutionChain: PokemonEvolution[],
+    forms: PokemonForm[],
   ) {
     this.japaneseName = japaneseName;
     this.descriptions = descriptions;
     this.evolutionChain = evolutionChain;
+    this.forms = forms;
   }
 }

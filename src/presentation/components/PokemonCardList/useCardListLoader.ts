@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from 'react';
+import PokemonSummary from '@domain/entities/PokemonSummary';
 
 interface ControllerProps {
   loader: HTMLElement;
   setSize: (
     size: number | ((_size: number) => number),
-  ) => Promise<IBasicPokemonInfo[][]>;
+  ) => Promise<PokemonSummary[][]>;
 }
 
 const useCardListLoader = ({ loader, setSize }: ControllerProps) => {

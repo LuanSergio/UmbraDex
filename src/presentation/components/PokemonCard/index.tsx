@@ -3,13 +3,15 @@ import Routes from 'src/presentation/constants/routes';
 
 import PokeBallIcon from '@public/icons/pokeball.svg';
 
+import PokemonSummary from '@domain/entities/PokemonSummary';
+
 import PokemonPicture from 'src/presentation/components/PokemonPicture';
 import TypeBadge from 'src/presentation/components/TypeBadge';
 
 import styles from './styles.module.scss';
 
 interface IPokemonCard {
-  pokemon: IBasicPokemonInfo;
+  pokemon: PokemonSummary;
 }
 
 const PokemonCard = ({ pokemon }: IPokemonCard): JSX.Element => {
@@ -37,11 +39,8 @@ const PokemonCard = ({ pokemon }: IPokemonCard): JSX.Element => {
           </div>
 
           <ul className={styles.typeContainer}>
-            {types?.map((type, index) => (
-              <li
-                key={type}
-                // className={`${styles.type} ${styles[types?.[index]]}`}
-              >
+            {types?.map(type => (
+              <li key={type}>
                 <TypeBadge>{type}</TypeBadge>
               </li>
             ))}

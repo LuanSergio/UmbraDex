@@ -7,7 +7,11 @@ import {
   useMemo,
   useState,
 } from 'react';
+
+import PokemonSummary from '@domain/entities/PokemonSummary';
+import PokemonType from '@domain/entities/PokemonType';
 import Generation from '@domain/entities/Generation';
+
 import usePokemonList from '@hooks/usePokemonList';
 import useDebounce from '@hooks/useDebounce';
 
@@ -19,12 +23,12 @@ interface IFilterOptions {
 
 interface IPokemonListContextData {
   searchValue: string;
-  pokemonList: IBasicPokemonInfo[][];
+  pokemonList: PokemonSummary[][];
   isLoading: boolean;
   staticData: {
     pokedexLimit: number;
     generations: Generation[];
-    pokemonTypes: IPokemonType[];
+    pokemonTypes: PokemonType[];
   };
   filterValues: IFilterOptions;
   sortValue: string;
@@ -32,18 +36,18 @@ interface IPokemonListContextData {
   handleSearchValueChange: (pokemonName: string) => void;
   setPokemonListSize: (
     size: number | ((_size: number) => number),
-  ) => Promise<IBasicPokemonInfo[][]>;
+  ) => Promise<PokemonSummary[][]>;
   updateFilters: (params: keyof IFilterOptions, value: unknown) => void;
 }
 
 export const PokemonListContext = createContext({} as IPokemonListContextData);
 
 interface PokemonListContextProviderProps {
-  fallback?: IBasicPokemonInfo[][];
+  fallback?: PokemonSummary[][];
   staticData: {
     pokedexLimit: number;
     generations: Generation[];
-    pokemonTypes: IPokemonType[];
+    pokemonTypes: PokemonType[];
   };
   children: ReactNode;
 }

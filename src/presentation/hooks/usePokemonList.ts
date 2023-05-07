@@ -1,5 +1,8 @@
 import useSWRInfinite from 'swr/infinite';
-import getPokemonListData from 'src/presentation/requests/getPokemonListData';
+import createGetPokemonListUsecase from '@factories/createGetPokemonListUsecase';
+import PokemonSummary from '@domain/entities/PokemonSummary';
+
+import POKEMON_PER_REQUEST from 'src/presentation/constants/pokemonPerRequest';
 
 interface IFilterOptions {
   generation?: number[];
@@ -8,19 +11,19 @@ interface IFilterOptions {
 }
 
 interface IUsePokemonListParams {
-  fallback?: IBasicPokemonInfo[][];
+  fallback?: PokemonSummary[][];
   search?: string;
   filterValues?: IFilterOptions;
   sortValue?: string;
 }
 
 interface IUsePokemonListResponse {
-  pokemonList: IBasicPokemonInfo[][];
+  pokemonList: PokemonSummary[][];
   isLoading: boolean;
   size: number;
   setSize: (
     size: number | ((_size: number) => number),
-  ) => Promise<IBasicPokemonInfo[][]>;
+  ) => Promise<PokemonSummary[][]>;
 }
 
 export default function usePokemonList({
@@ -30,6 +33,7 @@ export default function usePokemonList({
   sortValue,
 }: IUsePokemonListParams): IUsePokemonListResponse {
   const { generation, primaryType, secondaryType } = filterValues;
+  const getPokemonListUsecase = createGetPokemonListUsecase();
 
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
@@ -46,7 +50,7 @@ export default function usePokemonList({
 
   const { data, error, size, setSize } = useSWRInfinite(
     getKey,
-    (
+    async (
       key,
       page,
       searchKey,
@@ -54,8 +58,8 @@ export default function usePokemonList({
       primaryTypeKey,
       secondaryTypeKey,
       sortValueKey,
-    ) =>
-      getPokemonListData({
+    ) => {
+      const response = await getPokemonListUsecase.getAll({
         queryName: key,
         page,
         search: searchKey,
@@ -63,7 +67,15 @@ export default function usePokemonList({
         primaryTypeFilter: primaryTypeKey,
         secondaryTypeFilter: secondaryTypeKey,
         sortValue: sortValueKey,
-      }),
+        pokemonPerRequest: POKEMON_PER_REQUEST,
+      });
+
+      if (response.isRight()) {
+        return response.value;
+      }
+
+      throw response.value;
+    },
     {
       fallbackData: fallback,
     },

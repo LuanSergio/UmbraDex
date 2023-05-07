@@ -8,11 +8,13 @@ import Carousel from 'src/presentation/components/Carousel';
 import CarouselItem from 'src/presentation/components/CarouselItem';
 import ScrollableText from 'src/presentation/components/ScrollableText';
 
+import PokemonDescription from '@domain/entities/PokemonDescription';
+
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
   pokedexIndex: number;
-  descriptions: IPokemonDescription[];
+  descriptions: PokemonDescription[];
 }
 
 const PokemonBasicInformation = ({

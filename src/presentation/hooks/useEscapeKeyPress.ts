@@ -15,5 +15,5 @@ export default function useEscapeKeyPress({
     };
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
-  }, []);
+  }, [fn]);
 }

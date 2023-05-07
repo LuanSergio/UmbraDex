@@ -6,6 +6,10 @@ import PokemonRepository, {
 } from '@domain/repository/PokemonRepository';
 import PokemonSummary from '@domain/entities/PokemonSummary';
 import Pokemon from '@domain/entities/Pokemon';
+import {
+  PokemonResponse,
+  PokemonSummaryResponse,
+} from '@data/responses/PokemonResponses';
 
 import formatQueryFilters from '@data/format/formatQueryFilters';
 import formatQuerySort from '@data/format/formatQuerySort';
@@ -14,105 +18,6 @@ import checkIfPokemonHasType from '@helpers/checkIfPokemonHasType';
 import replaceDashWithSpace from '@helpers/replaceDashWithSpace';
 import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
 import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
-
-interface PokemonSummaryResponse {
-  id: 1;
-  pokemon: [
-    {
-      forms: [
-        {
-          name: string;
-          formId: number;
-        },
-      ];
-      types: [
-        {
-          type: {
-            name: string;
-          };
-        },
-      ];
-      isDefault: boolean;
-    },
-  ];
-}
-
-interface PokemonResponse {
-  pokedex: [
-    {
-      pokedexNumbers: [
-        {
-          number: 1008;
-        },
-      ];
-    },
-  ];
-  species: [
-    {
-      pokemon: [
-        {
-          name: string;
-          isDefault: boolean;
-          types: [
-            {
-              type: {
-                name: string;
-              };
-            },
-          ];
-          forms: [
-            {
-              formName: string;
-              formOrder: number;
-              id: number;
-              pokemonDetails: {
-                stats: [
-                  {
-                    statValue: number;
-                    stat: {
-                      name: string;
-                    };
-                  },
-                ];
-                weight: number;
-                height: number;
-              };
-            },
-          ];
-          abilities: [
-            {
-              ability: {
-                name: string;
-              };
-            },
-          ];
-        },
-      ];
-      specieName: [
-        {
-          name: string;
-        },
-      ];
-      flavorTexts: [
-        {
-          id: number;
-          flavorText: string;
-          versionId: number;
-        },
-      ];
-      evolutionChain: {
-        specie: [
-          {
-            id: number;
-            name: string;
-            order: number;
-          },
-        ];
-      };
-      generationId: number;
-    },
-  ];
-}
 
 interface IGetAllPokemonResponse {
   pokemonSpecieList: PokemonSummaryResponse[];
@@ -285,7 +190,7 @@ export default class PokemonData implements PokemonRepository {
 
   async getById(id: number): Promise<Either<Error, Pokemon>> {
     try {
-      const result = await this.client.request<PokemonResponse>({
+      const result = await this.client.request<any>({
         query: this.pokemonByIdQuery(id),
       });
 
@@ -293,7 +198,7 @@ export default class PokemonData implements PokemonRepository {
         pokedexLimit: result.body.pokedex[0].pokedexNumbers[0].number,
         forms: result.body.species[0].pokemon.map(form => {
           return {
-            id: form[0].formId,
+            id: form.pokemonForms[0].id,
             name: transformFirstLetterToUppercase(
               replaceDashWithSpace(form.name),
             ),
@@ -301,17 +206,17 @@ export default class PokemonData implements PokemonRepository {
             types: form.types.map(type => {
               return type.type.name;
             }),
-            formName: form[0].form_name,
-            formOrder: form[0].form_order,
-            height: form[0].pokemonDetails.height,
-            weight: form[0].pokemonDetails.weight,
-            stats: form[0].pokemonDetails.stats.map(stats => {
+            formName: form.pokemonForms[0].formName,
+            formOrder: form.pokemonForms[0].formOrder,
+            height: form.pokemonForms[0].pokemonDetails.height,
+            weight: form.pokemonForms[0].pokemonDetails.weight,
+            stats: form.pokemonForms[0].pokemonDetails.stats.map(stats => {
               return {
                 name: stats.stat.name,
                 value: stats.statValue,
               };
             }),
-            image: getPokemonImageUrl(form[0].id),
+            image: getPokemonImageUrl(form.pokemonForms[0].id),
           };
         }),
         japaneseName: result.body.species[0].specieName[0].name,
@@ -323,6 +228,7 @@ export default class PokemonData implements PokemonRepository {
         })),
         evolutionChain: result.body.species[0].evolutionChain.specie,
       };
+      console.log('🚀 ~ PokemonData ~ getById ~ pokemon:', pokemon);
 
       return right(pokemon);
     } catch (error) {

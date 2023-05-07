@@ -31,7 +31,6 @@
       "@clients/*": ["src/presentation/services/*"],
       "@images/*": ["src/presentation/assets/images/*"],
       "@constants/*": ["src/presentation/constants/*"],
-      "@requests/*": ["src/presentation/requests/*"],
       "@public/*": ["public/*"]
     },
     "incremental": true

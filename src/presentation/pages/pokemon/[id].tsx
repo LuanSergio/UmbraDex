@@ -1,29 +1,32 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 
-import getPokemonDetailsData from 'src/presentation/requests/getPokemonDetailsData';
-import getPokedexLimit from 'src/presentation/requests/getPokedexLimit';
-import getPokemonTypes from 'src/presentation/requests/getPokemonTypes';
+import createGetAllGenerationsUsecase from '@factories/createGetAllGenerationsUsecase';
+import createGetPokedexLimitUsecase from '@factories/createGetPokedexLimitUsecase';
+import createGetPokemonByIdUsecase from '@factories/createGetPokemonByIdUsecase';
+import createGetPokemonTypeUsecase from '@factories/createGetPokemonTypeUsecase';
 
 import Generation from '@domain/entities/Generation';
-import createGetAllGenerationsUsecase from '@factories/createGetAllGenerationsUsecase';
+import Pokemon from '@domain/entities/Pokemon';
+import PokemonType from '@domain/entities/PokemonType';
+import PokemonForm from '@domain/entities/PokemonForm';
 
 import PokemonContent from '@components/PokemonContent';
 import Header from '@components/Header';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 
 interface IPokemonDetailsProps {
-  pokemonDetails: IPokemonDetails;
-  defaultPokemonForm: IPokemonForm;
-  AlternativePokemonForms: IPokemonForm[];
+  pokemonDetails: Pokemon;
+  defaultPokemonForm: PokemonForm;
+  AlternativePokemonForms: PokemonForm[];
   staticData: {
     pokedexLimit: number;
     generations: Generation[];
-    pokemonTypes: IPokemonType[];
+    pokemonTypes: PokemonType[];
   };
 }
 
-const Pokemon = ({
+const PokemonPage = ({
   defaultPokemonForm,
   AlternativePokemonForms,
   pokemonDetails,
@@ -58,19 +61,43 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params;
   const pokemonIdAsNumber = parseInt(id as string, 10);
-  const pokemonForms = await getPokemonDetailsData(pokemonIdAsNumber);
-  const pokedexLimit = await getPokedexLimit();
 
   const getGenerationUsecase = createGetAllGenerationsUsecase();
-  const generationsResponse = await getGenerationUsecase.getAll();
+  const getPokedexLimitUsecase = createGetPokedexLimitUsecase();
+  const getPokemonByIdUsecase = createGetPokemonByIdUsecase();
+  const getPokemonTypeUsecase = createGetPokemonTypeUsecase();
 
+  const pokemonByIdResponse = await getPokemonByIdUsecase.getById(
+    pokemonIdAsNumber,
+  );
+  const generationsResponse = await getGenerationUsecase.getAll();
+  const pokedexLimitResponse = await getPokedexLimitUsecase.getLimit();
+  const pokemonTypesResponse = await getPokemonTypeUsecase.getAll();
+
+  let pokemonForms: Pokemon;
   let generations: Generation[] = [];
+  let pokedexLimit = 151;
+  let pokemonTypes: PokemonType[] = [];
+
+  if (pokemonByIdResponse.isRight()) {
+    console.log('is RIght');
+    pokemonForms = pokemonByIdResponse.value;
+  } else {
+    console.log('is left');
+  }
 
   if (generationsResponse.isRight()) {
     generations = generationsResponse.value;
   }
 
-  const pokemonTypes = await getPokemonTypes();
+  if (pokedexLimitResponse.isRight()) {
+    pokedexLimit = pokedexLimitResponse.value;
+  }
+
+  if (pokemonTypesResponse.isRight()) {
+    pokemonTypes = pokemonTypesResponse.value;
+  }
+
   const staticData = {
     pokedexLimit,
     generations,
@@ -78,20 +105,20 @@ export const getStaticProps: GetStaticProps = async context => {
   };
 
   const pokemonDetails = { ...pokemonForms };
-  const defaultPokemonForm = pokemonForms.forms.find(form => form.isDefault);
-  const AlternativePokemonForms = pokemonForms.forms.filter(
+  const defaultPokemonForm = pokemonForms?.forms.find(form => form.isDefault);
+  const AlternativePokemonForms = pokemonForms?.forms.filter(
     form => !form.isDefault,
   );
 
   return {
     props: {
       pokemonDetails,
-      AlternativePokemonForms,
-      defaultPokemonForm,
+      AlternativePokemonForms: AlternativePokemonForms ?? [],
+      defaultPokemonForm: defaultPokemonForm ?? [],
       staticData,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };
 };
 
-export default Pokemon;
+export default PokemonPage;

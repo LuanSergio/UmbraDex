@@ -15,8 +15,7 @@ export default class GenerationData implements GenerationRepository {
       id
       name
     }
-  }
-`;
+  }`;
 
   constructor(private readonly client: IHttpClient) {}
 

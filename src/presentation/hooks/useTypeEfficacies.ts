@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-import getTypeEfficacies from 'src/presentation/requests/getTypeEfficacies';
-import { useEffect, useState } from 'react';
+import createGetPokemonTypeEfficaciesUsecase from '@factories/createGetPokemonTypeEfficaciesUsecase';
 
 interface IUseTypeEfficaciesParams {
   types: number[];
@@ -16,10 +16,19 @@ export default function useTypeEfficacies({
   types,
 }: IUseTypeEfficaciesParams): IUseTypeEfficaciesResponse {
   const [isLoading, setIsLoading] = useState(true);
+  const getPokemonTypeEfficaciesUsecase =
+    createGetPokemonTypeEfficaciesUsecase();
+  const { data, error } = useSWR([types], async typesKey => {
+    const response = await getPokemonTypeEfficaciesUsecase.getTypeEfficacies(
+      typesKey,
+    );
 
-  const { data, error } = useSWR([types], typesKey =>
-    getTypeEfficacies(typesKey),
-  );
+    if (response.isRight()) {
+      return response.value;
+    }
+
+    throw response.value;
+  });
 
   useEffect(() => {
     if (error != null || data != null) {
