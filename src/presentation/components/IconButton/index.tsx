@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
-interface IButtonProps {
+interface ButtonProps {
   children: ReactNode;
   round?: boolean;
   label: string;
@@ -21,7 +21,7 @@ const IconButton = ({
   fill,
   theme = 'primary',
   type = 'button',
-}: IButtonProps): JSX.Element => (
+}: ButtonProps): JSX.Element => (
   <button
     type={type}
     aria-label={label}

@@ -1,4 +1,4 @@
-interface IFormatQueryFiltersParams {
+interface FormatQueryFiltersParams {
   search?: string;
   generation?: string[];
   primaryType?: string[];
@@ -10,7 +10,7 @@ function formatQueryFilters({
   generation,
   primaryType,
   secondaryType,
-}: IFormatQueryFiltersParams) {
+}: FormatQueryFiltersParams) {
   if (!search.length && !generation?.length && !primaryType?.length) return '';
 
   const filterSearch = `

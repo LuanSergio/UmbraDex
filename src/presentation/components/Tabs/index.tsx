@@ -3,19 +3,19 @@ import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
-interface ITabItem {
+interface TabItem {
   title: string;
   content: ReactNode;
   value: string;
   disabled?: boolean;
 }
 
-interface ITabProps {
-  items: ITabItem[];
+interface TabProps {
+  items: TabItem[];
   label: string;
 }
 
-const Tabs = ({ items, label }: ITabProps) => (
+const Tabs = ({ items, label }: TabProps) => (
   <Root className={styles.tabsRoot} defaultValue={items[0].value}>
     <List className={styles.tabsList} aria-label={label}>
       {items.map(item => (

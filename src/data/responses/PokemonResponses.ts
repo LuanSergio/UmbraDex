@@ -1,26 +1,30 @@
-export interface PokemonSummaryResponse {
-  id: 1;
-  pokemon: [
+export interface GetAllPokemonResponse {
+  pokemonSpecieList: [
     {
-      forms: [
+      id: 1;
+      pokemon: [
         {
-          name: string;
-          formId: number;
+          forms: [
+            {
+              name: string;
+              formId: number;
+            },
+          ];
+          types: [
+            {
+              type: {
+                name: string;
+              };
+            },
+          ];
+          isDefault: boolean;
         },
       ];
-      types: [
-        {
-          type: {
-            name: string;
-          };
-        },
-      ];
-      isDefault: boolean;
     },
   ];
 }
 
-export interface PokemonResponse {
+export interface GetPokemonByIdResponse {
   pokedex: [
     {
       pokedexNumbers: [
@@ -34,8 +38,8 @@ export interface PokemonResponse {
     {
       pokemon: [
         {
-          name: string;
           isDefault: boolean;
+          name: string;
           types: [
             {
               type: {
@@ -43,32 +47,35 @@ export interface PokemonResponse {
               };
             },
           ];
-          forms: [
-            {
-              formName: string;
-              formOrder: number;
-              id: number;
-              pokemonDetails: {
-                stats: [
-                  {
-                    statValue: number;
-                    stat: {
-                      name: string;
-                    };
-                  },
-                ];
-                weight: number;
-                height: number;
-              };
-            },
-          ];
-          abilities: [
-            {
-              ability: {
-                name: string;
-              };
-            },
-          ];
+
+          pokemonForms: {
+            forms: [
+              {
+                formName: string;
+                formOrder: number;
+                id: number;
+                pokemonDetails: {
+                  stats: [
+                    {
+                      statValue: number;
+                      stat: {
+                        name: string;
+                      };
+                    },
+                  ];
+                  weight: number;
+                  height: number;
+                };
+              },
+            ];
+            abilities: [
+              {
+                ability: {
+                  name: string;
+                };
+              },
+            ];
+          };
         },
       ];
       specieName: [

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import PokemonForm from '@domain/entities/PokemonForm';
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
 
 import AlolaFormIcon from 'src/presentation/components/FormIcons/AlolaFormIcon';
@@ -16,10 +17,10 @@ import CarouselItem from 'src/presentation/components/CarouselItem';
 import styles from './styles.module.scss';
 
 interface SwitchFormsProps {
-  defaultPokemonForm: IPokemonForm;
-  alternativePokemonForms: IPokemonForm[];
-  pokemon: IPokemonForm;
-  handleFormChange: (form: IPokemonForm) => void;
+  defaultPokemonForm: PokemonForm;
+  alternativePokemonForms: PokemonForm[];
+  pokemon: PokemonForm;
+  handleFormChange: (form: PokemonForm) => void;
 }
 
 const forms = {

@@ -5,28 +5,25 @@ import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
 import formatTypeEfficiency from '@data/format/formatTypeEfficiency';
 
 import IHttpClient from '@services/http/IHttpClient';
+import { GetAllTypesResponse } from '@data/responses/PokemonTypeResponses';
 
-interface IGetAllTypesResponse {
-  types: PokemonType[];
-}
-
-interface ITypeEfficacy {
+interface TypeEfficacy {
   damageFactor: number;
 }
 
-interface ITypeEfficaciesResponse {
+interface TypeEfficaciesResponse {
   name: string;
-  efficacies: ITypeEfficacy[];
+  efficacies: TypeEfficacy[];
 }
 
-interface IGetPokemonTypeEfficaciesResponse {
-  typeEfficacies: ITypeEfficaciesResponse[];
+interface GetPokemonTypeEfficaciesResponse {
+  typeEfficacies: TypeEfficaciesResponse[];
 }
 
 export default class PokemonTypeData implements PokemonTypesRepository {
   private readonly getAllPokemonTypesQuery = `
   query PokemonType {
-    types {
+    types: pokemon_v2_type {
       id
       name
     }
@@ -47,7 +44,7 @@ export default class PokemonTypeData implements PokemonTypesRepository {
 
   async getAll(): Promise<Either<Error, PokemonType[]>> {
     try {
-      const result = await this.client.request<IGetAllTypesResponse>({
+      const result = await this.client.request<GetAllTypesResponse>({
         query: this.getAllPokemonTypesQuery,
       });
 
@@ -62,7 +59,7 @@ export default class PokemonTypeData implements PokemonTypesRepository {
   ): Promise<Either<Error, PokemonTypeEfficiency>> {
     try {
       const result =
-        await this.client.request<IGetPokemonTypeEfficaciesResponse>({
+        await this.client.request<GetPokemonTypeEfficaciesResponse>({
           query: this.getAllPokemonTypeEfficaciesQuery(typesId),
         });
 

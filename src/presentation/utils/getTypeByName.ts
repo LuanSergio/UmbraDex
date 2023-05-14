@@ -1,12 +1,14 @@
-interface IGetTypeByName {
+import PokemonType from '@domain/entities/PokemonType';
+
+interface GetTypeByName {
   name: string;
-  typesList: IPokemonType[];
+  typesList: PokemonType[];
 }
 
 export default function getTypeByName({
   name,
   typesList,
-}: IGetTypeByName): IPokemonType {
+}: GetTypeByName): PokemonType {
   const type = typesList.find(item => item.name === name);
 
   return type;

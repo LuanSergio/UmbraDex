@@ -5,7 +5,7 @@
 @use 'settings/_breakpoints' as *;
 @use 'animations/_rotating' as *;
 
-.pokemonTypeEfficiency {
+.pokemonTypeEfficiencyTable {
   background-color: var(--current-dark-type-color);
   border-radius: 24px;
   color: get-color(light);

@@ -2,7 +2,7 @@ import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
 
 import styles from './styles.module.scss';
 
-interface ITextFieldProps {
+interface TextFieldProps {
   label: string;
   helperText?: string;
   adornment?: JSX.Element;
@@ -23,7 +23,7 @@ const TextField = forwardRef(
       inputProps,
       adornment,
       size = 'medium',
-    }: ITextFieldProps,
+    }: TextFieldProps,
     ref: LegacyRef<HTMLInputElement>,
   ): JSX.Element => (
     <div className={styles.textField}>

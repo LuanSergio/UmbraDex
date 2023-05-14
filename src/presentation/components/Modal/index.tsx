@@ -5,7 +5,7 @@ import CloseIcon from '@public/icons/close.svg';
 
 import styles from './styles.module.scss';
 
-interface IModalProps {
+interface ModalProps {
   children: ReactChild;
   openButton: ReactChild;
   title: string;
@@ -23,7 +23,7 @@ const Modal = ({
   size = 'medium',
   open,
   onOpenChange,
-}: IModalProps): JSX.Element => (
+}: ModalProps): JSX.Element => (
   <Dialog.Root open={open} onOpenChange={onOpenChange}>
     <Dialog.Trigger asChild>{openButton}</Dialog.Trigger>
     <Dialog.Portal>

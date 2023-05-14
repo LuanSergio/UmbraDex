@@ -11,15 +11,15 @@ export default class PokemonForm {
 
   public formName: string;
 
-  public formOrder: string;
+  public formOrder: number;
 
   public stats: PokemonStats[];
 
   public image: string;
 
-  public weight: string;
+  public weight: number;
 
-  public height: string;
+  public height: number;
 
   constructor(
     id: number,
@@ -28,11 +28,11 @@ export default class PokemonForm {
 
     types: string[],
     formName: string,
-    formOrder: string,
+    formOrder: number,
     stats: PokemonStats[],
     image: string,
-    weight: string,
-    height: string,
+    weight: number,
+    height: number,
   ) {
     this.id = id;
     this.name = name;

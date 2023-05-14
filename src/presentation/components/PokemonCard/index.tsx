@@ -10,11 +10,11 @@ import TypeBadge from 'src/presentation/components/TypeBadge';
 
 import styles from './styles.module.scss';
 
-interface IPokemonCard {
+interface PokemonCard {
   pokemon: PokemonSummary;
 }
 
-const PokemonCard = ({ pokemon }: IPokemonCard): JSX.Element => {
+const PokemonCard = ({ pokemon }: PokemonCard): JSX.Element => {
   const { id, image, name, types } = pokemon;
 
   return (

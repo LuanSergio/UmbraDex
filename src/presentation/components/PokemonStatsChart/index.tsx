@@ -1,13 +1,14 @@
+import PokemonStats from '@domain/entities/PokemonStats';
 import formatStats from '@utils/formatStats';
 import BaseRadarChart from 'src/presentation/components/BaseRadarChart';
 
 import styles from './styles.module.scss';
 
-interface IPokemonStatsProps {
-  stats: IPokemonStats[];
+interface PokemonStatsProps {
+  stats: PokemonStats[];
 }
 
-const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {
+const PokemonStatsChart = ({ stats }: PokemonStatsProps): JSX.Element => {
   return (
     <div className={styles.stats}>
       <div className={styles.statsList}>
@@ -41,7 +42,7 @@ const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {
         })}
       </div>
 
-      <div className={styles.statsGraph}>
+      <div className={styles.statsChart}>
         <BaseRadarChart
           label="label"
           radars={[
@@ -60,4 +61,4 @@ const PokemonStats = ({ stats }: IPokemonStatsProps): JSX.Element => {
   );
 };
 
-export default PokemonStats;
+export default PokemonStatsChart;

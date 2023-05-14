@@ -1,14 +1,8 @@
 import { Either, right, left } from '@core/Either';
 import PokedexRepository from '@domain/repository/PokedexRepository';
-import IHttpClient from '@services/http/IHttpClient';
+import { GetPokedexLimitResponse } from '@data/responses/PokedexResponse';
 
-interface GetLimitResponse {
-  pokedex: {
-    pokedexNumbers: {
-      limit: number;
-    };
-  };
-}
+import IHttpClient from '@services/http/IHttpClient';
 
 export default class PokedexData implements PokedexRepository {
   private readonly getLimitQuery = `
@@ -25,7 +19,7 @@ export default class PokedexData implements PokedexRepository {
 
   async getLimit(): Promise<Either<Error, number>> {
     try {
-      const result = await this.client.request<GetLimitResponse>({
+      const result = await this.client.request<GetPokedexLimitResponse>({
         query: this.getLimitQuery,
       });
 

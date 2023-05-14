@@ -15,7 +15,7 @@ import IconButton from 'src/presentation/components/IconButton';
 
 import styles from './styles.module.scss';
 
-interface ISearchInputIconProps {
+interface SearchInputIconProps {
   isLoading: boolean;
   value: string;
   setInputValue: (value: string) => void;
@@ -27,7 +27,7 @@ const SearchInputIcon = ({
   value,
   setInputValue,
   setInputFocus,
-}: ISearchInputIconProps): JSX.Element => {
+}: SearchInputIconProps): JSX.Element => {
   function clearInputValue() {
     setInputValue('');
   }
@@ -74,11 +74,11 @@ const SearchInputIcon = ({
   );
 };
 
-interface ISearchInputProps {
+interface SearchInputProps {
   isOpen: boolean;
 }
 
-const SearchInput = ({ isOpen }: ISearchInputProps): JSX.Element => {
+const SearchInput = ({ isOpen }: SearchInputProps): JSX.Element => {
   const searchRef = useRef(null);
   const [searchInputValue, setSearchInputValue] = useState('');
   const { handleSearchValueChange, isLoading, pokemonList, searchValue } =

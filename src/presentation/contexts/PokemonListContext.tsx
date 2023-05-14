@@ -15,13 +15,13 @@ import Generation from '@domain/entities/Generation';
 import usePokemonList from '@hooks/usePokemonList';
 import useDebounce from '@hooks/useDebounce';
 
-interface IFilterOptions {
+interface FilterOptions {
   generation?: number[];
   primaryType?: string[];
   secondaryType?: string[];
 }
 
-interface IPokemonListContextData {
+interface PokemonListContextData {
   searchValue: string;
   pokemonList: PokemonSummary[][];
   isLoading: boolean;
@@ -30,17 +30,17 @@ interface IPokemonListContextData {
     generations: Generation[];
     pokemonTypes: PokemonType[];
   };
-  filterValues: IFilterOptions;
+  filterValues: FilterOptions;
   sortValue: string;
   updateSort: (value: string) => void;
   handleSearchValueChange: (pokemonName: string) => void;
   setPokemonListSize: (
     size: number | ((_size: number) => number),
   ) => Promise<PokemonSummary[][]>;
-  updateFilters: (params: keyof IFilterOptions, value: unknown) => void;
+  updateFilters: (params: keyof FilterOptions, value: unknown) => void;
 }
 
-export const PokemonListContext = createContext({} as IPokemonListContextData);
+export const PokemonListContext = createContext({} as PokemonListContextData);
 
 interface PokemonListContextProviderProps {
   fallback?: PokemonSummary[][];
@@ -58,12 +58,12 @@ export function PokemonListContextProvider({
   staticData,
 }: PokemonListContextProviderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [filterValues, setFiltersValues] = useState<IFilterOptions>({});
+  const [filterValues, setFiltersValues] = useState<FilterOptions>({});
   const [sortValue, setSortValue] = useState<string>('');
   const [hasFilter, setHasFilter] = useState(false);
 
   const updateFilters = useCallback(
-    (params: keyof IFilterOptions, value: unknown): void => {
+    (params: keyof FilterOptions, value: unknown): void => {
       setFiltersValues(currentState => ({
         ...currentState,
         [params]: value,

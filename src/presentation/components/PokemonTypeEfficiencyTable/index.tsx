@@ -3,9 +3,10 @@ import LoadingDots from '@public/icons/loading-dots.svg';
 
 import TypeBadge from 'src/presentation/components/TypeBadge';
 
+import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
 import styles from './styles.module.scss';
 
-interface IPokemonTypeEfficiency {
+interface PokemonTypeEfficiencyProps {
   isLoading: boolean;
   typeEfficiency: PokemonTypeEfficiency;
 }
@@ -38,12 +39,12 @@ const modifierIcons = {
   ),
 };
 
-const PokemonTypeEfficiency = ({
+const PokemonTypeEfficiencyTable = ({
   isLoading,
   typeEfficiency,
-}: IPokemonTypeEfficiency) => {
+}: PokemonTypeEfficiencyProps) => {
   return (
-    <div className={styles.pokemonTypeEfficiency}>
+    <div className={styles.pokemonTypeEfficiencyTable}>
       {isLoading || typeEfficiency === undefined ? (
         <div className={styles.loading}>
           <div className={styles.loadingPokeball}>
@@ -159,4 +160,4 @@ const PokemonTypeEfficiency = ({
   );
 };
 
-export default PokemonTypeEfficiency;
+export default PokemonTypeEfficiencyTable;

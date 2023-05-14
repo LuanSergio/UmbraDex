@@ -37,7 +37,7 @@ import isTypeExcluded from '@utils/isTypeExcluded';
 
 import styles from './styles.module.scss';
 
-interface IFilterModal {
+interface FilterModal {
   children: ReactChild;
 }
 
@@ -70,7 +70,7 @@ const sort = {
   'alphabetical-descending': <AlphabeticalDescendingIcon />,
 };
 
-const FilterModal = ({ children }: IFilterModal): JSX.Element => {
+const FilterModal = ({ children }: FilterModal): JSX.Element => {
   const {
     filterValues,
     sortValue: currentSortValue,

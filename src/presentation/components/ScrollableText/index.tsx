@@ -4,7 +4,7 @@ import getElementHeight from '@utils/getElementHeight';
 
 import styles from './styles.module.scss';
 
-interface IScrollableTextProps {
+interface ScrollableTextProps {
   children: ReactNode;
   maxHeight: number;
   shouldChange?: unknown;
@@ -14,7 +14,7 @@ const ScrollableText = ({
   children,
   shouldChange,
   maxHeight,
-}: IScrollableTextProps): JSX.Element => {
+}: ScrollableTextProps): JSX.Element => {
   const [height, setHeight] = useState(0);
   const textRef = useRef<HTMLParagraphElement>(null);
 

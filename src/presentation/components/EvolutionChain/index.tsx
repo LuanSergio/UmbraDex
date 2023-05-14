@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+import PokemonEvolution from '@domain/entities/PokemonEvolution';
+
 import Carousel from 'src/presentation/components/Carousel';
 import CarouselItem from 'src/presentation/components/CarouselItem';
 import useWindowSize from '@hooks/useWindowSize';
@@ -11,15 +13,15 @@ import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppe
 
 import styles from './styles.module.scss';
 
-interface IEvolutionChainProps {
+interface EvolutionChainProps {
   currentId: number;
-  evolutionChain: IPokemonEvolution[];
+  evolutionChain: PokemonEvolution[];
 }
 
 const EvolutionChain = ({
   evolutionChain,
   currentId,
-}: IEvolutionChainProps): JSX.Element => {
+}: EvolutionChainProps): JSX.Element => {
   const [evolutionIndex, setEvolutionIndex] = useState(0);
   const [widthList, setWidthList] = useState([]);
   const [windowWidth] = useWindowSize();

@@ -3,7 +3,7 @@ import { Children, ReactNode, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 import useCarousel from './useCarousel';
 
-interface ICarouselProps {
+interface CarouselProps {
   children: ReactNode;
   tagName?: keyof JSX.IntrinsicElements;
   carouselDescription?: string;
@@ -27,10 +27,9 @@ const Carousel = ({
   currentIndex,
   updateCurrentIndex,
   maxPositionIndex = 'none',
-}: ICarouselProps): JSX.Element => {
+}: CarouselProps): JSX.Element => {
   const [itemsQuantity, setItemsQuantity] = useState(Children.count(children));
-  const [maxPositionIndexState, setMaxPositionIndexState] =
-    useState(maxPositionIndex);
+  const [maxPositionIndexState, setMaxPositionIndexState] = useState(0);
 
   const Tag = tagName as keyof JSX.IntrinsicElements;
   const carouselWrapperRef = useRef<HTMLDivElement>(null);

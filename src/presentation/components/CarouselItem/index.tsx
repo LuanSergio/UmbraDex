@@ -2,7 +2,7 @@ import { ReactNode, MouseEvent, HTMLProps } from 'react';
 
 import styles from './styles.module.scss';
 
-interface ICarouselItem {
+interface CarouselItem {
   children: ReactNode;
   tagName?: keyof JSX.IntrinsicElements;
   onClick?: (...args: unknown[]) => unknown;
@@ -25,7 +25,7 @@ const CarouselItem = ({
   tagName,
   onClick,
   buttonProps,
-}: ICarouselItem): JSX.Element => {
+}: CarouselItem): JSX.Element => {
   const Tag = (tagName as keyof JSX.IntrinsicElements) ?? 'div';
 
   function handleClick(): void {

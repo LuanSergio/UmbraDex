@@ -1,13 +1,12 @@
-interface ITypeEfficacy {
-  damageFactor: number;
-}
+import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
+import TypeEfficiency from '@domain/entities/TypeEfficiency';
 
-interface ITypeEfficaciesResponse {
+interface TypeEfficaciesResponse {
   name: string;
-  efficacies: ITypeEfficacy[];
+  efficacies: TypeEfficiency[];
 }
 
-function sumEfficacies(efficacies: ITypeEfficacy[]) {
+function sumEfficacies(efficacies: TypeEfficiency[]) {
   return efficacies.reduce(
     (accumulator, current) => {
       const currentValue =
@@ -24,7 +23,7 @@ function sumEfficacies(efficacies: ITypeEfficacy[]) {
 }
 
 export default function formatTypeEfficiency(
-  typesEfficiency: ITypeEfficaciesResponse[],
+  typesEfficiency: TypeEfficaciesResponse[],
 ): PokemonTypeEfficiency {
   const efficacies = typesEfficiency
     .filter(typeEfficiency => typeEfficiency.efficacies.length)

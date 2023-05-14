@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 
 import substitutePlaceholder from 'src/presentation/constants/substitutePlaceholder';
 
-interface IPokemonPictureProps extends Omit<ImageProps, 'src'> {
+interface PokemonPictureProps extends Omit<ImageProps, 'src'> {
   src: string;
 }
 
 const PokemonPicture = ({
   src,
   ...props
-}: IPokemonPictureProps): JSX.Element => {
+}: PokemonPictureProps): JSX.Element => {
   const [url, setUrl] = useState(substitutePlaceholder);
 
   useEffect(() => {

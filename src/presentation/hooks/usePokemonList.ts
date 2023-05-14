@@ -4,20 +4,20 @@ import PokemonSummary from '@domain/entities/PokemonSummary';
 
 import POKEMON_PER_REQUEST from 'src/presentation/constants/pokemonPerRequest';
 
-interface IFilterOptions {
+interface FilterOptions {
   generation?: number[];
   primaryType?: string[];
   secondaryType?: string[];
 }
 
-interface IUsePokemonListParams {
+interface UsePokemonListParams {
   fallback?: PokemonSummary[][];
   search?: string;
-  filterValues?: IFilterOptions;
+  filterValues?: FilterOptions;
   sortValue?: string;
 }
 
-interface IUsePokemonListResponse {
+interface UsePokemonListResponse {
   pokemonList: PokemonSummary[][];
   isLoading: boolean;
   size: number;
@@ -31,7 +31,7 @@ export default function usePokemonList({
   filterValues,
   search = '',
   sortValue,
-}: IUsePokemonListParams): IUsePokemonListResponse {
+}: UsePokemonListParams): UsePokemonListResponse {
   const { generation, primaryType, secondaryType } = filterValues;
   const getPokemonListUsecase = createGetPokemonListUsecase();
 

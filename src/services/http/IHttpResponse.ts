@@ -1,8 +1,8 @@
 import HttpStatusCode from './HttpStatusCode';
 
-interface IHttpResponse<Body> {
+interface HttpResponse<Body> {
   statusCode: HttpStatusCode;
   body: Body;
 }
 
-export default IHttpResponse;
+export default HttpResponse;

@@ -2,23 +2,25 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import createGetPokemonTypeEfficaciesUsecase from '@factories/createGetPokemonTypeEfficaciesUsecase';
+import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
 
-interface IUseTypeEfficaciesParams {
+interface UseTypeEfficaciesParams {
   types: number[];
 }
 
-interface IUseTypeEfficaciesResponse {
+interface UseTypeEfficaciesResponse {
   typeEfficiency: PokemonTypeEfficiency | undefined;
   isLoading: boolean;
 }
 
 export default function useTypeEfficacies({
   types,
-}: IUseTypeEfficaciesParams): IUseTypeEfficaciesResponse {
+}: UseTypeEfficaciesParams): UseTypeEfficaciesResponse {
   const [isLoading, setIsLoading] = useState(true);
   const getPokemonTypeEfficaciesUsecase =
     createGetPokemonTypeEfficaciesUsecase();
   const { data, error } = useSWR([types], async typesKey => {
+    console.log('🚀 ~ typesKey:', typesKey, 'types', types);
     const response = await getPokemonTypeEfficaciesUsecase.getTypeEfficacies(
       typesKey,
     );

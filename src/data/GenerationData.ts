@@ -2,11 +2,9 @@ import { Either, right, left } from '@core/Either';
 
 import GenerationRepository from '@domain/repository/GenerationRepository';
 import Generation from '@domain/entities/Generation';
-import IHttpClient from '@services/http/IHttpClient';
+import { GetAllGenerationsResponse } from '@data/responses/GenerationResponses';
 
-interface IGetAllResponse {
-  generations: Generation[];
-}
+import IHttpClient from '@services/http/IHttpClient';
 
 export default class GenerationData implements GenerationRepository {
   private readonly getAllQuery = `
@@ -21,7 +19,7 @@ export default class GenerationData implements GenerationRepository {
 
   async getAll(): Promise<Either<Error, Generation[]>> {
     try {
-      const result = await this.client.request<IGetAllResponse>({
+      const result = await this.client.request<GetAllGenerationsResponse>({
         query: this.getAllQuery,
       });
 

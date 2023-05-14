@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-interface IUseCarouselParams {
+interface UseCarouselParams {
   carouselRef: RefObject<HTMLDivElement>;
   carouselWrapperRef: RefObject<HTMLDivElement>;
   itemWidth: number | number[];
@@ -16,11 +16,11 @@ interface IUseCarouselParams {
   maxItems: number;
   animationDuration?: number;
   currentIndex: number;
-  maxPositionIndex?: 'auto' | number | 'none';
+  maxPositionIndex?: number;
   updateCurrentIndex: (CurrentIndex: number) => void;
 }
 
-interface IUseCarouselResponse {
+interface UseCarouselResponse {
   handleMouseDown: (event: MouseEvent | TouchEvent) => void;
   handleMouseMove: (event: MouseEvent | TouchEvent) => void;
   handleMouseUp: (event: MouseEvent | TouchEvent) => void;
@@ -67,7 +67,7 @@ const useCarousel = ({
   currentIndex: CurrentIndex,
   updateCurrentIndex,
   maxPositionIndex,
-}: IUseCarouselParams): IUseCarouselResponse => {
+}: UseCarouselParams): UseCarouselResponse => {
   const itemList: Array<number> = Array.isArray(itemWidth)
     ? itemWidth
     : Array(itemsQuantity).fill(itemWidth);

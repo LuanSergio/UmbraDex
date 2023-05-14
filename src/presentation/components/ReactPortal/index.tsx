@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import createWrapperAndAppendToBody from '@utils/createWrapperAndAppendToBody';
 
-interface IReactPortal {
+interface ReactPortal {
   children: ReactNode;
   wrapperId?: string;
 }
@@ -11,7 +11,7 @@ interface IReactPortal {
 export default function ReactPortal({
   children,
   wrapperId = 'react-portal-wrapper',
-}: IReactPortal) {
+}: ReactPortal) {
   const wrapperRef = useRef<HTMLElement>();
   const [mounted, setMounted] = useState(false);
 

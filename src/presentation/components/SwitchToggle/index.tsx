@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-interface ISwitchToggleProps {
+interface SwitchToggleProps {
   isChecked: boolean;
   name: string;
   label: string;
@@ -12,7 +12,7 @@ const SwitchToggle = ({
   name,
   label,
   readonly = false,
-}: ISwitchToggleProps): JSX.Element => {
+}: SwitchToggleProps): JSX.Element => {
   return (
     <label htmlFor={name} className={styles.switch}>
       <span className="h-sr-only">{label}</span>

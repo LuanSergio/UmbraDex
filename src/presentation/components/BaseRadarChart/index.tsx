@@ -7,7 +7,7 @@ import {
 } from 'recharts';
 import styles from './styles.module.scss';
 
-interface IRadarChartProps {
+interface RadarChartProps {
   label: string;
   radars: [
     {
@@ -43,7 +43,7 @@ const BaseRadarChart = ({
   label,
   radars,
   data,
-}: IRadarChartProps): JSX.Element => {
+}: RadarChartProps): JSX.Element => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>

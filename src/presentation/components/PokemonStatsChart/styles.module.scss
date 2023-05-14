@@ -59,7 +59,7 @@
   transition: background-color 0.28s ease-out, width 0.8s ease;
 }
 
-.statsGraph {
+.statsChart {
   height: rem(250);
   margin-bottom: rem(64);
   max-width: rem(370);
@@ -91,7 +91,7 @@
     flex-direction: row;
   }
 
-  .statsGraph {
+  .statsChart {
     margin-bottom: 0;
   }
 

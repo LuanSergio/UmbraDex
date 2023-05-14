@@ -7,8 +7,8 @@ import PokemonRepository, {
 import PokemonSummary from '@domain/entities/PokemonSummary';
 import Pokemon from '@domain/entities/Pokemon';
 import {
-  PokemonResponse,
-  PokemonSummaryResponse,
+  GetPokemonByIdResponse,
+  GetAllPokemonResponse,
 } from '@data/responses/PokemonResponses';
 
 import formatQueryFilters from '@data/format/formatQueryFilters';
@@ -18,10 +18,6 @@ import checkIfPokemonHasType from '@helpers/checkIfPokemonHasType';
 import replaceDashWithSpace from '@helpers/replaceDashWithSpace';
 import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
 import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
-
-interface IGetAllPokemonResponse {
-  pokemonSpecieList: PokemonSummaryResponse[];
-}
 
 interface GetAllPokemonQueryParams {
   queryName?: string;
@@ -141,7 +137,7 @@ export default class PokemonData implements PokemonRepository {
 
   async getAll(params: GetAllParams): Promise<Either<Error, PokemonSummary[]>> {
     try {
-      const result = await this.client.request<IGetAllPokemonResponse>({
+      const result = await this.client.request<GetAllPokemonResponse>({
         query: this.getAllPokemonQuery(params),
       });
 
@@ -190,7 +186,7 @@ export default class PokemonData implements PokemonRepository {
 
   async getById(id: number): Promise<Either<Error, Pokemon>> {
     try {
-      const result = await this.client.request<any>({
+      const result = await this.client.request<GetPokemonByIdResponse>({
         query: this.pokemonByIdQuery(id),
       });
 
@@ -228,7 +224,6 @@ export default class PokemonData implements PokemonRepository {
         })),
         evolutionChain: result.body.species[0].evolutionChain.specie,
       };
-      console.log('🚀 ~ PokemonData ~ getById ~ pokemon:', pokemon);
 
       return right(pokemon);
     } catch (error) {

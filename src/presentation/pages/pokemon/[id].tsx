@@ -15,7 +15,7 @@ import PokemonContent from '@components/PokemonContent';
 import Header from '@components/Header';
 import { PokemonListContextProvider } from '@contexts/PokemonListContext';
 
-interface IPokemonDetailsProps {
+interface PokemonDetailsProps {
   pokemonDetails: Pokemon;
   defaultPokemonForm: PokemonForm;
   AlternativePokemonForms: PokemonForm[];
@@ -31,7 +31,7 @@ const PokemonPage = ({
   AlternativePokemonForms,
   pokemonDetails,
   staticData,
-}: IPokemonDetailsProps): JSX.Element => {
+}: PokemonDetailsProps): JSX.Element => {
   return (
     <>
       <Head>
@@ -65,14 +65,14 @@ export const getStaticProps: GetStaticProps = async context => {
   const getGenerationUsecase = createGetAllGenerationsUsecase();
   const getPokedexLimitUsecase = createGetPokedexLimitUsecase();
   const getPokemonByIdUsecase = createGetPokemonByIdUsecase();
-  const getPokemonTypeUsecase = createGetPokemonTypeUsecase();
+  const getPokemonTypesUsecase = createGetPokemonTypeUsecase();
 
   const pokemonByIdResponse = await getPokemonByIdUsecase.getById(
     pokemonIdAsNumber,
   );
   const generationsResponse = await getGenerationUsecase.getAll();
   const pokedexLimitResponse = await getPokedexLimitUsecase.getLimit();
-  const pokemonTypesResponse = await getPokemonTypeUsecase.getAll();
+  const pokemonTypesResponse = await getPokemonTypesUsecase.getAll();
 
   let pokemonForms: Pokemon;
   let generations: Generation[] = [];
@@ -80,10 +80,7 @@ export const getStaticProps: GetStaticProps = async context => {
   let pokemonTypes: PokemonType[] = [];
 
   if (pokemonByIdResponse.isRight()) {
-    console.log('is RIght');
     pokemonForms = pokemonByIdResponse.value;
-  } else {
-    console.log('is left');
   }
 
   if (generationsResponse.isRight()) {

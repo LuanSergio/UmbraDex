@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 
-interface IUseEscapeKeyPressProps {
+interface UseEscapeKeyPressProps {
   fn: () => void;
 }
 
 export default function useEscapeKeyPress({
   fn,
-}: IUseEscapeKeyPressProps): void {
+}: UseEscapeKeyPressProps): void {
   useEffect(() => {
     const close = (event: globalThis.KeyboardEvent) => {
       if (event.key === 'Escape' || event.key === 'Esc') {

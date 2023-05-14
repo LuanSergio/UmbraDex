@@ -2,18 +2,19 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
 import useTypeEfficacies from '@hooks/useTypeEfficacies';
-import getTypeByName from '@utils/getTypeByName';
-
 import useWindowSize from '@hooks/useWindowSize';
+import PokemonForm from '@domain/entities/PokemonForm';
+import Pokemon from '@domain/entities/Pokemon';
 import { usePokemonListContext } from 'src/presentation/contexts/PokemonListContext';
+import getTypeByName from '@utils/getTypeByName';
 import convertHectogramToKilogram from '@utils/convertHectogramToKilogram';
 import convertDecimetersToMeters from '@utils/convertDecimetersToMeters';
 import bodyDefaultClasses from '@constants/bodyDefaultClasses';
 
 import ContentLayout from '@layouts/ContentLayout';
-import PokemonStats from 'src/presentation/components/PokemonStats';
+import PokemonStatsChart from 'src/presentation/components/PokemonStatsChart';
 import EvolutionChain from 'src/presentation/components/EvolutionChain';
-import PokemonTypeEfficiency from 'src/presentation/components/PokemonTypeEfficiency';
+import PokemonTypeEfficiencyTable from 'src/presentation/components/PokemonTypeEfficiencyTable';
 import InnerPageNavigation from 'src/presentation/components/InnerPageNavigation';
 import PokemonHighlight from 'src/presentation/components/PokemonHighlight';
 import PokemonBasicInformation from 'src/presentation/components/PokemonBasicInformation';
@@ -22,10 +23,10 @@ import SwitchForms from 'src/presentation/components/SwitchForms';
 
 import styles from './styles.module.scss';
 
-interface IPokemonContentProps {
-  pokemonDetails: IPokemonDetails;
-  defaultPokemonForm: IPokemonForm;
-  AlternativePokemonForms: IPokemonForm[];
+interface PokemonContentProps {
+  pokemonDetails: Pokemon;
+  defaultPokemonForm: PokemonForm;
+  AlternativePokemonForms: PokemonForm[];
   pokedexLimit: number;
 }
 
@@ -34,7 +35,7 @@ const PokemonContent = ({
   defaultPokemonForm,
   pokedexLimit,
   pokemonDetails,
-}: IPokemonContentProps): JSX.Element => {
+}: PokemonContentProps): JSX.Element => {
   const {
     query: { id },
   } = useRouter();
@@ -54,7 +55,7 @@ const PokemonContent = ({
     }
   }, [id]);
 
-  const handleFormChange = useCallback((form: IPokemonForm) => {
+  const handleFormChange = useCallback((form: PokemonForm) => {
     if (form) {
       setPokemon(form);
     }
@@ -159,11 +160,11 @@ const PokemonContent = ({
             </dl>
           </div>
           <div className={styles.contentOdd}>
-            <PokemonStats stats={pokemon.stats} />
+            <PokemonStatsChart stats={pokemon.stats} />
           </div>
 
           <div className={styles.contentEven}>
-            <PokemonTypeEfficiency
+            <PokemonTypeEfficiencyTable
               typeEfficiency={typeEfficiency}
               isLoading={isLoading}
             />

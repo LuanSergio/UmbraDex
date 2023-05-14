@@ -1,6 +1,6 @@
 import IHttpResponse from './IHttpResponse';
 
-interface IHttpClient {
+interface HttpClient {
   request: <Response>({
     query,
   }: {
@@ -8,4 +8,4 @@ interface IHttpClient {
   }) => Promise<IHttpResponse<Response>>;
 }
 
-export default IHttpClient;
+export default HttpClient;

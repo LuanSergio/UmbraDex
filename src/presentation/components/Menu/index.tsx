@@ -19,11 +19,11 @@ import Disclaimer from 'src/presentation/components/Disclaimer';
 
 import styles from './styles.module.scss';
 
-interface IMenuProps {
+interface MenuProps {
   isOpen: boolean;
 }
 
-const Menu = ({ isOpen }: IMenuProps): JSX.Element => {
+const Menu = ({ isOpen }: MenuProps): JSX.Element => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
