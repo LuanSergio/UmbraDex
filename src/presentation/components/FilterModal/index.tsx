@@ -133,10 +133,6 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
     setSortValue(value);
   }
 
-  useEffect(() => {
-    console.log('generationFilterValue', generationFilterValue);
-  }, [generationFilterValue]);
-
   function handleApplyFilters() {
     updateFilters('primaryType', primaryTypeFilterValue);
     updateFilters('secondaryType', secondaryTypeFilterValue);
@@ -175,10 +171,6 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
     updateFilters('generation', []);
     setGenerationFilterValue([]);
   }
-
-  useEffect(() => {
-    console.log('🚀 ~ FilterModal ~ generations:', generations);
-  }, [generations]);
 
   return (
     <>

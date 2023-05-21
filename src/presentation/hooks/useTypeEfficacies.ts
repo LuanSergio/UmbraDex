@@ -20,7 +20,6 @@ export default function useTypeEfficacies({
   const getPokemonTypeEfficaciesUsecase =
     createGetPokemonTypeEfficaciesUsecase();
   const { data, error } = useSWR([types], async typesKey => {
-    console.log('🚀 ~ typesKey:', typesKey, 'types', types);
     const response = await getPokemonTypeEfficaciesUsecase.getTypeEfficacies(
       typesKey,
     );
