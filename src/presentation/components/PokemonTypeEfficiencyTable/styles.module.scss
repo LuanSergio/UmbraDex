@@ -11,7 +11,7 @@
   color: get-color(light);
   display: block;
   height: 100%;
-  min-height: 420px;
+  min-height: rem(420);
   overflow-y: hidden;
   padding: rem(24) rem(18);
   padding-bottom: rem(24);
