@@ -115,13 +115,13 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
     });
   }
 
-  function handleGenerationFilterChange(value) {
-    setGenerationFilterValue(currentState => {
-      if (currentState.includes(value)) {
-        return currentState.filter(item => item !== value);
+  function handleGenerationFilterChange(value: string) {
+    setGenerationFilterValue((currentState): number[] => {
+      if (currentState.includes(parseInt(value, 10))) {
+        return currentState.filter(item => item !== parseInt(value, 10));
       }
 
-      return [...currentState, value];
+      return [...currentState, parseInt(value, 10)];
     });
   }
 
@@ -132,6 +132,10 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
   function handleSortChange(value: string) {
     setSortValue(value);
   }
+
+  useEffect(() => {
+    console.log('generationFilterValue', generationFilterValue);
+  }, [generationFilterValue]);
 
   function handleApplyFilters() {
     updateFilters('primaryType', primaryTypeFilterValue);
@@ -171,6 +175,10 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
     updateFilters('generation', []);
     setGenerationFilterValue([]);
   }
+
+  useEffect(() => {
+    console.log('🚀 ~ FilterModal ~ generations:', generations);
+  }, [generations]);
 
   return (
     <>
