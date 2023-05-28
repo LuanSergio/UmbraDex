@@ -6,6 +6,7 @@ import Move from '@domain/entities/Move';
 
 interface UseMoveListParams {
   pokemonId: number;
+  groupVersionId: number;
 }
 
 interface UseMoveListResponse {
@@ -15,13 +16,17 @@ interface UseMoveListResponse {
 
 export default function useMoveList({
   pokemonId,
+  groupVersionId,
 }: UseMoveListParams): UseMoveListResponse {
   const [isLoading, setIsLoading] = useState(true);
 
   const getMovesByPokemonIdUsecase = createGetMovesByPokemonIdUsecase();
 
   const { data, error } = useSWR(`${pokemonId}`, async () => {
-    const response = await getMovesByPokemonIdUsecase.getByPokemonId(pokemonId);
+    const response = await getMovesByPokemonIdUsecase.getByPokemonId({
+      pokemonId,
+      groupVersionId,
+    });
 
     if (response.isRight()) {
       return response.value;

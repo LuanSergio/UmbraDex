@@ -21,11 +21,12 @@ export default class PokemonForm {
 
   public height: number;
 
+  public groupVersion: number;
+
   constructor(
     id: number,
     name: string,
     isDefault: boolean,
-
     types: string[],
     formName: string,
     formOrder: number,
@@ -33,11 +34,11 @@ export default class PokemonForm {
     image: string,
     weight: number,
     height: number,
+    groupVersion: number,
   ) {
     this.id = id;
     this.name = name;
     this.isDefault = isDefault;
-
     this.types = types;
     this.formName = formName;
     this.formOrder = formOrder;
@@ -45,5 +46,6 @@ export default class PokemonForm {
     this.image = image;
     this.weight = weight;
     this.height = height;
+    this.groupVersion = groupVersion;
   }
 }

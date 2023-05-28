@@ -106,6 +106,7 @@ export default class PokemonData implements PokemonRepository {
             weight
             height
           }
+          groupVersion: version_group_id
         }
         abilities:pokemon_v2_pokemonabilities {
           ability: pokemon_v2_ability {
@@ -206,6 +207,7 @@ export default class PokemonData implements PokemonRepository {
             formOrder: form.pokemonForms[0].formOrder,
             height: form.pokemonForms[0].pokemonDetails.height,
             weight: form.pokemonForms[0].pokemonDetails.weight,
+            groupVersion: form.pokemonForms[0].groupVersion,
             stats: form.pokemonForms[0].pokemonDetails.stats.map(stats => {
               return {
                 name: stats.stat.name,

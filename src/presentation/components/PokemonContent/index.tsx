@@ -21,6 +21,8 @@ import PokemonBasicInformation from 'src/presentation/components/PokemonBasicInf
 import PokemonDescription from 'src/presentation/components/PokemonDescription';
 import SwitchForms from 'src/presentation/components/SwitchForms';
 
+import MoveList from '@components/MoveList';
+
 import styles from './styles.module.scss';
 
 interface PokemonContentProps {
@@ -169,6 +171,10 @@ const PokemonContent = ({
               isLoading={isLoading}
             />
           </div>
+        </div>
+
+        <div className={styles.moveListContainer}>
+          <MoveList />
         </div>
       </div>
       <InnerPageNavigation

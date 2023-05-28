@@ -6,10 +6,15 @@ import { GetByPokemonIdResponse } from '@data/responses/MoveResponses';
 
 import IHttpClient from '@services/http/IHttpClient';
 
+interface GetByPokemonIdParams {
+  pokemonId: number;
+  groupVersionId: number;
+}
+
 export default class MoveData implements MoveRepository {
-  private readonly getAllQuery = (id: string) =>
+  private readonly getAllQuery = (id: number, groupVersionId: number) =>
     `query PokemonMove {
-      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id} }}) {
+      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}, version_group_id: {_eq: ${groupVersionId}}}) {
         move: pokemon_v2_move {
           name
           power
@@ -27,10 +32,13 @@ export default class MoveData implements MoveRepository {
 
   constructor(private readonly client: IHttpClient) {}
 
-  async getByPokemonId(id): Promise<Either<Error, Move[]>> {
+  async getByPokemonId({
+    pokemonId,
+    groupVersionId,
+  }: GetByPokemonIdParams): Promise<Either<Error, Move[]>> {
     try {
       const result = await this.client.request<GetByPokemonIdResponse>({
-        query: this.getAllQuery(id),
+        query: this.getAllQuery(pokemonId, groupVersionId),
       });
 
       const moves = result.body.moves.map(item => {

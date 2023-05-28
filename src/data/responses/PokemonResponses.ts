@@ -66,6 +66,7 @@ export interface GetPokemonByIdResponse {
                   weight: number;
                   height: number;
                 };
+                groupVersion: number;
               },
             ];
             abilities: [
