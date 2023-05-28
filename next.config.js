@@ -6,6 +6,7 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src', 'presentation', 'assets', 'styles')],
   },
+  distDir: './dist',
   images: {
     domains: ['umbradex.vercel.app', 'raw.githubusercontent.com'],
   },
