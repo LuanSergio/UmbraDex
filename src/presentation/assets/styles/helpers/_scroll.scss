@@ -79,14 +79,11 @@
 
 .h-neutral-scroll::-webkit-scrollbar-track {
   background-color: rgba($color: get-color(light), $alpha: 32%);
-  border-radius: 30px;
 }
 
 .h-neutral-scroll::-webkit-scrollbar-thumb {
   background-color: get-color(light);
-  border-radius: 30px;
 }
 
-.h-neutral-scroll::-webkit-scrollbar-corner {
-  background-color: get-color(light);
-}
+// .h-neutral-scroll::-webkit-scrollbar-corner {
+// }

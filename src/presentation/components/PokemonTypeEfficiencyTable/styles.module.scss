@@ -7,16 +7,13 @@
 
 .pokemonTypeEfficiencyTable {
   background-color: var(--current-dark-type-color);
-  border-radius: 24px;
+  border-radius: 8px;
   color: get-color(light);
   display: block;
   height: 100%;
   min-height: rem(420);
   overflow-y: hidden;
-  padding: rem(24) rem(18);
-  padding-bottom: rem(24);
-  padding-left: rem(18);
-  padding-top: rem(24);
+  padding: rem(18) rem(12);
   width: 100%;
 }
 
@@ -31,6 +28,8 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+
+  // padding-right: 8px;
 }
 
 .pokemonTypeEfficiencyCategory {
@@ -38,7 +37,10 @@
 }
 
 .pokemonTypeEfficiencyTitle {
+  border-bottom: 1px solid var(--current-type-color);
   display: block;
+  margin-right: 20px;
+  padding-bottom: 10px;
 }
 
 .pokemonTypeEfficiencyValuesContainer {
@@ -51,10 +53,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   justify-content: center;
-  margin-top: rem(14);
-  padding-left: rem(12);
-  padding-right: rem(8);
+  margin-bottom: 0;
+  margin-top: rem(0);
   row-gap: rem(10);
+}
+
+.pokemonTypeEfficiencyCategory:not(:last-child) {
+  margin-bottom: 8px;
 }
 
 .loading {

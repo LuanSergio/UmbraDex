@@ -45,53 +45,55 @@ const PokemonBasicInformation = ({
 
   return (
     <div className={styles.generationDescriptionContainer}>
-      {descriptions.length > 1 && (
-        <div className={styles.carouselContainer}>
-          <Carousel
-            currentIndex={descriptionIndex}
-            updateCurrentIndex={handleDescriptionChange}
-            tagName="ol"
-            itemWidth={widthList}
-            gap={12}
-            maxItems={6}
-            maxPositionIndex={descriptions.length - 5}
-          >
-            {descriptions.map((item, index) => {
-              return (
-                <CarouselItem
-                  key={`${item.id}`}
-                  tagName="li"
-                  onClick={() => handleDescriptionChange(index)}
-                >
-                  <span
-                    ref={element => {
-                      descriptionIndexRef.current[index] = element;
-                    }}
-                    className={`${styles.generationDescriptionOption} ${
-                      descriptionIndex === index && styles.active
-                    }`}
+      <div className={styles.generationDescriptionContent}>
+        {descriptions.length > 1 && (
+          <div className={styles.carouselContainer}>
+            <Carousel
+              currentIndex={descriptionIndex}
+              updateCurrentIndex={handleDescriptionChange}
+              tagName="ol"
+              itemWidth={widthList}
+              gap={12}
+              maxItems={8}
+              maxPositionIndex={descriptions.length - 5}
+            >
+              {descriptions.map((item, index) => {
+                return (
+                  <CarouselItem
+                    key={`${item.id}`}
+                    tagName="li"
+                    onClick={() => handleDescriptionChange(index)}
                   >
-                    {transformNumberToRomanNumeral(index + 1)}
-                  </span>
-                </CarouselItem>
-              );
-            })}
-          </Carousel>
-        </div>
-      )}
+                    <span
+                      ref={element => {
+                        descriptionIndexRef.current[index] = element;
+                      }}
+                      className={`${styles.generationDescriptionOption} ${
+                        descriptionIndex === index && styles.active
+                      }`}
+                    >
+                      {transformNumberToRomanNumeral(index + 1)}
+                    </span>
+                  </CarouselItem>
+                );
+              })}
+            </Carousel>
+          </div>
+        )}
 
-      <ScrollableText maxHeight={178} shouldChange={descriptionIndex}>
-        <p className={styles.description}>
-          {descriptions[descriptionIndex] &&
-            descriptions[descriptionIndex].description}
-          {(descriptionIndex === 3 || descriptionIndex === 4) && (
-            <small className={styles.sideNote}>
-              <Important className={styles.descriptionImportant} /> The fourth
-              and fifth generation share some descriptions
-            </small>
-          )}
-        </p>
-      </ScrollableText>
+        <ScrollableText maxHeight={380} shouldChange={descriptionIndex}>
+          <p className={styles.description}>
+            {descriptions[descriptionIndex] &&
+              descriptions[descriptionIndex].description}
+            {(descriptionIndex === 3 || descriptionIndex === 4) && (
+              <small className={styles.sideNote}>
+                <Important className={styles.descriptionImportant} /> The fourth
+                and fifth generation share some descriptions
+              </small>
+            )}
+          </p>
+        </ScrollableText>
+      </div>
     </div>
   );
 };

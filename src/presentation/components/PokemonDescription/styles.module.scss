@@ -4,7 +4,12 @@
 @use 'settings/_breakpoints' as *;
 
 .generationDescriptionContainer {
+  width: 100%;
+}
+
+.generationDescriptionContent {
   margin-bottom: rem(24);
+  margin-bottom: rem(80);
   min-height: auto;
   width: 100%;
 }
@@ -40,7 +45,6 @@
   font-weight: bold;
   line-height: 1.5;
   margin: 0 auto;
-  max-width: rem(400);
   padding-left: rem(20);
   padding-right: rem(20);
   text-align: center;
@@ -75,10 +79,10 @@
 }
 
 @media only screen and (min-width: $lg) {
-  .generationDescriptionContainer {
+  .generationDescriptionContent {
+    font-size: rem(20);
     margin-bottom: 0;
-    min-height: 340px;
-    width: 100%;
+    min-height: 280px;
   }
 
   .generationDescriptionOption {
@@ -86,7 +90,7 @@
   }
 
   .description {
-    font-size: rem(26);
+    font-size: rem(20);
     margin-left: 0;
     margin-right: 0;
     text-align: left;
