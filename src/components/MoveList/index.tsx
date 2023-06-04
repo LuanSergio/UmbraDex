@@ -1,14 +1,25 @@
 import LoadingDots from '@public/icons/loading-dots.svg';
 import PokeBallIcon from '@public/icons/pokeball.svg';
+import PhysicalIcon from '@public/icons/special.svg';
+import SpecialIcon from '@public/icons/physical.svg';
+import StatusIcon from '@public/icons/status.svg';
+
 import useMovesList from 'src/hooks/useMovesList';
 import formatPokemonMoveProperty from '@utils/formatPokemoMoveProperty';
 
+import TypeBadge from '@components/TypeBadge';
 import styles from './styles.module.scss';
+
+const moveCategoryIcon = {
+  physical: <SpecialIcon />,
+  special: <PhysicalIcon />,
+  status: <StatusIcon />,
+};
 
 const MoveList = (): JSX.Element => {
   const { moveList, isLoading } = useMovesList({
     pokemonId: 94,
-    groupVersionId: 4,
+    groupVersionId: 10,
   });
 
   return (
@@ -51,15 +62,19 @@ const MoveList = (): JSX.Element => {
             className={`${styles.moveListMovesContainer} h-neutral-scroll`}
           >
             {moveList?.map(move => (
-              <tr className={styles.moveListMovesRow}>
+              <tr className={styles.moveListMovesRow} key={move.name}>
                 <td className={`${styles.moveListCell} ${styles.nameCell}`}>
                   {formatPokemonMoveProperty(move.name)}
                 </td>
                 <td className={`${styles.moveListCell} ${styles.typeCell}`}>
-                  {formatPokemonMoveProperty(move.type)}
+                  <div className={styles.typeContainer}>
+                    <TypeBadge size="small">{move.type}</TypeBadge>
+                  </div>
                 </td>
                 <td className={`${styles.moveListCell} ${styles.categoryCell}`}>
-                  {formatPokemonMoveProperty(move.category)}
+                  <div className={styles.iconContainer}>
+                    {moveCategoryIcon[move.category]}
+                  </div>
                 </td>
                 <td className={`${styles.moveListCell} ${styles.accuracyCell}`}>
                   {formatPokemonMoveProperty(move.accuracy)}

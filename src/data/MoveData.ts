@@ -3,6 +3,7 @@ import { Either, right, left } from '@core/Either';
 import MoveRepository from '@domain/repository/MoveRepository';
 import Move from '@domain/entities/Move';
 import { GetByPokemonIdResponse } from '@data/responses/MoveResponses';
+import filterMoveList from '@utils/filterMoveList';
 
 import IHttpClient from '@services/http/IHttpClient';
 
@@ -54,7 +55,7 @@ export default class MoveData implements MoveRepository {
         };
       });
 
-      return right(moves);
+      return right(filterMoveList(moves));
     } catch (error) {
       return left(error);
     }

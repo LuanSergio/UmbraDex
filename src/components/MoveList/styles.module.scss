@@ -30,6 +30,7 @@
   font-size: rem(18);
   padding: rem(18) rem(20);
   text-align: left;
+  text-align: center;
 }
 
 .moveListMovesContainer {
@@ -52,12 +53,17 @@
 }
 
 .moveListCell {
-  padding: rem(18) rem(20);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: rem(10) rem(20);
 }
 
 .nameHead,
 .nameCell {
-  width: 30%;
+  justify-content: start;
+  text-align: left;
+  width: 16%;
 }
 
 .typeHead,
@@ -65,24 +71,35 @@
   width: 20%;
 }
 
+.typeCell .typeContainer {
+  width: rem(100);
+}
+
 .categoryHead,
 .categoryCell {
-  width: 12.5%;
+  width: 14.5%;
+}
+
+.categoryCell .iconContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: rem(40);
+  width: 100%;
 }
 
 .accuracyHead,
 .accuracyCell {
-  width: 12.5%;
+  width: 16.5%;
 }
 
 .powerHead,
 .powerCell {
-  width: 12.5%;
+  width: 16.5%;
 }
 
 .ppHead,
 .ppCell {
-  width: 12.5%;
+  width: 16.5%;
 }
 
 @media (min-width: $lg) {
