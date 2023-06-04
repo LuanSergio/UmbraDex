@@ -14,10 +14,10 @@ import {
 import formatQueryFilters from '@data/format/formatQueryFilters';
 import formatQuerySort from '@data/format/formatQuerySort';
 import formatPokemonDetailsDescription from '@data/format/formatPokemonDetailsDescription';
-import checkIfPokemonHasType from '@helpers/checkIfPokemonHasType';
-import replaceDashWithSpace from '@helpers/replaceDashWithSpace';
-import getPokemonImageUrl from '@helpers/getPokemonImageUrl';
-import transformFirstLetterToUppercase from '@helpers/transformFirstLetterToUppercase';
+import checkIfPokemonHasType from '@utils/checkIfPokemonHasType';
+import replaceDashWithSpace from '@utils/replaceDashWithSpace';
+import getPokemonImageUrl from '@utils/getPokemonImageUrl';
+import transformFirstLetterToUppercase from '@utils/transformFirstLetterToUppercase';
 
 interface GetAllPokemonQueryParams {
   queryName?: string;

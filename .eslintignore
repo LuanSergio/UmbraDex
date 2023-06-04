@@ -1,5 +1,5 @@
 node_modules
 .next
 /*.js
-/src/presentation/components/FormIcons
+/src/components/FormIcons
 package-lock.json

@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   esModule: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, 'src', 'presentation', 'assets', 'styles')],
+    includePaths: [path.join(__dirname, 'src', 'assets', 'styles')],
   },
   distDir: './dist',
   images: {
