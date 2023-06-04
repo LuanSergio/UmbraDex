@@ -64,94 +64,91 @@ const PokemonTypeEfficiencyTable = ({
           >
             <tr className={styles.pokemonTypeEfficiencyCategory}>
               <th className={styles.pokemonTypeEfficiencyTitle}>Weak to:</th>
-              <td className={styles.pokemonTypeEfficiencyValuesContainer}>
-                <ul className={styles.pokemonTypeEfficiencyValues}>
-                  {typeEfficiency?.weakness?.length > 0 ? (
-                    <>
-                      {typeEfficiency?.weakness.map(type => (
-                        <li key={type.name}>
-                          <TypeBadge
-                            modifier={
-                              <span
-                                className={styles.pokemonTypeEfficiencyModifier}
-                              >
-                                {modifierIcons[type.damageFactor]}
-                              </span>
-                            }
-                            size="small"
+            </tr>
+            <tr className={styles.pokemonTypeEfficiencyValuesContainer}>
+              {typeEfficiency?.weakness?.length > 0 ? (
+                <>
+                  {typeEfficiency?.weakness.map(type => (
+                    <td key={type.name}>
+                      <TypeBadge
+                        modifier={
+                          <span
+                            className={styles.pokemonTypeEfficiencyModifier}
                           >
-                            {type.name}
-                          </TypeBadge>
-                        </li>
-                      ))}
-                    </>
-                  ) : (
-                    <li className={styles.pokemonTypeEfficiencyNone}>None</li>
-                  )}
-                </ul>
-              </td>
+                            {modifierIcons[type.damageFactor]}
+                          </span>
+                        }
+                        size="small"
+                      >
+                        {type.name}
+                      </TypeBadge>
+                    </td>
+                  ))}
+                </>
+              ) : (
+                <td className={styles.pokemonTypeEfficiencyNone}>None</td>
+              )}
             </tr>
 
             <tr className={styles.pokemonTypeEfficiencyCategory}>
               <th className={styles.pokemonTypeEfficiencyTitle}>Immune to:</th>
-              <td className={styles.pokemonTypeEfficiencyValuesContainer}>
-                <ul className={styles.pokemonTypeEfficiencyValues}>
-                  {typeEfficiency?.immunities?.length > 0 ? (
-                    <>
-                      {typeEfficiency?.immunities.map(type => (
-                        <li key={type.name}>
-                          <TypeBadge
-                            modifier={
-                              <span
-                                className={styles.pokemonTypeEfficiencyModifier}
-                              >
-                                {modifierIcons[type.damageFactor]}
-                              </span>
-                            }
-                            size="small"
+            </tr>
+
+            <tr className={styles.pokemonTypeEfficiencyValuesContainer}>
+              {typeEfficiency?.immunities?.length > 0 ? (
+                <>
+                  {typeEfficiency?.immunities.map(type => (
+                    <td key={type.name}>
+                      <TypeBadge
+                        modifier={
+                          <span
+                            className={styles.pokemonTypeEfficiencyModifier}
                           >
-                            {type.name}
-                          </TypeBadge>
-                        </li>
-                      ))}
-                    </>
-                  ) : (
-                    <li className={styles.pokemonTypeEfficiencyNone}>None</li>
-                  )}
-                </ul>
-              </td>
+                            {modifierIcons[type.damageFactor]}
+                          </span>
+                        }
+                        size="small"
+                      >
+                        {type.name}
+                      </TypeBadge>
+                    </td>
+                  ))}
+                </>
+              ) : (
+                <td className={styles.pokemonTypeEfficiencyNone}>None</td>
+              )}
             </tr>
 
             <tr className={styles.pokemonTypeEfficiencyCategory}>
               <th className={styles.pokemonTypeEfficiencyTitle}>
                 Resistant to:
               </th>
-              <td className={styles.pokemonTypeEfficiencyValuesContainer}>
-                <ul className={styles.pokemonTypeEfficiencyValues}>
-                  {typeEfficiency?.resistances?.length > 0 ? (
-                    <>
-                      {typeEfficiency?.resistances.map(type => (
-                        <li key={type.name}>
-                          <TypeBadge
-                            modifier={
-                              <span
-                                className={styles.pokemonTypeEfficiencyModifier}
-                              >
-                                {modifierIcons[type.damageFactor]}
-                              </span>
-                            }
-                            size="small"
-                          >
-                            {type.name}
-                          </TypeBadge>
-                        </li>
-                      ))}
-                    </>
-                  ) : (
-                    <li className={styles.pokemonTypeEfficiencyNone}>None</li>
-                  )}
-                </ul>
-              </td>
+            </tr>
+            <tr className={styles.pokemonTypeEfficiencyValuesContainer}>
+              <>
+                {typeEfficiency?.resistances?.length > 0 ? (
+                  <>
+                    {typeEfficiency?.resistances.map(type => (
+                      <td key={type.name}>
+                        <TypeBadge
+                          modifier={
+                            <span
+                              className={styles.pokemonTypeEfficiencyModifier}
+                            >
+                              {modifierIcons[type.damageFactor]}
+                            </span>
+                          }
+                          size="small"
+                        >
+                          {type.name}
+                        </TypeBadge>
+                      </td>
+                    ))}
+                  </>
+                ) : (
+                  <td className={styles.pokemonTypeEfficiencyNone}>None</td>
+                )}
+              </>
             </tr>
           </tbody>
         </table>

@@ -44,16 +44,12 @@
 }
 
 .pokemonTypeEfficiencyValuesContainer {
-  display: block;
-  width: 100%;
-}
-
-.pokemonTypeEfficiencyValues {
   column-gap: rem(10);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(116px, 200px));
+  height: min-content;
   justify-content: center;
-  margin-bottom: 0;
+  margin-bottom: rem(16);
   margin-top: rem(0);
   row-gap: rem(10);
 }
@@ -116,18 +112,9 @@
 }
 
 @media (min-width: $lg) {
-  .pokemonTypeEfficiency {
-    min-height: auto;
-    padding-right: rem(8);
-  }
-
   .pokemonTypeEfficiencyValuesContainer {
-    display: initial;
-    width: auto;
-  }
-
-  .pokemonTypeEfficiencyValues {
-    grid-template-columns: auto auto auto;
+    // grid-template-columns: repeat(auto-fit, minmax(116px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(116px, 132px));
     justify-content: start;
   }
 }
