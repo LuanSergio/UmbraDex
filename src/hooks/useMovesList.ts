@@ -1,48 +1,60 @@
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
-
+import useSWRInfinite from 'swr/infinite';
 import createGetMovesByPokemonIdUsecase from 'src/factories/createGetMovesByPokemonIdUsecase';
+
 import Move from '@domain/entities/Move';
+import MOVE_PER_REQUEST from '@constants/movePerRequest';
 
 interface UseMoveListParams {
+  fallback?: Move[][];
   pokemonId: number;
   groupVersionId: number;
 }
 
 interface UseMoveListResponse {
-  moveList: Move[] | undefined;
+  moveList: Move[][];
   isLoading: boolean;
+  size: number;
+  setSize: (size: number | ((_size: number) => number)) => Promise<Move[][]>;
 }
 
 export default function useMoveList({
+  fallback,
   pokemonId,
   groupVersionId,
 }: UseMoveListParams): UseMoveListResponse {
-  const [isLoading, setIsLoading] = useState(true);
-
   const getMovesByPokemonIdUsecase = createGetMovesByPokemonIdUsecase();
 
-  const { data, error } = useSWR(`${pokemonId}`, async () => {
-    const response = await getMovesByPokemonIdUsecase.getByPokemonId({
-      pokemonId,
-      groupVersionId,
-    });
+  const getKey = (pageIndex, previousPageData) => {
+    if (previousPageData && !previousPageData.length) return null; // reached the end
+    return [`moveList`, pageIndex];
+  };
 
-    if (response.isRight()) {
-      return response.value;
-    }
+  const { data, error, size, setSize } = useSWRInfinite(
+    getKey,
+    async (key, page) => {
+      const response = await getMovesByPokemonIdUsecase.getByPokemonId({
+        pokemonId,
+        groupVersionId,
+        queryName: key,
+        page,
+        perRequest: MOVE_PER_REQUEST,
+      });
 
-    throw response.value;
-  });
+      if (response.isRight()) {
+        return response.value;
+      }
 
-  useEffect(() => {
-    if (error != null || data != null) {
-      setIsLoading(false);
-    }
-  }, [data, error]);
+      throw response.value;
+    },
+    {
+      fallbackData: fallback,
+    },
+  );
 
   return {
     moveList: data,
-    isLoading,
+    isLoading: !error && !data,
+    size,
+    setSize,
   };
 }

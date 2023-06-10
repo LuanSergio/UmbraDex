@@ -10,12 +10,23 @@ import IHttpClient from '@services/http/IHttpClient';
 interface GetByPokemonIdParams {
   pokemonId: number;
   groupVersionId: number;
+  queryName: string;
+  page: number;
+  perRequest: number;
 }
 
 export default class MoveData implements MoveRepository {
-  private readonly getAllQuery = (id: number, groupVersionId: number) =>
-    `query PokemonMove {
-      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}, version_group_id: {_eq: ${groupVersionId}}}) {
+  private readonly getAllQuery = (
+    id: number,
+    groupVersionId: number,
+    page: number,
+    perRequest: number,
+    queryName,
+  ) => {
+    const offset = page * perRequest;
+
+    return `query ${queryName} {
+      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}, version_group_id: {_eq: ${groupVersionId}}}, limit: ${perRequest}, offset: ${offset}) {
         move: pokemon_v2_move {
           name
           power
@@ -30,16 +41,26 @@ export default class MoveData implements MoveRepository {
         }
       }
     }`;
+  };
 
   constructor(private readonly client: IHttpClient) {}
 
   async getByPokemonId({
     pokemonId,
     groupVersionId,
+    page,
+    perRequest,
+    queryName,
   }: GetByPokemonIdParams): Promise<Either<Error, Move[]>> {
     try {
       const result = await this.client.request<GetByPokemonIdResponse>({
-        query: this.getAllQuery(pokemonId, groupVersionId),
+        query: this.getAllQuery(
+          pokemonId,
+          groupVersionId,
+          page,
+          perRequest,
+          queryName,
+        ),
       });
 
       const moves = result.body.moves.map(item => {
