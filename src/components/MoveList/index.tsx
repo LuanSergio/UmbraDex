@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import Move from '@domain/entities/Move';
 
@@ -28,14 +28,20 @@ interface MoveListProps {
 }
 
 const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
-  const loader = useRef(null);
+  const [loader, setLoader] = useState(null);
 
   const { moveList, isLoading, setSize } = useMovesList({
     pokemonId,
   });
 
+  useEffect(() => {
+    const node = document.querySelector('#loader');
+
+    setLoader(node);
+  }, [isLoading, pokemonId]);
+
   useLoader<Move>({
-    loader: loader.current,
+    loader,
     setSize,
   });
 
@@ -117,7 +123,7 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
 
             {moveList?.[moveList?.length - 1].length >= MOVE_PER_REQUEST && (
               <tr
-                ref={loader}
+                id="loader"
                 className={styles.moveListMovesRow}
                 style={{ height: 124 }}
               >
