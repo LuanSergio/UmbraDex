@@ -188,7 +188,7 @@ const PokemonContent = ({
         </div>
 
         <div className={styles.moveListContainer}>
-          <MoveList />
+          <MoveList pokemonId={pokemon.id} />
         </div>
       </div>
       <InnerPageNavigation

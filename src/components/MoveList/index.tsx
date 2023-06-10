@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
 import Move from '@domain/entities/Move';
 
@@ -14,6 +14,7 @@ import useMovesList from '@hooks/useMovesList';
 import useLoader from '@hooks/useLoader';
 import TypeBadge from '@components/TypeBadge';
 
+import MOVE_PER_REQUEST from '@constants/movePerRequest';
 import styles from './styles.module.scss';
 
 const moveCategoryIcon = {
@@ -22,12 +23,15 @@ const moveCategoryIcon = {
   status: <StatusIcon />,
 };
 
-const MoveList = (): JSX.Element => {
+interface MoveListProps {
+  pokemonId: number;
+}
+
+const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
   const loader = useRef(null);
 
   const { moveList, isLoading, setSize } = useMovesList({
-    pokemonId: 94,
-    groupVersionId: 10,
+    pokemonId,
   });
 
   useLoader<Move>({
@@ -111,9 +115,15 @@ const MoveList = (): JSX.Element => {
               </Fragment>
             ))}
 
-            {moveList[moveList?.length - 1]?.length > 0 && (
-              <tr style={{ height: 64 }} ref={loader}>
-                <td />
+            {moveList?.[moveList?.length - 1].length >= MOVE_PER_REQUEST && (
+              <tr
+                ref={loader}
+                className={styles.moveListMovesRow}
+                style={{ height: 124 }}
+              >
+                <td className={styles.loader}>
+                  <PokeBallIcon />
+                </td>
               </tr>
             )}
           </tbody>

@@ -26,7 +26,7 @@ export default class MoveData implements MoveRepository {
     const offset = page * perRequest;
 
     return `query ${queryName} {
-      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}, version_group_id: {_eq: ${groupVersionId}}}, limit: ${perRequest}, offset: ${offset}) {
+      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}}  distinct_on: [move_id], limit: ${perRequest}, offset: ${offset}) {
         move: pokemon_v2_move {
           name
           power
@@ -76,7 +76,7 @@ export default class MoveData implements MoveRepository {
         };
       });
 
-      return right(filterMoveList(moves));
+      return right(moves);
     } catch (error) {
       return left(error);
     }

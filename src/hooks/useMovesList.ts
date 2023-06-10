@@ -7,7 +7,6 @@ import MOVE_PER_REQUEST from '@constants/movePerRequest';
 interface UseMoveListParams {
   fallback?: Move[][];
   pokemonId: number;
-  groupVersionId: number;
 }
 
 interface UseMoveListResponse {
@@ -20,13 +19,12 @@ interface UseMoveListResponse {
 export default function useMoveList({
   fallback,
   pokemonId,
-  groupVersionId,
 }: UseMoveListParams): UseMoveListResponse {
   const getMovesByPokemonIdUsecase = createGetMovesByPokemonIdUsecase();
 
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
-    return [`moveList`, pageIndex];
+    return [`moveList`, pageIndex, pokemonId];
   };
 
   const { data, error, size, setSize } = useSWRInfinite(
@@ -34,7 +32,6 @@ export default function useMoveList({
     async (key, page) => {
       const response = await getMovesByPokemonIdUsecase.getByPokemonId({
         pokemonId,
-        groupVersionId,
         queryName: key,
         page,
         perRequest: MOVE_PER_REQUEST,

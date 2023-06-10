@@ -11,8 +11,8 @@ import LoadingDots from '@public/icons/loading-dots.svg';
 import { usePokemonListContext } from 'src/contexts/PokemonListContext';
 import POKEMON_PER_REQUEST from 'src/constants/pokemonPerRequest';
 import useWindowSize from 'src/hooks/useWindowSize';
-import useLoader from '@hooks/useLoader';
 
+import useLoader from '@hooks/useLoader';
 import PokemonCard from '@components/PokemonCard';
 import PokemonCardSkeleton from '@components/PokemonCardSkeleton';
 import SnackBar from '@components/SnackBar';

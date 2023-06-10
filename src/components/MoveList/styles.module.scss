@@ -7,8 +7,7 @@
 
 .moveList {
   background-color: var(--current-dark-type-color);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px;
   color: get-color(light);
   display: block;
   height: 100%;
@@ -118,10 +117,6 @@
 }
 
 .loadingPokeball {
-  animation-duration: 2.8s;
-  animation-iteration-count: infinite;
-  animation-name: rotating;
-  animation-timing-function: linear;
   margin-bottom: 20px;
   width: 200px;
 }
@@ -142,4 +137,21 @@
   margin-left: em(3);
   transform: translateY(em(-3));
   width: em(20);
+}
+
+.loader {
+  display: block;
+  height: 124px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px;
+  width: 124px;
+}
+
+.loadingPokeball,
+.loader {
+  animation-duration: 2.8s;
+  animation-iteration-count: infinite;
+  animation-name: rotating;
+  animation-timing-function: linear;
 }
