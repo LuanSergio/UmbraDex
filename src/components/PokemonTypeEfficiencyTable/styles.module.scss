@@ -28,8 +28,6 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-
-  // padding-right: 8px;
 }
 
 .pokemonTypeEfficiencyCategory {
@@ -113,8 +111,7 @@
 
 @media (min-width: $lg) {
   .pokemonTypeEfficiencyValuesContainer {
-    // grid-template-columns: repeat(auto-fit, minmax(116px, 1fr));
-    grid-template-columns: repeat(auto-fit, minmax(116px, 132px));
+    grid-template-columns: repeat(auto-fit, minmax(116px, 1fr));
     justify-content: start;
   }
 }
