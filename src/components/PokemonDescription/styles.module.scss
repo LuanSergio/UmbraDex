@@ -7,11 +7,31 @@
   width: 100%;
 }
 
+.carouselContainerNoDescription {
+  background-color: var(--current-dark-type-color);
+  border-radius: 8px;
+}
+
+.noDescription {
+  font-weight: bold;
+  margin-bottom: rem(20);
+  margin-top: 0;
+  text-align: center;
+}
+
 .generationDescriptionContent {
   margin-bottom: rem(24);
   margin-bottom: rem(80);
   min-height: auto;
   width: 100%;
+}
+
+.carouselContainerNoDescription .generationDescriptionContent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  min-height: 120px;
 }
 
 .carouselContainer {
@@ -82,7 +102,12 @@
   .generationDescriptionContent {
     font-size: rem(20);
     margin-bottom: 0;
-    min-height: 280px;
+    margin-bottom: rem(32);
+    min-height: rem(150);
+  }
+
+  .carouselContainerNoDescription .generationDescriptionContent {
+    min-height: rem(200);
   }
 
   .generationDescriptionOption {

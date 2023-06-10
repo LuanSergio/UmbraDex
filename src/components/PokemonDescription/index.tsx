@@ -44,7 +44,13 @@ const PokemonBasicInformation = ({
   }, [pokedexIndex]);
 
   return (
-    <div className={styles.generationDescriptionContainer}>
+    <div
+      className={`${styles.generationDescriptionContainer} ${
+        descriptions[descriptionIndex]
+          ? ''
+          : styles.carouselContainerNoDescription
+      }`}
+    >
       <div className={styles.generationDescriptionContent}>
         {descriptions.length > 1 && (
           <div className={styles.carouselContainer}>
@@ -80,19 +86,23 @@ const PokemonBasicInformation = ({
             </Carousel>
           </div>
         )}
+        {descriptions[descriptionIndex] ? (
+          <ScrollableText maxHeight={120} shouldChange={descriptionIndex}>
+            <p className={styles.description}>
+              {descriptions[descriptionIndex] &&
+                descriptions[descriptionIndex].description}
 
-        <ScrollableText maxHeight={380} shouldChange={descriptionIndex}>
-          <p className={styles.description}>
-            {descriptions[descriptionIndex] &&
-              descriptions[descriptionIndex].description}
-            {(descriptionIndex === 3 || descriptionIndex === 4) && (
-              <small className={styles.sideNote}>
-                <Important className={styles.descriptionImportant} /> The fourth
-                and fifth generation share some descriptions
-              </small>
-            )}
-          </p>
-        </ScrollableText>
+              {(descriptionIndex === 3 || descriptionIndex === 4) && (
+                <small className={styles.sideNote}>
+                  <Important className={styles.descriptionImportant} /> The
+                  fourth and fifth generation share some descriptions
+                </small>
+              )}
+            </p>
+          </ScrollableText>
+        ) : (
+          <p className={styles.noDescription}> No description available yet.</p>
+        )}
       </div>
     </div>
   );

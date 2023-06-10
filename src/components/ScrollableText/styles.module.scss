@@ -8,26 +8,24 @@
 }
 
 .scrollableTextContentContained {
-  max-height: rem(180);
   overflow-y: scroll;
   padding-right: rem(8);
 }
 
-.scrollableTextOverflowContained::after {
-  @include h-icon;
+// .scrollableTextOverflowContained::after {
+//   @include h-icon;
 
-  content: get-icon('arrow');
-  display: block;
-  font-size: rem(24);
-  margin-top: rem(8);
-  text-align: center;
-  transform: rotate(270deg);
-}
+//   content: get-icon('arrow');
+//   display: block;
+//   font-size: rem(24);
+//   margin-top: rem(8);
+//   text-align: center;
+//   transform: rotate(270deg);
+// }
 
 @media only screen and (min-width: $lg) {
   .scrollableText {
     height: auto;
-    max-height: rem(180);
   }
 
   .scrollableTextOverflowContained::after {

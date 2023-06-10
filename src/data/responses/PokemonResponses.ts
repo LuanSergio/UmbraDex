@@ -65,15 +65,15 @@ export interface GetPokemonByIdResponse {
                   ];
                   weight: number;
                   height: number;
+                  abilities: [
+                    {
+                      ability: {
+                        name: string;
+                      };
+                    },
+                  ];
                 };
                 groupVersion: number;
-              },
-            ];
-            abilities: [
-              {
-                ability: {
-                  name: string;
-                };
               },
             ];
           };

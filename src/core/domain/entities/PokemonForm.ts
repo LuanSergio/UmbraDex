@@ -21,6 +21,8 @@ export default class PokemonForm {
 
   public height: number;
 
+  public abilities: string[];
+
   public groupVersion: number;
 
   constructor(
@@ -34,6 +36,7 @@ export default class PokemonForm {
     image: string,
     weight: number,
     height: number,
+    abilities: string[],
     groupVersion: number,
   ) {
     this.id = id;
@@ -47,5 +50,6 @@ export default class PokemonForm {
     this.weight = weight;
     this.height = height;
     this.groupVersion = groupVersion;
+    this.abilities = abilities;
   }
 }

@@ -23,6 +23,7 @@ import SwitchForms from '@components/SwitchForms';
 
 import MoveList from '@components/MoveList';
 
+import formatAbilityName from '@utils/formatAbilityName';
 import styles from './styles.module.scss';
 
 interface PokemonContentProps {
@@ -145,21 +146,34 @@ const PokemonContent = ({
               descriptions={pokemonDetails.descriptions}
             />
 
-            <dl className={styles.characteristic}>
-              <div>
-                <dt className={styles.characteristicLabel}>Height:</dt>
-                <dd className={styles.characteristicValue}>
-                  {convertDecimetersToMeters(pokemon.height)} M
-                </dd>
+            <div className={styles.characteristics}>
+              <div className={styles.abilities}>
+                <h2 className={styles.abilitiesTitle}>Abilities:</h2>
+                <ul className={styles.abilitiesList}>
+                  {pokemon.abilities.map(ability => (
+                    <li className={styles.ability} key={ability}>
+                      {formatAbilityName(ability)}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div>
-                <dt className={styles.characteristicLabel}>Weight:</dt>
-                <dd className={styles.characteristicValue}>
-                  {convertHectogramToKilogram(pokemon.weight)} Kg
-                </dd>
-              </div>
-            </dl>
+              <dl className={styles.physicalDimensions}>
+                <div className={styles.physicalDimensionsList}>
+                  <dt className={styles.physicalDimensionsLabel}>Height:</dt>
+                  <dd className={styles.physicalDimensionsValue}>
+                    {convertDecimetersToMeters(pokemon.height)} M
+                  </dd>
+                </div>
+
+                <div className={styles.physicalDimensionsList}>
+                  <dt className={styles.physicalDimensionsLabel}>Weight:</dt>
+                  <dd className={styles.physicalDimensionsValue}>
+                    {convertHectogramToKilogram(pokemon.weight)} Kg
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
           <div className={styles.contentOdd}>
             <PokemonStatsChart stats={pokemon.stats} />

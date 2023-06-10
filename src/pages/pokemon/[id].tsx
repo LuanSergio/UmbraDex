@@ -72,11 +72,12 @@ export const getStaticProps: GetStaticProps = async context => {
   );
   const generationsResponse = await getGenerationUsecase.getAll();
   const pokedexLimitResponse = await getPokedexLimitUsecase.getLimit();
+
   const pokemonTypesResponse = await getPokemonTypesUsecase.getAll();
 
   let pokemonForms: Pokemon;
   let generations: Generation[] = [];
-  let pokedexLimit = 151;
+  let pokedexLimit = 1008;
   let pokemonTypes: PokemonType[] = [];
 
   if (pokemonByIdResponse.isRight()) {

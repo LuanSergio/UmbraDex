@@ -77,7 +77,7 @@
 @media only screen and (min-width: $lg) {
   .carouselHolder {
     gap: rem(16);
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .previous,

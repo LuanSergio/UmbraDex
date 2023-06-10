@@ -83,7 +83,7 @@ export default class PokemonData implements PokemonRepository {
         number: pokedex_number
       }
     }
-    species: pokemon_v2_pokemonspecies(where: {id: {_eq: ${id}}}) {
+    species: pokemon_v2_pokemonspecies(where: {id: {_eq: ${id} }}) {
       pokemon: pokemon_v2_pokemons {
         name
         isDefault: is_default
@@ -105,13 +105,13 @@ export default class PokemonData implements PokemonRepository {
             }
             weight
             height
+            abilities: pokemon_v2_pokemonabilities {
+              ability: pokemon_v2_ability {
+                name
+              }
+            }
           }
           groupVersion: version_group_id
-        }
-        abilities:pokemon_v2_pokemonabilities {
-          ability: pokemon_v2_ability {
-            name
-          }
         }
       }
       specieName:pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 1}}) {
@@ -208,6 +208,9 @@ export default class PokemonData implements PokemonRepository {
             height: form.pokemonForms[0].pokemonDetails.height,
             weight: form.pokemonForms[0].pokemonDetails.weight,
             groupVersion: form.pokemonForms[0].groupVersion,
+            abilities: form.pokemonForms[0].pokemonDetails.abilities.map(
+              item => item.ability.name,
+            ),
             stats: form.pokemonForms[0].pokemonDetails.stats.map(stats => {
               return {
                 name: stats.stat.name,

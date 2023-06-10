@@ -39,32 +39,82 @@
   width: 100%;
 }
 
-.characteristic {
+.characteristics {
   background-color: var(--current-dark-type-color);
   border-radius: 8px;
+  padding: rem(32) rem(14);
+  width: 100%;
+}
+
+.abilities {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: rem(24);
+}
+
+.abilities > *:not(:last-child) {
+  margin-right: rem(10);
+}
+
+.abilitiesTitle {
+  font-size: rem(18);
+  margin-bottom: rem(20);
+  margin-top: 0;
+  text-align: center;
+}
+
+.abilitiesList {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.abilitiesList > *:not(:last-child) {
+  margin-right: rem(10);
+}
+
+.ability {
+  background-color: var(--current-type-color);
+  border-radius: rem(4);
+  font-weight: bold;
+  padding: 8px 10px;
+}
+
+.physicalDimensions {
   display: flex;
   justify-content: space-around;
   margin-bottom: 0;
   margin-top: 0;
-  padding: rem(20) rem(14);
   text-align: left;
-  width: 100%;
 }
 
-.characteristic > *:not(:last-child) {
+.physicalDimensions > *:not(:last-child) {
   margin-right: rem(20);
 }
 
-.characteristicLabel {
+.physicalDimensionsList {
+  align-items: center;
+  display: flex;
+}
+
+.physicalDimensionsList > *:not(:last-child) {
+  margin-right: rem(10);
+}
+
+.physicalDimensionsLabel {
   font-size: rem(18);
   font-weight: bold;
   text-align: left;
 }
 
-.characteristicValue {
+.physicalDimensionsValue {
   font-size: rem(16);
   margin-left: 0;
-  margin-top: rem(12);
   text-align: right;
 }
 
@@ -86,7 +136,7 @@
     margin-top: calc(rem(38) + var(--header-height));
   }
 
-  .characteristic {
+  .physicalDimensions {
     margin-top: rem(16);
   }
 }
