@@ -2,6 +2,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, Fragment } from 'react';
 
+import PokemonSummary from '@domain/entities/PokemonSummary';
+
 import LoadingCircleIcon from '@public/icons/loading.svg';
 import ConfusedPsyduck from '@public/confused-psyduck.svg';
 import LoadingDots from '@public/icons/loading-dots.svg';
@@ -9,12 +11,12 @@ import LoadingDots from '@public/icons/loading-dots.svg';
 import { usePokemonListContext } from 'src/contexts/PokemonListContext';
 import POKEMON_PER_REQUEST from 'src/constants/pokemonPerRequest';
 import useWindowSize from 'src/hooks/useWindowSize';
+import useLoader from '@hooks/useLoader';
 
 import PokemonCard from '@components/PokemonCard';
 import PokemonCardSkeleton from '@components/PokemonCardSkeleton';
 import SnackBar from '@components/SnackBar';
 
-import useCardListLoader from './useCardListLoader';
 import styles from './styles.module.scss';
 
 const PokemonCardList = (): JSX.Element => {
@@ -28,7 +30,7 @@ const PokemonCardList = (): JSX.Element => {
 
   const router = useRouter();
 
-  useCardListLoader({
+  useLoader<PokemonSummary>({
     loader: loader.current,
     setSize: setPokemonListSize,
   });

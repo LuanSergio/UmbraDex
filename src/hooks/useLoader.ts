@@ -1,14 +1,11 @@
 import { useCallback, useEffect } from 'react';
-import PokemonSummary from '@domain/entities/PokemonSummary';
 
-interface ControllerProps {
+interface ControllerProps<T> {
   loader: HTMLElement;
-  setSize: (
-    size: number | ((_size: number) => number),
-  ) => Promise<PokemonSummary[][]>;
+  setSize: (size: number | ((_size: number) => number)) => Promise<T[][]>;
 }
 
-const useCardListLoader = ({ loader, setSize }: ControllerProps) => {
+const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
   const handleObserver = useCallback(() => {
     setSize(previousValue => previousValue + 1);
   }, [setSize]);
@@ -27,4 +24,4 @@ const useCardListLoader = ({ loader, setSize }: ControllerProps) => {
   }, [handleObserver, loader]);
 };
 
-export default useCardListLoader;
+export default useLoader;
