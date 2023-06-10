@@ -1,7 +1,11 @@
 export interface GetPokedexLimitResponse {
-  pokedex: {
-    pokedexNumbers: {
-      limit: number;
-    };
-  };
+  pokedex: [
+    {
+      pokedexNumbers: [
+        {
+          limit: number;
+        },
+      ];
+    },
+  ];
 }
