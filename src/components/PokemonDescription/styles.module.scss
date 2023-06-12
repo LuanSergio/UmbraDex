@@ -4,6 +4,7 @@
 @use 'settings/_breakpoints' as *;
 
 .generationDescriptionContainer {
+  min-height: rem(256);
   width: 100%;
 }
 
@@ -22,7 +23,6 @@
 .generationDescriptionContent {
   margin-bottom: rem(24);
   margin-bottom: rem(80);
-  min-height: auto;
   width: 100%;
 }
 
