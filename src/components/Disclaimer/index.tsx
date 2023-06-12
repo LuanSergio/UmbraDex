@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 const Disclaimer = (): JSX.Element => {
   return (
     <p className={styles.disclaimerText}>
-      This website was made as a study project, with no no financial purpose.{' '}
+      This website was made as a study project, with no financial purpose.{' '}
       <br />
       <br />
       All image contents within are Copyright of The Pokémon Company. Pokémon ©
