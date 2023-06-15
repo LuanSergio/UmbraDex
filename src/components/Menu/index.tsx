@@ -8,7 +8,7 @@ import RandomIcon from '@public/icons/random.svg';
 
 import Routes from 'src/constants/routes';
 import createRandomNumber from '@utils/createRandomNumber';
-import useThrottle from 'src/hooks/useThrottle';
+import useThrottleFunction from 'src/hooks/useThrottleFunction';
 
 import { usePokemonListContext } from 'src/contexts/PokemonListContext';
 
@@ -38,7 +38,7 @@ const Menu = ({ isOpen }: MenuProps): JSX.Element => {
     router.push(`${Routes.pokemonDetails}/${createRandomNumber(pokedexLimit)}`);
   }
 
-  const throttled = useThrottle(handleGoToRandomPokemon, 5000);
+  const throttled = useThrottleFunction(handleGoToRandomPokemon, 5000);
 
   return (
     <>

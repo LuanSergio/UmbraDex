@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
-import createGetMovesByPokemonIdUsecase from 'src/factories/createGetMovesByPokemonIdUsecase';
 
 import Move from '@domain/entities/Move';
+import createGetMovesByPokemonIdUsecase from 'src/factories/createGetMovesByPokemonIdUsecase';
+
 import MOVE_PER_REQUEST from '@constants/movePerRequest';
+import useThrottleValue from '@hooks/useThrottleValue';
 
 interface UseMoveListParams {
   fallback?: Move[][];
@@ -20,18 +23,21 @@ export default function useMoveList({
   fallback,
   pokemonId,
 }: UseMoveListParams): UseMoveListResponse {
+  const [isLoading, setIsLoading] = useState(true);
+  const [throttledPokemonId, isThrottling] = useThrottleValue(pokemonId, 2000);
+
   const getMovesByPokemonIdUsecase = createGetMovesByPokemonIdUsecase();
 
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null; // reached the end
-    return [`moveList`, pageIndex, pokemonId];
+    return [`moveList`, pageIndex, throttledPokemonId];
   };
 
   const { data, error, size, setSize } = useSWRInfinite(
     getKey,
     async (key, page) => {
       const response = await getMovesByPokemonIdUsecase.getByPokemonId({
-        pokemonId,
+        pokemonId: throttledPokemonId,
         queryName: key,
         page,
         perRequest: MOVE_PER_REQUEST,
@@ -48,9 +54,17 @@ export default function useMoveList({
     },
   );
 
+  useEffect(() => {
+    if (error != null || data != null) {
+      setIsLoading(false);
+    }
+  }, [data, error]);
+
+  const combinedLoading = isLoading || isThrottling;
+
   return {
     moveList: data,
-    isLoading: !error && !data,
+    isLoading: combinedLoading,
     size,
     setSize,
   };

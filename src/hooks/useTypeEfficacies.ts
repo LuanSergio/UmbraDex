@@ -4,6 +4,8 @@ import useSWR from 'swr';
 import createGetPokemonTypeEfficaciesUsecase from 'src/factories/createGetPokemonTypeEfficaciesUsecase';
 import PokemonTypeEfficiency from '@domain/entities/PokemonTypeEfficiency';
 
+import useThrottleValue from '@hooks/useThrottleValue';
+
 interface UseTypeEfficaciesParams {
   types: number[];
 }
@@ -19,7 +21,10 @@ export default function useTypeEfficacies({
   const [isLoading, setIsLoading] = useState(true);
   const getPokemonTypeEfficaciesUsecase =
     createGetPokemonTypeEfficaciesUsecase();
-  const { data, error } = useSWR([types], async typesKey => {
+
+  const [throttledTypes, isThrottling] = useThrottleValue(types, 2000);
+
+  const { data, error } = useSWR([throttledTypes], async typesKey => {
     const response = await getPokemonTypeEfficaciesUsecase.getTypeEfficacies(
       typesKey,
     );
@@ -37,8 +42,10 @@ export default function useTypeEfficacies({
     }
   }, [data, error]);
 
+  const combinedLoading = isLoading || isThrottling;
+
   return {
     typeEfficiency: data,
-    isLoading,
+    isLoading: combinedLoading,
   };
 }

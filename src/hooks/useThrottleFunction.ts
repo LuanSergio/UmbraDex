@@ -17,7 +17,7 @@ export function throttle<F extends CallBackFunction>(
   };
 }
 
-export default function useThrottle(
+export default function useThrottleFunction(
   callback: CallBackFunction,
   cooldown: number,
 ) {
