@@ -389,14 +389,10 @@ const FilterModal = ({ children }: FilterModal): JSX.Element => {
         (filterValues.generation?.length > 0 ||
           filterValues.primaryType?.length > 0 ||
           filterValues.secondaryType?.length > 0) && (
-          <SnackBar
-            adornment={
-              <div className={styles.snackBarLoadingIcon}>
-                {/* <LoadingIcon /> */}
-              </div>
-            }
-          >
-            You have some filters applied, some pokemon may not appear!{' '}
+          <SnackBar adornment={<div className={styles.snackBarLoadingIcon} />}>
+            <span>
+              You have some filters applied, some pokemon may not appear!
+            </span>{' '}
             <button
               type="button"
               onClick={handleFilterOpen}
