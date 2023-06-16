@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Move from '@domain/entities/Move';
 
