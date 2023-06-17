@@ -67,15 +67,13 @@
 
 .abilitiesList {
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, min-content));
   justify-content: center;
   margin-bottom: 0;
   margin-top: 0;
-}
-
-.abilitiesList > *:not(:last-child) {
-  margin-right: rem(10);
+  width: 100%;
 }
 
 .ability {
@@ -83,6 +81,8 @@
   border-radius: rem(4);
   font-weight: bold;
   padding: 8px 10px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .physicalDimensions {
@@ -121,10 +121,15 @@
 .moveListContainer {
   margin-top: rem(40);
 }
+@media only screen and (min-width: $xs) {
+  .abilitiesList {
+    grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+  }
+}
 
-@media only screen and (min-width: $lg) {
+@media only screen and (min-width: $xl) {
   .container {
-    gap: 40px 40px;
+    gap: rem(40);
     grid-template-columns: 5fr 3fr;
   }
 

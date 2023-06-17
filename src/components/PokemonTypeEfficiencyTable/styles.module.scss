@@ -110,7 +110,7 @@
   width: rem(20);
 }
 
-@media (min-width: $lg) {
+@media (min-width: $xl) {
   .pokemonTypeEfficiencyValuesContainer {
     grid-template-columns: repeat(3, minmax(116px, 132px));
     justify-content: start;

@@ -4,6 +4,9 @@
 @use 'settings/_breakpoints' as *;
 
 .generationDescriptionContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: rem(280);
   min-height: rem(256);
   width: 100%;
 }
@@ -65,8 +68,6 @@
   font-weight: bold;
   line-height: 1.5;
   margin: 0 auto;
-  padding-left: rem(20);
-  padding-right: rem(20);
   text-align: center;
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.3);
 }
@@ -85,6 +86,17 @@
   margin-top: rem(12);
 }
 
+@media only screen and (min-width: $xs) {
+  .generationDescriptionContainer {
+    max-width: 100%;
+  }
+
+  .description {
+    padding-left: rem(20);
+    padding-right: rem(20);
+  }
+}
+
 @media only screen and (min-width: $sm) {
   .carouselContainer {
     margin-top: rem(32);
@@ -92,13 +104,11 @@
 
   .description {
     font-size: rem(26);
-    padding-left: 0;
-    padding-right: 0;
     text-align: center;
   }
 }
 
-@media only screen and (min-width: $lg) {
+@media only screen and (min-width: $xl) {
   .generationDescriptionContent {
     font-size: rem(20);
     margin-bottom: 0;

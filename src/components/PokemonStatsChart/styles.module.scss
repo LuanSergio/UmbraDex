@@ -13,7 +13,6 @@
   margin-right: auto;
   padding: rem(48) rem(10) rem(48);
   transition: background-color 0.28s ease-out;
-  width: calc(100% - 8px);
   width: 100%;
 }
 
@@ -39,7 +38,8 @@
   margin-bottom: rem(8);
   margin-right: rem(16);
   text-transform: capitalize;
-  width: rem(140);
+  white-space: nowrap;
+  width: rem(148);
 }
 
 .statsMeter {
@@ -72,7 +72,7 @@
   }
 }
 
-@media only screen and (min-width: $lg) {
+@media only screen and (min-width: $md) {
   .stats {
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -81,6 +81,30 @@
     padding: rem(48) rem(0) rem(48) rem(32);
   }
 
+  .statsMeter {
+    height: rem(20);
+  }
+
+  .statsList {
+    width: 52%;
+  }
+
+  .statsHolder {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .statsChart {
+    margin-bottom: 0;
+    max-width: 48%;
+  }
+
+  .statsLabel {
+    margin-bottom: rem(0);
+  }
+}
+
+@media only screen and (min-width: $xl) {
   .statsMeter {
     height: rem(20);
     width: rem(196);
@@ -92,10 +116,7 @@
   }
 
   .statsChart {
-    margin-bottom: 0;
-  }
-
-  .statsLabel {
-    margin-bottom: rem(0);
+    max-width: rem(370);
+    width: 100%;
   }
 }

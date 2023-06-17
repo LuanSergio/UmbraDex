@@ -45,13 +45,13 @@
   .pokemonContainer {
     margin-left: 0;
     margin-right: 0;
-    max-width: rem(696);
+    max-width: 100%;
+    width: 100%;
   }
 
   .pokemon {
     height: rem(448);
     margin-bottom: 0;
-    max-width: rem(448);
     width: 100%;
   }
 
@@ -63,6 +63,7 @@
     font-size: rem(142);
     left: rem(-24);
     text-align: left;
+    text-align: center;
     transform: translateX(0);
   }
 }
@@ -80,5 +81,12 @@
 
   .navigation {
     font-size: rem(152);
+  }
+
+  .japaneseName {
+    font-size: rem(142);
+    left: rem(-24);
+    text-align: left;
+    transform: translateX(0);
   }
 }
