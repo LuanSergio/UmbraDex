@@ -71,13 +71,7 @@ const PokemonCardList = (): JSX.Element => {
             </div>
           )}
 
-          <SnackBar
-            adornment={
-              <div className={styles.snackBarLoadingCircleIcon}>
-                <LoadingCircleIcon />
-              </div>
-            }
-          >
+          <SnackBar>
             Loading
             <span className={styles.loadingDots}>
               <LoadingDots />

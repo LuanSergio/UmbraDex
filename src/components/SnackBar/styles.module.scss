@@ -11,25 +11,21 @@
   font-size: rem(16);
   font-weight: bold;
   left: rem(24);
-  min-width: rem(240);
+  min-width: rem(200);
   padding: rem(20);
   position: fixed;
   right: rem(24);
   z-index: get-index-level(max);
 }
 
-.snackBarContainer {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
 .snackBarContent {
-  align-items: baseline;
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-bottom: 0;
+  margin-top: 0;
   text-align: center;
 }
 
@@ -37,17 +33,18 @@
   margin-bottom: rem(20);
 }
 
-@media only screen and (min-width: $md) {
+@media only screen and (min-width: $lg) {
   .snackBar {
     font-size: rem(20);
     left: auto;
-    min-width: rem(340);
+    min-width: rem(280);
     padding: rem(24);
   }
 
   .snackBarContent {
-    align-items: center;
+    align-items: baseline;
     flex-direction: row;
+    justify-content: flex-start;
     text-align: left;
   }
 

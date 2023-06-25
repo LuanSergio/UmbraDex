@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 
 interface SnackBarProps {
   children: ReactNode;
-  adornment: ReactNode;
+  adornment?: ReactNode;
 }
 
 const SnackBar = ({ children, adornment }: SnackBarProps): JSX.Element => (
