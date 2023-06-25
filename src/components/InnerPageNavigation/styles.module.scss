@@ -68,9 +68,13 @@
   transform: rotate(180deg);
 }
 
-@media only screen and (min-width: $sm) {
+@media only screen and (min-width: $xl) {
   .navigation {
     z-index: 0;
+  }
+
+  .navigationContainer {
+    max-width: $xxl;
   }
 
   .next {
@@ -88,25 +92,9 @@
   .previous,
   .next {
     background-color: transparent;
+    border-radius: 10%;
     position: relative;
     top: auto;
     transform: none;
-  }
-}
-
-@media only screen and (min-width: $lg) {
-  .navigationContainer {
-    max-width: calc(100% - 32px);
-  }
-
-  .previous,
-  .next {
-    border-radius: 10%;
-  }
-}
-
-@media only screen and (min-width: $xl) {
-  .navigationContainer {
-    max-width: $xxl;
   }
 }
