@@ -37,7 +37,6 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
 
   useLayoutEffect(() => {
     const node = document.querySelector('#loader');
-    console.log('🚀 ~ useLayoutEffect ~ node:', node);
 
     setLoader(node);
   }, [isLoading, pokemonId, moveList]);
