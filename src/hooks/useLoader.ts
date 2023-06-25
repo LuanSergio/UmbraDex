@@ -10,17 +10,21 @@ const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
     setSize(previousValue => previousValue + 1);
   }, [setSize]);
 
-  // Create Observer loader
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: `80px`,
-      threshold: 1.0,
+      rootMargin: `40px`,
+      threshold: 0.5,
     };
+
     const observer = new IntersectionObserver(handleObserver, options);
     if (loader) {
       observer.observe(loader);
     }
+
+    return () => {
+      observer.disconnect();
+    };
   }, [handleObserver, loader]);
 };
 
