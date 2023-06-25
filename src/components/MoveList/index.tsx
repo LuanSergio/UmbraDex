@@ -48,107 +48,117 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
   });
 
   return (
-    <div className={styles.moveListHolder}>
-      <div className={styles.moveList}>
-        {isLoading || moveList === undefined ? (
-          <div className={styles.loading}>
-            <div className={styles.loadingPokeball}>
-              <PokeBallIcon />
-            </div>
-            <span className={styles.loadingText}>
-              Loading
-              <span className={styles.loadingDots}>
-                <LoadingDots />
+    <div>
+      <h2 className="h-title-level-2">Moves:</h2>
+      <div className={styles.moveListHolder}>
+        <div className={styles.moveList}>
+          {isLoading || moveList === undefined ? (
+            <div className={styles.loading}>
+              <div className={styles.loadingPokeball}>
+                <PokeBallIcon />
+              </div>
+              <span className={styles.loadingText}>
+                Loading
+                <span className={styles.loadingDots}>
+                  <LoadingDots />
+                </span>
               </span>
-            </span>
-          </div>
-        ) : (
-          <table
-            className={`${styles.moveListTable} h-neutral-scroll`}
-            cellPadding={0}
-            cellSpacing={0}
-          >
-            <thead>
-              <tr className={styles.moveListTableHeaderRow}>
-                <th className={`${styles.moveListHead} ${styles.nameHead}`}>
-                  Name
-                </th>
-                <th className={`${styles.moveListHead} ${styles.typeHead}`}>
-                  Type
-                </th>
-                <th className={`${styles.moveListHead} ${styles.categoryHead}`}>
-                  Category
-                </th>
-                <th className={`${styles.moveListHead} ${styles.accuracyHead}`}>
-                  Accuracy
-                </th>
-                <th className={`${styles.moveListHead} ${styles.powerHead}`}>
-                  Power
-                </th>
-                <th className={`${styles.moveListHead} ${styles.ppHead}`}>
-                  PP
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              className={`${styles.moveListMovesContainer} h-neutral-scroll`}
+            </div>
+          ) : (
+            <table
+              className={`${styles.moveListTable} h-neutral-scroll`}
+              cellPadding={0}
+              cellSpacing={0}
             >
-              {moveList?.map((list, index) => (
-                <Fragment key={index}>
-                  {list.map(move => (
-                    <tr className={styles.moveListMovesRow} key={move.name}>
-                      <td
-                        className={`${styles.moveListCell} ${styles.nameCell}`}
-                      >
-                        {formatPokemonMoveProperty(move.name)}
-                      </td>
-                      <td
-                        className={`${styles.moveListCell} ${styles.typeCell}`}
-                      >
-                        <div className={styles.typeContainer}>
-                          <TypeBadge size="small">{move.type}</TypeBadge>
-                        </div>
-                      </td>
-                      <td
-                        className={`${styles.moveListCell} ${styles.categoryCell}`}
-                      >
-                        <div className={styles.iconContainer}>
-                          {moveCategoryIcon[move.category]}
-                        </div>
-                      </td>
-                      <td
-                        className={`${styles.moveListCell} ${styles.accuracyCell}`}
-                      >
-                        {formatPokemonMoveProperty(move.accuracy)}
-                      </td>
-                      <td
-                        className={`${styles.moveListCell} ${styles.powerCell}`}
-                      >
-                        {formatPokemonMoveProperty(move.power)}
-                      </td>
-                      <td className={`${styles.moveListCell} ${styles.ppCell}`}>
-                        {formatPokemonMoveProperty(move.pp)}
-                      </td>
-                    </tr>
-                  ))}
-                </Fragment>
-              ))}
-
-              {moveList?.[moveList?.length - 1].length >= MOVE_PER_REQUEST && (
-                <tr className={styles.moveListMovesRow}>
-                  <td className={styles.loaderCell}>
-                    <div id="loader">
-                      <MoveListItemSkeleton />
-                    </div>
-                  </td>
+              <thead>
+                <tr className={styles.moveListTableHeaderRow}>
+                  <th className={`${styles.moveListHead} ${styles.nameHead}`}>
+                    Name
+                  </th>
+                  <th className={`${styles.moveListHead} ${styles.typeHead}`}>
+                    Type
+                  </th>
+                  <th
+                    className={`${styles.moveListHead} ${styles.categoryHead}`}
+                  >
+                    Category
+                  </th>
+                  <th
+                    className={`${styles.moveListHead} ${styles.accuracyHead}`}
+                  >
+                    Accuracy
+                  </th>
+                  <th className={`${styles.moveListHead} ${styles.powerHead}`}>
+                    Power
+                  </th>
+                  <th className={`${styles.moveListHead} ${styles.ppHead}`}>
+                    PP
+                  </th>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        )}
-      </div>
-      <div className={styles.pokeballDecoration}>
-        <PokeBallIcon />
+              </thead>
+              <tbody
+                className={`${styles.moveListMovesContainer} h-neutral-scroll`}
+              >
+                {moveList?.map((list, index) => (
+                  <Fragment key={index}>
+                    {list.map(move => (
+                      <tr className={styles.moveListMovesRow} key={move.name}>
+                        <td
+                          className={`${styles.moveListCell} ${styles.nameCell}`}
+                        >
+                          {formatPokemonMoveProperty(move.name)}
+                        </td>
+                        <td
+                          className={`${styles.moveListCell} ${styles.typeCell}`}
+                        >
+                          <div className={styles.typeContainer}>
+                            <TypeBadge size="small">{move.type}</TypeBadge>
+                          </div>
+                        </td>
+                        <td
+                          className={`${styles.moveListCell} ${styles.categoryCell}`}
+                        >
+                          <div className={styles.iconContainer}>
+                            {moveCategoryIcon[move.category]}
+                          </div>
+                        </td>
+                        <td
+                          className={`${styles.moveListCell} ${styles.accuracyCell}`}
+                        >
+                          {formatPokemonMoveProperty(move.accuracy)}
+                        </td>
+                        <td
+                          className={`${styles.moveListCell} ${styles.powerCell}`}
+                        >
+                          {formatPokemonMoveProperty(move.power)}
+                        </td>
+                        <td
+                          className={`${styles.moveListCell} ${styles.ppCell}`}
+                        >
+                          {formatPokemonMoveProperty(move.pp)}
+                        </td>
+                      </tr>
+                    ))}
+                  </Fragment>
+                ))}
+
+                {moveList?.[moveList?.length - 1].length >=
+                  MOVE_PER_REQUEST && (
+                  <tr className={styles.moveListMovesRow}>
+                    <td className={styles.loaderCell}>
+                      <div id="loader">
+                        <MoveListItemSkeleton />
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
+        <div className={styles.pokeballDecoration}>
+          <PokeBallIcon />
+        </div>
       </div>
     </div>
   );
