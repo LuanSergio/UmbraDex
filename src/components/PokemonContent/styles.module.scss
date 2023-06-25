@@ -121,6 +121,19 @@
 .moveListContainer {
   margin-top: rem(40);
 }
+
+.pokeballDecoration {
+  bottom: 132px;
+  color: var(--current-type-color);
+  display: hidden;
+  filter: brightness(90%);
+  position: absolute;
+  right: 50%;
+  transform: translateX(160%) rotate(40deg);
+  width: 0;
+  z-index: get-index-level(negative);
+}
+
 @media only screen and (min-width: $xs) {
   .abilitiesList {
     grid-template-columns: repeat(auto-fit, minmax(0, min-content));
@@ -143,5 +156,19 @@
 
   .physicalDimensions {
     margin-top: rem(16);
+  }
+
+  .holder {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .pokeballDecoration {
+    display: block;
+    width: 560px;
   }
 }

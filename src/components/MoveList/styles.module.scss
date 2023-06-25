@@ -5,6 +5,11 @@
 @use 'settings/_breakpoints' as *;
 @use 'animations/_rotating' as *;
 
+.moveListHolder {
+  overflow: hidden;
+  position: relative;
+}
+
 .moveList {
   background-color: var(--current-dark-type-color);
   border-radius: 8px;
@@ -16,7 +21,9 @@
 }
 
 .moveListTable {
+  position: relative;
   width: 100%;
+  z-index: get-index-level(lvl2);
 }
 
 .moveListTableHeaderRow {
@@ -101,17 +108,23 @@
   width: 16.5%;
 }
 
-@media (min-width: $lg) {
-  .moveListMovesContainer {
-    overflow: auto;
-  }
+.pokeballDecoration {
+  color: var(--current-light-type-color);
+  display: hidden;
+  filter: brightness(80%);
+  position: absolute;
+  right: 50%;
+  top: -44.6%;
+  transform: translateX(160%) rotate(40deg);
+  width: 0;
+  z-index: get-index-level(lvl-1);
 }
 
 .loading {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: rem(400);
+  height: rem(456.7);
   justify-content: space-evenly;
   padding: rem(20);
 }
@@ -146,4 +159,15 @@
 .loaderCell {
   display: block;
   width: 100%;
+}
+
+@media (min-width: $lg) {
+  .moveListMovesContainer {
+    overflow: auto;
+  }
+
+  .pokeballDecoration {
+    display: block;
+    width: 560px;
+  }
 }
