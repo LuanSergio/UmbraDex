@@ -42,7 +42,6 @@
 .loadingDots {
   align-items: flex-end;
   display: flex;
-  height: em(20);
   margin-left: em(3);
   transform: translateY(em(3));
   width: em(20);
@@ -107,12 +106,3 @@
     width: em(280);
   }
 }
-
-// @media only screen and (max-width: $lg) {
-//   .cardContainer {
-//     display: flex;
-//     flex-wrap: wrap;
-//     grid-gap: rem(40);
-//     justify-content: center;
-//   }
-// }
