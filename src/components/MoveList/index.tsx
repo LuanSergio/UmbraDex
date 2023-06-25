@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useLayoutEffect, useState } from 'react';
 
 import Move from '@domain/entities/Move';
 
@@ -13,6 +13,7 @@ import formatPokemonMoveProperty from '@utils/formatPokemonMoveProperty';
 import useMovesList from '@hooks/useMovesList';
 import useLoader from '@hooks/useLoader';
 import TypeBadge from '@components/TypeBadge';
+import MoveListItemSkeleton from '@components/MoveListItemSkeleton';
 
 import MOVE_PER_REQUEST from '@constants/movePerRequest';
 import styles from './styles.module.scss';
@@ -34,11 +35,12 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
     pokemonId,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = document.querySelector('#loader');
+    console.log('🚀 ~ useLayoutEffect ~ node:', node);
 
     setLoader(node);
-  }, [isLoading, pokemonId]);
+  }, [isLoading, pokemonId, moveList]);
 
   useLoader<Move>({
     loader,
@@ -60,7 +62,11 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
           </span>
         </div>
       ) : (
-        <table className={styles.moveListTable} cellPadding={0} cellSpacing={0}>
+        <table
+          className={`${styles.moveListTable} h-neutral-scroll`}
+          cellPadding={0}
+          cellSpacing={0}
+        >
           <thead>
             <tr className={styles.moveListTableHeaderRow}>
               <th className={`${styles.moveListHead} ${styles.nameHead}`}>
@@ -122,13 +128,11 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
             ))}
 
             {moveList?.[moveList?.length - 1].length >= MOVE_PER_REQUEST && (
-              <tr
-                id="loader"
-                className={styles.moveListMovesRow}
-                style={{ height: 124 }}
-              >
-                <td className={styles.loader}>
-                  <PokeBallIcon />
+              <tr className={styles.moveListMovesRow}>
+                <td className={styles.loaderCell}>
+                  <div id="loader">
+                    <MoveListItemSkeleton />
+                  </div>
                 </td>
               </tr>
             )}

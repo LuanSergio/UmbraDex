@@ -37,7 +37,7 @@
   max-height: rem(400);
   min-height: rem(400);
   min-width: rem(1000);
-  overflow: scroll;
+  overflow-y: scroll;
   width: 100%;
 }
 
@@ -117,6 +117,10 @@
 }
 
 .loadingPokeball {
+  animation-duration: 2.8s;
+  animation-iteration-count: infinite;
+  animation-name: rotating;
+  animation-timing-function: linear;
   margin-bottom: 20px;
   width: 200px;
 }
@@ -139,19 +143,7 @@
   width: em(20);
 }
 
-.loader {
+.loaderCell {
   display: block;
-  height: 124px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 24px;
-  width: 124px;
-}
-
-.loadingPokeball,
-.loader {
-  animation-duration: 2.8s;
-  animation-iteration-count: infinite;
-  animation-name: rotating;
-  animation-timing-function: linear;
+  width: 100%;
 }

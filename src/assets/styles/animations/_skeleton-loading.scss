@@ -9,3 +9,13 @@
     background-color: get-color(neutral-lighter);
   }
 }
+
+@keyframes skeleton-loading-pokemon-type {
+  0% {
+    background-color: var(--current-light-type-color);
+  }
+
+  100% {
+    background-color: var(--current-type-color);
+  }
+}
