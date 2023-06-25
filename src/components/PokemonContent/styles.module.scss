@@ -28,6 +28,9 @@
 }
 
 .contentOdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -37,6 +40,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+}
+
+.contentEven > *:not(:last-child) {
+  margin-bottom: rem(20);
 }
 
 .characteristics {

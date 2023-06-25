@@ -1,3 +1,4 @@
+import getPokemonNameFontSize from '@utils/getPokemonNameFontSize';
 import styles from './styles.module.scss';
 
 interface PokemonBasicInformationProps {
@@ -13,8 +14,13 @@ const PokemonBasicInformation = ({
 }: PokemonBasicInformationProps): JSX.Element => {
   return (
     <div className={styles.basicInfo}>
-      <h1 className={styles.name}>{name}</h1>
-
+      <h1
+        className={`${styles.name} ${
+          styles[getPokemonNameFontSize(name.length)]
+        }`}
+      >
+        {name}
+      </h1>
       <div className={styles.container}>
         {pokedexIndex <= 10 ? (
           <span className={styles.number}>

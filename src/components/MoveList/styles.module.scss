@@ -6,6 +6,7 @@
 @use 'animations/_rotating' as *;
 
 .moveListHolder {
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
 }
