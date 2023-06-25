@@ -84,7 +84,9 @@
 .sideNote {
   display: flex;
   font-size: rem(16);
+  justify-content: center;
   margin-top: rem(12);
+  width: 100%;
 }
 
 @media only screen and (min-width: $xs) {
