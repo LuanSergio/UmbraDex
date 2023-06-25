@@ -1,4 +1,10 @@
+@use 'tools/index' as *;
+
 .h-title {
   font-family: sans-serif;
   letter-spacing: 2px;
+}
+
+.h-title-level-2 {
+  text-shadow: rem(2) rem(2) rem(2) rgba(#000, 0.15);
 }
