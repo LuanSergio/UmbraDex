@@ -21,9 +21,10 @@ import styles from './styles.module.scss';
 
 interface MenuProps {
   isOpen: boolean;
+  isInnerPage?: boolean;
 }
 
-const Menu = ({ isOpen }: MenuProps): JSX.Element => {
+const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
@@ -80,19 +81,19 @@ const Menu = ({ isOpen }: MenuProps): JSX.Element => {
                 Random
               </button>
             </li>
-
-            <li className={styles.optionsListItem}>
-              <FilterModal>
-                <button type="button" className={styles.button}>
-                  <span className={styles.icon}>
-                    <FilterIcon />
-                  </span>
-                  Filters / Sort
-                </button>
-              </FilterModal>
-            </li>
+            {!isInnerPage && (
+              <li className={styles.optionsListItem}>
+                <FilterModal>
+                  <button type="button" className={styles.button}>
+                    <span className={styles.icon}>
+                      <FilterIcon />
+                    </span>
+                    Filters / Sort
+                  </button>
+                </FilterModal>
+              </li>
+            )}
           </ul>
-
           <ul className={styles.optionsList}>
             <li className={styles.optionsListItem}>
               <Modal

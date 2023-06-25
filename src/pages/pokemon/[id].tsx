@@ -39,7 +39,7 @@ const PokemonPage = ({
       </Head>
 
       <PokemonListContextProvider staticData={staticData}>
-        <Header />
+        <Header isInnerPage />
         <PokemonContent
           AlternativePokemonForms={AlternativePokemonForms}
           defaultPokemonForm={defaultPokemonForm}

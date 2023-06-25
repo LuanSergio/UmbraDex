@@ -12,7 +12,11 @@ import Menu from '@components/Menu';
 import useEscapeKeyPress from 'src/hooks/useEscapeKeyPress';
 import styles from './styles.module.scss';
 
-const Header = (): JSX.Element => {
+interface HeaderProps {
+  isInnerPage?: boolean;
+}
+
+const Header = ({ isInnerPage = false }: HeaderProps): JSX.Element => {
   const headerBackgroundRef = useRef(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
@@ -63,21 +67,22 @@ const Header = (): JSX.Element => {
             </div>
 
             <div className={styles.rightContainer}>
-              <a
-                href="https://github.com/LuanSergio/UmbraDex"
-                target="_blank"
-                aria-label="GitHub"
-                title="GitHub"
-                className={`${styles.iconButton} ${
-                  isSearchOpen ? `${styles.hiddenMobileItem}` : ''
-                }`}
-                rel="noreferrer"
-              >
-                <span className={styles.icon}>
-                  <GithubIcon />
-                </span>
-              </a>
-
+              {!isInnerPage && (
+                <a
+                  href="https://github.com/LuanSergio/UmbraDex"
+                  target="_blank"
+                  aria-label="GitHub"
+                  title="GitHub"
+                  className={`${styles.iconButton} ${
+                    isSearchOpen ? `${styles.hiddenMobileItem}` : ''
+                  }`}
+                  rel="noreferrer"
+                >
+                  <span className={styles.icon}>
+                    <GithubIcon />
+                  </span>
+                </a>
+              )}
               <button
                 aria-label="Search"
                 title="Search"
@@ -106,7 +111,7 @@ const Header = (): JSX.Element => {
                     <OptionsIcon />
                   </span>
                 </button>
-                <Menu isOpen={isOptionsOpen} />
+                <Menu isOpen={isOptionsOpen} isInnerPage={isInnerPage} />
               </div>
             </div>
           </div>
