@@ -1,38 +1,28 @@
 @use 'tools/index' as *;
 @use 'helpers/icon.scss' as *;
-@use 'animations/pop-in' as *;
-@use 'animations/_rotating' as *;
-@use 'animations/_scale-highlight' as *;
 @use 'sass:map';
-
-@keyframes skeleton-loading-pokemon-type {
-  0% {
-    background-color: var(--current-light-type-color);
-  }
-
-  100% {
-    background-color: var(--current-type-color);
-  }
-}
-
-.skeletonLoadingPokemonType {
-  animation: skeleton-loading-pokemon-type 0.4s linear infinite alternate;
-}
 
 .row {
   align-items: center;
   display: flex;
-  height: 64px;
+  height: rem(64);
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: rem(10) rem(20);
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
+}
+
+.row:hover {
+  background-color: var(--current-light-type-color);
 }
 
 .cell {
   align-items: center;
+  border-radius: 8px;
   display: flex;
-  gap: 10px;
-  height: 40px;
+  gap: rem(10);
+  height: rem(40);
   justify-content: center;
 }
 
