@@ -45,18 +45,19 @@
   max-height: rem(400);
   min-height: rem(400);
   min-width: rem(1000);
-  overflow-y: scroll;
+  overflow: auto;
   width: 100%;
 }
 
-.moveListMovesRow {
+.moveListMovesRow,
+.moveListMovesRowLoading {
   display: flex;
   transition: background-color 0.08s linear;
   width: 100%;
+}
 
-  &:hover {
-    background-color: var(--current-light-type-color);
-  }
+.moveListMovesRow:hover {
+  background-color: var(--current-light-type-color);
 }
 
 .moveListCell {
@@ -121,13 +122,26 @@
   z-index: get-index-level(lvl-1);
 }
 
-.loading {
+.moveListBox {
+  height: rem(456.7);
+}
+
+.moveListBoxHeader {
+  background-color: var(--current-type-color);
+  height: 56.7px;
+  padding: rem(18) rem(20);
+  position: relative;
+  z-index: get-index-level(lvl2);
+}
+
+.moveListBoxContainer {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: rem(456.7);
-  justify-content: space-evenly;
-  padding: rem(20);
+  height: calc(100% - 56.7px);
+  justify-content: center;
+  padding-left: rem(20);
+  padding-right: rem(20);
 }
 
 .loadingPokeball {
@@ -139,7 +153,7 @@
   width: 200px;
 }
 
-.loadingText {
+.moveListMessage {
   align-items: center;
   display: flex;
   font-size: rem(20);
@@ -163,10 +177,6 @@
 }
 
 @media (min-width: $lg) {
-  .moveListMovesContainer {
-    overflow: auto;
-  }
-
   .pokeballDecoration {
     display: block;
     width: 560px;
