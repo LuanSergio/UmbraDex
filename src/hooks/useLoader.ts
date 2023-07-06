@@ -14,7 +14,7 @@ const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
     const options = {
       root: null,
       rootMargin: `40px`,
-      threshold: 0.5,
+      threshold: 0.2,
     };
 
     const observer = new IntersectionObserver(handleObserver, options);
