@@ -8,7 +8,7 @@
 }
 
 .scrollableTextContentContained {
-  overflow-y: scroll;
+  overflow-y: visible;
   padding-right: rem(8);
 }
 
@@ -26,6 +26,11 @@
 @media only screen and (min-width: $lg) {
   .scrollableText {
     height: auto;
+  }
+
+  .scrollableTextContentContained {
+    overflow-y: scroll;
+    padding-right: rem(8);
   }
 
   .scrollableTextOverflowContained::after {
