@@ -15,7 +15,7 @@
 
 .pokemon {
   filter: drop-shadow(rem(15) rem(10) rem(0) rgba(#000, 0.45));
-  height: rem(320);
+  height: rem(280);
   margin-bottom: rem(24);
   position: relative;
   width: calc(100% - 20px);
@@ -32,6 +32,13 @@
   text-align: center;
   transform: translateX(-50%);
   width: 100%;
+}
+
+@media only screen and (min-width: $xs) {
+  .pokemon {
+    height: rem(320);
+    margin-bottom: rem(42);
+  }
 }
 
 @media only screen and (min-width: $sm) {

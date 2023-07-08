@@ -1,11 +1,13 @@
 @use 'tools/get-color' as *;
 @use 'tools/index' as *;
 @use 'settings/colors-type' as typeColors;
+@use 'settings/_breakpoints' as *;
+
 @use 'sass:map';
 
-$base-font-size: 1em;
 
 :root {
+  --base-font-size: 0.85em;
   --header-height: 4.8125rem;
   --screen-height: 100vh;
   --theme-color: #fbfbfb;
@@ -24,7 +26,7 @@ $base-font-size: 1em;
 }
 
 html {
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
 }
 
 html,
@@ -73,5 +75,11 @@ button {
     --current-dark-type-color: #{map.get(typeColors.$darks, $type)};
     --current-type-color: #{map.get(typeColors.$defaults, $type)};
     --current-body-background: #{map.get(typeColors.$lights, $type)};
+  }
+}
+
+@media only screen and (min-width: $xs) {
+  :root {
+  --base-font-size: 1em;
   }
 }
