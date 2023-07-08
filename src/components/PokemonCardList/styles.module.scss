@@ -15,8 +15,8 @@
   display: grid;
   grid-auto-columns: 1fr;
   grid-gap: rem(32) rem(24);
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, rem(286));
+  justify-content: center;
   list-style: none;
   margin-bottom: 0;
   margin-top: 0;
@@ -96,9 +96,10 @@
   }
 }
 
-@media only screen and (min-width: $lg) {
+@media only screen and (min-width: $xl) {
   .cardContainer {
-    grid-gap: rem(32) rem(24);
+    grid-gap: rem(40) rem(32);
+    grid-template-columns: repeat(4, rem(286));
   }
 
   .loadingCircle {
