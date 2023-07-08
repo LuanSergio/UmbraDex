@@ -68,6 +68,8 @@
   font-weight: bold;
   line-height: 1.5;
   margin: 0 auto;
+  padding-left: rem(20);
+  padding-right: rem(20);
   text-align: center;
   text-shadow: rem(2) rem(2) rem(4) rgba(#000, 0.3);
 }
@@ -94,8 +96,8 @@
   }
 
   .description {
-    padding-left: rem(20);
-    padding-right: rem(20);
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
