@@ -6,7 +6,8 @@ import Zubat from '@public/webdoor/gengar/zubat.svg';
 
 import useWindowSize from 'src/hooks/useWindowSize';
 
-import styles from './styles.module.scss';
+import webdoorStyles from './webdoor.module.scss';
+import gengarWebdoorStyles from './gengar-webdoor.module.scss';
 
 const WebDoor = (): JSX.Element => {
   const [windowWidth] = useWindowSize();
@@ -21,15 +22,17 @@ const WebDoor = (): JSX.Element => {
 
   return (
     <>
-      <section className={styles.webDoor}>
-        <div className={`${styles.container} h-container`}>
-          <div className={styles.titleContainer}>
-            <div className={styles.titleHolder}>
-              <h1 className={`h-title ${styles.title}`}>{title}</h1>
+      <section
+        className={`${gengarWebdoorStyles.gengarWebDoor} ${webdoorStyles.webDoor}`}
+      >
+        <div className={`${webdoorStyles.container} h-container`}>
+          <div className={webdoorStyles.titleContainer}>
+            <div className={webdoorStyles.titleHolder}>
+              <h1 className={`h-title ${webdoorStyles.title}`}>{title}</h1>
 
               <span
                 aria-hidden="true"
-                className={`h-title ${styles.titleShadow}`}
+                className={`h-title ${webdoorStyles.titleShadow}`}
               >
                 {title}
               </span>
@@ -39,36 +42,36 @@ const WebDoor = (): JSX.Element => {
           {windowWidth > 0 && (
             <>
               <motion.div
-                transition={{ delay: 0, type: 'tween', duration: 0.65 }}
+                transition={{ delay: 0.25, type: 'tween', duration: 0.75 }}
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Zubat className={styles.zubat1} />
+                <Zubat className={gengarWebdoorStyles.zubatTopLeft} />
               </motion.div>
 
               <motion.div
-                transition={{ delay: 0, type: 'tween', duration: 0.65 }}
+                transition={{ delay: 0.25, type: 'tween', duration: 0.65 }}
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Zubat className={styles.zubat2} />
+                <Zubat className={gengarWebdoorStyles.zubatBottomLeft} />
               </motion.div>
 
               <motion.div
-                transition={{ delay: 0, type: 'tween', duration: 0.65 }}
+                transition={{ delay: 0.25, type: 'tween', duration: 0.75 }}
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ x: 0, y: '0' }}
               >
-                <Zubat className={styles.zubat3} />
+                <Zubat className={gengarWebdoorStyles.zubatBottomRight} />
               </motion.div>
 
               <motion.div
-                className={styles.crobatHolder}
-                transition={{ delay: 0.25, type: 'tween', duration: 0.55 }}
+                className={gengarWebdoorStyles.crobatHolder}
+                transition={{ delay: 0, type: 'tween', duration: 0.65 }}
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Crobat className={styles.crobat} />
+                <Crobat className={gengarWebdoorStyles.crobat} />
               </motion.div>
               <motion.div
                 transition={{
@@ -79,7 +82,7 @@ const WebDoor = (): JSX.Element => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <Gengar className={styles.gengar} />
+                <Gengar className={gengarWebdoorStyles.gengar} />
               </motion.div>
             </>
           )}

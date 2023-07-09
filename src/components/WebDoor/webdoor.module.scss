@@ -4,17 +4,12 @@
 @use 'settings/_breakpoints' as *;
 
 .webDoor {
-  --webdoor-primary-color: #4a1f76;
-  --webdoor-contrast-color: #eb1d70;
-
-  $webdoor-title-size: rem(24);
-
   background-color: var(--webdoor-primary-color);
   display: flex;
   height: var(--screen-height);
   justify-content: center;
-  max-height: rem(860);
-  min-height: rem(561);
+  max-height: 920px;
+  min-height: 600px;
   overflow: hidden;
   width: 100%;
 }
@@ -27,13 +22,14 @@
 }
 
 .titleContainer {
+  margin-top: rem(40);
   position: relative;
   top: unset;
 }
 
 .titleHolder {
   color: get-color(light);
-  font-size: rem(24);
+  font-size: rem(28);
   margin-bottom: 0;
   margin-top: 0;
   position: relative;
@@ -44,6 +40,7 @@
 .title {
   color: get-color(light);
   font-size: 1em;
+  line-height: 1.5;
   position: relative;
   z-index: 2;
 }
@@ -54,8 +51,9 @@
   font-size: 1em;
   font-weight: bold;
   left: 50%;
+  line-height: 1.5;
   position: absolute;
-  text-shadow: 4px 12px 18px rgba($color: #000, $alpha: 80%);
+  text-shadow: 4px 4px 18px rgba($color: #000, $alpha: 40%);
   -webkit-text-stroke: em(1.5) var(--webdoor-contrast-color);
   top: 0;
   transform: translateX(-50%);
@@ -63,69 +61,14 @@
   z-index: 1;
 }
 
-.gengar {
-  bottom: rem(-20);
-  height: 312px;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  width: 331px;
-}
-
-.crobatHolder {
-  position: relative;
-  z-index: get-index-level(lvl2);
-}
-
-.crobat {
-  display: none;
-  position: absolute;
-  right: -20px;
-  top: 68px;
-  width: 440px;
-}
-
-.zubat1 {
-  display: none;
-  height: 115px;
-  left: -6%;
-  position: absolute;
-  top: 30vh;
-  width: 122px;
-}
-
-.zubat2 {
-  display: none;
-  height: 193px;
-  position: absolute;
-  right: rem(-20);
-  top: 50vh;
-  width: 203px;
-}
-
-.zubat3 {
-  bottom: 20%;
-  display: none;
-  left: -20%;
-  position: absolute;
-  top: calc(80vh - 250px);
-  width: 264px;
-}
-
 @media only screen and (min-width: $xs) {
-  .titleHolder {
-    font-size: rem(32);
-  }
-
-  .gengar {
-    height: 473px;
-    width: 446px;
+  .webDoor {
+    max-height: none;
   }
 }
 
 @media only screen and (min-width: $md) {
   .webDoor {
-    max-height: none;
     min-height: rem(820);
   }
 
@@ -136,7 +79,7 @@
 
 @media only screen and (min-width: $lg) {
   .webDoor {
-    min-height: rem(740);
+    min-height: rem(600);
   }
 
   .container {
@@ -144,33 +87,36 @@
   }
 
   .titleContainer {
+    left: 50%;
     position: absolute;
-    top: calc(rem(40) + var(--header-height));
+    top: 60px;
+    transform: translateX(-50%);
+    width: 100%;
   }
 
   .titleHolder {
-    font-size: rem(52);
-    margin-left: rem(80);
-    text-align: left;
-  }
-
-  .crobat,
-  .zubat1,
-  .zubat2,
-  .zubat3 {
-    display: block;
+    font-size: rem(32);
   }
 }
 
 @media only screen and (min-width: $xl) {
-  .gengar {
-    bottom: 0;
-    height: 680px;
-    width: 686px;
+  .webDoor {
+    min-height: rem(680);
   }
 
   .titleHolder {
-    font-size: rem(68);
-    top: calc(rem(-40) + var(--header-height));
+    font-size: rem(40);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .webDoor {
+    max-height: 1360px;
+    min-height: 1080px;
+  }
+
+  .titleHolder {
+    font-size: rem(52);
+    top: 80px;
   }
 }

@@ -1,0 +1,119 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+
+.gengarWebDoor {
+  --webdoor-primary-color: #4a1f76;
+  --webdoor-contrast-color: #eb1d70;
+}
+
+.gengar {
+  bottom: rem(-20);
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 331px;
+}
+
+.crobatHolder {
+  position: relative;
+  z-index: get-index-level(lvl2);
+}
+
+.crobat {
+  display: none;
+  position: absolute;
+  right: -12%;
+  top: 68px;
+  width: 320px;
+}
+
+.zubatTopLeft {
+  display: none;
+  left: 8%;
+  position: absolute;
+  top: 180px;
+  width: 100px;
+}
+
+.zubatBottomRight {
+  display: none;
+  position: absolute;
+  right: 0%;
+  top: calc(rem(480) + var(--header-height));
+  width: 142px;
+}
+
+.zubatBottomLeft {
+  display: none;
+  left: -10%;
+  position: absolute;
+  top: calc(rem(320) + var(--header-height));
+  width: 200px;
+}
+
+@media only screen and (min-width: $xs) {
+  .gengar {
+    width: 446px;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .gengar {
+    bottom: rem(-0);
+    width: 380px;
+  }
+
+  .crobat,
+  .zubatTopLeft,
+  .zubatBottomLeft,
+  .zubatBottomRight {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .gengar {
+    width: 400px;
+  }
+
+  .crobat {
+    width: 380px;
+  }
+
+  .zubatTopLeft {
+    width: 100px;
+  }
+
+  .zubatBottomRight {
+    width: 142px;
+  }
+
+  .zubatBottomLeft {
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .gengar {
+    bottom: 0;
+    width: 640px;
+  }
+
+  .crobat {
+    width: 440px;
+  }
+
+  .zubatTopLeft {
+    width: 122px;
+  }
+
+  .zubatBottomRight {
+    width: 203px;
+  }
+
+  .zubatBottomLeft {
+    width: 264px;
+  }
+}
