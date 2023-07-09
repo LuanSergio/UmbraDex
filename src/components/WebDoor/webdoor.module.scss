@@ -79,6 +79,7 @@
 
 @media only screen and (min-width: $lg) {
   .webDoor {
+    max-height: rem(900);
     min-height: rem(600);
   }
 
@@ -89,7 +90,7 @@
   .titleContainer {
     left: 50%;
     position: absolute;
-    top: 60px;
+    top: rem(60);
     transform: translateX(-50%);
     width: 100%;
   }
@@ -101,6 +102,7 @@
 
 @media only screen and (min-width: $xl) {
   .webDoor {
+    max-height: rem(1000);
     min-height: rem(680);
   }
 
@@ -111,12 +113,12 @@
 
 @media only screen and (min-width: $xxl) {
   .webDoor {
-    max-height: 1360px;
-    min-height: 1080px;
+    max-height: rem(1360);
+    min-height: rem(1080);
   }
 
   .titleHolder {
     font-size: rem(52);
-    top: 80px;
+    top: rem(80);
   }
 }
