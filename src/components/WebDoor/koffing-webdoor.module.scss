@@ -3,21 +3,148 @@
 @use 'helpers/icon.scss' as *;
 @use 'settings/_breakpoints' as *;
 
-.gengarWebDoor {
+.koffingWebDoor {
   --webdoor-primary-color: #b18fa8;
+  --webdoor-contrast-color: #775f7f;
+
+  font-size: 9px;
+}
+
+.shiny {
+  --webdoor-primary-color: #9ec2aa;
   --webdoor-contrast-color: #775f7f;
 }
 
-.koffing {
-  bottom: 30px;
-  left: 80px;
+.koffingHolder {
+  bottom: em(0);
+  left: 50%;
   position: absolute;
-  width: 560px;
+  transform: translateX(-50%);
+}
+
+.leftSmokeVariation1 {
+  left: em(0);
+  position: absolute;
+  top: em(-44);
+  transform: rotate(100deg);
+  width: em(132);
+  z-index: get-index-level(lvl1);
+}
+
+.leftSmokeVariation2 {
+  left: em(-28);
+  position: absolute;
+  top: em(114);
+  width: em(36);
+  z-index: get-index-level(lvl1);
+}
+
+.leftSmokeVariation3 {
+  left: em(-142);
+  position: absolute;
+  top: em(196);
+  width: em(134);
+  z-index: get-index-level(lvl1);
+}
+
+.leftSmokeVariation4 {
+  left: em(-72);
+  position: absolute;
+  top: em(392);
+  width: em(142);
+  z-index: get-index-level(lvl1);
+}
+
+.koffing {
+  position: relative;
+  width: em(540);
+  z-index: get-index-level(lvl2);
+}
+
+.rightSmokeVariation1 {
+  position: absolute;
+  right: em(-72);
+  top: em(-48);
+  width: em(156);
+  z-index: get-index-level(lvl1);
+}
+
+.rightSmokeVariation2 {
+  position: absolute;
+  right: em(-48);
+  top: em(196);
+  width: em(36);
+  z-index: get-index-level(lvl1);
+}
+
+.rightSmokeVariation3 {
+  position: absolute;
+  right: em(-120);
+  top: em(280);
+  width: em(98);
+  z-index: get-index-level(lvl1);
+}
+
+.rightSmokeVariation4 {
+  position: absolute;
+  right: em(-40);
+  top: em(426);
+  width: em(112);
+  z-index: get-index-level(lvl1);
 }
 
 .sign {
-  bottom: 30px;
-  position: absolute;
-  right: -280px;
-  width: 800px;
+  display: none;
+}
+
+@media only screen and (min-width: $sm) {
+  .koffingWebDoor {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .koffingWebDoor {
+    font-size: 12px;
+  }
+
+  .koffing {
+    width: em(520);
+  }
+
+  .koffingHolder {
+    bottom: em(0);
+    left: em(20);
+    position: absolute;
+    transform: translateX(0);
+  }
+
+  .sign {
+    bottom: em(-64);
+    display: block;
+    position: absolute;
+    right: -20%;
+    width: em(720);
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .koffingWebDoor {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .koffingWebDoor {
+    font-size: 18px;
+  }
+
+  .koffing {
+    width: em(520);
+  }
+
+  .sign {
+    right: -35%;
+    width: em(886);
+  }
 }

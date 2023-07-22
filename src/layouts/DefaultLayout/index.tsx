@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from 'react';
 
 import { usePokemonListContext } from 'src/contexts/PokemonListContext';
 import Header from '@components/Header';
-import WebDoor from '@components/WebDoor/GengarWebDoor';
+import WebDoor from '@components/WebDoor/KoffingWebdoor';
 import useWindowSize from 'src/hooks/useWindowSize';
 
 import styles from './styles.module.scss';

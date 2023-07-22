@@ -7,7 +7,7 @@ import Zubat from '@public/webdoor/gengar/zubat.svg';
 import useWindowSize from 'src/hooks/useWindowSize';
 
 import webdoorStyles from './webdoor.module.scss';
-import gengarWebdoorStyles from './gengar-webdoor.module.scss';
+import gengarWebDoorStyles from './gengar-webdoor.module.scss';
 
 const WebDoor = (): JSX.Element => {
   const [windowWidth] = useWindowSize();
@@ -23,7 +23,7 @@ const WebDoor = (): JSX.Element => {
   return (
     <>
       <section
-        className={`${gengarWebdoorStyles.gengarWebDoor} ${webdoorStyles.webDoor}`}
+        className={`shiny ${gengarWebDoorStyles.shiny} ${gengarWebDoorStyles.gengarWebDoor} ${webdoorStyles.webDoor}`}
       >
         <div className={`${webdoorStyles.container} h-container`}>
           <div className={webdoorStyles.titleContainer}>
@@ -46,7 +46,7 @@ const WebDoor = (): JSX.Element => {
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Zubat className={gengarWebdoorStyles.zubatTopLeft} />
+                <Zubat className={gengarWebDoorStyles.zubatTopLeft} />
               </motion.div>
 
               <motion.div
@@ -54,7 +54,7 @@ const WebDoor = (): JSX.Element => {
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Zubat className={gengarWebdoorStyles.zubatBottomLeft} />
+                <Zubat className={gengarWebDoorStyles.zubatBottomLeft} />
               </motion.div>
 
               <motion.div
@@ -62,16 +62,16 @@ const WebDoor = (): JSX.Element => {
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ x: 0, y: '0' }}
               >
-                <Zubat className={gengarWebdoorStyles.zubatBottomRight} />
+                <Zubat className={gengarWebDoorStyles.zubatBottomRight} />
               </motion.div>
 
               <motion.div
-                className={gengarWebdoorStyles.crobatHolder}
+                className={gengarWebDoorStyles.crobatHolder}
                 transition={{ delay: 0, type: 'tween', duration: 0.65 }}
                 initial={{ x: '-300%', y: '400vh' }}
                 animate={{ y: 0, x: 0 }}
               >
-                <Crobat className={gengarWebdoorStyles.crobat} />
+                <Crobat className={gengarWebDoorStyles.crobat} />
               </motion.div>
               <motion.div
                 transition={{
@@ -82,7 +82,7 @@ const WebDoor = (): JSX.Element => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <Gengar className={gengarWebdoorStyles.gengar} />
+                <Gengar className={gengarWebDoorStyles.gengar} />
               </motion.div>
             </>
           )}
