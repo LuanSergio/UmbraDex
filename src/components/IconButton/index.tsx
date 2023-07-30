@@ -8,7 +8,7 @@ interface ButtonProps {
   round?: boolean;
   label: string;
   type?: 'button' | 'submit' | 'reset';
-  theme?: 'primary' | 'secondary';
+  theme?: 'primary' | 'secondary' | 'transparent';
   fill?: boolean;
   props?: ButtonHTMLAttributes<HTMLButtonElement>;
 }

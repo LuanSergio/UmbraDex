@@ -26,6 +26,15 @@
   color: get-color(primary);
 }
 
+.transparent {
+  background-color: transparent;
+  color: get-color(light);
+}
+
+.transparent:hover {
+  background-color: rgba($color: get-color(light), $alpha: 40%);
+}
+
 .primary:hover {
   background-color: get-color(secondary);
   color: get-color(primary);
