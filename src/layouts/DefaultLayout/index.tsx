@@ -5,6 +5,7 @@ import Header from '@components/Header';
 
 import WebDoor from '@components/WebDoor/WebsDoor';
 import useWindowSize from 'src/hooks/useWindowSize';
+import { WebDoorContextProvider } from '@components/WebDoor/WebdoorContext';
 
 import styles from './styles.module.scss';
 
@@ -27,7 +28,11 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   return (
     <>
       <Header />
-      {!(searchValue?.length > 0) && <WebDoor />}
+      {!(searchValue?.length > 0) && (
+        <WebDoorContextProvider>
+          <WebDoor />
+        </WebDoorContextProvider>
+      )}
       <main className={styles.main}>
         <div className="h-container">{children}</div>
       </main>
