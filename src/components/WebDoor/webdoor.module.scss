@@ -4,18 +4,29 @@
 @use 'settings/_breakpoints' as *;
 
 .webDoor {
-  background-color: var(--webdoor-primary-color);
-  display: flex;
   height: var(--screen-height);
-  justify-content: center;
   max-height: 920px;
   min-height: 600px;
-  overflow: hidden;
   width: 100%;
 }
 
-.refreshIconContainer {
-  left: rem(40);
+.commonWebDoor {
+  @property --webdoor-primary-color {
+    inherits: false;
+    initial-value: transparent;
+    syntax: '<color>';
+  }
+
+  background-color: var(--webdoor-primary-color);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.4s ease;
+}
+
+.actionsContainer {
+  left: rem(20);
   opacity: 0;
   position: absolute;
   top: rem(96);
@@ -23,11 +34,20 @@
   z-index: get-index-level(lvl2);
 }
 
-.webDoor:hover .refreshIconContainer {
+.commonWebDoor:hover .actionsContainer {
   opacity: 1;
 }
 
-.refreshIcon {
+.actions {
+  display: flex;
+}
+
+.actions > *:not(:last-child) {
+  margin-right: rem(12);
+}
+
+.refreshIcon,
+.shinyIcon {
   width: em(40);
 }
 
@@ -58,8 +78,9 @@
   font-size: 1em;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
   width: 100%;
-  z-index: 2;
+  z-index: get-index-level(lvl2);
 }
 
 @media only screen and (min-width: $xs) {
@@ -87,6 +108,10 @@
   .webDoor {
     max-height: rem(800);
     min-height: rem(640);
+  }
+
+  .actionsContainer {
+    left: rem(40);
   }
 
   .container {

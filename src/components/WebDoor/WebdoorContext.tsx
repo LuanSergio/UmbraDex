@@ -19,6 +19,7 @@ import GengarWebdoor from './Gengar/GengarWebDoor';
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
   isShiny: boolean;
+  isKonamiCodeActive: boolean;
   toggleIsShiny: () => void;
   randomWebDoor: () => void;
 }
@@ -40,7 +41,7 @@ export function WebDoorContextProvider({
   children,
 }: WebDoorContextProviderProps) {
   const [currentWebDoor, setCurrentWebDoor] = useState<JSX.Element>();
-  const [hasKonamiCode, setHasKonamiCode] = useState(false);
+  const [isKonamiCodeActive, setIsKonamiCodeActive] = useState(false);
   const [isShiny, setIsShiny] = useState(false);
 
   const currentWebDoorList = useRef([...webDoorList]);
@@ -72,14 +73,15 @@ export function WebDoorContextProvider({
   }, []);
 
   const activateKonamiCode = useCallback(() => {
-    if (hasKonamiCode) {
+    if (isKonamiCodeActive) {
       return;
     }
     const audio = new Audio(SecretAudio);
-    setHasKonamiCode(true);
+    setIsKonamiCodeActive(true);
     activateShiny();
+    document.cookie = 'umbradex-activate-shiny=true; path=/';
     audio.play();
-  }, [activateShiny, hasKonamiCode]);
+  }, [activateShiny, isKonamiCodeActive]);
 
   useEffect(() => {
     randomWebDoor();
@@ -87,14 +89,26 @@ export function WebDoorContextProvider({
 
   useKonamiCode(activateKonamiCode);
 
+  useEffect(() => {
+    const cookieExists = document.cookie.includes(
+      'umbradex-activate-shiny=true',
+    );
+
+    if (cookieExists) {
+      setIsShiny(true);
+      setIsKonamiCodeActive(true);
+    }
+  }, []);
+
   const contextValue = useMemo(
     () => ({
       currentWebDoor,
       isShiny,
+      isKonamiCodeActive,
       toggleIsShiny,
       randomWebDoor,
     }),
-    [currentWebDoor, isShiny, randomWebDoor, toggleIsShiny],
+    [currentWebDoor, isShiny, isKonamiCodeActive, randomWebDoor, toggleIsShiny],
   );
 
   return (

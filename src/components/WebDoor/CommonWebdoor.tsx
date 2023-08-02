@@ -1,9 +1,11 @@
 import IconButton from '@components/IconButton';
 import RefreshIcon from '@public/icons/refresh.svg';
+import ShinyIcon from '@public/icons/shiny.svg';
 import Title from './Title';
 
-import webdoorStyles from './webdoor.module.scss';
 import { useWebDoorContext } from './WebdoorContext';
+
+import webDoorStyles from './webdoor.module.scss';
 
 interface CommonWebDoorProps {
   shinyClass: string;
@@ -16,28 +18,43 @@ const CommonWebDoor = ({
   shinyClass,
   children,
 }: CommonWebDoorProps): JSX.Element => {
-  const { randomWebDoor } = useWebDoorContext();
+  const { isKonamiCodeActive, isShiny, randomWebDoor, toggleIsShiny } =
+    useWebDoorContext();
 
   return (
     <>
-      <section
-        className={`shiny ${shinyClass} ${mainClass} ${webdoorStyles.webDoor}`}
+      <div
+        className={`${isShiny ? `shiny ${shinyClass}` : ''} $ ${mainClass} ${
+          webDoorStyles.commonWebDoor
+        }`}
       >
-        <div className={`${webdoorStyles.container} h-container`}>
-          <div className={webdoorStyles.refreshIconContainer}>
-            <IconButton
-              theme="transparent"
-              label="Switch pokemon!"
-              props={{ onClick: randomWebDoor }}
-            >
-              <RefreshIcon className={webdoorStyles.refreshIcon} />
-            </IconButton>
+        <div className={`${webDoorStyles.container} h-container`}>
+          <div className={webDoorStyles.actionsContainer}>
+            <div className={webDoorStyles.actions}>
+              <IconButton
+                theme="transparent"
+                label="Switch pokemon!"
+                props={{ onClick: randomWebDoor }}
+              >
+                <RefreshIcon className={webDoorStyles.refreshIcon} />
+              </IconButton>
+
+              {isKonamiCodeActive && (
+                <IconButton
+                  theme="transparent"
+                  label="Switch pokemon!"
+                  props={{ onClick: toggleIsShiny }}
+                >
+                  <ShinyIcon className={webDoorStyles.shinyIcon} />
+                </IconButton>
+              )}
+            </div>
           </div>
           <Title />
 
           {children}
         </div>
-      </section>
+      </div>
     </>
   );
 };
