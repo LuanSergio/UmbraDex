@@ -12,6 +12,7 @@ import {
 import createRandomNumber from '@utils/createRandomNumber';
 import useKonamiCode from '@hooks/useKonamiCode';
 import SecretAudio from '../../../public/audio/secret.mp3';
+import ShinyAudio from '../../../public/audio/shiny.mp3';
 
 import KoffingWebdoor from './Koffing/KoffingWebdoor';
 import GengarWebdoor from './Gengar/GengarWebDoor';
@@ -99,6 +100,25 @@ export function WebDoorContextProvider({
       setIsKonamiCodeActive(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (isKonamiCodeActive) {
+      return;
+    }
+
+    // const chance = 1 / 40.96;
+    const chance = 1 / 20.48;
+    const randomNumber = Math.random();
+
+    if (randomNumber <= chance) {
+      setIsShiny(true);
+      const audio = new Audio(ShinyAudio);
+      audio.play();
+      return;
+    }
+
+    setIsShiny(false);
+  }, [currentWebDoor, isKonamiCodeActive]);
 
   const contextValue = useMemo(
     () => ({
