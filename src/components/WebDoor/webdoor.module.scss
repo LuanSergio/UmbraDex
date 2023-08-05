@@ -40,6 +40,7 @@
 
 .actions {
   display: flex;
+  font-size: rem(14);
 }
 
 .actions > *:not(:last-child) {
@@ -93,6 +94,10 @@
 @media only screen and (min-width: $md) {
   .webDoor {
     min-height: rem(852);
+  }
+
+  .actions {
+    font-size: rem(18);
   }
 
   .titleHolder {
