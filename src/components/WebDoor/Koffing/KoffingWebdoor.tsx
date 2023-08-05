@@ -45,12 +45,12 @@ const WebDoor = (): JSX.Element => {
                 y: 20,
                 transition: {
                   opacity: {
-                    delay: 2,
+                    delay: 1.4,
                     repeatDelay: 4,
                     ...smokeOpacityAnimation,
                   },
                   y: {
-                    delay: 2,
+                    delay: 1.4,
                     duration: 1.2,
                     ...verticalAnimation,
                   },
@@ -144,7 +144,7 @@ const WebDoor = (): JSX.Element => {
                     ...smokeOpacityAnimation,
                   },
                   y: {
-                    delay: 2,
+                    delay: 1.4,
                     duration: 1.2,
                     ...verticalAnimation,
                   },
@@ -167,7 +167,7 @@ const WebDoor = (): JSX.Element => {
                     ...smokeOpacityAnimation,
                   },
                   y: {
-                    delay: 2,
+                    delay: 1.4,
                     duration: 1.2,
                     ...verticalAnimation,
                   },
@@ -228,7 +228,7 @@ const WebDoor = (): JSX.Element => {
                 y: 20,
                 transition: {
                   y: {
-                    delay: 2,
+                    delay: 1.4,
                     duration: 5,
                     ...verticalAnimation,
                   },
