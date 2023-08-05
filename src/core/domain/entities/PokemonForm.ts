@@ -17,6 +17,8 @@ export default class PokemonForm {
 
   public image: string;
 
+  public imageShiny: string;
+
   public weight: number;
 
   public height: number;
@@ -34,6 +36,7 @@ export default class PokemonForm {
     formOrder: number,
     stats: PokemonStats[],
     image: string,
+    imageShiny: string,
     weight: number,
     height: number,
     abilities: string[],
@@ -47,6 +50,7 @@ export default class PokemonForm {
     this.formOrder = formOrder;
     this.stats = stats;
     this.image = image;
+    this.imageShiny = imageShiny;
     this.weight = weight;
     this.height = height;
     this.groupVersion = groupVersion;

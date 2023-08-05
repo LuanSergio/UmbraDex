@@ -7,3 +7,8 @@
   background-color: rgba($color: get-color(light), $alpha: 25%);
   border-radius: 10%;
 }
+
+.shinyIcon {
+  color: get-color(light);
+  width: 50px;
+}

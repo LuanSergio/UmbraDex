@@ -218,6 +218,7 @@ export default class PokemonData implements PokemonRepository {
               };
             }),
             image: getPokemonImageUrl(form.pokemonForms[0].id),
+            imageShiny: getPokemonImageUrl(form.pokemonForms[0].id, true),
           };
         }),
         japaneseName: result.body.species[0].specieName[0].name,

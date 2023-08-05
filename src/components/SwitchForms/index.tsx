@@ -4,6 +4,7 @@ import PokemonForm from '@domain/entities/PokemonForm';
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
 
 import AlolaFormIcon from '@components/FormIcons/AlolaFormIcon';
+import ShinyIcon from '@public/icons/shiny.svg';
 import DefaultFormIcon from '@components/FormIcons/DefaultFormIcon';
 import GmaxFormIcon from '@components/FormIcons/GmaxFormIcon';
 import MegaXFormIcon from '@components/FormIcons/MegaXFormIcon';
@@ -20,7 +21,9 @@ interface SwitchFormsProps {
   defaultPokemonForm: PokemonForm;
   alternativePokemonForms: PokemonForm[];
   pokemon: PokemonForm;
+  isShiny: boolean;
   handleFormChange: (form: PokemonForm) => void;
+  handleIsShiny: (shouldBeShiny: boolean) => void;
 }
 
 const forms = {
@@ -38,18 +41,27 @@ const SwitchForms = ({
   defaultPokemonForm,
   alternativePokemonForms,
   pokemon,
+  isShiny,
   handleFormChange,
+  handleIsShiny,
 }: SwitchFormsProps): JSX.Element => {
   const [formIndex, setFormIndex] = useState(0);
 
   function handleFormIndexChange(index: number): void {
     setFormIndex(index);
+    handleIsShiny(false);
+  }
+
+  function handleShinyFormClick(): void {
+    handleIsShiny(true);
+    setFormIndex(0);
   }
 
   // Change back to default form when pokemon changes
   useEffect(() => {
     if (pokemon.isDefault) {
       setFormIndex(0);
+      handleIsShiny(false);
     }
   }, [pokemon.isDefault]);
 
@@ -81,14 +93,28 @@ const SwitchForms = ({
       <CarouselItem
         tagName="li"
         onClick={() => handleFormIndexChange(0)}
-        buttonProps={{ disabled: pokemon.isDefault }}
+        buttonProps={{ disabled: pokemon.isDefault && !isShiny }}
       >
         <div
           className={`switchFormIcon ${
-            pokemon.isDefault ? 'switchFormIcon--active' : ''
+            pokemon.isDefault && !isShiny ? 'switchFormIcon--active' : ''
           } ${styles.iconContainer}`}
         >
           <DefaultFormIcon />
+        </div>
+      </CarouselItem>
+
+      <CarouselItem
+        tagName="li"
+        onClick={() => handleShinyFormClick()}
+        buttonProps={{ disabled: pokemon.isDefault && isShiny }}
+      >
+        <div
+          className={`switchFormIcon ${
+            pokemon.isDefault && isShiny ? 'switchFormIcon--active' : ''
+          } ${styles.iconContainer}`}
+        >
+          <ShinyIcon className={`${styles.shinyIcon} shiny`} />
         </div>
       </CarouselItem>
 

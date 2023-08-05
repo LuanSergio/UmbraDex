@@ -45,6 +45,7 @@ const PokemonContent = ({
   } = useRouter();
   const pageId = parseInt(id as string, 10);
   const [pokemon, setPokemon] = useState(defaultPokemonForm);
+  const [isShiny, setIsShiny] = useState(false);
   const [typesIdList, setTypesIdsList] = useState<number[]>([]);
   const { staticData } = usePokemonListContext();
   const [windowWidth] = useWindowSize();
@@ -52,6 +53,10 @@ const PokemonContent = ({
   const { isLoading, typeEfficiency } = useTypeEfficacies({
     types: typesIdList,
   });
+
+  function handleIsShiny(shouldBeShiny) {
+    setIsShiny(shouldBeShiny);
+  }
 
   useEffect(() => {
     if (!sessionStorage.getItem('currentPokemonId')) {
@@ -94,11 +99,12 @@ const PokemonContent = ({
     <div className={styles.holder}>
       <ContentLayout>
         <div
-          className={`${styles.content} ${
-            AlternativePokemonForms.length > 0
-              ? styles['content--small']
-              : styles['content--large']
-          }`}
+          // className={`${styles.content} ${
+          //   AlternativePokemonForms.length > 0
+          //     ? styles['content--small']
+          //     : styles['content--large']
+          // }`}
+          className={`${styles.content} ${styles['content--small']}`}
         >
           {windowWidth < 1280 && (
             <div className={styles.basicInformation}>
@@ -110,19 +116,20 @@ const PokemonContent = ({
             </div>
           )}
 
-          {AlternativePokemonForms.length > 0 && (
-            <SwitchForms
-              pokemon={pokemon}
-              handleFormChange={handleFormChange}
-              defaultPokemonForm={defaultPokemonForm}
-              alternativePokemonForms={AlternativePokemonForms}
-            />
-          )}
+          <SwitchForms
+            pokemon={pokemon}
+            handleFormChange={handleFormChange}
+            handleIsShiny={handleIsShiny}
+            isShiny={isShiny}
+            defaultPokemonForm={defaultPokemonForm}
+            alternativePokemonForms={AlternativePokemonForms}
+          />
+
           <div className={styles.container}>
             <div className={styles.contentOdd}>
               <PokemonHighlight
                 japaneseName={pokemonDetails.japaneseName}
-                image={pokemon.image}
+                image={isShiny ? pokemon.imageShiny : pokemon.image}
                 name={pokemon.name}
               />
               <EvolutionChain
