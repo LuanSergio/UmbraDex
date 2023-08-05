@@ -13,11 +13,14 @@
   --webdoor-contrast-color: #49a0dc;
 }
 
-.gengar {
+.gengarContainer {
   bottom: rem(-20);
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
+}
+
+.gengar {
   width: 331px;
 }
 
@@ -65,8 +68,11 @@
 }
 
 @media only screen and (min-width: $lg) {
-  .gengar {
+  .gengarContainer {
     bottom: rem(-0);
+  }
+
+  .gengar {
     width: 380px;
   }
 

@@ -5,11 +5,14 @@ import Crobat from '@public/webdoor/gengar/crobat.svg';
 import Zubat from '@public/webdoor/gengar/zubat.svg';
 
 import useWindowSize from '@hooks/useWindowSize';
-
-import gengarWebDoorStyles from './gengar-webdoor.module.scss';
+import ShinySparkle from '@components/ShinySparkle';
+import { useWebDoorContext } from '../WebdoorContext';
 import CommonWebDoor from '../CommonWebdoor';
 
+import gengarWebDoorStyles from './gengar-webdoor.module.scss';
+
 const GengarWebDoor = (): JSX.Element => {
+  const { isShiny } = useWebDoorContext();
   const [windowWidth] = useWindowSize();
 
   return (
@@ -51,17 +54,22 @@ const GengarWebDoor = (): JSX.Element => {
           >
             <Crobat className={gengarWebDoorStyles.crobat} />
           </motion.div>
-          <motion.div
-            transition={{
-              delay: windowWidth > 1280 ? 0.85 : 0,
-              type: 'tween',
-              duration: 0.75,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <Gengar className={gengarWebDoorStyles.gengar} />
-          </motion.div>
+
+          <div className={gengarWebDoorStyles.gengarContainer}>
+            <motion.div
+              transition={{
+                delay: windowWidth > 1280 ? 0.85 : 0,
+                type: 'tween',
+                duration: 0.75,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Gengar className={gengarWebDoorStyles.gengar} />
+            </motion.div>
+
+            {isShiny && <ShinySparkle />}
+          </div>
         </>
       )}
     </CommonWebDoor>

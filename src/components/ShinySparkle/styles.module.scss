@@ -1,0 +1,75 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+
+.sparkleContainer {
+  font-size: rem(9);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: get-index-level(lvl3);
+}
+
+.sparkle1,
+.sparkle2,
+.sparkle3,
+.sparkle4 {
+  color: var(--webdoor-contrast-color);
+  position: absolute;
+}
+
+.sparkle1 {
+  left: 0;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.sparkle1Icon {
+  height: em(175);
+  width: em(116);
+}
+
+.sparkle2 {
+  bottom: 0;
+  left: em(48);
+}
+
+.sparkle2Icon {
+  height: em(155);
+  width: em(105);
+}
+
+.sparkle3 {
+  right: em(56);
+  top: em(40);
+}
+
+.sparkle3Icon {
+  height: em(133);
+  width: em(88);
+}
+
+.sparkle4 {
+  bottom: 0;
+  right: em(-20);
+}
+
+.sparkle4Icon {
+  height: em(151);
+  width: em(103);
+}
+
+@media only screen and (min-width: $xs) {
+  .sparkleContainer {
+    font-size: rem(10);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .sparkleContainer {
+    font-size: rem(16);
+  }
+}

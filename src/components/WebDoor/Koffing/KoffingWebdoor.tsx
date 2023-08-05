@@ -9,11 +9,15 @@ import SmokeVariation4 from '@public/webdoor/koffing/smoke-variation-4.svg';
 
 import useWindowSize from 'src/hooks/useWindowSize';
 
+import ShinySparkle from '@components/ShinySparkle';
 import koffingStyles from './koffing-webdoor.module.scss';
 import CommonWebDoor from '../CommonWebdoor';
+import { useWebDoorContext } from '../WebdoorContext';
 
 const WebDoor = (): JSX.Element => {
+  const { isShiny } = useWebDoorContext();
   const [windowWidth] = useWindowSize();
+
   const smokeOpacityAnimation = {
     duration: 1,
     type: 'tween',
@@ -233,6 +237,7 @@ const WebDoor = (): JSX.Element => {
             >
               <Koffing className={koffingStyles.koffing} />
             </motion.div>
+            {isShiny && <ShinySparkle />}
           </div>
           <motion.div
             transition={{
