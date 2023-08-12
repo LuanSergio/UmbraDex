@@ -9,6 +9,7 @@ module.exports = {
   images: {
     domains: ['umbradex.vercel.app', 'raw.githubusercontent.com'],
   },
+
   webpack: (config, options) => {
     const { isServer, defaultLoaders } = options;
 
@@ -23,7 +24,26 @@ module.exports = {
       use: [
         {
           loader: "@svgr/webpack",
-          options: { titleProp: true },
+          options: {
+            titleProp: true,
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      convertPathData: false,
+                      removeViewBox: false,
+                    },
+                  },
+                },
+                {
+                  name: 'removeDimensions',
+                  params: true,
+                }
+              ],
+            },
+          },
         },
       ],
     });
