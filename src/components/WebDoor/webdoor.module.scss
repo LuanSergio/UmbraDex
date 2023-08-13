@@ -59,31 +59,6 @@
   width: 100%;
 }
 
-.titleContainer {
-  z-index: get-index-level(lvl1);
-}
-
-.titleHolder {
-  color: get-color(light);
-  font-size: rem(28);
-  margin-bottom: 0;
-  margin-top: 0;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.title {
-  color: var(--webdoor-contrast-color);
-  display: block;
-  font-size: 1em;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  width: 100%;
-  z-index: get-index-level(lvl2);
-}
-
 @media only screen and (min-width: $xs) {
   .webDoor {
     max-height: none;
@@ -98,14 +73,6 @@
 
   .actions {
     font-size: rem(18);
-  }
-
-  .titleHolder {
-    font-size: rem(16);
-  }
-
-  .title {
-    width: em(640);
   }
 }
 
@@ -122,14 +89,6 @@
   .container {
     padding-top: 0;
   }
-
-  .titleContainer {
-    left: 50%;
-    position: absolute;
-    top: rem(120);
-    transform: translateX(-50%);
-    width: 100%;
-  }
 }
 
 @media only screen and (min-width: $xl) {
@@ -143,14 +102,5 @@
   .webDoor {
     max-height: rem(1360);
     min-height: rem(1080);
-  }
-
-  .titleContainer {
-    top: rem(60);
-  }
-
-  .titleHolder {
-    font-size: rem(20);
-    top: rem(80);
   }
 }

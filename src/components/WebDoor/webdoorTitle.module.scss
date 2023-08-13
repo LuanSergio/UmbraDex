@@ -1,0 +1,95 @@
+@use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
+
+.titleContainer {
+  display: inline-block;
+  font-size: rem(28);
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 90%;
+  z-index: get-index-level(lvl1);
+}
+
+.titleContainer.positionY-bottom {
+  bottom: rem(40);
+  position: absolute;
+}
+
+.title {
+  color: var(--webdoor-contrast-color);
+  display: block;
+  font-size: 1em;
+  margin-bottom: 0;
+  margin-top: 0;
+  position: relative;
+  width: 100%;
+  z-index: get-index-level(lvl2);
+}
+
+@media only screen and (min-width: $md) {
+  .titleContainer {
+    font-size: rem(16);
+    left: unset;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(0);
+    width: auto;
+  }
+
+  .titleContainer.positionY-bottom {
+    bottom: rem(80);
+  }
+
+  .title {
+    width: em(640);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .titleContainer {
+    position: absolute;
+  }
+
+  .titleContainer.positionX-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .titleContainer.positionX-left {
+    left: 0;
+  }
+
+  .titleContainer.positionX-right {
+    right: 0;
+  }
+
+  .titleContainer.positionY-top {
+    top: rem(138);
+  }
+
+  .titleContainer.positionY-center {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .titleContainer.positionY-bottom {
+    bottom: rem(120);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .titleContainer {
+    font-size: rem(20);
+  }
+
+  .titleContainer.positionY-top {
+    top: rem(156);
+  }
+
+  .titleContainer.positionY-bottom {
+    bottom: rem(180);
+  }
+}

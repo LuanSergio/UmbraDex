@@ -1,7 +1,10 @@
 import IconButton from '@components/IconButton';
 import RefreshIcon from '@public/icons/refresh.svg';
 import ShinyIcon from '@public/icons/shiny.svg';
-import Title from './Title';
+import Title, {
+  WebDoorTitlePositionXOptions,
+  WebDoorTitlePositionYOptions,
+} from './WebDoorTitle';
 
 import { useWebDoorContext } from './WebdoorContext';
 
@@ -11,12 +14,16 @@ interface CommonWebDoorProps {
   shinyClass: string;
   mainClass: string;
   children: JSX.Element;
+  titlePositionX?: WebDoorTitlePositionXOptions;
+  titlePositionY?: WebDoorTitlePositionYOptions;
 }
 
 const CommonWebDoor = ({
   mainClass,
   shinyClass,
   children,
+  titlePositionX,
+  titlePositionY,
 }: CommonWebDoorProps): JSX.Element => {
   const { isKonamiCodeActive, isShiny, randomWebDoor, toggleIsShiny } =
     useWebDoorContext();
@@ -50,7 +57,7 @@ const CommonWebDoor = ({
               )}
             </div>
           </div>
-          <Title />
+          <Title positionX={titlePositionX} positionY={titlePositionY} />
 
           {children}
         </div>
