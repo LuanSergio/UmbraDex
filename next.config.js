@@ -40,6 +40,10 @@ module.exports = {
                 {
                   name: 'removeDimensions',
                   params: true,
+                },
+                {
+                  name: 'prefixIds',
+                  params: true,
                 }
               ],
             },
