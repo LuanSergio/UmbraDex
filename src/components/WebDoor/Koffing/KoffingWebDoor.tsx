@@ -14,7 +14,7 @@ import koffingStyles from './koffing-webdoor.module.scss';
 import CommonWebDoor from '../CommonWebdoor';
 import { useWebDoorContext } from '../WebdoorContext';
 
-const WebDoor = (): JSX.Element => {
+const KoffingWebDoor = (): JSX.Element => {
   const { isShiny } = useWebDoorContext();
   const [windowWidth] = useWindowSize();
 
@@ -256,4 +256,4 @@ const WebDoor = (): JSX.Element => {
   );
 };
 
-export default WebDoor;
+export default KoffingWebDoor;
