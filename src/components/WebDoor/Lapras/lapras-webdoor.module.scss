@@ -1,0 +1,88 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+
+.laprasWebDoor {
+  --webdoor-primary-color: #71bfed;
+  --webdoor-contrast-color: #226494;
+
+  font-size: 9px;
+}
+
+.shiny {
+  --webdoor-primary-color: #7885f4;
+  --webdoor-contrast-color: #68419d;
+}
+
+.laprasHolder {
+  bottom: em(-200);
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.lapras {
+  padding-bottom: 40px;
+  position: relative;
+  width: em(940);
+}
+
+.bubbleContainer {
+  position: absolute;
+  top: 0;
+}
+
+.bubble {
+  width: 100%;
+}
+
+@media only screen and (min-width: $sm) {
+  .laprasWebDoor {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .laprasWebDoor {
+    font-size: 10px;
+  }
+
+  .lapras {
+    padding-bottom: 0;
+    width: em(1200);
+  }
+
+  .laprasHolder {
+    bottom: em(-140);
+    left: unset;
+    position: absolute;
+    right: em(-240);
+    top: unset;
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .laprasWebDoor {
+    font-size: 14px;
+  }
+
+  .lapras {
+    width: em(1000);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .laprasWebDoor {
+    font-size: 16px;
+  }
+
+  .laprasHolder {
+    right: em(-470);
+  }
+
+  .lapras {
+    width: em(1200);
+  }
+}
