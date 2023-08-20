@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: get-index-level(lvl4);
+  z-index: get-index-level(lvl5);
 }
 
 .headerBackground {
@@ -22,7 +22,7 @@
 }
 
 .scrolled {
-  z-index: get-index-level(lvl3);
+  z-index: get-index-level(lvl4);
 }
 
 .headerContainer {
