@@ -25,6 +25,7 @@
     "framer-motion": "^6.3.16",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
+    "nanoid": "^4.0.2",
     "next": "12.1",
     "next-themes": "^0.2.1",
     "react": "^17.0.2",
