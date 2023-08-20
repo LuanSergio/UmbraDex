@@ -14,8 +14,9 @@ import useKonamiCode from '@hooks/useKonamiCode';
 import SecretAudio from '../../../public/audio/secret.mp3';
 import ShinyAudio from '../../../public/audio/shiny.mp3';
 
-import KoffingWebdoor from './Koffing/KoffingWebdoor';
+import KoffingWebdoor from './Koffing/KoffingWebDoor';
 import GengarWebdoor from './Gengar/GengarWebDoor';
+import ButterfreeWebdoor from './Butterfree/ButterfreeWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
@@ -32,8 +33,10 @@ interface WebDoorContextProviderProps {
 const webDoorList = [
   <GengarWebdoor />,
   <KoffingWebdoor />,
+  <ButterfreeWebdoor />,
   <GengarWebdoor />,
   <KoffingWebdoor />,
+  <ButterfreeWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);

@@ -26,12 +26,15 @@
 }
 
 .actionsContainer {
-  left: rem(20);
+  background-color: rgba($color: #000, $alpha: 60%);
+  border-radius: 4px;
+  left: rem(12);
   opacity: 0;
+  padding: 4px 8px;
   position: absolute;
-  top: rem(96);
+  top: rem(88);
   transition: opacity 0.2s ease-in;
-  z-index: get-index-level(lvl2);
+  z-index: get-index-level(lvl3);
 }
 
 .commonWebDoor:hover .actionsContainer {

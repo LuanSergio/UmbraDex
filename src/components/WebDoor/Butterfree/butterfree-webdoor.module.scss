@@ -1,0 +1,82 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+
+.butterfreeWebDoor {
+  --webdoor-primary-color: #92c145;
+  --webdoor-contrast-color: #7c70a2;
+
+  font-size: 9px;
+}
+
+.shiny {
+  --webdoor-primary-color: #d19042;
+  --webdoor-contrast-color: #7c70a2;
+}
+
+.butterfreeHolder {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: get-index-level(lvl2);
+}
+
+.butterfree {
+  padding-bottom: 40px;
+  position: relative;
+  width: em(540);
+  z-index: get-index-level(lvl2);
+}
+
+.petalContainer {
+  position: absolute;
+  top: 0;
+}
+
+.petal {
+  width: 100%;
+}
+
+@media only screen and (min-width: $sm) {
+  .butterfreeWebDoor {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .butterfreeHolder {
+    transform: translate(-50%, -70%);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .butterfreeWebDoor {
+    font-size: 10px;
+  }
+
+  .butterfree {
+    padding-bottom: 0;
+    width: em(720);
+  }
+
+  .butterfreeHolder {
+    left: 0;
+    position: absolute;
+    top: em(24);
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .butterfreeWebDoor {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .butterfreeWebDoor {
+    font-size: 16px;
+  }
+}
