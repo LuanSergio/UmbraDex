@@ -62,6 +62,27 @@
   width: em(103);
 }
 
+.small.sparkle1 {
+  left: em(280);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.small.sparkle2 {
+  bottom: 140px;
+  left: em(280);
+}
+
+.small.sparkle3 {
+  right: em(256);
+  top: em(40);
+}
+
+.small.sparkle4 {
+  bottom: em(220);
+  right: em(220);
+}
+
 @media only screen and (min-width: $xs) {
   .sparkleContainer {
     font-size: rem(10);

@@ -5,16 +5,16 @@ import SparkleIcon3 from '@public/webdoor/sparkle-3.svg';
 import SparkleIcon4 from '@public/webdoor/sparkle-4.svg';
 import styles from './styles.module.scss';
 
-const ShinySparkle = (): JSX.Element => {
-  const defaultAnimation = {
-    type: 'tween',
-    repeat: 'Infinity',
-    repeatType: 'mirror',
-  };
+interface ShinySparkleProps {
+  spacingSize?: 'small' | 'normal';
+}
 
+const ShinySparkle = ({
+  spacingSize = 'normal',
+}: ShinySparkleProps): JSX.Element => {
   return (
     <div className={styles.sparkleContainer}>
-      <div className={styles.sparkle1}>
+      <div className={`${styles.sparkle1} ${styles[spacingSize]}`}>
         <motion.div
           animate={{
             scale: [1, 1.3, 0.8],
@@ -38,7 +38,7 @@ const ShinySparkle = (): JSX.Element => {
           <SparkleIcon1 className={styles.sparkle1Icon} />
         </motion.div>
       </div>
-      <div className={styles.sparkle2}>
+      <div className={`${styles.sparkle2} ${styles[spacingSize]}`}>
         <motion.div
           animate={{
             scale: [1, 1.3, 0.8],
@@ -62,7 +62,7 @@ const ShinySparkle = (): JSX.Element => {
           <SparkleIcon2 className={styles.sparkle2Icon} />
         </motion.div>
       </div>
-      <div className={styles.sparkle3}>
+      <div className={`${styles.sparkle3} ${styles[spacingSize]}`}>
         <motion.div
           animate={{
             scale: [1, 1.3, 0.8],
@@ -86,7 +86,7 @@ const ShinySparkle = (): JSX.Element => {
           <SparkleIcon3 className={styles.sparkle3Icon} />
         </motion.div>
       </div>
-      <div className={styles.sparkle4}>
+      <div className={`${styles.sparkle4} ${styles[spacingSize]}`}>
         <motion.div
           animate={{
             scale: [1, 1.3, 0.8],
