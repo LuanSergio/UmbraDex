@@ -17,6 +17,7 @@ import ShinyAudio from '../../../public/audio/shiny.mp3';
 import KoffingWebdoor from './Koffing/KoffingWebDoor';
 import GengarWebdoor from './Gengar/GengarWebDoor';
 import ButterfreeWebdoor from './Butterfree/ButterfreeWebDoor';
+import LaprasWebdoor from './Lapras/LaprasWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
@@ -34,9 +35,7 @@ const webDoorList = [
   <GengarWebdoor />,
   <KoffingWebdoor />,
   <ButterfreeWebdoor />,
-  <GengarWebdoor />,
-  <KoffingWebdoor />,
-  <ButterfreeWebdoor />,
+  <LaprasWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);
@@ -49,23 +48,27 @@ export function WebDoorContextProvider({
   const [isShiny, setIsShiny] = useState(false);
 
   const currentWebDoorList = useRef([...webDoorList]);
-  const webDoorIndex = useRef(0);
+  const previousWebDoor = useRef(0);
 
   const randomWebDoor = useCallback(() => {
-    if (currentWebDoorList.current.length === 1) {
-      currentWebDoorList.current = webDoorList.filter((item, index) => {
-        return webDoorIndex.current !== index;
-      });
+    if (currentWebDoorList.current.length === 0) {
+      currentWebDoorList.current = [...webDoorList];
     }
 
-    const randomIndex =
-      createRandomNumber(currentWebDoorList.current.length) - 1;
+    let randomIndex;
+    let selectedWebDoor;
 
-    webDoorIndex.current = randomIndex;
-
-    setCurrentWebDoor(currentWebDoorList.current[randomIndex]);
+    do {
+      randomIndex = Math.floor(
+        Math.random() * currentWebDoorList.current.length,
+      );
+      selectedWebDoor = currentWebDoorList.current[randomIndex];
+    } while (selectedWebDoor === previousWebDoor.current);
 
     currentWebDoorList.current.splice(randomIndex, 1);
+
+    previousWebDoor.current = selectedWebDoor;
+    setCurrentWebDoor(selectedWebDoor);
   }, [currentWebDoorList, setCurrentWebDoor]);
 
   const toggleIsShiny = useCallback(() => {
