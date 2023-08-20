@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Fragment, useLayoutEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Move from '@domain/entities/Move';
 
@@ -35,7 +35,7 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
     pokemonId,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const node = document.querySelector('#loader');
 
     setLoader(node);
