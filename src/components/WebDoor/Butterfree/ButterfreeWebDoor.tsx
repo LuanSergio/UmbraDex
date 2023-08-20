@@ -21,7 +21,7 @@ import { useWebDoorContext } from '../WebdoorContext';
 
 import butterfreeStyles from './butterfree-webdoor.module.scss';
 
-interface Petals {
+interface Petal {
   value: number;
   position: string;
   petal: number;
@@ -47,19 +47,19 @@ const petalsList = [
   <Petal9 className={butterfreeStyles.petal} />,
 ];
 
-const getRandomPetalPosition = (): Petals => {
+const getRandomPetalPosition = (): Petal => {
   const position = Math.random() < 0.5 ? 'right' : 'left';
   const sizeChance = Math.random();
   const value = getRandomNumberBetweenInterval(0, 90);
   const width = sizeChance < 0.4 ? 2 : getRandomNumberBetweenInterval(3, 5);
-  const petal = getRandomNumberBetweenInterval(0, 8);
+  const petal = getRandomNumberBetweenInterval(0, petalsList.length - 1);
   const zIndex: number = sizeChance < 0.4 ? 0 : 21;
   const rotation = getRandomNumberBetweenInterval(-45, 45);
   const id = nanoid();
-  const delay = getRandomNumberBetweenInterval(0, 8);
-  const initialHorizontalPosition = getRandomNumberBetweenInterval(0, 600);
-  const finalHorizontalPosition = getRandomNumberBetweenInterval(-600, 0);
-  const duration = getRandomNumberBetweenInterval(10, 18);
+  const delay = getRandomNumberBetweenInterval(0, 6);
+  const initialHorizontalPosition = getRandomNumberBetweenInterval(0, 400);
+  const finalHorizontalPosition = getRandomNumberBetweenInterval(-400, 0);
+  const duration = getRandomNumberBetweenInterval(10, 14);
 
   return {
     value,
@@ -78,12 +78,12 @@ const getRandomPetalPosition = (): Petals => {
 
 const WebDoor = (): JSX.Element => {
   const { isShiny } = useWebDoorContext();
-  const [currentPetals, setCurrentPetals] = useState<Petals[]>([]);
+  const [currentPetals, setCurrentPetals] = useState<Petal[]>([]);
 
   useEffect(() => {
-    const petal: Petals[] = [];
+    const petal: Petal[] = [];
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 10; i++) {
       petal.push(getRandomPetalPosition());
     }
 
@@ -117,7 +117,6 @@ const WebDoor = (): JSX.Element => {
             style={{
               zIndex: petal.zIndex,
               position: 'relative',
-              willChange: 'transform',
             }}
           >
             <div
