@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { nanoid } from 'nanoid';
 
 import Butterfree from '@public/webdoor/butterfree/butterfree.svg';
 import Petal1 from '@public/webdoor/butterfree/petal-1.svg';
@@ -11,9 +9,6 @@ import Petal5 from '@public/webdoor/butterfree/petal-5.svg';
 import Petal6 from '@public/webdoor/butterfree/petal-6.svg';
 import Petal7 from '@public/webdoor/butterfree/petal-7.svg';
 import Petal8 from '@public/webdoor/butterfree/petal-8.svg';
-import Petal9 from '@public/webdoor/butterfree/petal-9.svg';
-
-import getRandomNumberBetweenInterval from '@utils/getRandomNumberBetweenInterval';
 
 import ShinySparkle from '@components/ShinySparkle';
 import CommonWebDoor from '../CommonWebdoor';
@@ -22,7 +17,7 @@ import { useWebDoorContext } from '../WebdoorContext';
 import butterfreeStyles from './butterfree-webdoor.module.scss';
 
 interface Petal {
-  value: number;
+  positionValue: number;
   position: string;
   petal: number;
   rotation: number;
@@ -44,51 +39,117 @@ const petalsList = [
   <Petal6 className={butterfreeStyles.petal} />,
   <Petal7 className={butterfreeStyles.petal} />,
   <Petal8 className={butterfreeStyles.petal} />,
-  <Petal9 className={butterfreeStyles.petal} />,
 ];
 
-const getRandomPetalPosition = (): Petal => {
-  const position = Math.random() < 0.5 ? 'right' : 'left';
-  const sizeChance = Math.random();
-  const value = getRandomNumberBetweenInterval(0, 90);
-  const width = sizeChance < 0.4 ? 2 : getRandomNumberBetweenInterval(3, 5);
-  const petal = getRandomNumberBetweenInterval(0, petalsList.length - 1);
-  const zIndex: number = sizeChance < 0.4 ? 0 : 21;
-  const rotation = getRandomNumberBetweenInterval(-45, 45);
-  const id = nanoid();
-  const delay = getRandomNumberBetweenInterval(0, 6);
-  const initialHorizontalPosition = getRandomNumberBetweenInterval(0, 400);
-  const finalHorizontalPosition = getRandomNumberBetweenInterval(-400, 0);
-  const duration = getRandomNumberBetweenInterval(10, 14);
-
-  return {
-    value,
-    position,
-    petal,
-    rotation,
-    width,
-    id,
-    zIndex,
-    delay,
-    initialHorizontalPosition,
-    finalHorizontalPosition,
-    duration,
-  };
-};
+const petals: Petal[] = [
+  {
+    positionValue: 50,
+    position: 'right',
+    petal: 0,
+    rotation: 24,
+    width: 4.25,
+    id: '01',
+    zIndex: 21,
+    delay: 0,
+    initialHorizontalPosition: 0,
+    finalHorizontalPosition: -300,
+    duration: 15,
+  },
+  {
+    positionValue: 24,
+    position: 'right',
+    petal: 1,
+    rotation: 20,
+    width: 5,
+    id: '02',
+    zIndex: 21,
+    delay: 2,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 13,
+  },
+  {
+    positionValue: 0,
+    position: 'right',
+    petal: 2,
+    rotation: 45,
+    width: 3.25,
+    id: '03',
+    zIndex: 0,
+    delay: 1,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 16,
+  },
+  {
+    positionValue: 0,
+    position: 'right',
+    petal: 3,
+    rotation: 30,
+    width: 3.5,
+    id: '04',
+    zIndex: 0,
+    delay: 6,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 14,
+  },
+  {
+    positionValue: 12,
+    position: 'right',
+    petal: 4,
+    rotation: 90,
+    width: 3.25,
+    id: '05',
+    zIndex: 0,
+    delay: 0,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 12,
+  },
+  {
+    positionValue: 0,
+    position: 'left',
+    petal: 5,
+    rotation: 20,
+    width: 3.25,
+    id: '06',
+    zIndex: 0,
+    delay: 2,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 15,
+  },
+  {
+    positionValue: 40,
+    position: 'left',
+    petal: 6,
+    rotation: 30,
+    width: 4.65,
+    id: '07',
+    zIndex: 0,
+    delay: 10,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 13,
+  },
+  {
+    positionValue: 32,
+    position: 'right',
+    petal: 7,
+    rotation: 16,
+    width: 3.25,
+    id: '09',
+    zIndex: 21,
+    delay: 6,
+    initialHorizontalPosition: 40,
+    finalHorizontalPosition: -400,
+    duration: 14,
+  },
+];
 
 const WebDoor = (): JSX.Element => {
   const { isShiny } = useWebDoorContext();
-  const [currentPetals, setCurrentPetals] = useState<Petal[]>([]);
-
-  useEffect(() => {
-    const petal: Petal[] = [];
-
-    for (let i = 0; i < 10; i++) {
-      petal.push(getRandomPetalPosition());
-    }
-
-    setCurrentPetals(petal);
-  }, []);
 
   return (
     <CommonWebDoor
@@ -98,7 +159,7 @@ const WebDoor = (): JSX.Element => {
       titlePositionY="bottom"
     >
       <>
-        {currentPetals.map(petal => (
+        {petals.map(petal => (
           <motion.div
             key={petal.id}
             initial={{
@@ -106,13 +167,14 @@ const WebDoor = (): JSX.Element => {
               x: petal.initialHorizontalPosition,
             }}
             animate={{
-              y: '100vh',
+              y: '110vh',
               x: petal.finalHorizontalPosition,
             }}
             transition={{
               duration: petal.duration,
               delay: petal.delay,
               repeat: Infinity,
+              type: 'linear',
             }}
             style={{
               zIndex: petal.zIndex,
@@ -122,7 +184,7 @@ const WebDoor = (): JSX.Element => {
             <div
               className={butterfreeStyles.petalContainer}
               style={{
-                [petal.position]: `${petal.value}%`,
+                [petal.position]: `${petal.positionValue}%`,
                 transform: `rotate(${petal.rotation}deg)`,
                 width: `${petal.width}em`,
               }}
