@@ -18,7 +18,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: get-index-level(lvl2);
+  z-index: get-index-level(lvl4);
 }
 
 .scrolled {
@@ -107,6 +107,10 @@
 @media only screen and (min-width: $md) {
   .hiddenMobileItem {
     display: flex;
+  }
+
+  .headerBackground {
+    z-index: get-index-level(lvl2);
   }
 
   .rightContainer > *:not(:last-child) {
