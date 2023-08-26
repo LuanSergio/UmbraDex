@@ -82,8 +82,8 @@ const petals: Petal[] = [
     duration: 16,
   },
   {
-    positionValue: 0,
-    position: 'right',
+    positionValue: 10,
+    position: 'left',
     petal: 3,
     rotation: 30,
     width: 3.5,
