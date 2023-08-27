@@ -174,7 +174,6 @@ const WebDoor = (): JSX.Element => {
               duration: petal.duration,
               delay: petal.delay,
               repeat: Infinity,
-              type: 'linear',
             }}
             style={{
               zIndex: petal.zIndex,

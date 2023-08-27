@@ -20,14 +20,14 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: get-index-level(lvl2);
+  z-index: get-index-level(lvl4);
 }
 
 .butterfree {
   padding-bottom: 40px;
   position: relative;
   width: em(540);
-  z-index: get-index-level(lvl2);
+  z-index: get-index-level(lvl4);
 }
 
 .petalContainer {
