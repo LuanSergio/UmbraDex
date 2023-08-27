@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: get-index-level(lvl5);
+  z-index: get-index-level(lvl6);
 }
 
 .headerBackground {
@@ -18,11 +18,11 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: get-index-level(lvl4);
+  z-index: get-index-level(lvl5);
 }
 
 .scrolled {
-  z-index: get-index-level(lvl4);
+  z-index: get-index-level(lvl5);
 }
 
 .headerContainer {
@@ -110,7 +110,7 @@
   }
 
   .headerBackground {
-    z-index: get-index-level(lvl2);
+    z-index: get-index-level(lvl4);
   }
 
   .rightContainer > *:not(:last-child) {
