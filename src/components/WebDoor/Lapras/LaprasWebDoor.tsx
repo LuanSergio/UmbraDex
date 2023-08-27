@@ -16,7 +16,7 @@ import { useWebDoorContext } from '../WebdoorContext';
 import laprasStyles from './lapras-webdoor.module.scss';
 
 interface Bubbles {
-  value: number;
+  positionValue: number;
   position: string;
   bubble: number;
   rotation: number;
@@ -43,7 +43,7 @@ const getRandomBubblePosition = (): Bubbles => {
   const duration = getRandomNumberBetweenInterval(6, 12);
 
   return {
-    value,
+    positionValue: value,
     position,
     bubble,
     rotation,
@@ -94,7 +94,7 @@ const WebDoor = (): JSX.Element => {
             <div
               className={laprasStyles.bubbleContainer}
               style={{
-                [bubble.position]: `${bubble.value}%`,
+                [bubble.position]: `${bubble.positionValue}%`,
                 transform: `rotate(${bubble.rotation}deg)`,
                 width: `${bubble.width}em`,
               }}
