@@ -3,5 +3,7 @@
 .main {
   background-color: var(--theme-color);
   min-height: 100vh;
+  position: relative;
   transition: background-color 0.14s linear;
+  z-index: get-index-level(lvl1);
 }

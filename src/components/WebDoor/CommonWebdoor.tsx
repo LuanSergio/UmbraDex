@@ -16,6 +16,7 @@ interface CommonWebDoorProps {
   children: JSX.Element;
   titlePositionX?: WebDoorTitlePositionXOptions;
   titlePositionY?: WebDoorTitlePositionYOptions;
+  beforeContainer?: JSX.Element;
 }
 
 const CommonWebDoor = ({
@@ -24,9 +25,14 @@ const CommonWebDoor = ({
   children,
   titlePositionX,
   titlePositionY,
+  beforeContainer,
 }: CommonWebDoorProps): JSX.Element => {
-  const { isKonamiCodeActive, isShiny, randomWebDoor, toggleIsShiny } =
-    useWebDoorContext();
+  const {
+    isKonamiCodeActive,
+    isShiny,
+    handleRandomWebdoorClick,
+    toggleIsShiny,
+  } = useWebDoorContext();
 
   return (
     <>
@@ -35,13 +41,15 @@ const CommonWebDoor = ({
           webDoorStyles.commonWebDoor
         }`}
       >
+        {beforeContainer && <>{beforeContainer}</>}
+
         <div className={`${webDoorStyles.container} h-container`}>
           <div className={webDoorStyles.actionsContainer}>
             <div className={webDoorStyles.actions}>
               <IconButton
                 theme="transparent"
                 label="Switch pokemon!"
-                props={{ onClick: randomWebDoor }}
+                props={{ onClick: handleRandomWebdoorClick }}
               >
                 <RefreshIcon className={webDoorStyles.refreshIcon} />
               </IconButton>

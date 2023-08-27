@@ -18,13 +18,14 @@ import KoffingWebdoor from './Koffing/KoffingWebDoor';
 import GengarWebdoor from './Gengar/GengarWebDoor';
 import ButterfreeWebdoor from './Butterfree/ButterfreeWebDoor';
 import LaprasWebdoor from './Lapras/LaprasWebDoor';
+import GlalieWebdoor from './Glalie/GlalieWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
   isShiny: boolean;
   isKonamiCodeActive: boolean;
   toggleIsShiny: () => void;
-  randomWebDoor: () => void;
+  handleRandomWebdoorClick: () => void;
 }
 
 interface WebDoorContextProviderProps {
@@ -36,6 +37,7 @@ const webDoorList = [
   <KoffingWebdoor />,
   <ButterfreeWebdoor />,
   <LaprasWebdoor />,
+  <GlalieWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);
@@ -46,6 +48,7 @@ export function WebDoorContextProvider({
   const [currentWebDoor, setCurrentWebDoor] = useState<JSX.Element>();
   const [isKonamiCodeActive, setIsKonamiCodeActive] = useState(false);
   const [isShiny, setIsShiny] = useState(false);
+  const [userHasInteracted, setUserHasInteracted] = useState(false);
 
   const currentWebDoorList = useRef([...webDoorList]);
   const previousWebDoor = useRef(0);
@@ -70,6 +73,11 @@ export function WebDoorContextProvider({
     previousWebDoor.current = selectedWebDoor;
     setCurrentWebDoor(selectedWebDoor);
   }, [currentWebDoorList, setCurrentWebDoor]);
+
+  const handleRandomWebdoorClick = useCallback(() => {
+    setUserHasInteracted(true);
+    randomWebDoor();
+  }, [randomWebDoor]);
 
   const toggleIsShiny = useCallback(() => {
     setIsShiny(previousValue => !previousValue);
@@ -118,13 +126,18 @@ export function WebDoorContextProvider({
 
     if (randomNumber <= chance) {
       setIsShiny(true);
+
+      if (!userHasInteracted) {
+        return;
+      }
+
       const audio = new Audio(ShinyAudio);
       audio.play();
       return;
     }
 
     setIsShiny(false);
-  }, [currentWebDoor, isKonamiCodeActive]);
+  }, [currentWebDoor, isKonamiCodeActive, userHasInteracted]);
 
   const contextValue = useMemo(
     () => ({
@@ -132,9 +145,15 @@ export function WebDoorContextProvider({
       isShiny,
       isKonamiCodeActive,
       toggleIsShiny,
-      randomWebDoor,
+      handleRandomWebdoorClick,
     }),
-    [currentWebDoor, isShiny, isKonamiCodeActive, randomWebDoor, toggleIsShiny],
+    [
+      currentWebDoor,
+      isShiny,
+      isKonamiCodeActive,
+      handleRandomWebdoorClick,
+      toggleIsShiny,
+    ],
   );
 
   return (

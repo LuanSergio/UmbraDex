@@ -1,0 +1,151 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.glalieWebDoor {
+  --webdoor-primary-color: #79cee1;
+  --webdoor-contrast-color: #565d9b;
+
+  font-size: 12px;
+}
+
+.shiny {
+  --webdoor-primary-color: #636bb6;
+  --webdoor-contrast-color: #53415f;
+}
+
+.glalieHolder {
+  bottom: em(200);
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.glalie {
+  position: relative;
+  width: em(445);
+}
+
+.snowflakeContainer {
+  position: absolute;
+  top: 0;
+}
+
+.shardTopLeft,
+.shardTopRight,
+.shardBottomLeft,
+.smallShardBottomLeft,
+.smallShardBottomRight,
+.shardBottomRight {
+  position: absolute;
+}
+
+.shardContainer {
+  font-size: rem(8);
+  height: 100%;
+  left: 50%;
+  max-width: $container;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: get-index-level(lvl1);
+}
+
+.shardTopLeft {
+  display: none;
+
+  // transform: translateY(-16%);
+  left: 0;
+  top: em(-96);
+  width: em(230);
+}
+
+.shardTopRight {
+  display: none;
+  right: 0;
+  top: 0;
+  transform: translateY(-16%);
+  width: em(230);
+}
+
+.shardBottomLeft {
+  bottom: em(-180);
+  left: 0;
+  transform: rotate(-148deg);
+  width: em(161);
+}
+
+.smallShardBottomLeft {
+  bottom: em(-96);
+  left: em(196);
+  transform: rotate(32deg);
+  width: em(132);
+}
+
+.smallShardBottomRight {
+  bottom: em(-96);
+  right: em(196);
+  transform: rotate(-10deg);
+  width: em(132);
+}
+
+.shardBottomRight {
+  bottom: em(-180);
+  right: 0;
+  transform: rotate(148deg);
+  width: em(161);
+}
+
+@media only screen and (min-width: $sm) {
+  .glalie {
+    width: em(645);
+  }
+
+  .shardContainer {
+    font-size: rem(12);
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .glalieWebDoor {
+    font-size: 12px;
+  }
+
+  .glalieHolder {
+    bottom: em(100);
+  }
+
+  .shardTopLeft {
+    display: block;
+  }
+
+  .shardTopRight {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .shardBottomLeft {
+    left: em(-196);
+  }
+
+  .smallShardBottomLeft {
+    left: em(96);
+  }
+
+  .smallShardBottomRight {
+    right: em(96);
+  }
+
+  .shardBottomRight {
+    right: em(-196);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .glalieWebDoor {
+    font-size: 16px;
+  }
+}
