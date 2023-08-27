@@ -35,9 +35,9 @@ const snowflakes: Snowflakes[] = [
     width: 6.25,
     id: '01',
     zIndex: 21,
-    delay: 4,
+    delay: 10,
     initialHorizontalPosition: 0,
-    duration: 11,
+    duration: 21,
   },
   {
     positionValue: 0,
@@ -46,9 +46,9 @@ const snowflakes: Snowflakes[] = [
     width: 7.25,
     id: '01',
     zIndex: 21,
-    delay: 2,
+    delay: 0,
     initialHorizontalPosition: 0,
-    duration: 12,
+    duration: 22,
   },
   {
     positionValue: 100,
@@ -57,9 +57,9 @@ const snowflakes: Snowflakes[] = [
     width: 4.25,
     id: '03',
     zIndex: 0,
-    delay: 1,
+    delay: 6,
     initialHorizontalPosition: 40,
-    duration: 15,
+    duration: 25,
   },
 ];
 
@@ -146,24 +146,21 @@ const WebDoor = (): JSX.Element => {
               y: -200,
             }}
             animate={{
-              y: '110vh',
+              y: '200vh',
             }}
             transition={{
               duration: snowflake.duration,
               delay: snowflake.delay,
               repeat: Infinity,
             }}
+            className={glalieStyles.snowflakeContainer}
+            style={{
+              [snowflake.position]: `${snowflake.positionValue}%`,
+              transform: `rotate(${snowflake.rotation}deg)`,
+              width: `${snowflake.width}em`,
+            }}
           >
-            <div
-              className={glalieStyles.snowflakeContainer}
-              style={{
-                [snowflake.position]: `${snowflake.positionValue}%`,
-                transform: `rotate(${snowflake.rotation}deg)`,
-                width: `${snowflake.width}em`,
-              }}
-            >
-              <SnowFlake />
-            </div>
+            <SnowFlake />
           </motion.div>
         ))}
 
