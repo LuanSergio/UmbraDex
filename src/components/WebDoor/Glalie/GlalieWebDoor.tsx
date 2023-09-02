@@ -1,14 +1,8 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { nanoid } from 'nanoid';
-
 import Glalie from '@public/webdoor/glalie/glalie.svg';
 import BigShard from '@public/webdoor/glalie/big-shard.svg';
 import SmallShard from '@public/webdoor/glalie/small-shard.svg';
 import SnowFlake from '@public/webdoor/glalie/snow-flake.svg';
-
-import getRandomNumberBetweenInterval from '@utils/getRandomNumberBetweenInterval';
-
 import ShinySparkle from '@components/ShinySparkle';
 import CommonWebDoor from '../CommonWebdoor';
 import { useWebDoorContext } from '../WebdoorContext';
@@ -37,7 +31,7 @@ const snowflakes: Snowflakes[] = [
     zIndex: 21,
     delay: 10,
     initialHorizontalPosition: 0,
-    duration: 21,
+    duration: 18,
   },
   {
     positionValue: 0,
@@ -177,7 +171,7 @@ const WebDoor = (): JSX.Element => {
                   duration: 1.4,
                   type: 'tween',
                   repeat: Infinity,
-                  repeatType: 'mirror',
+                  repeatType: 'reverse',
                 },
                 scale: {
                   duration: 0.8,
