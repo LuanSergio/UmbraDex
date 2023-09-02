@@ -1,0 +1,82 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.electabuzzWebDoor {
+  --webdoor-primary-color: #f4ca66;
+  --webdoor-contrast-color: #103961;
+
+  font-size: 12px;
+}
+
+.shiny {
+  --webdoor-primary-color: #3b737d;
+  --webdoor-contrast-color: #574144;
+}
+
+.electabuzzHolder {
+  bottom: rem(-100);
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.electabuzz {
+  position: relative;
+  width: em(690);
+}
+
+.lightning {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: get-index-level(lvl1);
+}
+
+.lightning svg {
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (min-width: $sm) {
+  .shardContainer {
+    font-size: rem(12);
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .electabuzz {
+    width: em(905);
+  }
+
+  .shardTopLeft {
+    display: block;
+  }
+
+  .shardTopRight {
+    display: block;
+  }
+}
+@media only screen and (min-width: $lg) {
+  .electabuzzWebDoor {
+    font-size: 12px;
+  }
+
+  .electabuzzHolder {
+    bottom: 0;
+    left: rem(-0);
+    transform: translateX(0%);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .electabuzzHolder {
+    left: rem(-140);
+  }
+
+  .electabuzzWebDoor {
+    font-size: 16px;
+  }
+}

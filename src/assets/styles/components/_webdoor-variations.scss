@@ -1,4 +1,5 @@
 /* Gengar */
+
 .shiny .gengar_svg__outline {
   stroke: #49A0DC;
 }
@@ -21,6 +22,7 @@
 }
 
 /* Koffing */
+
 .shiny .koffing_svg__shadow {
   fill: #75606F;
   stroke: #75606F;
@@ -84,7 +86,6 @@
   stroke: #75606F;
 }
 
-
 /* Butterfree */
 
 .shiny .butterfree_svg__wings {
@@ -129,7 +130,6 @@
   stroke: #D35F5F;
 }
 
-
 .shiny .lapras_svg__body {
   fill: #C59AFB;
   stroke: #68419D;
@@ -152,20 +152,17 @@
   stroke:  #927686;
 }
 
-
-
 .shiny .bubble-1_svg__bubble,
 .shiny .bubble-2_svg__bubble,
 .shiny .bubble-3_svg__bubble {
   fill: #7885F4;
 }
 
+/* Glalie */
 
-/* glalie */
 .shiny .glalie_svg__body-line {
   stroke: #53415F;
 }
-
 
 .shiny .glalie_svg__eye {
   fill: #FF8C6B;
@@ -201,8 +198,27 @@
   stroke: #7F8597;
 }
 
-
-
 .shiny .snow-flake_svg__snow-flake {
   stroke: #53415F;
+}
+
+/* Glalie */
+.shiny .electabuzz_svg__body {
+  fill: #FFA672;
+  stroke: #574144;
+}
+
+
+.shiny .electabuzz_svg__arm {
+  fill: #F59A67;
+  stroke: #F59A67;
+}
+
+.shiny .electabuzz_svg__stripes {
+  fill: #574144;
+  stroke: #574144;
+}
+
+.shiny .electabuzz_svg__dark-lines {
+  stroke: #574144;
 }
