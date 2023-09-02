@@ -9,7 +9,6 @@ import {
   useState,
 } from 'react';
 
-import createRandomNumber from '@utils/createRandomNumber';
 import useKonamiCode from '@hooks/useKonamiCode';
 import SecretAudio from '../../../public/audio/secret.mp3';
 import ShinyAudio from '../../../public/audio/shiny.mp3';
@@ -19,6 +18,7 @@ import GengarWebdoor from './Gengar/GengarWebDoor';
 import ButterfreeWebdoor from './Butterfree/ButterfreeWebDoor';
 import LaprasWebdoor from './Lapras/LaprasWebDoor';
 import GlalieWebdoor from './Glalie/GlalieWebDoor';
+import ElectabuzzWebdoor from './Electabuzz/ElectabuzzWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
@@ -38,6 +38,7 @@ const webDoorList = [
   <ButterfreeWebdoor />,
   <LaprasWebdoor />,
   <GlalieWebdoor />,
+  <ElectabuzzWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);
