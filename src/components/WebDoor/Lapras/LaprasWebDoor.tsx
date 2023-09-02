@@ -113,7 +113,7 @@ const WebDoor = (): JSX.Element => {
                   duration: 1.4,
                   type: 'tween',
                   repeat: Infinity,
-                  repeatType: 'mirror',
+                  repeatType: 'reverse',
                 },
               },
             }}
