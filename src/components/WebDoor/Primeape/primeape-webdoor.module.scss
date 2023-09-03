@@ -1,0 +1,117 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.primeapeWebDoor {
+  --webdoor-primary-color: #c34f48;
+  --webdoor-contrast-color: #000;
+
+  font-size: 12px;
+}
+
+.shiny {
+  --webdoor-primary-color: #97332d;
+  --webdoor-contrast-color: #000;
+}
+
+.primeapeHolder {
+  bottom: rem(-100);
+  height: auto;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.primeape {
+  position: relative;
+}
+
+.primeapeContainer {
+  position: relative;
+}
+
+.exclamation1,
+.exclamation2,
+.exclamation3 {
+  position: absolute;
+  z-index: get-index-level(lvl1);
+}
+
+.exclamation1 {
+  right: 26%;
+  top: em(-120);
+  width: em(262);
+}
+
+.exclamation2 {
+  right: 15%;
+  top: em(-80);
+  width: em(182);
+}
+
+.exclamation3 {
+  right: 4%;
+  top: em(-80);
+  width: em(142);
+}
+
+.angrySymbol {
+  bottom: 0;
+  display: none;
+  position: absolute;
+  right: -200px;
+  width: em(342);
+}
+
+@media only screen and (min-width: $sm) {
+  .shardContainer {
+    font-size: rem(12);
+  }
+
+  .primeape {
+    width: em(690);
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .primeape {
+    width: em(959);
+  }
+
+  .shardTopLeft {
+    display: block;
+  }
+
+  .shardTopRight {
+    display: block;
+  }
+}
+@media only screen and (min-width: $lg) {
+  .primeapeWebDoor {
+    font-size: 12px;
+  }
+
+  .primeapeHolder {
+    bottom: unset;
+    left: rem(-120);
+    top: 10%;
+    transform: translateX(0%);
+  }
+
+  .angrySymbol {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .primeapeHolder {
+    left: rem(-240);
+  }
+
+  .primeapeWebDoor {
+    font-size: 16px;
+  }
+}

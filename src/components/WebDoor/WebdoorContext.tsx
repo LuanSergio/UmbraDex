@@ -19,6 +19,7 @@ import ButterfreeWebdoor from './Butterfree/ButterfreeWebDoor';
 import LaprasWebdoor from './Lapras/LaprasWebDoor';
 import GlalieWebdoor from './Glalie/GlalieWebDoor';
 import ElectabuzzWebdoor from './Electabuzz/ElectabuzzWebDoor';
+import PrimeapeWebdoor from './Primeape/PrimeapeWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
@@ -39,6 +40,7 @@ const webDoorList = [
   <LaprasWebdoor />,
   <GlalieWebdoor />,
   <ElectabuzzWebdoor />,
+  <PrimeapeWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);
