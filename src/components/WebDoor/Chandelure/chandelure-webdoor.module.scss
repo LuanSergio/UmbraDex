@@ -8,7 +8,7 @@
   --webdoor-primary-color: #9269d7;
   --webdoor-contrast-color: #6646b7;
 
-  font-size: 12px;
+  font-size: rem(12);
   position: relative;
 }
 
@@ -40,27 +40,27 @@
 
 .flame1 {
   bottom: 20%;
-  width: 46px;
+  width: rem(46);
 }
 
 .flame2 {
   right: 20%;
   top: 10%;
-  width: 39px;
+  width: rem(39);
 }
 
 .flame3 {
   right: 0;
   top: 30%;
   transform: translateY(-50%);
-  width: 44px;
+  width: rem(44);
 }
 
 .flame4 {
   left: 10%;
   top: 10%;
   transform: translateY(-50%);
-  width: 56px;
+  width: rem(56);
 }
 
 @media only screen and (min-width: $sm) {
@@ -76,20 +76,20 @@
 @media only screen and (min-width: $lg) {
   .flame1 {
     bottom: 0;
-    width: 100px;
+    width: rem(100);
   }
 
   .flame2 {
     right: 20%;
     top: 10%;
-    width: 69px;
+    width: rem(69);
   }
 
   .flame3 {
     right: 0;
     top: 30%;
     transform: translateY(-50%);
-    width: 74px;
+    width: rem(74);
   }
 
   .flame4 {
@@ -97,7 +97,7 @@
     right: 30%;
     top: 40%;
     transform: translateY(-50%);
-    width: 111px;
+    width: rem(111);
   }
 
   .chandelure {
@@ -105,7 +105,7 @@
   }
 
   .chandelureWebDoor {
-    font-size: 12px;
+    font-size: rem(12);
   }
 
   .chandelureHolder {
@@ -123,6 +123,6 @@
   }
 
   .chandelureWebDoor {
-    font-size: 16px;
+    font-size: rem(16);
   }
 }
