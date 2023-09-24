@@ -10,7 +10,7 @@
   position: absolute;
   transform: translateX(-50%);
   width: 86%;
-  z-index: get-index-level(lvl1);
+  z-index: get-index-level(lvl3);
 }
 
 .titleContainer.positionY-bottom {
@@ -26,7 +26,7 @@
   margin-top: 0;
   position: relative;
   width: 100%;
-  z-index: get-index-level(lvl2);
+  z-index: get-index-level(lvl3);
 }
 
 @media only screen and (min-width: $sm) {

@@ -1,0 +1,128 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.chandelureWebDoor {
+  --webdoor-primary-color: #9269d7;
+  --webdoor-contrast-color: #6646b7;
+
+  font-size: 12px;
+  position: relative;
+}
+
+.shiny {
+  --webdoor-primary-color: #7751b5;
+  --webdoor-contrast-color: #ee7017;
+}
+
+.chandelureHolder {
+  height: auto;
+  left: 50%;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.chandelure {
+  filter: drop-shadow(rem(15) rem(10) rem(0) rgba(#c33a76, 1));
+  position: relative;
+}
+
+.flame1,
+.flame2,
+.flame3,
+.flame4 {
+  position: absolute;
+}
+
+.flame1 {
+  bottom: 20%;
+  width: 46px;
+}
+
+.flame2 {
+  right: 20%;
+  top: 10%;
+  width: 39px;
+}
+
+.flame3 {
+  right: 0;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 44px;
+}
+
+.flame4 {
+  left: 10%;
+  top: 10%;
+  transform: translateY(-50%);
+  width: 56px;
+}
+
+@media only screen and (min-width: $sm) {
+  .chandelureHolder {
+    width: auto;
+  }
+
+  .chandelure {
+    width: em(690);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .flame1 {
+    bottom: 0;
+    width: 100px;
+  }
+
+  .flame2 {
+    right: 20%;
+    top: 10%;
+    width: 69px;
+  }
+
+  .flame3 {
+    right: 0;
+    top: 30%;
+    transform: translateY(-50%);
+    width: 74px;
+  }
+
+  .flame4 {
+    left: auto;
+    right: 30%;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 111px;
+  }
+
+  .chandelure {
+    width: em(959);
+  }
+
+  .chandelureWebDoor {
+    font-size: 12px;
+  }
+
+  .chandelureHolder {
+    bottom: unset;
+    left: rem(-120);
+    top: 0;
+    transform: translateY(-20%);
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .chandelureHolder {
+    left: rem(-240);
+  }
+
+  .chandelureWebDoor {
+    font-size: 16px;
+  }
+}

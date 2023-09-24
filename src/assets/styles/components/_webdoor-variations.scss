@@ -267,3 +267,78 @@
  .shiny .angry-symbol_svg__main {
   stroke: #FFD53E;
  }
+
+ /* Chandelure */
+
+.shiny .chandelure_svg__flame-light  {
+  fill: #F79529;
+  stroke: #F79529;
+}
+
+.shiny .chandelure_svg__eye  {
+  fill: #E252A6;
+  stroke: #E252A6;
+}
+
+
+.shiny .chandelure_svg__linear stop:first-child {
+  stop-color: #FC7A1D;
+}
+
+.shiny .chandelure_svg__linear stop:nth-child(2) {
+  stop-color: #FC7A1D;
+}
+
+.shiny .chandelure_svg__linear stop:nth-child(3) {
+  stop-color: #F0B136;
+}
+
+.shiny .chandelure_svg__linear stop:nth-child(4) {
+  stop-color: #F1DCAF;
+}
+
+.shiny .chandelure_svg__linear-2 stop:first-child {
+  stop-color: #FC7A1D;
+}
+
+.shiny .chandelure_svg__linear-2 stop:nth-child(2) {
+  stop-color: #F0B136;
+}
+
+.shiny .chandelure_svg__linear-2 stop:nth-child(3) {
+  stop-color: #F1DCAF;
+}
+
+
+
+.shiny .flame-1_svg__flame,
+.shiny .flame-2_svg__flame,
+.shiny .flame-3_svg__flame,
+.shiny .flame-4_svg__flame  {
+  fill: #F0B136;
+  stroke: transparent;
+}
+
+
+.shiny .flame-1_svg__linear stop:first-child,
+.shiny .flame-2_svg__linear stop:first-child,
+.shiny .flame-3_svg__linear stop:first-child,
+.shiny .flame-4_svg__linear stop:first-child
+ {
+  stop-color: #f86a04;
+}
+
+.shiny .flame-1_svg__linear stop:nth-child(2),
+.shiny .flame-2_svg__linear stop:nth-child(2),
+.shiny .flame-3_svg__linear stop:nth-child(2),
+.shiny .flame-4_svg__linear stop:nth-child(2) {
+  stop-color: #f09036;
+}
+
+.shiny .flame-2_svg__flame-stroke {
+  stroke: transparent;
+}
+
+.shiny .flame-4_svg__flame-stroke {
+  stroke: transparent;
+}
