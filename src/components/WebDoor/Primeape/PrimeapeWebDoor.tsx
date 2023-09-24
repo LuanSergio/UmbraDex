@@ -21,24 +21,23 @@ const WebDoor = (): JSX.Element => {
       titlePositionY="center"
     >
       <>
-        <div className={primeapeStyles.primeapeHolder}>
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{
-              scale: 1,
-              transition: {
-                scale: {
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                },
+        <motion.div
+          initial={{ scale: 0.8 }}
+          animate={{
+            scale: 1,
+            transition: {
+              scale: {
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: 'reverse',
               },
-            }}
-            className={primeapeStyles.angrySymbol}
-          >
-            <AngrySymbol />
-          </motion.div>
-
+            },
+          }}
+          className={primeapeStyles.angrySymbol}
+        >
+          <AngrySymbol />
+        </motion.div>
+        <div className={primeapeStyles.primeapeHolder}>
           <div className={primeapeStyles.primeapeContainer}>
             <motion.div
               initial={{ scale: 1 }}

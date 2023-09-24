@@ -36,6 +36,7 @@
 .exclamation1,
 .exclamation2,
 .exclamation3 {
+  font-size: rem(9);
   position: absolute;
   z-index: get-index-level(lvl1);
 }
@@ -62,13 +63,15 @@
   bottom: 0;
   display: none;
   position: absolute;
-  right: -200px;
+  right: -80px;
   width: em(342);
 }
 
 @media only screen and (min-width: $sm) {
-  .shardContainer {
-    font-size: rem(12);
+  .exclamation1,
+  .exclamation2,
+  .exclamation3 {
+    font-size: inherit;
   }
 
   .primeape {
@@ -80,15 +83,8 @@
   .primeape {
     width: em(959);
   }
-
-  .shardTopLeft {
-    display: block;
-  }
-
-  .shardTopRight {
-    display: block;
-  }
 }
+
 @media only screen and (min-width: $lg) {
   .primeapeWebDoor {
     font-size: 12px;
@@ -99,6 +95,7 @@
     left: rem(-120);
     top: 10%;
     transform: translateX(0%);
+    width: auto;
   }
 
   .angrySymbol {
