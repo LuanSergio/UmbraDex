@@ -21,7 +21,7 @@ const WebDoor = (): JSX.Element => {
       titlePositionY="center"
     >
       <>
-        <motion.div
+        {/* <motion.div
           initial={{ scale: 0.8 }}
           animate={{
             scale: 1,
@@ -36,7 +36,7 @@ const WebDoor = (): JSX.Element => {
           className={primeapeStyles.angrySymbol}
         >
           <AngrySymbol />
-        </motion.div>
+        </motion.div> */}
         <div className={primeapeStyles.primeapeHolder}>
           <div className={primeapeStyles.primeapeContainer}>
             <motion.div
@@ -45,7 +45,7 @@ const WebDoor = (): JSX.Element => {
                 scale: 0.5,
                 transition: {
                   scale: {
-                    duration: 1.5,
+                    duration: 2,
                     delay: 0,
                     repeat: Infinity,
                     repeatType: 'reverse',
@@ -63,8 +63,7 @@ const WebDoor = (): JSX.Element => {
                 scale: 0.5,
                 transition: {
                   scale: {
-                    duration: 1.5,
-
+                    duration: 2,
                     repeat: Infinity,
                     repeatType: 'reverse',
                   },
@@ -81,7 +80,7 @@ const WebDoor = (): JSX.Element => {
                 scale: 0.5,
                 transition: {
                   scale: {
-                    duration: 1.5,
+                    duration: 2,
 
                     repeat: Infinity,
                     repeatType: 'reverse',
