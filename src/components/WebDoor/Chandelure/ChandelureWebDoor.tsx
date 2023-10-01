@@ -24,18 +24,19 @@ const WebDoor = (): JSX.Element => {
     >
       <>
         <motion.div
-          initial={{ scale: 0.8, opacity: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{
             scale: 1,
             opacity: 1,
             transition: {
+              delay: 2.25,
               scale: {
-                duration: 1,
+                duration: 2,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
               opacity: {
-                duration: 1,
+                duration: 2,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
@@ -47,18 +48,19 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{
             scale: 1,
             opacity: 1,
             transition: {
+              delay: 1.55,
               scale: {
-                duration: 1.8,
+                duration: 2.8,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
               opacity: {
-                duration: 1.8,
+                duration: 2.8,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
@@ -70,18 +72,19 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{
             scale: 1,
             opacity: 1,
             transition: {
+              delay: 0.75,
               scale: {
-                duration: 1.5,
+                duration: 2.5,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
               opacity: {
-                duration: 1.5,
+                duration: 2.5,
                 repeat: Infinity,
                 repeatType: 'reverse',
               },
@@ -93,11 +96,12 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{
             scale: 1,
             opacity: 1,
             transition: {
+              delay: 1.25,
               scale: {
                 duration: 2.2,
                 repeat: Infinity,
@@ -116,7 +120,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
         <div className={chandelureStyles.chandelureHolder}>
           <motion.div
-            transition={{ delay: 0.25, type: 'tween', duration: 0.65 }}
+            transition={{ delay: 0.25, type: 'tween', duration: 1.65 }}
             animate={{
               y: 54,
               transition: {
