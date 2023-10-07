@@ -21,6 +21,7 @@ import GlalieWebdoor from './Glalie/GlalieWebDoor';
 import ElectabuzzWebdoor from './Electabuzz/ElectabuzzWebDoor';
 import PrimeapeWebdoor from './Primeape/PrimeapeWebDoor';
 import ChandelureWebdoor from './Chandelure/ChandelureWebDoor';
+import RaichuWebdoor from './Raichu/RaichuWebDoor';
 
 interface WebDoorContextData {
   currentWebDoor: JSX.Element;
@@ -43,6 +44,7 @@ const webDoorList = [
   <ElectabuzzWebdoor />,
   <PrimeapeWebdoor />,
   <ChandelureWebdoor />,
+  <RaichuWebdoor />,
 ];
 
 export const WebDoorContext = createContext({} as WebDoorContextData);

@@ -1,0 +1,144 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.raichuWebDoor {
+  --webdoor-primary-color: #fccb6d;
+  --webdoor-contrast-color: #c16c1c;
+
+  font-size: rem(8);
+  position: relative;
+}
+
+.shiny {
+  --webdoor-primary-color: #ffb660;
+  --webdoor-contrast-color: #c16c1c;
+}
+
+.raichuHolder {
+  bottom: -2%;
+  height: auto;
+  left: 40%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.raichu {
+  position: relative;
+  width: 100%;
+}
+
+.raichuArm {
+  left: 42%;
+  position: absolute;
+  top: 26%;
+  transform: rotate(-8deg);
+  width: 14%;
+}
+
+.grassBack {
+  bottom: -10%;
+  left: 36%;
+  position: absolute;
+  width: 60%;
+  z-index: -1;
+}
+
+.grassBackLeft {
+  bottom: -10%;
+  left: 32%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 60%;
+  z-index: -1;
+}
+
+.grassBackRight {
+  bottom: -10%;
+  position: absolute;
+  right: 6%;
+  transform: translateX(50%);
+  width: 60%;
+  z-index: -1;
+}
+
+.grassFrontLeft {
+  bottom: 0;
+  left: 32%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 44%;
+}
+
+.grassFrontRight {
+  bottom: 0;
+  position: absolute;
+  right: 0%;
+  transform: translateX(50%);
+  width: 44%;
+}
+
+@media only screen and (min-width: $sm) {
+  .raichuWebDoor {
+    font-size: rem(10);
+  }
+
+  .raichuHolder {
+    left: 40%;
+    transform: translateX(-50%);
+    width: auto;
+  }
+
+  .raichu {
+    width: em(990);
+  }
+
+  .raichuArm {
+    width: em(146.91);
+  }
+
+  .grassBack {
+    width: em(640);
+  }
+
+  .grassBackLeft {
+    width: em(640);
+  }
+
+  .grassBackRight {
+    width: em(632);
+  }
+
+  .grassFrontLeft {
+    width: em(440);
+  }
+
+  .grassFrontRight {
+    width: em(440);
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .raichuHolder {
+    left: rem(-0);
+    transform: translateX(-28%);
+    width: auto;
+  }
+
+  .raichu {
+    width: em(1240);
+  }
+
+  .raichuArm {
+    width: em(184);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .raichuWebDoor {
+    font-size: rem(16);
+  }
+}
