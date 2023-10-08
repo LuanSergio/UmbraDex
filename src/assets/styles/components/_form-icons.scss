@@ -6,7 +6,6 @@ $shield: #e10159;
 $pokeball: #fb5556;
 $pokeballSecondary: #eeeded;
 $pikachu: #f1b510;
-$shiny: #f9c639;
 $switchArrow: #4ab8d9;
 $megaGradient1: #f258fa;
 $megaGradient2: #8e7de0;
@@ -27,10 +26,6 @@ $transitionTime: 0.3s;
   transition: stop-color $transitionTime;
 }
 
-.switchFormIcon--active .shiny ,
-.switchFormIcon:hover .shiny {
-  color: $shiny;
-}
 
 .switchFormIcon--active svg .moon,
 .switchFormIcon:hover svg .moon {

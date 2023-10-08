@@ -52,6 +52,7 @@
   font-size: rem(28);
   font-weight: bold;
   margin-bottom: rem(0);
+  min-width: rem(48);
   opacity: 0.8;
   padding: rem(1) rem(6);
   transition: opacity 0.2s;
@@ -110,6 +111,12 @@
     font-size: rem(22);
     font-size: rem(26);
     text-align: center;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .generationDescriptionOption {
+    min-width: 0;
   }
 }
 

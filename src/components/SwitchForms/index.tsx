@@ -4,7 +4,6 @@ import PokemonForm from '@domain/entities/PokemonForm';
 import transformDashedCaseToCamelCase from '@utils/transformDashedCaseToCamelCase';
 
 import AlolaFormIcon from '@components/FormIcons/AlolaFormIcon';
-import ShinyIcon from '@public/icons/shiny.svg';
 import DefaultFormIcon from '@components/FormIcons/DefaultFormIcon';
 import GmaxFormIcon from '@components/FormIcons/GmaxFormIcon';
 import MegaXFormIcon from '@components/FormIcons/MegaXFormIcon';
@@ -14,6 +13,7 @@ import SwordAndShieldFormIcon from '@components/FormIcons/SwordAndShieldFormIcon
 import UnknownFormIcon from '@components/FormIcons/UnknownFormIcon';
 import Carousel from '@components/Carousel';
 import CarouselItem from '@components/CarouselItem';
+import ShinyIcon from '@public/icons/shiny.svg';
 
 import styles from './styles.module.scss';
 
@@ -42,26 +42,19 @@ const SwitchForms = ({
   alternativePokemonForms,
   pokemon,
   isShiny,
-  handleFormChange,
   handleIsShiny,
+  handleFormChange,
 }: SwitchFormsProps): JSX.Element => {
   const [formIndex, setFormIndex] = useState(0);
 
   function handleFormIndexChange(index: number): void {
     setFormIndex(index);
-    handleIsShiny(false);
-  }
-
-  function handleShinyFormClick(): void {
-    handleIsShiny(true);
-    setFormIndex(0);
   }
 
   // Change back to default form when pokemon changes
   useEffect(() => {
     if (pokemon.isDefault) {
       setFormIndex(0);
-      handleIsShiny(false);
     }
   }, [pokemon.isDefault]);
 
@@ -81,66 +74,66 @@ const SwitchForms = ({
   ]);
 
   return (
-    <Carousel
-      currentIndex={formIndex}
-      updateCurrentIndex={handleFormIndexChange}
-      tagName="ul"
-      itemWidth={50}
-      gap={12}
-      maxItems={4}
-      maxPositionIndex="auto"
-    >
-      <CarouselItem
-        tagName="li"
-        onClick={() => handleFormIndexChange(0)}
-        buttonProps={{ disabled: pokemon.isDefault && !isShiny }}
+    <div className={styles.switchFormsContainer}>
+      <Carousel
+        currentIndex={formIndex}
+        updateCurrentIndex={handleFormIndexChange}
+        tagName="ul"
+        itemWidth={50}
+        gap={12}
+        maxItems={4}
+        maxPositionIndex="auto"
       >
-        <div
-          className={`switchFormIcon ${
-            pokemon.isDefault && !isShiny ? 'switchFormIcon--active' : ''
-          } ${styles.iconContainer}`}
+        <CarouselItem
+          tagName="li"
+          onClick={() => handleFormIndexChange(0)}
+          buttonProps={{ disabled: pokemon.isDefault }}
         >
-          <DefaultFormIcon />
-        </div>
-      </CarouselItem>
-
-      <CarouselItem
-        tagName="li"
-        onClick={() => handleShinyFormClick()}
-        buttonProps={{ disabled: pokemon.isDefault && isShiny }}
-      >
-        <div
-          className={`switchFormIcon ${
-            pokemon.isDefault && isShiny ? 'switchFormIcon--active' : ''
-          } ${styles.iconContainer}`}
-        >
-          <ShinyIcon className={`${styles.shinyIcon} shiny`} />
-        </div>
-      </CarouselItem>
-
-      {alternativePokemonForms.map((form, index) => {
-        const formName = transformDashedCaseToCamelCase(form.formName);
-
-        return (
-          <CarouselItem
-            key={form.id}
-            tagName="li"
-            onClick={() => handleFormIndexChange(index + 1)}
-            buttonProps={{ disabled: form.id === pokemon.id }}
+          <span
+            className={`switchFormIcon ${
+              pokemon.isDefault ? 'switchFormIcon--active' : ''
+            } ${styles.iconContainer}`}
           >
-            <div
-              className={`switchFormIcon ${
-                form.id === pokemon.id ? 'switchFormIcon--active' : ''
-              } ${styles.iconContainer}`}
-              title={formName}
-              aria-label={formName}
+            <DefaultFormIcon />
+          </span>
+        </CarouselItem>
+
+        {alternativePokemonForms.map((form, index) => {
+          const formName = transformDashedCaseToCamelCase(form.formName);
+
+          return (
+            <CarouselItem
+              key={form.id}
+              tagName="li"
+              onClick={() => handleFormIndexChange(index + 1)}
+              buttonProps={{ disabled: form.id === pokemon.id }}
             >
-              {forms[formName] ? forms[formName] : forms.unknown}
-            </div>
-          </CarouselItem>
-        );
-      })}
-    </Carousel>
+              <span
+                className={`switchFormIcon ${
+                  form.id === pokemon.id ? 'switchFormIcon--active' : ''
+                } ${styles.iconContainer}`}
+                title={formName}
+                aria-label={formName}
+              >
+                {forms[formName] ? forms[formName] : forms.unknown}
+              </span>
+            </CarouselItem>
+          );
+        })}
+      </Carousel>
+
+      <button
+        aria-label="Toggle shiny"
+        title="Toggle shiny"
+        type="button"
+        className={styles.shinyToggle}
+        onClick={() => handleIsShiny(!isShiny)}
+      >
+        <ShinyIcon
+          className={`${styles.shinyIcon} ${isShiny ? styles.shinyActive : ''}`}
+        />
+      </button>
+    </div>
   );
 };
 

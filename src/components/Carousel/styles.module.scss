@@ -48,6 +48,8 @@
   color: get-color(light);
   display: flex;
   font-size: rem(28);
+  justify-content: center;
+  min-width: rem(48);
   opacity: 0.9;
   transition: background-color 0.2s;
 
@@ -72,6 +74,13 @@
 
 .next:hover {
   opacity: 1;
+}
+
+@media only screen and (min-width: $lg) {
+  .previous,
+  .next {
+    min-width: 0;
+  }
 }
 
 @media only screen and (min-width: $xl) {
