@@ -6,8 +6,8 @@
 .sparkleContainer {
   font-size: rem(9);
   height: 100%;
-  left: 0;
   position: absolute;
+  right: -8%;
   top: 0;
   width: 100%;
   z-index: get-index-level(lvl3);
@@ -24,7 +24,7 @@
 .sparkle1 {
   left: 0;
   top: 0;
-  transform: translateX(-50%);
+  transform: translateX(-24%);
 }
 
 .sparkle1Icon {

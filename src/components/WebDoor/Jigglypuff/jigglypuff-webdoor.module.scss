@@ -1,0 +1,97 @@
+@use 'tools/index' as *;
+@use 'settings/colors-type' as typeColors;
+@use 'helpers/icon.scss' as *;
+@use 'settings/_breakpoints' as *;
+@use 'helpers/container.scss' as *;
+
+.jigglypuffWebDoor {
+  --webdoor-primary-color: #f8b7d7;
+  --webdoor-contrast-color: #06b79a;
+
+  font-size: rem(12);
+  position: relative;
+}
+
+.shiny {
+  --webdoor-primary-color: #5faca5;
+  --webdoor-contrast-color: #76b959;
+}
+
+.jigglypuffHolder {
+  bottom: rem(40);
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.jigglypuffFloatingHolder {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.jigglypuffFloating {
+  filter: drop-shadow(-17px 14px 0 var(--webdoor-contrast-color));
+  width: 360px;
+}
+
+.jigglypuffCornerHolder {
+  bottom: 20%;
+  display: none;
+  left: -20%;
+  position: absolute;
+  transform: translateY(20%);
+}
+
+.jigglypuffCorner {
+  filter: drop-shadow(-17px 14px 0 var(--webdoor-contrast-color));
+  width: rem(810);
+}
+
+.jigglypuff {
+  filter: drop-shadow(-17px 14px 0 var(--webdoor-contrast-color));
+  width: rem(360);
+}
+
+.angrySymbol {
+  position: absolute;
+  right: 16%;
+  top: 16%;
+  width: em(74);
+}
+
+@media only screen and (min-width: $sm) {
+  .jigglypuff {
+    width: 464px;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  .jigglypuffFloatingHolder {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  .jigglypuffHolder {
+    bottom: 40px;
+    right: 24%;
+    transform: translateX(0%);
+  }
+
+  .jigglypuffCornerHolder {
+    display: block;
+  }
+
+  .jigglypuff {
+    width: rem(464);
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+  .jigglypuff {
+    width: rem(484);
+  }
+}
