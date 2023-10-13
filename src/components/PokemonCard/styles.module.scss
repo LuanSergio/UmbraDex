@@ -40,7 +40,7 @@
 }
 
 .number {
-  color: var(--theme-color-light);
+  color: get-color(light);
   font-size: rem(22);
   font-weight: bold;
   margin-bottom: 0;
@@ -75,9 +75,7 @@
 }
 
 .pokemon {
-  height: rem(201);
   position: relative;
-  width: rem(201);
   z-index: get-index-level(lvl2);
 }
 
@@ -90,7 +88,7 @@
 }
 
 .name {
-  background-color: var(--theme-color);
+  background-color: get-color(light);
   border-radius: 6px;
   bottom: 0;
   display: block;
