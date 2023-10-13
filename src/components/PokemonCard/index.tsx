@@ -32,7 +32,7 @@ const PokemonCard = ({ pokemon }: PokemonCard): JSX.Element => {
               <PokeBallIcon />
             </span>
             <div className={styles.pokemon}>
-              <PokemonPicture layout="fill" src={image} alt="" />
+              <PokemonPicture height={201} width={201} src={image} alt="" />
             </div>
 
             <h2 className={`${styles.name} ${styles[types?.[0]]}`}>{name}</h2>
