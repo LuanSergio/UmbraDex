@@ -24,7 +24,7 @@ const WebDoor = (): JSX.Element => {
     >
       <>
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0.01 }}
           animate={{
             scale: 1,
             opacity: 1,
@@ -48,7 +48,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0.01 }}
           animate={{
             scale: 1,
             opacity: 1,
@@ -72,7 +72,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0.01 }}
           animate={{
             scale: 1,
             opacity: 1,
@@ -96,7 +96,7 @@ const WebDoor = (): JSX.Element => {
         </motion.div>
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0.01 }}
           animate={{
             scale: 1,
             opacity: 1,

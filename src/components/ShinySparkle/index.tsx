@@ -33,7 +33,7 @@ const ShinySparkle = ({
               },
             },
           }}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.01 }}
         >
           <SparkleIcon1 className={styles.sparkle1Icon} />
         </motion.div>
@@ -57,7 +57,7 @@ const ShinySparkle = ({
               },
             },
           }}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.01 }}
         >
           <SparkleIcon2 className={styles.sparkle2Icon} />
         </motion.div>
@@ -81,7 +81,7 @@ const ShinySparkle = ({
               },
             },
           }}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.01 }}
         >
           <SparkleIcon3 className={styles.sparkle3Icon} />
         </motion.div>
@@ -105,7 +105,7 @@ const ShinySparkle = ({
               },
             },
           }}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.01 }}
         >
           <SparkleIcon4 className={styles.sparkle4Icon} />
         </motion.div>

@@ -24,7 +24,7 @@ const WebDoor = (): JSX.Element => {
       <>
         <div className={jigglypuffStyles.jigglypuffHolder}>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{
               opacity: 1,
               transition: {
@@ -59,7 +59,7 @@ const WebDoor = (): JSX.Element => {
 
         <div className={jigglypuffStyles.jigglypuffFloatingHolder}>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{
               opacity: 1,
               y: 40,
@@ -93,7 +93,7 @@ const WebDoor = (): JSX.Element => {
 
         <div className={jigglypuffStyles.jigglypuffCornerHolder}>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{
               opacity: 1,
               y: -100,

@@ -62,7 +62,7 @@ const GengarWebDoor = (): JSX.Element => {
                 type: 'tween',
                 duration: 0.75,
               }}
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{ opacity: 1 }}
             >
               <Gengar className={gengarWebDoorStyles.gengar} />

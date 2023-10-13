@@ -23,7 +23,7 @@ const WebDoor = (): JSX.Element => {
       <>
         <div className={electabuzzStyles.electabuzzHolder}>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{
               opacity: [0, 1, 0, 1, 0, 1, 0, 1, 0],
               transition: {

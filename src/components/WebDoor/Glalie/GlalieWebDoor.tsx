@@ -160,7 +160,7 @@ const WebDoor = (): JSX.Element => {
 
         <div className={glalieStyles.glalieHolder}>
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0, opacity: 0.01 }}
             animate={{
               y: 32,
               scale: 1,

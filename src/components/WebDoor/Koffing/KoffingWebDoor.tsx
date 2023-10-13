@@ -56,13 +56,13 @@ const KoffingWebDoor = (): JSX.Element => {
                   },
                 },
               }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0.01 }}
             >
               <SmokeVariation1 className={koffingStyles.leftSmokeVariation1} />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -89,7 +89,7 @@ const KoffingWebDoor = (): JSX.Element => {
                 type: 'tween',
                 duration: 0.75,
               }}
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -111,7 +111,7 @@ const KoffingWebDoor = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -133,7 +133,7 @@ const KoffingWebDoor = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 0 }}
+              initial={{ opacity: 0.01, y: 0 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -150,13 +150,13 @@ const KoffingWebDoor = (): JSX.Element => {
                   },
                 },
               }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0.01 }}
             >
               <SmokeVariation1 className={koffingStyles.rightSmokeVariation1} />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -178,7 +178,7 @@ const KoffingWebDoor = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -200,7 +200,7 @@ const KoffingWebDoor = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -222,7 +222,7 @@ const KoffingWebDoor = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0.01 }}
               animate={{
                 opacity: 1,
                 y: 20,
@@ -245,7 +245,7 @@ const KoffingWebDoor = (): JSX.Element => {
               type: 'tween',
               duration: 0.75,
             }}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{ opacity: 1 }}
           >
             <Sign className={koffingStyles.sign} />
