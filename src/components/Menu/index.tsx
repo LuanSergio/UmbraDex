@@ -46,26 +46,28 @@ const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
       {isOpen && (
         <div className={styles.menu}>
           <ul className={styles.optionsList}>
-            <li className={styles.optionsListItem}>
-              <button
-                type="button"
-                className={`${styles.button} ${styles.buttonToggle}`}
-                onClick={handleDarkModeToggle}
-              >
-                <span className={styles.toggleContainer}>
-                  <span className={styles.icon}>
-                    <MoonIcon />
+            {!isInnerPage && (
+              <li className={styles.optionsListItem}>
+                <button
+                  type="button"
+                  className={`${styles.button} ${styles.buttonToggle}`}
+                  onClick={handleDarkModeToggle}
+                >
+                  <span className={styles.toggleContainer}>
+                    <span className={styles.icon}>
+                      <MoonIcon />
+                    </span>
+                    Dark mode
                   </span>
-                  Dark mode
-                </span>
-                <SwitchToggle
-                  readonly
-                  label="Toggle dark mode theme"
-                  isChecked={theme !== 'light'}
-                  name="dark-mode"
-                />
-              </button>
-            </li>
+                  <SwitchToggle
+                    readonly
+                    label="Toggle dark mode theme"
+                    isChecked={theme !== 'light'}
+                    name="dark-mode"
+                  />
+                </button>
+              </li>
+            )}
           </ul>
 
           <ul className={styles.optionsList}>

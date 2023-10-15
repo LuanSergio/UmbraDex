@@ -67,22 +67,21 @@ const Header = ({ isInnerPage = false }: HeaderProps): JSX.Element => {
             </div>
 
             <div className={styles.rightContainer}>
-              {!isInnerPage && (
-                <a
-                  href="https://github.com/LuanSergio/UmbraDex"
-                  target="_blank"
-                  aria-label="GitHub"
-                  title="GitHub"
-                  className={`${styles.iconButton} ${
-                    isSearchOpen ? `${styles.hiddenMobileItem}` : ''
-                  }`}
-                  rel="noreferrer"
-                >
-                  <span className={styles.icon}>
-                    <GithubIcon />
-                  </span>
-                </a>
-              )}
+              <a
+                href="https://github.com/LuanSergio/UmbraDex"
+                target="_blank"
+                aria-label="GitHub"
+                title="GitHub"
+                className={`${styles.iconButton} ${
+                  isSearchOpen ? `${styles.hiddenMobileItem}` : ''
+                }`}
+                rel="noreferrer"
+              >
+                <span className={styles.icon}>
+                  <GithubIcon />
+                </span>
+              </a>
+
               <button
                 aria-label="Search"
                 title="Search"
