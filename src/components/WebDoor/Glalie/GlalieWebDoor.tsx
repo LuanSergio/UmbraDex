@@ -38,7 +38,7 @@ const snowflakes: Snowflakes[] = [
     position: 'left',
     rotation: 24,
     width: 7.25,
-    id: '01',
+    id: '02',
     zIndex: 21,
     delay: 0,
     initialHorizontalPosition: 0,
