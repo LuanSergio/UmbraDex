@@ -21,7 +21,25 @@ const WebDoorTitle = ({
         webdoorTitleStyles[`positionX-${positionX}`]
       } ${webdoorTitleStyles[`positionY-${positionY}`]}`}
     >
-      <h1 className={`${webdoorTitleStyles.title}`} aria-label={title}>
+      <h1 className={`${webdoorTitleStyles.title}`} aria-labelledby="title">
+        <span
+          id="title"
+          style={{
+            opacity: 0.01,
+            userSelect: 'none',
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: '0',
+            margin: '-1px',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}
+          aria-hidden="true"
+        >
+          {title}
+        </span>
+
         <Title />
       </h1>
     </div>
