@@ -11,7 +11,7 @@ export default function getPokemonImageUrl(
   if (!isShiny) {
     return pokemonArtworkUploadedQuantity >= id ||
       extraFormAvailableImages.includes(id)
-      ? `${pokemonArtworkImages.main}/${id}.png`
+      ? `${pokemonArtworkImages.main}/${id}.webp`
       : `${pokemonArtworkImages.fallback}/${id}.png`;
   }
 
