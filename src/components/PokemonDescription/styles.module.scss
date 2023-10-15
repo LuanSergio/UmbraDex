@@ -69,6 +69,7 @@
   font-weight: bold;
   line-height: 1.5;
   margin: 0 auto;
+  max-width: rem(640);
   padding-left: rem(20);
   padding-right: rem(20);
   text-align: center;
@@ -139,6 +140,6 @@
     font-size: rem(20);
     margin-left: 0;
     margin-right: 0;
-    text-align: left;
+    text-align: center;
   }
 }
