@@ -75,52 +75,54 @@ const SwitchForms = ({
 
   return (
     <div className={styles.switchFormsContainer}>
-      <Carousel
-        currentIndex={formIndex}
-        updateCurrentIndex={handleFormIndexChange}
-        tagName="ul"
-        itemWidth={50}
-        gap={12}
-        maxItems={4}
-        maxPositionIndex="auto"
-      >
-        <CarouselItem
-          tagName="li"
-          onClick={() => handleFormIndexChange(0)}
-          buttonProps={{ disabled: pokemon.isDefault }}
+      {alternativePokemonForms.length > 0 && (
+        <Carousel
+          currentIndex={formIndex}
+          updateCurrentIndex={handleFormIndexChange}
+          tagName="ul"
+          itemWidth={50}
+          gap={12}
+          maxItems={4}
+          maxPositionIndex="auto"
         >
-          <span
-            className={`switchFormIcon ${
-              pokemon.isDefault ? 'switchFormIcon--active' : ''
-            } ${styles.iconContainer}`}
+          <CarouselItem
+            tagName="li"
+            onClick={() => handleFormIndexChange(0)}
+            buttonProps={{ disabled: pokemon.isDefault }}
           >
-            <DefaultFormIcon />
-          </span>
-        </CarouselItem>
-
-        {alternativePokemonForms.map((form, index) => {
-          const formName = transformDashedCaseToCamelCase(form.formName);
-
-          return (
-            <CarouselItem
-              key={form.id}
-              tagName="li"
-              onClick={() => handleFormIndexChange(index + 1)}
-              buttonProps={{ disabled: form.id === pokemon.id }}
+            <span
+              className={`switchFormIcon ${
+                pokemon.isDefault ? 'switchFormIcon--active' : ''
+              } ${styles.iconContainer}`}
             >
-              <span
-                className={`switchFormIcon ${
-                  form.id === pokemon.id ? 'switchFormIcon--active' : ''
-                } ${styles.iconContainer}`}
-                title={formName}
-                aria-label={formName}
+              <DefaultFormIcon />
+            </span>
+          </CarouselItem>
+
+          {alternativePokemonForms.map((form, index) => {
+            const formName = transformDashedCaseToCamelCase(form.formName);
+
+            return (
+              <CarouselItem
+                key={form.id}
+                tagName="li"
+                onClick={() => handleFormIndexChange(index + 1)}
+                buttonProps={{ disabled: form.id === pokemon.id }}
               >
-                {forms[formName] ? forms[formName] : forms.unknown}
-              </span>
-            </CarouselItem>
-          );
-        })}
-      </Carousel>
+                <span
+                  className={`switchFormIcon ${
+                    form.id === pokemon.id ? 'switchFormIcon--active' : ''
+                  } ${styles.iconContainer}`}
+                  title={formName}
+                  aria-label={formName}
+                >
+                  {forms[formName] ? forms[formName] : forms.unknown}
+                </span>
+              </CarouselItem>
+            );
+          })}
+        </Carousel>
+      )}
 
       <button
         aria-label="Toggle shiny"
