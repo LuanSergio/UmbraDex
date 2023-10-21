@@ -112,11 +112,11 @@
 
 .pokeballDecoration {
   color: var(--current-light-type-color);
-  display: hidden;
+  display: none;
   filter: brightness(86%);
   position: absolute;
   right: 50%;
-  top: -44.6%;
+  top: -44.35%;
   transform: translateX(160%) rotate(40deg);
   width: 0;
   z-index: get-index-level(lvl-1);
