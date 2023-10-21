@@ -1,10 +1,12 @@
 @use 'tools/index' as *;
 
 .h-title {
-  font-family: sans-serif;
+  font-family: Rubik, Helvetica, sans-serif;
   letter-spacing: 2px;
 }
 
 .h-title-level-2 {
+  font-family: Rubik, Helvetica, sans-serif;
   text-shadow: rem(2) rem(2) rem(2) rgba(#000, 0.15);
 }
+

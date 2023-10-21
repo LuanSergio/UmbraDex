@@ -3,8 +3,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  src: url('../../fonts/roboto/roboto-regular.woff2') format('woff2'),
-    url('../../fonts/roboto/roboto-regular.woff') format('woff');
+  src: url('../../fonts/roboto/roboto-regular.woff2') format('woff2');
   unicode-range: U+000-5FF; /* Latin glyphs */
 }
 
@@ -13,8 +12,17 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  src: url('../../fonts/roboto/roboto-bold.woff2') format('woff2'),
-    url('../../fonts/roboto/roboto-bold.woff') format('woff');
+  src: url('../../fonts/roboto/roboto-bold.woff2') format('woff2');
+  unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+/* latin */
+@font-face {
+  font-display: swap;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  src: url('../../fonts/rubik/rubik-bold.woff2') format('woff2');
   unicode-range: U+000-5FF; /* Latin glyphs */
 }
 
