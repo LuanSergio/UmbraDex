@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import useThrottleFunction from './useThrottleFunction';
 
 interface ControllerProps<T> {
   loader: HTMLElement;
@@ -10,6 +11,8 @@ const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
     setSize(previousValue => previousValue + 1);
   }, [setSize]);
 
+  const throttledHandleObserver = useThrottleFunction(handleObserver, 1000);
+
   useEffect(() => {
     const options = {
       root: null,
@@ -17,7 +20,7 @@ const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(handleObserver, options);
+    const observer = new IntersectionObserver(throttledHandleObserver, options);
     if (loader) {
       observer.observe(loader);
     }
@@ -25,7 +28,7 @@ const useLoader = <T>({ loader, setSize }: ControllerProps<T>) => {
     return () => {
       observer.disconnect();
     };
-  }, [handleObserver, loader]);
+  }, [throttledHandleObserver, loader]);
 };
 
 export default useLoader;
