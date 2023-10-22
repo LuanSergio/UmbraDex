@@ -25,9 +25,9 @@ const Header = ({ isInnerPage = false }: HeaderProps): JSX.Element => {
     const scrollTop = window.scrollY;
     if (scrollTop > 0) {
       headerBackgroundRef.current?.classList.add(styles.scrolled);
-    } else {
-      headerBackgroundRef.current?.classList.remove(styles.scrolled);
+      return;
     }
+    headerBackgroundRef.current?.classList.remove(styles.scrolled);
   };
 
   function handleOpenSearchClick() {

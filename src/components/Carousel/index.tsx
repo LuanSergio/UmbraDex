@@ -42,11 +42,15 @@ const Carousel = ({
   useEffect(() => {
     if (maxPositionIndex === 'auto') {
       setMaxPositionIndexState(itemsQuantity - maxItems);
-    } else if (maxPositionIndex === 'none') {
-      setMaxPositionIndexState(itemsQuantity - 1);
-    } else {
-      setMaxPositionIndexState(maxPositionIndex);
+      return;
     }
+
+    if (maxPositionIndex === 'none') {
+      setMaxPositionIndexState(itemsQuantity - 1);
+      return;
+    }
+
+    setMaxPositionIndexState(maxPositionIndex);
   }, [itemsQuantity, maxItems, maxPositionIndex]);
 
   const {
