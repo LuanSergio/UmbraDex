@@ -39,10 +39,15 @@ const WebDoor = (): JSX.Element => {
             <Jigglypuff />
           </motion.div>
           <motion.div
-            initial={{ scale: 0.8 }}
+            initial={{ scale: 0.8, opacity: 0 }}
             animate={{
               scale: 1,
+              opacity: 1,
               transition: {
+                opacity: {
+                  delay: 0.25,
+                  duration: 0.4,
+                },
                 scale: {
                   duration: 1.5,
                   repeat: Infinity,
