@@ -20,7 +20,7 @@ const InnerPageNavigation = ({
     <div className={styles.navigation}>
       <div className={RemoveScroll.classNames.fullWidth}>
         <div className={styles.navigationContainer}>
-          <NextLink href={previous}>
+          {disablePrevious ? (
             <button
               type="button"
               disabled={disablePrevious}
@@ -28,9 +28,19 @@ const InnerPageNavigation = ({
               title="Previous pokemon"
               className={styles.previous}
             />
-          </NextLink>
+          ) : (
+            <NextLink href={previous}>
+              <button
+                type="button"
+                disabled={disablePrevious}
+                aria-label="Previous pokemon"
+                title="Previous pokemon"
+                className={styles.previous}
+              />
+            </NextLink>
+          )}
 
-          <NextLink href={next}>
+          {disableNext ? (
             <button
               type="button"
               disabled={disableNext}
@@ -38,7 +48,17 @@ const InnerPageNavigation = ({
               title="Next pokemon"
               className={styles.next}
             />
-          </NextLink>
+          ) : (
+            <NextLink href={next}>
+              <button
+                type="button"
+                disabled={disableNext}
+                aria-label="Next pokemon"
+                title="Next pokemon"
+                className={styles.next}
+              />
+            </NextLink>
+          )}
         </div>
       </div>
     </div>
