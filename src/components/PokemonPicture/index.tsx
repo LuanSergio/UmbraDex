@@ -21,7 +21,7 @@ const PokemonPicture = ({
     img.onload = () => setUrl(img.src);
   }, [src]);
 
-  return <NextImage src={url} {...props} />;
+  return <NextImage unoptimized src={url} {...props} />;
 };
 
 export default PokemonPicture;

@@ -40,6 +40,7 @@ const PokemonHighlight = ({
           objectFit="contain"
           src={imageSrc}
           alt={name}
+          unoptimized
           onError={handleImageError}
           title={name}
         />

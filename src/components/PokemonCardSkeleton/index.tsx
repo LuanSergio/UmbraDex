@@ -15,7 +15,7 @@ const PokemonCardSkeleton = (): JSX.Element => {
           <PokeBallIcon />
         </span>
         <div className={styles.pokemon}>
-          <Image src={substitutePlaceholder} layout="fill" alt="" />
+          <Image unoptimized src={substitutePlaceholder} layout="fill" alt="" />
         </div>
 
         <div className={styles.name}>??????</div>
