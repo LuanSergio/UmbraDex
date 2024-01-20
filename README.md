@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <a href="https://umbradex.vercel.app/">
-    <img alt="UmbraDex" title="UmbraDex" src="/docs/logo.png" />
+    <img alt="UmbraDex" title="UmbraDex" src="/docs/banner.png" />
   </a>
 </h1>
 
@@ -103,10 +103,6 @@ $ npm run dev
 # Build the application for production
 $ npm build
 ```
-
-<div align="center">
-<img  src="/docs/division.png" />
-</div>
 
 ## :memo: License
 
