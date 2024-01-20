@@ -7,8 +7,9 @@
 </h1>
 
 <p align="center">
-  <strong>A Fan-made Pokédex using Next.js and [PokeAPI](https://pokeapi.co/). [Click here](https://umbradex.vercel.app/) for a live version preview.</strong>
+  A Fan-made Pokédex using Next.js and <a href="https://pokeapi.co/">PokeAPI</a>. <a href="https://umbradex.vercel.app/">Click here</a> for a live version preview.
 </p>
+
 <br>
 
 <p align="center">
@@ -34,9 +35,6 @@
 - **Shiny Pokémon and Alternate Forms:** Check out the shiny versions and various forms of each Pokémon.
 - **Animated Random Webdoor:** Experience a dynamic entry into the Pokédex with 10 animated heroes that change every time you load the page. Rumor says there are hidden secrets waiting to be unlocked by entering a famous code.
 
-<div align="center">
-  <img  src="/docs/division.png" />
-</div>
 
 ## :speech_balloon: About:
 
@@ -48,9 +46,6 @@
 
 I'm a huge Pokémon fan, just like most of us '90s and early '20s kids. Upon discovering [PokeAPI](https://pokeapi.co/), an open-source Pokémon project containing a lot of Pokémon data in form of an API, I felt inspired to embark on this project. Originally, my goal was to amp up my skills in handling HTTP requests and simultaneously delve deeper into React and TypeScript. During the project development I decided to to revamp it, opting for GraphQL and Next.js to elevate it into a more robust and refined application.
 
-<div align="center">
-  <img  src="/docs/division.png" />
-</div>
 
 ## :art: Layout:
 
@@ -59,9 +54,6 @@ I created the base layout and did all the SVG drawings for the project on Figma.
 <img src="/docs/layout-figma.png" />
 <img src="/docs/illustrations-figma.png" />
 
-<div align="center">
-  <img  src="/docs/division.png" />
-</div>
 
 ## :robot: Technologies and Tools:
 
@@ -88,9 +80,6 @@ I created the base layout and did all the SVG drawings for the project on Figma.
 - [Figma](https://www.figma.com/)
 - [RealFaviconGenerator](https://realfavicongenerator.net/)
 
-<div align="center">
-  <img  src="/docs/division.png" />
-</div>
 
 ## :man_technologist: Running Locally
 
