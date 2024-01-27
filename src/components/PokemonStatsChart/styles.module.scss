@@ -45,7 +45,6 @@
 .statsMeter {
   align-self: center;
   background-color: get-color(light);
-  border-radius: 4px;
   height: rem(24);
   overflow: hidden;
   width: 80%;
@@ -54,8 +53,6 @@
 .statsMeterValue {
   animation: increasing-horizontal 2s forwards;
   background-color: var(--current-light-type-color);
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
   height: rem(32);
   transform-origin: left;
   transition: background-color 0.28s ease-out, width 0.8s ease;
