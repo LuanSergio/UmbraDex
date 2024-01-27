@@ -76,14 +76,14 @@ I created the base layout and did all the SVG drawings for the project on Figma.
 
 <p>Tools:</p>
 
-- [IconMoon](https://icomoon.io/) (utilized for Pokémon types icons, as SVGs were too large for repetitive use)
+- [IconMoon](https://icomoon.io/) (used for Pokémon types icons, as SVGs were too large for repetitive use)
 - [Figma](https://www.figma.com/)
 - [RealFaviconGenerator](https://realfavicongenerator.net/)
 
 
 ## :man_technologist: Running Locally
 
-You must have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Node](https://nodejs.org/en/), and [Yarn](https://yarnpkg.com/) installed.
+You must have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node](https://nodejs.org/en/)) installed.
 
 On your favorite terminal, run the following commands:
 
