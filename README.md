@@ -44,7 +44,7 @@
 
 ### What is this project?
 
-I'm a huge Pokémon fan, just like most of us '90s and early '20s kids. Upon discovering [PokeAPI](https://pokeapi.co/), an open-source Pokémon project containing a lot of Pokémon data in form of an API, I felt inspired to embark on this project. Originally, my goal was to amp up my skills in handling HTTP requests and simultaneously delve deeper into React and TypeScript. During the project development I decided to to revamp it, opting for GraphQL and Next.js to elevate it into a more robust and refined application.
+I'm a huge Pokémon fan, just like most of us '90s and early '20s kids. Upon discovering [PokeAPI](https://pokeapi.co/), an open-source Pokémon project containing a lot of Pokémon data in form of an API, I felt inspired to embark on this project. Originally, my goal was to amp up my skills in handling HTTP requests and simultaneously delve deeper into React and TypeScript. During the project development, I decided to revamp it, opting for GraphQL and Next.js to elevate it into a more robust and refined application.
 
 
 ## :art: Layout:
