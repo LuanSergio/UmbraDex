@@ -77,36 +77,35 @@ const EvolutionChain = ({
             {evolutionChain.map((evolution, index) => {
               return (
                 <CarouselItem key={evolution.id} tagName="li">
-                  <Link href={`/pokemon/${evolution.id}`} passHref>
-                    <a
-                      className={` ${styles.evolutionContainer} ${
-                        currentId === evolution.id
-                          ? styles.evolutionContainerActive
-                          : ''
-                      }`}
-                      ref={element => {
-                        evolutionRef.current[index] = element;
+                  <Link
+                    href={`/pokemon/${evolution.id}`}
+                    className={` ${styles.evolutionContainer} ${
+                      currentId === evolution.id
+                        ? styles.evolutionContainerActive
+                        : ''
+                    }`}
+                    ref={element => {
+                      evolutionRef.current[index] = element;
+                    }}
+                  >
+                    <div
+                      title={transformFirstLetterToUppercase(evolution.name)}
+                      role="img"
+                      aria-labelledby={`evolution-${evolution.name}`}
+                      className={styles.evolution}
+                      style={{
+                        WebkitMaskImage: `url(${getPokemonImageUrl(
+                          evolution.id,
+                        )})`,
+                        maskImage: `url(${getPokemonImageUrl(evolution.id)})`,
                       }}
+                    />
+                    <span
+                      id={`evolution-${evolution.name}`}
+                      className={styles.evolutionName}
                     >
-                      <div
-                        title={transformFirstLetterToUppercase(evolution.name)}
-                        role="img"
-                        aria-labelledby={`evolution-${evolution.name}`}
-                        className={styles.evolution}
-                        style={{
-                          WebkitMaskImage: `url(${getPokemonImageUrl(
-                            evolution.id,
-                          )})`,
-                          maskImage: `url(${getPokemonImageUrl(evolution.id)})`,
-                        }}
-                      />
-                      <span
-                        id={`evolution-${evolution.name}`}
-                        className={styles.evolutionName}
-                      >
-                        {evolution.name}
-                      </span>
-                    </a>
+                      {evolution.name}
+                    </span>
                   </Link>
                 </CarouselItem>
               );
@@ -120,31 +119,25 @@ const EvolutionChain = ({
               <Link
                 href={`/pokemon/${evolution.id}`}
                 key={evolution.id}
-                passHref
+                className={` ${styles.evolutionContainer} ${
+                  currentId === evolution.id
+                    ? styles.evolutionContainerActive
+                    : ''
+                }`}
               >
-                <a
-                  className={` ${styles.evolutionContainer} ${
-                    currentId === evolution.id
-                      ? styles.evolutionContainerActive
-                      : ''
-                  }`}
-                >
-                  <div
-                    title={transformFirstLetterToUppercase(evolution.name)}
-                    role="img"
-                    aria-labelledby={evolution.name}
-                    className={styles.evolution}
-                    style={{
-                      WebkitMaskImage: `url(${getPokemonImageUrl(
-                        evolution.id,
-                      )})`,
-                      maskImage: `url(${getPokemonImageUrl(evolution.id)})`,
-                    }}
-                  />
-                  <span id={evolution.name} className={styles.evolutionName}>
-                    {evolution.name}
-                  </span>
-                </a>
+                <div
+                  title={transformFirstLetterToUppercase(evolution.name)}
+                  role="img"
+                  aria-labelledby={evolution.name}
+                  className={styles.evolution}
+                  style={{
+                    WebkitMaskImage: `url(${getPokemonImageUrl(evolution.id)})`,
+                    maskImage: `url(${getPokemonImageUrl(evolution.id)})`,
+                  }}
+                />
+                <span id={evolution.name} className={styles.evolutionName}>
+                  {evolution.name}
+                </span>
               </Link>
             );
           })}

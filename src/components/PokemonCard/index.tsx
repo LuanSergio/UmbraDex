@@ -18,37 +18,35 @@ const PokemonCard = ({ pokemon }: PokemonCard): JSX.Element => {
   const { id, image, name, types } = pokemon;
 
   return (
-    <Link href={`${Routes.pokemonDetails}/${id}`} passHref>
-      <a>
-        <article className={styles.card} id={`${id}`}>
-          {id <= 10 ? (
-            <span className={styles.number}># 0{id}</span>
-          ) : (
-            <span className={styles.number}># {id}</span>
-          )}
+    <Link href={`${Routes.pokemonDetails}/${id}`}>
+      <article className={styles.card} id={`${id}`}>
+        {id <= 10 ? (
+          <span className={styles.number}># 0{id}</span>
+        ) : (
+          <span className={styles.number}># {id}</span>
+        )}
 
-          <div className={styles.pokemonContainer}>
-            <span className={styles.pokeball}>
-              <PokeBallIcon />
-            </span>
-            <div className={styles.pokemon}>
-              <PokemonPicture height={201} width={201} src={image} alt="" />
-            </div>
-
-            <h2 className={`${styles.name} ${styles[types?.[0]]}`}>{name}</h2>
+        <div className={styles.pokemonContainer}>
+          <span className={styles.pokeball}>
+            <PokeBallIcon />
+          </span>
+          <div className={styles.pokemon}>
+            <PokemonPicture height={201} width={201} src={image} alt="" />
           </div>
 
-          <ul className={styles.typeContainer}>
-            {types?.map(type => (
-              <li key={type}>
-                <TypeBadge>{type}</TypeBadge>
-              </li>
-            ))}
-          </ul>
+          <h2 className={`${styles.name} ${styles[types?.[0]]}`}>{name}</h2>
+        </div>
 
-          <div className={`${styles.background} ${styles[types?.[0]]}`} />
-        </article>
-      </a>
+        <ul className={styles.typeContainer}>
+          {types?.map(type => (
+            <li key={type}>
+              <TypeBadge>{type}</TypeBadge>
+            </li>
+          ))}
+        </ul>
+
+        <div className={`${styles.background} ${styles[types?.[0]]}`} />
+      </article>
     </Link>
   );
 };

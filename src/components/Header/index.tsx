@@ -55,10 +55,8 @@ const Header = ({ isInnerPage = false }: HeaderProps): JSX.Element => {
             <div
               className={`${isSearchOpen ? `${styles.hiddenMobileItem}` : ''}`}
             >
-              <Link href="/">
-                <a className={styles.logo} aria-label="UmbraDex">
-                  <LogoIcon />
-                </a>
+              <Link href="/" className={styles.logo} aria-label="UmbraDex">
+                <LogoIcon />
               </Link>
             </div>
 

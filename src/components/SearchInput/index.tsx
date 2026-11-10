@@ -140,26 +140,26 @@ const SearchInput = ({ isOpen }: SearchInputProps): JSX.Element => {
                   <Fragment key={index}>
                     {list.map(pokemon => (
                       <li className={styles.searchResultsItem} key={pokemon.id}>
-                        <Link href={`/pokemon/${pokemon.id}`}>
-                          <a className={styles.searchResultsItemLink}>
-                            <span className={styles.pokemonName}>
-                              {transformFirstLetterToUppercase(pokemon.name)}
-                            </span>
+                        <Link
+                          href={`/pokemon/${pokemon.id}`}
+                          className={styles.searchResultsItemLink}
+                        >
+                          <span className={styles.pokemonName}>
+                            {transformFirstLetterToUppercase(pokemon.name)}
+                          </span>
 
-                            <span className={styles.pokemonType}>
-                              {pokemon.types.map((type, typeIndex) => (
-                                <Fragment key={type}>
-                                  {transformFirstLetterToUppercase(type)}{' '}
-                                  {typeIndex + 1 !== pokemon.types.length &&
-                                    '/'}
-                                </Fragment>
-                              ))}
-                            </span>
+                          <span className={styles.pokemonType}>
+                            {pokemon.types.map((type, typeIndex) => (
+                              <Fragment key={type}>
+                                {transformFirstLetterToUppercase(type)}{' '}
+                                {typeIndex + 1 !== pokemon.types.length && '/'}
+                              </Fragment>
+                            ))}
+                          </span>
 
-                            <span className={styles.pokemonNumber}>
-                              #{pokemon.id}
-                            </span>
-                          </a>
+                          <span className={styles.pokemonNumber}>
+                            #{pokemon.id}
+                          </span>
                         </Link>
                       </li>
                     ))}

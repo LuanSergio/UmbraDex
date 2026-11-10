@@ -35,9 +35,9 @@ const PokemonHighlight = ({
       <div className={styles.pokemon}>
         <Image
           quality={100}
-          layout="fill"
+          fill
           priority
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           src={imageSrc}
           alt={name}
           unoptimized

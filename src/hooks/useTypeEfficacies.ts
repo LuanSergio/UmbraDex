@@ -24,7 +24,7 @@ export default function useTypeEfficacies({
 
   const [throttledTypes, isThrottling] = useThrottleValue(types, 2000);
 
-  const { data, error } = useSWR([throttledTypes], async typesKey => {
+  const { data, error } = useSWR([throttledTypes], async ([typesKey]) => {
     const response = await getPokemonTypeEfficaciesUsecase.getTypeEfficacies(
       typesKey,
     );
