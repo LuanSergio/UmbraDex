@@ -84,15 +84,17 @@ const useCarousel = ({
 
   // set carousel container size
   useEffect(() => {
-    if (itemList.length) {
-      setContainerWidth(
-        itemList
-          .slice(0, maxItems)
-          .reduce(
-            (previousValue, currentValue) => previousValue + currentValue + gap,
-          ),
-      );
+    if (!itemList.length) return;
+
+    const windowCount = Math.max(1, itemList.length - maxItems + 1);
+    let maxWidth = 0;
+    for (let i = 0; i < windowCount; i++) {
+      const windowWidth = itemList
+        .slice(i, i + maxItems)
+        .reduce((prev, curr) => prev + curr + gap);
+      if (windowWidth > maxWidth) maxWidth = windowWidth;
     }
+    setContainerWidth(maxWidth);
   }, [itemList, maxItems, gap]);
 
   useEffect(() => {
