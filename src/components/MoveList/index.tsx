@@ -155,7 +155,7 @@ const MoveList = ({ pokemonId }: MoveListProps): JSX.Element => {
                       </Fragment>
                     ))}
 
-                    {moveList?.[moveList?.length - 1].length >=
+                    {moveList?.[moveList.length - 1]?.length >=
                       MOVE_PER_REQUEST && (
                       <tr className={styles.moveListMovesRowLoading}>
                         <td className={styles.loaderCell}>
