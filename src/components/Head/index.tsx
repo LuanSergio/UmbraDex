@@ -37,28 +37,41 @@ const Head = (): JSX.Element => {
       <meta name="author" content="Luan Sergio Damando" />
       <meta name="theme-color" content="#21285a" />
       <meta name="msapplication-TileColor" content="#21285a" />
-      <meta name="theme-color" content="#21285a" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="favicons/apple-touch-icon.png"
+      <meta
+        name="msapplication-TileImage"
+        content="/favicons/mstile-150x150.png"
       />
+
+      {/* PWA */}
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="application-name" content="UmbraDex" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="UmbraDex" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="format-detection" content="telephone=no" />
+
+      <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
       <link
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="favicons/favicon-32x32.png"
+        href="/favicons/favicon-32x32.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="favicons/favicon-16x16.png"
+        href="/favicons/favicon-16x16.png"
       />
-
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicons/apple-touch-icon.png"
+      />
       <link
         rel="mask-icon"
-        href="favicons/safari-pinned-tab.svg"
+        href="/favicons/safari-pinned-tab.svg"
         color="#21285a"
       />
     </>
