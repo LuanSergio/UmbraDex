@@ -1,0 +1,19 @@
+@use 'tools/index' as *;
+
+.instructions {
+  font-size: rem(18);
+}
+
+.text {
+  margin-top: 0;
+}
+
+.steps {
+  list-style: decimal;
+  margin-bottom: 0;
+  padding-left: rem(24);
+
+  li + li {
+    margin-top: rem(8);
+  }
+}

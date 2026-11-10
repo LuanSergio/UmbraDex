@@ -5,17 +5,20 @@ import FilterIcon from '@public/icons/filter.svg';
 import DocumentIcon from '@public/icons/document.svg';
 import MoonIcon from '@public/icons/moon.svg';
 import RandomIcon from '@public/icons/random.svg';
+import InstallIcon from '@public/icons/install.svg';
 
 import Routes from 'src/constants/routes';
 import createRandomNumber from '@utils/createRandomNumber';
 import useThrottleFunction from 'src/hooks/useThrottleFunction';
 
 import { usePokemonListContext } from 'src/contexts/PokemonListContext';
+import { usePwaContext } from 'src/contexts/PwaContext';
 
 import SwitchToggle from '@components/SwitchToggle';
 import Modal from '@components/Modal';
 import FilterModal from '@components/FilterModal';
 import Disclaimer from '@components/Disclaimer';
+import InstallInstructions from '@components/InstallInstructions';
 
 import styles from './styles.module.scss';
 
@@ -30,6 +33,8 @@ const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
 
   const { staticData } = usePokemonListContext();
   const { pokedexLimit } = staticData;
+
+  const { canInstall, needsManualInstall, promptInstall } = usePwaContext();
 
   function handleDarkModeToggle() {
     setTheme(theme !== 'light' ? 'light' : 'dark');
@@ -96,6 +101,39 @@ const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
               </li>
             )}
           </ul>
+          {canInstall && (
+            <ul className={styles.optionsList}>
+              <li className={styles.optionsListItem}>
+                {needsManualInstall ? (
+                  <Modal
+                    size="small"
+                    title="Install UmbraDex"
+                    openButton={
+                      <button type="button" className={styles.button}>
+                        <span className={styles.icon}>
+                          <InstallIcon />
+                        </span>
+                        Install app
+                      </button>
+                    }
+                  >
+                    <InstallInstructions />
+                  </Modal>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={promptInstall}
+                  >
+                    <span className={styles.icon}>
+                      <InstallIcon />
+                    </span>
+                    Install app
+                  </button>
+                )}
+              </li>
+            </ul>
+          )}
           <ul className={styles.optionsList}>
             <li className={styles.optionsListItem}>
               <Modal
