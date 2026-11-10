@@ -7,8 +7,8 @@ import IHttpClient from '@services/http/IHttpClient';
 export default class PokedexData implements PokedexRepository {
   private readonly getLimitQuery = `
   query Pokedex {
-    pokedex: pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
-      pokedexNumbers: pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
+    pokedex: pokedex(where: {name: {_eq: "national"}}) {
+      pokedexNumbers: pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
         limit: pokedex_number
       }
     }

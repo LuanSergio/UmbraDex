@@ -23,7 +23,7 @@ function formatQueryFilters({
   const filterGeneration = `
   ${
     generation?.length
-      ? `pokemon_v2_generation: {id: {_in: [${generation.toString()}]}}, `
+      ? `generation: {id: {_in: [${generation.toString()}]}}, `
       : ''
   }`;
 
@@ -34,10 +34,10 @@ function formatQueryFilters({
       ${
         primaryType?.length
           ? `
-          pokemon_v2_pokemons: {
+          pokemons: {
             _and: [
-              {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_in: [${primaryType.toString()}]}}}},
-              {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_in: [${secondaryType.toString()}]}}}}
+              {pokemontypes: {type: {name: {_in: [${primaryType.toString()}]}}}},
+              {pokemontypes: {type: {name: {_in: [${secondaryType.toString()}]}}}}
             ]
           }
           `
@@ -47,7 +47,7 @@ function formatQueryFilters({
     filterType = `
       ${
         primaryType?.length
-          ? `pokemon_v2_pokemons: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_in: [${primaryType.toString()}]}}}}`
+          ? `pokemons: {pokemontypes: {type: {name: {_in: [${primaryType.toString()}]}}}}`
           : ''
       }`;
   }

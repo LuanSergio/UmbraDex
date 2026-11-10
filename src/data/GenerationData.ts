@@ -9,7 +9,7 @@ import IHttpClient from '@services/http/IHttpClient';
 export default class GenerationData implements GenerationRepository {
   private readonly getAllQuery = `
   query PokemonGeneration {
-    generations: pokemon_v2_generation {
+    generations: generation {
       id
       name
     }

@@ -5,7 +5,7 @@ import IHttpResponse from '@services/http/IHttpResponse';
 
 class GraphqlClient implements IHttpClient {
   private readonly client = new GraphQLClient(
-    'https://beta.pokeapi.co/graphql/v1beta',
+    'https://graphql.pokeapi.co/v1beta2',
   );
 
   async request<Response>({

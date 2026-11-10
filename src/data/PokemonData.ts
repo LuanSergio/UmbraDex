@@ -53,23 +53,23 @@ export default class PokemonData implements PokemonRepository {
 
     return `
       query ${queryName} {
-        pokemonSpecieList: pokemon_v2_pokemonspecies(limit: ${pokemonPerRequest}, offset: ${offset}, ${filterQuery} ${sortQuery}) {
+        pokemonSpecieList: pokemonspecies(limit: ${pokemonPerRequest}, offset: ${offset}, ${filterQuery} ${sortQuery}) {
           id
-          pokemon: pokemon_v2_pokemons {
-            forms: pokemon_v2_pokemonforms {
+          pokemon: pokemons {
+            forms: pokemonforms {
               name
               formId: pokemon_id
             }
-            types: pokemon_v2_pokemontypes {
-              type: pokemon_v2_type {
+            types: pokemontypes {
+              type: type {
                 name
               }
             }
             isDefault: is_default
           }
         }
-        pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
-          pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
+        pokedex(where: {name: {_eq: "national"}}) {
+          pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
             pokedex_number
           }
         }
@@ -78,35 +78,35 @@ export default class PokemonData implements PokemonRepository {
 
   private readonly pokemonByIdQuery = id => `
   query PokemonDetails {
-    pokedex: pokemon_v2_pokedex(where: {name: {_eq: "national"}}) {
-      pokedexNumbers: pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
+    pokedex: pokedex(where: {name: {_eq: "national"}}) {
+      pokedexNumbers: pokemondexnumbers(order_by: {pokedex_number: desc}, limit: 1) {
         number: pokedex_number
       }
     }
-    species: pokemon_v2_pokemonspecies(where: {id: {_eq: ${id} }}) {
-      pokemon: pokemon_v2_pokemons {
+    species: pokemonspecies(where: {id: {_eq: ${id} }}) {
+      pokemon: pokemons {
         name
         isDefault: is_default
-        types: pokemon_v2_pokemontypes {
-          type: pokemon_v2_type {
+        types: pokemontypes {
+          type: type {
             name
           }
         }
-        pokemonForms: pokemon_v2_pokemonforms {
+        pokemonForms: pokemonforms {
           formName: form_name
           formOrder: form_order
           id: pokemon_id
-          pokemonDetails: pokemon_v2_pokemon {
-            stats: pokemon_v2_pokemonstats {
+          pokemonDetails: pokemon {
+            stats: pokemonstats {
               statValue: base_stat
-              stat: pokemon_v2_stat {
+              stat: stat {
                 name
               }
             }
             weight
             height
-            abilities: pokemon_v2_pokemonabilities {
-              ability: pokemon_v2_ability {
+            abilities: pokemonabilities {
+              ability: ability {
                 name
               }
             }
@@ -114,16 +114,16 @@ export default class PokemonData implements PokemonRepository {
           groupVersion: version_group_id
         }
       }
-      specieName:pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 1}}) {
+      specieName:pokemonspeciesnames(where: {language_id: {_eq: 1}}) {
         name
       }
-      flavorTexts: pokemon_v2_pokemonspeciesflavortexts(where: {pokemon_v2_version: {name: {_in: ["red", "silver", "ruby", "diamond", "white", "x", "moon", "sword"]}}, _and: {language_id: {_eq: 9}}}) {
+      flavorTexts: pokemonspeciesflavortexts(where: {version: {name: {_in: ["red", "silver", "ruby", "diamond", "white", "x", "moon", "sword"]}}, _and: {language_id: {_eq: 9}}}) {
         id
         flavorText:flavor_text
         versionId: version_id
       }
-      evolutionChain: pokemon_v2_evolutionchain {
-        specie: pokemon_v2_pokemonspecies {
+      evolutionChain: evolutionchain {
+        specie: pokemonspecies {
           id
           name
           order

@@ -23,7 +23,7 @@ interface GetPokemonTypeEfficaciesResponse {
 export default class PokemonTypeData implements PokemonTypesRepository {
   private readonly getAllPokemonTypesQuery = `
   query PokemonType {
-    types: pokemon_v2_type {
+    types: type {
       id
       name
     }
@@ -31,9 +31,9 @@ export default class PokemonTypeData implements PokemonTypesRepository {
 
   private readonly getAllPokemonTypeEfficaciesQuery = (typesId: number[]) => `
   query TypeEfficacies {
-    typeEfficacies: pokemon_v2_type {
+    typeEfficacies: type {
       name
-      efficacies: pokemon_v2_typeefficacies(where: {damage_factor: {_neq: 100}, target_type_id: {_in: [${typesId.toString()}]}}) {
+      efficacies: typeefficacies(where: {damage_factor: {_neq: 100}, target_type_id: {_in: [${typesId.toString()}]}}) {
         damageFactor: damage_factor
         typeId: target_type_id
       }

@@ -25,15 +25,15 @@ export default class MoveData implements MoveRepository {
     const offset = page * perRequest;
 
     return `query ${queryName} {
-      moves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: ${id}}}  distinct_on: [move_id], limit: ${perRequest}, offset: ${offset}) {
-        move: pokemon_v2_move {
+      moves: pokemonmove(where: {pokemon_id: {_eq: ${id}}}  distinct_on: [move_id], limit: ${perRequest}, offset: ${offset}) {
+        move: move {
           name
           power
           pp
-          damageClass: pokemon_v2_movedamageclass {
+          damageClass: movedamageclass {
             name
           }
-          type: pokemon_v2_type {
+          type: type {
             name
           }
           accuracy
