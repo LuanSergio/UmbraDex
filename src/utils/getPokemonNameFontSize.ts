@@ -1,9 +1,9 @@
 export default function getPokemonNameFontSize(textLength: number): string {
-  if (!(textLength > 14)) {
+  if (!(textLength > 8)) {
     return 'name';
   }
 
-  if (textLength > 22) {
+  if (textLength > 8) {
     return 'nameSmaller';
   }
 
