@@ -156,7 +156,6 @@ export default class PokemonData implements PokemonRepository {
 
             const types = pokemon?.types.map(item => item.type.name);
             if (
-              `primaryTypeFilter` &&
               checkIfPokemonHasType(
                 types,
                 params.primaryTypeFilter,

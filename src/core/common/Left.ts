@@ -7,11 +7,11 @@ export default class Left<L, A> {
     this.value = value;
   }
 
-  isLeft: () => this is Left<L, A> = () => {
+  isLeft(): this is Left<L, A> {
     return true;
-  };
+  }
 
-  isRight: () => this is Right<L, A> = () => {
+  isRight(): this is Right<L, A> {
     return false;
-  };
+  }
 }

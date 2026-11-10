@@ -54,6 +54,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     //fix enum export bug
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"]
+    "@typescript-eslint/no-shadow": ["error"],
+    "class-methods-use-this": "off"
   }
 }
