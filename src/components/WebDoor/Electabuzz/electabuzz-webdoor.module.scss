@@ -80,3 +80,9 @@
     font-size: 16px;
   }
 }
+
+@media #{$tablet} {
+  .electabuzz {
+    width: clamp(em(690), 96vw, calc(var(--screen-height) - 300px));
+  }
+}

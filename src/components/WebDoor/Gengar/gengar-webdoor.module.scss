@@ -128,3 +128,9 @@
     width: 264px;
   }
 }
+
+@media #{$tablet} {
+  .gengar {
+    width: clamp(446px, 78vw, calc(var(--screen-height) - 400px));
+  }
+}

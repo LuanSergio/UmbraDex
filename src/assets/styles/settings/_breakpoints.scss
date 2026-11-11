@@ -6,3 +6,6 @@ $md: em(786);
 $lg: em(1024);
 $xl: em(1280);
 $xxl: em(1536);
+
+// Tablet only: from $sm up to (but not including) $lg
+$tablet: 'only screen and (min-width: #{$sm}) and (max-width: #{em(1023.98)})';

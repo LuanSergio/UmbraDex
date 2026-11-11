@@ -142,3 +142,13 @@
     font-size: rem(16);
   }
 }
+
+@media #{$tablet} {
+  .raichuWebDoor {
+    font-size: clamp(
+      rem(10),
+      min(1.7vw, calc((var(--screen-height) - 420px) / 41)),
+      rem(18)
+    );
+  }
+}
