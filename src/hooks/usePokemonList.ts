@@ -50,7 +50,7 @@ export default function usePokemonList({
 
   const { data, error, size, setSize } = useSWRInfinite(
     getKey,
-    async (
+    async ([
       key,
       page,
       searchKey,
@@ -58,7 +58,7 @@ export default function usePokemonList({
       primaryTypeKey,
       secondaryTypeKey,
       sortValueKey,
-    ) => {
+    ]) => {
       const response = await getPokemonListUsecase.getAll({
         queryName: key,
         page,

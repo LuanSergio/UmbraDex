@@ -35,7 +35,7 @@ export default function useMoveList({
 
   const { data, error, size, setSize } = useSWRInfinite(
     getKey,
-    async (key, page) => {
+    async ([key, page]) => {
       const response = await getMovesByPokemonIdUsecase.getByPokemonId({
         pokemonId: throttledPokemonId,
         queryName: key,
