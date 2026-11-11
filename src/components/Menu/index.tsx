@@ -29,7 +29,8 @@ interface MenuProps {
 
 const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDarkMode = resolvedTheme === 'dark';
 
   const { staticData } = usePokemonListContext();
   const { pokedexLimit } = staticData;
@@ -37,7 +38,7 @@ const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
   const { canInstall, needsManualInstall, promptInstall } = usePwaContext();
 
   function handleDarkModeToggle() {
-    setTheme(theme !== 'light' ? 'light' : 'dark');
+    setTheme(isDarkMode ? 'light' : 'dark');
   }
 
   function handleGoToRandomPokemon() {
@@ -67,7 +68,7 @@ const Menu = ({ isOpen, isInnerPage = false }: MenuProps): JSX.Element => {
                   <SwitchToggle
                     readonly
                     label="Toggle dark mode theme"
-                    isChecked={theme !== 'light'}
+                    isChecked={isDarkMode}
                     name="dark-mode"
                   />
                 </button>
