@@ -95,3 +95,25 @@
     width: rem(484);
   }
 }
+
+@media #{$tablet} {
+  .jigglypuffFloatingHolder {
+    display: block;
+    right: -4%;
+    top: 36%;
+  }
+
+  .jigglypuffFloating {
+    width: 26vw;
+  }
+
+  .jigglypuffCornerHolder {
+    bottom: 34%;
+    display: block;
+    left: -28%;
+  }
+
+  .jigglypuffCorner {
+    width: 56vw;
+  }
+}
