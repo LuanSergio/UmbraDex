@@ -1,0 +1,9 @@
+@use 'sass:math';
+
+// Converts a pixel value into a container-relative unit, keeping the same
+// proportion it has inside a container of `$base` pixels wide.
+@function cqi($value, $base) {
+  $unit: math.div($value, $base) * 100 + cqi;
+
+  @return $unit;
+}
