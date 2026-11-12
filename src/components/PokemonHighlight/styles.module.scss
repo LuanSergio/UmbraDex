@@ -97,3 +97,9 @@
     transform: translateX(0);
   }
 }
+
+@media #{$tablet} {
+  .pokemon {
+    height: clamp(rem(440), 60vw, rem(540));
+  }
+}
