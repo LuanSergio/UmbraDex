@@ -30,6 +30,27 @@
   z-index: get-index-level(lvl2);
 }
 
+// Petals fall from the top edge of the webdoor, independent of the container's
+// padding-top (which below $lg pushes the in-flow content under the header).
+// Left/right match the .h-container horizontal padding.
+.petalsLayer {
+  bottom: 0;
+  left: rem(20);
+  pointer-events: none;
+  position: absolute;
+  right: rem(20);
+  top: 0;
+}
+
+// Full-height track, so y: '100%' ends the fall exactly at the webdoor bottom.
+.petalTrack {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .petalContainer {
   position: absolute;
   top: 0;

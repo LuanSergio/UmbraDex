@@ -159,39 +159,41 @@ const WebDoor = (): JSX.Element => {
       titlePositionY="bottom"
     >
       <>
-        {petals.map(petal => (
-          <motion.div
-            key={petal.id}
-            initial={{
-              y: -200,
-              x: petal.initialHorizontalPosition,
-            }}
-            animate={{
-              y: '110vh',
-              x: petal.finalHorizontalPosition,
-            }}
-            transition={{
-              duration: petal.duration,
-              delay: petal.delay,
-              repeat: Infinity,
-            }}
-            style={{
-              zIndex: petal.zIndex,
-              position: 'relative',
-            }}
-          >
-            <div
-              className={butterfreeStyles.petalContainer}
+        <div className={butterfreeStyles.petalsLayer} aria-hidden="true">
+          {petals.map(petal => (
+            <motion.div
+              key={petal.id}
+              className={butterfreeStyles.petalTrack}
+              initial={{
+                y: -200,
+                x: petal.initialHorizontalPosition,
+              }}
+              animate={{
+                y: '100%',
+                x: petal.finalHorizontalPosition,
+              }}
+              transition={{
+                duration: petal.duration,
+                delay: petal.delay,
+                repeat: Infinity,
+              }}
               style={{
-                [petal.position]: `${petal.positionValue}%`,
-                transform: `rotate(${petal.rotation}deg)`,
-                width: `${petal.width}em`,
+                zIndex: petal.zIndex,
               }}
             >
-              {petalsList[petal.petal]}
-            </div>
-          </motion.div>
-        ))}
+              <div
+                className={butterfreeStyles.petalContainer}
+                style={{
+                  [petal.position]: `${petal.positionValue}%`,
+                  transform: `rotate(${petal.rotation}deg)`,
+                  width: `${petal.width}em`,
+                }}
+              >
+                {petalsList[petal.petal]}
+              </div>
+            </motion.div>
+          ))}
+        </div>
         <div className={butterfreeStyles.butterfreeHolder}>
           <motion.div
             animate={{
