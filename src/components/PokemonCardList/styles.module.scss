@@ -107,3 +107,14 @@
     width: em(280);
   }
 }
+
+@media #{$tablet} {
+  .cardContainer {
+    grid-gap: rem(28) rem(16);
+    grid-template-columns: repeat(3, minmax(0, rem(286)));
+  }
+
+  .cardContainer > li {
+    container-type: inline-size;
+  }
+}

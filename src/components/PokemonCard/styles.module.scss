@@ -1,4 +1,5 @@
 @use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
 @use 'helpers/icon.scss' as *;
 @use 'settings/colors-type' as typeColors;
 @use 'animations/pop-in' as *;
@@ -129,5 +130,67 @@
 
   .name.#{$type} {
     color: $color;
+  }
+}
+
+// On tablets the card fills its grid column (3 per row) and every inner
+// measure scales with the card width, keeping the desktop proportions.
+@media #{$tablet} {
+  $base: 286;
+
+  .card {
+    height: cqi(322.68, $base);
+    padding: cqi(10, $base) cqi(32, $base);
+    width: 100%;
+  }
+
+  .background {
+    height: 100%;
+    inset: 0;
+    width: 100%;
+  }
+
+  .number {
+    font-size: cqi(22, $base);
+    top: cqi(10, $base);
+  }
+
+  .pokeball {
+    height: cqi(172.67, $base);
+    right: cqi(-6, $base);
+    top: cqi(7, $base);
+    width: cqi(167.28, $base);
+  }
+
+  .pokemon {
+    height: cqi(201, $base);
+    width: cqi(201, $base);
+  }
+
+  .pokemon img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .name {
+    font-size: cqi(22, $base);
+    padding: cqi(6, $base) cqi(17, $base);
+  }
+
+  .typeContainer > li > * {
+    font-size: cqi(18, $base);
+    padding: cqi(5, $base) cqi(12, $base);
+  }
+
+  .typeContainer > li > *::before {
+    font-size: cqi(13, $base);
+    height: cqi(22, $base);
+    margin-right: cqi(6, $base);
+    padding: cqi(3, $base);
+    width: cqi(22, $base);
+  }
+
+  .typeContainer > *:not(:last-child) {
+    margin-right: cqi(6, $base);
   }
 }

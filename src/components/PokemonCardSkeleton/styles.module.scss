@@ -1,4 +1,5 @@
 @use 'tools/index' as *;
+@use 'settings/_breakpoints' as *;
 @use 'helpers/icon.scss' as *;
 @use 'animations/pop-in' as *;
 @use 'animations/_rotating' as *;
@@ -145,4 +146,56 @@
   height: rem(22);
   margin-right: rem(6);
   width: rem(22);
+}
+
+@media #{$tablet} {
+  $base: 265;
+
+  .card {
+    height: cqi(299, $base);
+    padding: cqi(10, $base) cqi(32, $base);
+    width: 100%;
+  }
+
+  .background {
+    height: 100%;
+    inset: 0;
+    width: 100%;
+  }
+
+  .number {
+    font-size: cqi(21, $base);
+    top: cqi(10, $base);
+  }
+
+  .pokeball {
+    height: cqi(160, $base);
+    right: cqi(-6, $base);
+    top: cqi(7, $base);
+    width: cqi(155, $base);
+  }
+
+  .pokemon {
+    height: cqi(201, $base);
+    width: cqi(201, $base);
+  }
+
+  .name {
+    font-size: cqi(21, $base);
+    height: cqi(32, $base);
+    padding: cqi(6, $base) cqi(17, $base);
+    width: cqi(121, $base);
+  }
+
+  .type {
+    font-size: cqi(18, $base);
+    height: cqi(32, $base);
+    padding: cqi(5, $base) cqi(12, $base);
+  }
+
+  .type::before {
+    height: cqi(22, $base);
+    margin-right: cqi(6, $base);
+    width: cqi(22, $base);
+  }
 }
